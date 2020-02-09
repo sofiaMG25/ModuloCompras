@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="resizable" type="boolean" value="false"/>
@@ -26,7 +26,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <Component id="main" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -40,7 +40,7 @@
     <Container class="javax.swing.JPanel" name="main">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="d1" green="b4" id="Active Caption" palette="2" red="99" type="palette"/>
+          <Color blue="33" green="33" red="0" type="rgb"/>
         </Property>
       </Properties>
 
@@ -157,25 +157,25 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="opcionesMenu1" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
-                              <Component id="opcionesMenu2" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
-                              <Component id="opcionesMenu3" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
-                              <Component id="opcionesMenu8" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
-                              <Component id="opcionesMenu5" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
-                              <Component id="opcionesMenu10" alignment="0" min="-2" pref="168" max="-2" attributes="0"/>
-                              <Component id="opcionesMenu13" alignment="0" min="-2" pref="168" max="-2" attributes="0"/>
+                              <Component id="laboratorios" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
+                              <Component id="categorias" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
+                              <Component id="empaques" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
+                              <Component id="productos" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
+                              <Component id="sucursales" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
+                              <Component id="pedidos" alignment="0" min="-2" pref="168" max="-2" attributes="0"/>
+                              <Component id="provedores" alignment="0" min="-2" pref="168" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="opcionesMenu14" min="-2" pref="168" max="-2" attributes="0"/>
-                                      <Component id="opcionesMenu4" min="-2" pref="143" max="-2" attributes="0"/>
-                                      <Component id="opcionesMenu6" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="opcionesMenu15" alignment="0" min="-2" pref="168" max="-2" attributes="0"/>
-                                      <Component id="opcionesMenu16" alignment="0" min="-2" pref="168" max="-2" attributes="0"/>
-                                      <Component id="opcionesMenu7" alignment="0" min="-2" pref="169" max="-2" attributes="0"/>
-                                      <Component id="opcionesMenu12" min="-2" pref="168" max="-2" attributes="0"/>
-                                      <Component id="opcionesMenu11" min="-2" pref="168" max="-2" attributes="0"/>
-                                      <Component id="opcionesMenu9" min="-2" pref="168" max="-2" attributes="0"/>
+                                      <Component id="contactosProv" min="-2" pref="168" max="-2" attributes="0"/>
+                                      <Component id="unidadMedidas" min="-2" pref="143" max="-2" attributes="0"/>
+                                      <Component id="presentProductos" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="productosProv" alignment="0" min="-2" pref="168" max="-2" attributes="0"/>
+                                      <Component id="cuentasProv" alignment="0" min="-2" pref="168" max="-2" attributes="0"/>
+                                      <Component id="imgProductos" alignment="0" min="-2" pref="169" max="-2" attributes="0"/>
+                                      <Component id="pagos" min="-2" pref="168" max="-2" attributes="0"/>
+                                      <Component id="pedidoDetalles" min="-2" pref="168" max="-2" attributes="0"/>
+                                      <Component id="existenciaSuc" min="-2" pref="168" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -194,49 +194,49 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                          <Component id="opcionesMenu1" min="-2" max="-2" attributes="0"/>
+                          <Component id="laboratorios" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="opcionesMenu2" min="-2" max="-2" attributes="0"/>
+                          <Component id="categorias" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="opcionesMenu3" min="-2" max="-2" attributes="0"/>
+                          <Component id="empaques" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="opcionesMenu4" min="-2" max="-2" attributes="0"/>
+                          <Component id="unidadMedidas" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                           <Component id="jSeparator3" min="-2" pref="10" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="opcionesMenu8" min="-2" max="-2" attributes="0"/>
+                          <Component id="productos" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="opcionesMenu6" min="-2" max="-2" attributes="0"/>
+                          <Component id="presentProductos" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="opcionesMenu7" min="-2" max="-2" attributes="0"/>
+                          <Component id="imgProductos" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jSeparator4" min="-2" pref="10" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="opcionesMenu5" min="-2" max="-2" attributes="0"/>
+                          <Component id="sucursales" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="opcionesMenu9" min="-2" max="-2" attributes="0"/>
+                          <Component id="existenciaSuc" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                           <Component id="jSeparator6" min="-2" pref="10" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="opcionesMenu10" min="-2" max="-2" attributes="0"/>
+                          <Component id="pedidos" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="opcionesMenu11" min="-2" max="-2" attributes="0"/>
+                          <Component id="pedidoDetalles" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="opcionesMenu12" min="-2" max="-2" attributes="0"/>
+                          <Component id="pagos" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jSeparator8" min="-2" pref="10" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="opcionesMenu13" min="-2" max="-2" attributes="0"/>
+                          <Component id="provedores" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="opcionesMenu14" min="-2" max="-2" attributes="0"/>
+                          <Component id="contactosProv" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="opcionesMenu15" min="-2" max="-2" attributes="0"/>
+                          <Component id="productosProv" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="opcionesMenu16" min="-2" max="-2" attributes="0"/>
+                          <Component id="cuentasProv" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
@@ -250,7 +250,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="opcionesMenu1">
+                <Component class="javax.swing.JLabel" name="laboratorios">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tw Cen MT Condensed Extra Bold" size="18" style="2"/>
@@ -266,8 +266,12 @@
                       <Color id="Cursor de Mano"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="laboratoriosMouseClicked"/>
+                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="laboratoriosMouseEntered"/>
+                  </Events>
                 </Component>
-                <Component class="javax.swing.JLabel" name="opcionesMenu2">
+                <Component class="javax.swing.JLabel" name="categorias">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tw Cen MT Condensed Extra Bold" size="18" style="2"/>
@@ -284,7 +288,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="opcionesMenu3">
+                <Component class="javax.swing.JLabel" name="empaques">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tw Cen MT Condensed Extra Bold" size="18" style="2"/>
@@ -301,7 +305,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="opcionesMenu4">
+                <Component class="javax.swing.JLabel" name="unidadMedidas">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tw Cen MT Condensed Extra Bold" size="18" style="2"/>
@@ -315,7 +319,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="opcionesMenu5">
+                <Component class="javax.swing.JLabel" name="sucursales">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tw Cen MT Condensed Extra Bold" size="18" style="2"/>
@@ -332,7 +336,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="opcionesMenu6">
+                <Component class="javax.swing.JLabel" name="presentProductos">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tw Cen MT Condensed Extra Bold" size="18" style="2"/>
@@ -346,7 +350,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="opcionesMenu7">
+                <Component class="javax.swing.JLabel" name="imgProductos">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tw Cen MT Condensed Extra Bold" size="18" style="2"/>
@@ -360,7 +364,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="opcionesMenu8">
+                <Component class="javax.swing.JLabel" name="productos">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tw Cen MT Condensed Extra Bold" size="18" style="2"/>
@@ -377,7 +381,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="opcionesMenu9">
+                <Component class="javax.swing.JLabel" name="existenciaSuc">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tw Cen MT Condensed Extra Bold" size="18" style="2"/>
@@ -391,7 +395,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="opcionesMenu10">
+                <Component class="javax.swing.JLabel" name="pedidos">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tw Cen MT Condensed Extra Bold" size="18" style="2"/>
@@ -408,7 +412,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="opcionesMenu11">
+                <Component class="javax.swing.JLabel" name="pedidoDetalles">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tw Cen MT Condensed Extra Bold" size="18" style="2"/>
@@ -422,7 +426,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="opcionesMenu12">
+                <Component class="javax.swing.JLabel" name="pagos">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tw Cen MT Condensed Extra Bold" size="18" style="2"/>
@@ -436,7 +440,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="opcionesMenu13">
+                <Component class="javax.swing.JLabel" name="provedores">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tw Cen MT Condensed Extra Bold" size="18" style="2"/>
@@ -453,7 +457,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="opcionesMenu14">
+                <Component class="javax.swing.JLabel" name="contactosProv">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tw Cen MT Condensed Extra Bold" size="18" style="2"/>
@@ -467,7 +471,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="opcionesMenu15">
+                <Component class="javax.swing.JLabel" name="productosProv">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tw Cen MT Condensed Extra Bold" size="18" style="2"/>
@@ -481,7 +485,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="opcionesMenu16">
+                <Component class="javax.swing.JLabel" name="cuentasProv">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tw Cen MT Condensed Extra Bold" size="18" style="2"/>
@@ -582,13 +586,13 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="footer" max="32767" attributes="0"/>
-                  <Component id="jInternalFrame1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="workSpace" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jInternalFrame1" max="32767" attributes="0"/>
+                      <Component id="workSpace" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="footer" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -653,9 +657,11 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JInternalFrame" name="jInternalFrame1">
+            <Container class="javax.swing.JPanel" name="workSpace">
               <Properties>
-                <Property name="visible" type="boolean" value="true"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
               </Properties>
 
               <Layout>
@@ -666,7 +672,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="450" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>

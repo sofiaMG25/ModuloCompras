@@ -1,5 +1,6 @@
 package principal;
-
+import CRUD.Laboratorios.agregarLaboratorio;
+import java.awt.BorderLayout;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -17,6 +18,7 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
+        System.out.println(workSpace.getSize());
     }
 
     /**
@@ -33,22 +35,22 @@ public class Main extends javax.swing.JFrame {
         opcionesMenu = new javax.swing.JLabel();
         Separador1 = new javax.swing.JSeparator();
         listaMenu = new javax.swing.JPanel();
-        opcionesMenu1 = new javax.swing.JLabel();
-        opcionesMenu2 = new javax.swing.JLabel();
-        opcionesMenu3 = new javax.swing.JLabel();
-        opcionesMenu4 = new javax.swing.JLabel();
-        opcionesMenu5 = new javax.swing.JLabel();
-        opcionesMenu6 = new javax.swing.JLabel();
-        opcionesMenu7 = new javax.swing.JLabel();
-        opcionesMenu8 = new javax.swing.JLabel();
-        opcionesMenu9 = new javax.swing.JLabel();
-        opcionesMenu10 = new javax.swing.JLabel();
-        opcionesMenu11 = new javax.swing.JLabel();
-        opcionesMenu12 = new javax.swing.JLabel();
-        opcionesMenu13 = new javax.swing.JLabel();
-        opcionesMenu14 = new javax.swing.JLabel();
-        opcionesMenu15 = new javax.swing.JLabel();
-        opcionesMenu16 = new javax.swing.JLabel();
+        laboratorios = new javax.swing.JLabel();
+        categorias = new javax.swing.JLabel();
+        empaques = new javax.swing.JLabel();
+        unidadMedidas = new javax.swing.JLabel();
+        sucursales = new javax.swing.JLabel();
+        presentProductos = new javax.swing.JLabel();
+        imgProductos = new javax.swing.JLabel();
+        productos = new javax.swing.JLabel();
+        existenciaSuc = new javax.swing.JLabel();
+        pedidos = new javax.swing.JLabel();
+        pedidoDetalles = new javax.swing.JLabel();
+        pagos = new javax.swing.JLabel();
+        provedores = new javax.swing.JLabel();
+        contactosProv = new javax.swing.JLabel();
+        productosProv = new javax.swing.JLabel();
+        cuentasProv = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
@@ -63,12 +65,12 @@ public class Main extends javax.swing.JFrame {
         footer = new javax.swing.JPanel();
         usuario = new javax.swing.JLabel();
         fecha_hora = new javax.swing.JLabel();
-        jInternalFrame1 = new javax.swing.JInternalFrame();
+        workSpace = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        main.setBackground(java.awt.SystemColor.activeCaption);
+        main.setBackground(new java.awt.Color(0, 51, 51));
 
         menu.setBackground(new java.awt.Color(0, 51, 51));
 
@@ -81,92 +83,100 @@ public class Main extends javax.swing.JFrame {
         listaMenu.setBackground(new java.awt.Color(0, 102, 102));
         listaMenu.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 51), 2, true), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 51))); // NOI18N
 
-        opcionesMenu1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        opcionesMenu1.setForeground(new java.awt.Color(255, 255, 255));
-        opcionesMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lab.png"))); // NOI18N
-        opcionesMenu1.setText("Laboratorio");
-        opcionesMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        laboratorios.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        laboratorios.setForeground(new java.awt.Color(255, 255, 255));
+        laboratorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lab.png"))); // NOI18N
+        laboratorios.setText("Laboratorio");
+        laboratorios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        laboratorios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                laboratoriosMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                laboratoriosMouseEntered(evt);
+            }
+        });
 
-        opcionesMenu2.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        opcionesMenu2.setForeground(new java.awt.Color(255, 255, 255));
-        opcionesMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cate.png"))); // NOI18N
-        opcionesMenu2.setText("Categoria");
-        opcionesMenu2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        categorias.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        categorias.setForeground(new java.awt.Color(255, 255, 255));
+        categorias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cate.png"))); // NOI18N
+        categorias.setText("Categoria");
+        categorias.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        opcionesMenu3.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        opcionesMenu3.setForeground(new java.awt.Color(255, 255, 255));
-        opcionesMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/orden.png"))); // NOI18N
-        opcionesMenu3.setText("Empaques");
-        opcionesMenu3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        empaques.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        empaques.setForeground(new java.awt.Color(255, 255, 255));
+        empaques.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/orden.png"))); // NOI18N
+        empaques.setText("Empaques");
+        empaques.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        opcionesMenu4.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        opcionesMenu4.setForeground(new java.awt.Color(255, 255, 255));
-        opcionesMenu4.setText("Unidad  de medida");
-        opcionesMenu4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        unidadMedidas.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        unidadMedidas.setForeground(new java.awt.Color(255, 255, 255));
+        unidadMedidas.setText("Unidad  de medida");
+        unidadMedidas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        opcionesMenu5.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        opcionesMenu5.setForeground(new java.awt.Color(255, 255, 255));
-        opcionesMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sucu.png"))); // NOI18N
-        opcionesMenu5.setText("Sucursales");
-        opcionesMenu5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        sucursales.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        sucursales.setForeground(new java.awt.Color(255, 255, 255));
+        sucursales.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sucu.png"))); // NOI18N
+        sucursales.setText("Sucursales");
+        sucursales.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        opcionesMenu6.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        opcionesMenu6.setForeground(new java.awt.Color(255, 255, 255));
-        opcionesMenu6.setText("Presentaciones de productos");
-        opcionesMenu6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        presentProductos.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        presentProductos.setForeground(new java.awt.Color(255, 255, 255));
+        presentProductos.setText("Presentaciones de productos");
+        presentProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        opcionesMenu7.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        opcionesMenu7.setForeground(new java.awt.Color(255, 255, 255));
-        opcionesMenu7.setText("Imagenes de producto");
-        opcionesMenu7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        imgProductos.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        imgProductos.setForeground(new java.awt.Color(255, 255, 255));
+        imgProductos.setText("Imagenes de producto");
+        imgProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        opcionesMenu8.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        opcionesMenu8.setForeground(new java.awt.Color(255, 255, 255));
-        opcionesMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/prod.png"))); // NOI18N
-        opcionesMenu8.setText("Productos");
-        opcionesMenu8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        productos.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        productos.setForeground(new java.awt.Color(255, 255, 255));
+        productos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/prod.png"))); // NOI18N
+        productos.setText("Productos");
+        productos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        opcionesMenu9.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        opcionesMenu9.setForeground(new java.awt.Color(255, 255, 255));
-        opcionesMenu9.setText("Existencia de sucursal");
-        opcionesMenu9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        existenciaSuc.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        existenciaSuc.setForeground(new java.awt.Color(255, 255, 255));
+        existenciaSuc.setText("Existencia de sucursal");
+        existenciaSuc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        opcionesMenu10.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        opcionesMenu10.setForeground(new java.awt.Color(255, 255, 255));
-        opcionesMenu10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pedi.png"))); // NOI18N
-        opcionesMenu10.setText("Pedidos");
-        opcionesMenu10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pedidos.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        pedidos.setForeground(new java.awt.Color(255, 255, 255));
+        pedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pedi.png"))); // NOI18N
+        pedidos.setText("Pedidos");
+        pedidos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        opcionesMenu11.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        opcionesMenu11.setForeground(new java.awt.Color(255, 255, 255));
-        opcionesMenu11.setText("Pedido detalle");
-        opcionesMenu11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pedidoDetalles.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        pedidoDetalles.setForeground(new java.awt.Color(255, 255, 255));
+        pedidoDetalles.setText("Pedido detalle");
+        pedidoDetalles.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        opcionesMenu12.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        opcionesMenu12.setForeground(new java.awt.Color(255, 255, 255));
-        opcionesMenu12.setText("pagos");
-        opcionesMenu12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pagos.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        pagos.setForeground(new java.awt.Color(255, 255, 255));
+        pagos.setText("pagos");
+        pagos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        opcionesMenu13.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        opcionesMenu13.setForeground(new java.awt.Color(255, 255, 255));
-        opcionesMenu13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/prov.png"))); // NOI18N
-        opcionesMenu13.setText("Proveedores");
-        opcionesMenu13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        provedores.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        provedores.setForeground(new java.awt.Color(255, 255, 255));
+        provedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/prov.png"))); // NOI18N
+        provedores.setText("Proveedores");
+        provedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        opcionesMenu14.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        opcionesMenu14.setForeground(new java.awt.Color(255, 255, 255));
-        opcionesMenu14.setText("Contactos Proveedor");
-        opcionesMenu14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        contactosProv.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        contactosProv.setForeground(new java.awt.Color(255, 255, 255));
+        contactosProv.setText("Contactos Proveedor");
+        contactosProv.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        opcionesMenu15.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        opcionesMenu15.setForeground(new java.awt.Color(255, 255, 255));
-        opcionesMenu15.setText("Productos proveedores");
-        opcionesMenu15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        productosProv.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        productosProv.setForeground(new java.awt.Color(255, 255, 255));
+        productosProv.setText("Productos proveedores");
+        productosProv.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        opcionesMenu16.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        opcionesMenu16.setForeground(new java.awt.Color(255, 255, 255));
-        opcionesMenu16.setText("Cuentas proveedor");
-        opcionesMenu16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cuentasProv.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        cuentasProv.setForeground(new java.awt.Color(255, 255, 255));
+        cuentasProv.setText("Cuentas proveedor");
+        cuentasProv.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout listaMenuLayout = new javax.swing.GroupLayout(listaMenu);
         listaMenu.setLayout(listaMenuLayout);
@@ -181,25 +191,25 @@ public class Main extends javax.swing.JFrame {
             .addGroup(listaMenuLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(listaMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(opcionesMenu1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(opcionesMenu2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(opcionesMenu3, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(opcionesMenu8, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(opcionesMenu5, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(opcionesMenu10, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(opcionesMenu13, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(laboratorios, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(categorias, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(empaques, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(productos, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sucursales, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(provedores, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(listaMenuLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(listaMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(opcionesMenu14, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(opcionesMenu4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(opcionesMenu6)
-                            .addComponent(opcionesMenu15, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(opcionesMenu16, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(opcionesMenu7, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(opcionesMenu12, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(opcionesMenu11, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(opcionesMenu9, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(contactosProv, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(unidadMedidas, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(presentProductos)
+                            .addComponent(productosProv, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cuentasProv, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(imgProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pagos, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pedidoDetalles, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(existenciaSuc, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(listaMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(listaMenuLayout.createSequentialGroup()
@@ -211,49 +221,49 @@ public class Main extends javax.swing.JFrame {
             listaMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(listaMenuLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(opcionesMenu1)
+                .addComponent(laboratorios)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(opcionesMenu2)
+                .addComponent(categorias)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(opcionesMenu3)
+                .addComponent(empaques)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(opcionesMenu4)
+                .addComponent(unidadMedidas)
                 .addGap(4, 4, 4)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(opcionesMenu8)
+                .addComponent(productos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(opcionesMenu6)
+                .addComponent(presentProductos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(opcionesMenu7)
+                .addComponent(imgProductos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(opcionesMenu5)
+                .addComponent(sucursales)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(opcionesMenu9)
+                .addComponent(existenciaSuc)
                 .addGap(22, 22, 22)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(opcionesMenu10)
+                .addComponent(pedidos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(opcionesMenu11)
+                .addComponent(pedidoDetalles)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(opcionesMenu12)
+                .addComponent(pagos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(opcionesMenu13)
+                .addComponent(provedores)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(opcionesMenu14)
+                .addComponent(contactosProv)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(opcionesMenu15)
+                .addComponent(productosProv)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(opcionesMenu16)
+                .addComponent(cuentasProv)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(listaMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(listaMenuLayout.createSequentialGroup()
@@ -353,17 +363,17 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jInternalFrame1.setVisible(true);
+        workSpace.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
-        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
-        jInternalFrame1Layout.setHorizontalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout workSpaceLayout = new javax.swing.GroupLayout(workSpace);
+        workSpace.setLayout(workSpaceLayout);
+        workSpaceLayout.setHorizontalGroup(
+            workSpaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jInternalFrame1Layout.setVerticalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        workSpaceLayout.setVerticalGroup(
+            workSpaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 450, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout bodyLayout = new javax.swing.GroupLayout(body);
@@ -371,12 +381,12 @@ public class Main extends javax.swing.JFrame {
         bodyLayout.setHorizontalGroup(
             bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(footer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jInternalFrame1)
+            .addComponent(workSpace, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         bodyLayout.setVerticalGroup(
             bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bodyLayout.createSequentialGroup()
-                .addComponent(jInternalFrame1)
+                .addComponent(workSpace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(footer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -407,7 +417,7 @@ public class Main extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(main, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -416,6 +426,26 @@ public class Main extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+   
+    /**
+     * Método que muestra la interfaz de agregar un laboratorio
+     * @param evt 
+     */
+    private void laboratoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laboratoriosMouseClicked
+       
+       workSpace.removeAll();
+       agregarLaboratorio nuevolab = new agregarLaboratorio();
+       nuevolab.setSize(workSpace.getSize().width,workSpace.getSize().height);
+       nuevolab.setVisible(true);
+       workSpace.add(nuevolab,BorderLayout.CENTER);
+       workSpace.revalidate();
+       workSpace.repaint();
+       
+    }//GEN-LAST:event_laboratoriosMouseClicked
+
+    private void laboratoriosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laboratoriosMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_laboratoriosMouseEntered
 
     /**
      * @param args the command line arguments
@@ -455,10 +485,15 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSeparator Separador1;
     private javax.swing.JPanel body;
+    private javax.swing.JLabel categorias;
+    private javax.swing.JLabel contactosProv;
+    private javax.swing.JLabel cuentasProv;
+    private javax.swing.JLabel empaques;
+    private javax.swing.JLabel existenciaSuc;
     private javax.swing.JLabel fecha_hora;
     private javax.swing.JPanel footer;
     private javax.swing.JPanel header;
-    private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JLabel imgProductos;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -466,28 +501,23 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JLabel laboratorios;
     private javax.swing.JPanel listaMenu;
     private javax.swing.JPanel main;
     private javax.swing.JPanel menu;
     private javax.swing.JLabel opcionesMenu;
-    private javax.swing.JLabel opcionesMenu1;
-    private javax.swing.JLabel opcionesMenu10;
-    private javax.swing.JLabel opcionesMenu11;
-    private javax.swing.JLabel opcionesMenu12;
-    private javax.swing.JLabel opcionesMenu13;
-    private javax.swing.JLabel opcionesMenu14;
-    private javax.swing.JLabel opcionesMenu15;
-    private javax.swing.JLabel opcionesMenu16;
-    private javax.swing.JLabel opcionesMenu2;
-    private javax.swing.JLabel opcionesMenu3;
-    private javax.swing.JLabel opcionesMenu4;
-    private javax.swing.JLabel opcionesMenu5;
-    private javax.swing.JLabel opcionesMenu6;
-    private javax.swing.JLabel opcionesMenu7;
-    private javax.swing.JLabel opcionesMenu8;
-    private javax.swing.JLabel opcionesMenu9;
+    private javax.swing.JLabel pagos;
+    private javax.swing.JLabel pedidoDetalles;
+    private javax.swing.JLabel pedidos;
+    private javax.swing.JLabel presentProductos;
+    private javax.swing.JLabel productos;
+    private javax.swing.JLabel productosProv;
+    private javax.swing.JLabel provedores;
     private javax.swing.JLabel saludo;
+    private javax.swing.JLabel sucursales;
     private javax.swing.JLabel titulo;
+    private javax.swing.JLabel unidadMedidas;
     private javax.swing.JLabel usuario;
+    private javax.swing.JPanel workSpace;
     // End of variables declaration//GEN-END:variables
 }
