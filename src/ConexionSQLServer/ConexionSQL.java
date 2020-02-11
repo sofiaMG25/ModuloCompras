@@ -15,6 +15,7 @@ public class ConexionSQL {
 	private ConexionSQL(){
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
+			//Class.forName("COM.MICROSOFT.SQLSERVER.JDBC.SQLSERVERDRIVER");
 			cn=DriverManager.getConnection(url,user,password);
 		}
 		catch(SQLException e){

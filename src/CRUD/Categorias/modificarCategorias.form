@@ -20,8 +20,7 @@
     </Property>
   </Properties>
   <AccessibilityProperties>
-    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Modificar Laboratorio"/>
-    <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
+    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Modificar Categoria "/>
   </AccessibilityProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -46,20 +45,18 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="origenUL" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="idUL" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
                       <Component id="idtxtUL" min="-2" pref="45" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="nombreUL" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="estatusUL" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="nombreUL" min="-2" max="-2" attributes="0"/>
+                          <Component id="estatusUL" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="origentxtUL" min="-2" pref="314" max="-2" attributes="0"/>
                           <Component id="nombretxtUL" min="-2" pref="314" max="-2" attributes="0"/>
                           <Component id="jComboBox1" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
                       </Group>
@@ -82,17 +79,12 @@
                   <Component id="nombreUL" min="-2" max="-2" attributes="0"/>
                   <Component id="nombretxtUL" min="-2" pref="22" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="origentxtUL" min="-2" pref="22" max="-2" attributes="0"/>
-                  <Component id="origenUL" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="estatusUL" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="65" max="32767" attributes="0"/>
+              <EmptySpace pref="97" max="32767" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -123,14 +115,6 @@
         <Property name="text" type="java.lang.String" value="NOMBRE:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="origenUL">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Times New Roman" size="18" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="ORIGEN:"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="estatusUL">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -138,8 +122,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="ESTATUS:"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="origentxtUL">
     </Component>
     <Component class="javax.swing.JComboBox" name="jComboBox1">
       <Properties>

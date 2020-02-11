@@ -20,8 +20,7 @@
     </Property>
   </Properties>
   <AccessibilityProperties>
-    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Modificar Laboratorio"/>
-    <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
+    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Modificar Unidad"/>
   </AccessibilityProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -128,7 +127,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="ORIGEN:"/>
+        <Property name="text" type="java.lang.String" value="SIGLAS:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="estatusUL">

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CRUD.Laboratorios;
+package CRUD.Categorias;
 
+import CRUD.Laboratorios.*;
 import MainPrincipal.Main;
 import java.awt.BorderLayout;
 
@@ -12,12 +13,12 @@ import java.awt.BorderLayout;
  *
  * @author 52351
  */
-public class agregarLaboratorio extends javax.swing.JPanel {
+public class agregarCategorias extends javax.swing.JPanel {
 
     /**
      * Creates new form agregarLaboratorio
      */
-    public agregarLaboratorio() {
+    public agregarCategorias() {
         initComponents();
         
     }
@@ -49,7 +50,6 @@ public class agregarLaboratorio extends javax.swing.JPanel {
         nombreLabel = new javax.swing.JLabel();
         origenLabel = new javax.swing.JLabel();
         nombretxt = new javax.swing.JTextField();
-        origentxt = new javax.swing.JTextField();
         opciones = new javax.swing.JPanel();
         canselar = new javax.swing.JLabel();
         guardar = new javax.swing.JLabel();
@@ -62,7 +62,6 @@ public class agregarLaboratorio extends javax.swing.JPanel {
         nombreLabel.setText("NOMBRE:");
 
         origenLabel.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        origenLabel.setText("ORIGEN:");
 
         opciones.setBackground(new java.awt.Color(48, 45, 45));
 
@@ -117,10 +116,7 @@ public class agregarLaboratorio extends javax.swing.JPanel {
                         .addComponent(nombreLabel)
                         .addGap(18, 18, 18)
                         .addComponent(nombretxt, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(origenLabel)
-                        .addGap(26, 26, 26)
-                        .addComponent(origentxt, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(origenLabel))
                 .addContainerGap(256, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
@@ -135,23 +131,21 @@ public class agregarLaboratorio extends javax.swing.JPanel {
                     .addComponent(nombreLabel)
                     .addComponent(nombretxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(origenLabel)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(origentxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addComponent(origenLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
                 .addComponent(opciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        getAccessibleContext().setAccessibleName("Agregar un nueva categoria");
     }// </editor-fold>//GEN-END:initComponents
 
     private void canselarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canselarMouseClicked
             mainPrincipal.getworkSpace().removeAll();
-            mostrarLaboratorios mostrarlab = new mostrarLaboratorios();
+            mostrarCategorias mostrarlab = new mostrarCategorias();
             mostrarlab.setSize(mainPrincipal.getworkSpace().getSize());
             mostrarlab.setVisible(true);
-            mostrarlab.MostrarDatosLaboratorio();
+            mostrarlab.MostrarDatosCategorias();
             mainPrincipal.getworkSpace().add(mostrarlab, BorderLayout.CENTER);
             mainPrincipal.getworkSpace().revalidate();
             mainPrincipal.getworkSpace().repaint();
@@ -166,6 +160,5 @@ public class agregarLaboratorio extends javax.swing.JPanel {
     private javax.swing.JTextField nombretxt;
     private javax.swing.JPanel opciones;
     private javax.swing.JLabel origenLabel;
-    private javax.swing.JTextField origentxt;
     // End of variables declaration//GEN-END:variables
 }

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CRUD.Laboratorios;
+package CRUD.UnidadMedida;
 
+import CRUD.Laboratorios.*;
 import MainPrincipal.Main;
 import java.awt.BorderLayout;
 
@@ -12,12 +13,12 @@ import java.awt.BorderLayout;
  *
  * @author 52351
  */
-public class agregarLaboratorio extends javax.swing.JPanel {
+public class agregarUnidadMedida extends javax.swing.JPanel {
 
     /**
      * Creates new form agregarLaboratorio
      */
-    public agregarLaboratorio() {
+    public agregarUnidadMedida() {
         initComponents();
         
     }
@@ -62,7 +63,7 @@ public class agregarLaboratorio extends javax.swing.JPanel {
         nombreLabel.setText("NOMBRE:");
 
         origenLabel.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        origenLabel.setText("ORIGEN:");
+        origenLabel.setText("SIGLAS:");
 
         opciones.setBackground(new java.awt.Color(48, 45, 45));
 
@@ -144,14 +145,16 @@ public class agregarLaboratorio extends javax.swing.JPanel {
                 .addComponent(opciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        getAccessibleContext().setAccessibleName("Agregar un nueva unidad");
     }// </editor-fold>//GEN-END:initComponents
 
     private void canselarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canselarMouseClicked
             mainPrincipal.getworkSpace().removeAll();
-            mostrarLaboratorios mostrarlab = new mostrarLaboratorios();
+            mostrarUnidadMedida mostrarlab = new mostrarUnidadMedida();
             mostrarlab.setSize(mainPrincipal.getworkSpace().getSize());
             mostrarlab.setVisible(true);
-            mostrarlab.MostrarDatosLaboratorio();
+            mostrarlab.MostrarDatosUnidad();
             mainPrincipal.getworkSpace().add(mostrarlab, BorderLayout.CENTER);
             mainPrincipal.getworkSpace().revalidate();
             mainPrincipal.getworkSpace().repaint();

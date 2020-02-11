@@ -79,7 +79,7 @@ public class modificarEmpaque extends javax.swing.JPanel {
         canselarUEmp.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
         canselarUEmp.setForeground(new java.awt.Color(255, 255, 255));
         canselarUEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar.png"))); // NOI18N
-        canselarUEmp.setText("CANSELAR");
+        canselarUEmp.setText("CANCELAR");
         canselarUEmp.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
         canselarUEmp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 

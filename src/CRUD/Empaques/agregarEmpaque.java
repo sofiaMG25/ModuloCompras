@@ -53,7 +53,7 @@ public class agregarEmpaque extends javax.swing.JPanel {
         canselarAEmp.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
         canselarAEmp.setForeground(new java.awt.Color(255, 255, 255));
         canselarAEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar.png"))); // NOI18N
-        canselarAEmp.setText("CANSELAR");
+        canselarAEmp.setText("CANCELAR");
         canselarAEmp.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
         canselarAEmp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
