@@ -1,12 +1,15 @@
-package principal;
-import CRUD.Laboratorios.agregarLaboratorio;
+package MainPrincipal;
+
+import CRUD.Laboratorios.mostrarLaboratorios;
+import CRUD.Empaques.mostrarEmpaques;
 import java.awt.BorderLayout;
+import javax.swing.JPanel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author 52351
@@ -18,6 +21,7 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
+
         System.out.println(workSpace.getSize());
     }
 
@@ -108,6 +112,11 @@ public class Main extends javax.swing.JFrame {
         empaques.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/orden.png"))); // NOI18N
         empaques.setText("Empaques");
         empaques.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        empaques.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                empaquesMouseClicked(evt);
+            }
+        });
 
         unidadMedidas.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
         unidadMedidas.setForeground(new java.awt.Color(255, 255, 255));
@@ -426,26 +435,43 @@ public class Main extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-   
+
     /**
      * Método que muestra la interfaz de agregar un laboratorio
-     * @param evt 
+     *
+     * @param evt
      */
     private void laboratoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laboratoriosMouseClicked
        
-       workSpace.removeAll();
-       agregarLaboratorio nuevolab = new agregarLaboratorio();
-       nuevolab.setSize(workSpace.getSize().width,workSpace.getSize().height);
-       nuevolab.setVisible(true);
-       workSpace.add(nuevolab,BorderLayout.CENTER);
-       workSpace.revalidate();
-       workSpace.repaint();
-       
+            workSpace.removeAll();
+            mostrarLaboratorios mostrarlab = new mostrarLaboratorios();
+            mostrarlab.setSize(workSpace.getSize());
+            mostrarlab.setVisible(true);
+            mostrarlab.MostrarDatosLaboratorio();
+            workSpace.add(mostrarlab, BorderLayout.CENTER);
+            workSpace.revalidate();
+            workSpace.repaint();
+            mostrarlab.setMostrarLaboratorios(this);
+        
     }//GEN-LAST:event_laboratoriosMouseClicked
 
     private void laboratoriosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laboratoriosMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_laboratoriosMouseEntered
+
+    private void empaquesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_empaquesMouseClicked
+        workSpace.removeAll();
+        mostrarEmpaques mostrarEmp = new mostrarEmpaques();
+        mostrarEmp.setSize(workSpace.getSize());
+        mostrarEmp.setVisible(true);
+        mostrarEmp.setMostrarEmpaques(this);
+        mostrarEmp.MostrarDatosEmpaque();
+        workSpace.add(mostrarEmp, BorderLayout.CENTER);
+        workSpace.revalidate();
+        workSpace.repaint();
+        
+
+    }//GEN-LAST:event_empaquesMouseClicked
 
     /**
      * @param args the command line arguments
@@ -520,4 +546,13 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel usuario;
     private javax.swing.JPanel workSpace;
     // End of variables declaration//GEN-END:variables
+
+    public JPanel getworkSpace() {
+        return workSpace;
+    }
+
+    public void getLabelComponents(boolean bandera) {
+        this.laboratorios.setEnabled(bandera);
+    }
+
 }
