@@ -32,8 +32,8 @@ public class mostrarEmpaques extends javax.swing.JPanel {
         
         JButton btnModificar = new JButton();
         JButton btnEliminar = new JButton();
-        TableCellRenderer tcr = new DefaultTableCellHeaderRenderer();
-        this.jTableMEmp.setDefaultRenderer(Object.class, tcr);
+        //TableCellRenderer tcr = new DefaultTableCellHeaderRenderer();
+        this.jTableMEmp.setDefaultRenderer(Object.class, new RenderTable());
         DefaultTableModel modelTable = new DefaultTableModel(
                 new Object[][]{{"1","juan",btnModificar,btnEliminar},{"2","David",btnModificar,btnEliminar}}
                 , new Object[]{"Codigo","Nombre","Modificar","Eliminar"}){
