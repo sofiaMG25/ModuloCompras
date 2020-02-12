@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
 import MainPrincipal.Main;
+import javax.swing.table.TableCellRenderer;
+import sun.swing.table.DefaultTableCellHeaderRenderer;
 /**
  *
  * @author 52351
@@ -195,8 +197,8 @@ public class mostrarCategorias extends javax.swing.JPanel {
         
         JButton btnModificar = new JButton();
         JButton btnEliminar = new JButton();
-        
-        this.jTableML.setDefaultRenderer(Object.class, new RenderTable());
+        TableCellRenderer tcr = new DefaultTableCellHeaderRenderer();
+        this.jTableML.setDefaultRenderer(Object.class,  tcr);
         DefaultTableModel modelTable = new DefaultTableModel(
                 new Object[][]{{"1","juan",btnModificar,btnEliminar},{"2","David",btnModificar,btnEliminar}}
                 , new Object[]{"Codigo","Nombre","Modificar","Eliminar"}){

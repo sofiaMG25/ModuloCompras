@@ -12,7 +12,7 @@ import sun.swing.table.DefaultTableCellHeaderRenderer;
 public class RenderTable extends DefaultTableCellHeaderRenderer{
 
     /**
-     *Método permite añadir un boton en una tabla.
+     * Método permite añadir un boton en una tabla.
      * su función es verificar si el parametro value es una instancia de un botón, si lo es lo regresa.
      */
     @Override
