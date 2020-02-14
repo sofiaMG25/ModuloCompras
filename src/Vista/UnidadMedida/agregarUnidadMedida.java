@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CRUD.UnidadMedida;
+package vista.UnidadMedida;
 
-import CRUD.Laboratorios.*;
 import MainPrincipal.Main;
 import java.awt.BorderLayout;
 

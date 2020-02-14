@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CRUD.Laboratorios;
+package vista.UnidadMedida;
 
 /**
  *
  * @author 52351
  */
-public class modificarLaboratorio extends javax.swing.JPanel {
+public class modificarUnidadMedida extends javax.swing.JPanel {
 
     /**
      * Creates new form modificarLaboratorio
      */
-    public modificarLaboratorio() {
+    public modificarUnidadMedida() {
         initComponents();
     }
 
@@ -51,7 +51,7 @@ public class modificarLaboratorio extends javax.swing.JPanel {
         nombreUL.setText("NOMBRE:");
 
         origenUL.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        origenUL.setText("ORIGEN:");
+        origenUL.setText("SIGLAS:");
 
         estatusUL.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         estatusUL.setText("ESTATUS:");
@@ -147,8 +147,7 @@ public class modificarLaboratorio extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        getAccessibleContext().setAccessibleName("Modificar Laboratorio");
-        getAccessibleContext().setAccessibleDescription("");
+        getAccessibleContext().setAccessibleName("Modificar Unidad");
     }// </editor-fold>//GEN-END:initComponents
 
 

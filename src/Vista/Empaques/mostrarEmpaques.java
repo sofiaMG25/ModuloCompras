@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CRUD.Empaques;
+package vista.Empaques;
 
 import MainPrincipal.Main;
-import RenderizadoDetablas.RenderTable;
+import ClasesExtras.RenderTable;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;

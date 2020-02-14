@@ -1,46 +1,80 @@
-
 package ConexionSQLServer;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class ConexionSQL {
-   private String url="jdbc:sqlserver://localhost:1433;" +
-			"databaseName=ERP2020;integratedSecurity=true;";
-	private String user="root";
-	private String password="root";
-	static ConexionSQL conexion=null;
-	private Connection cn=null;
-	private ConexionSQL(){
-		try{
-			Class.forName("com.mysql.jdbc.Driver");
-			//Class.forName("COM.MICROSOFT.SQLSERVER.JDBC.SQLSERVERDRIVER");
-			cn=DriverManager.getConnection(url,user,password);
-		}
-		catch(SQLException e){
-			System.out.println("Error al conectar con la BD:"+e.getMessage());
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	public static ConexionSQL getInstance(){
-		if(conexion==null){
-			conexion=new ConexionSQL();
-		}
-		return conexion;
-	}
-	public Connection getCn(){
-		return cn;
-	}
-	public void cerrar(){
-		try{
-			cn.close();
-			conexion=null;
-		}
-		catch(SQLException e){
-			System.out.println("Error al cerrar la conexion con la BD:"+e.getMessage());
-		}
-	}
+
+    private String url = "jdbc:sqlserver://localhost:1433;"
+            + "databaseName=ERP2020;";
+    private String user = "sa";
+    private String password = "admin"; 
+    static ConexionSQL conexion = null;
+    private Connection cn = null;
+    private PreparedStatement ps;
+    private Statement s;
+    private ResultSet rs;
+
+    public ConexionSQL() {
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            cn = DriverManager.getConnection(url, user, password);
+            System.out.println("conectado..");
+        } catch (SQLException e) {
+            System.out.println("Error al conectar con la BD:" + e.getMessage());
+        } catch (Exception e) {
+            
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static ConexionSQL getInstance() {
+        if (conexion == null) {
+            conexion = new ConexionSQL();
+        }
+        return conexion;
+    }
+
+    public Connection getCn() {
+        return cn;
+    }
+
+    public PreparedStatement getPs() {
+        return ps;
+    }
+
+    public void setPs(PreparedStatement ps) {
+        this.ps = ps;
+    }
+
+    public Statement getS() {
+        return s;
+    }
+
+    public void setS(Statement s) {
+        this.s = s;
+    }
+
+    public ResultSet getRs() {
+        return rs;
+    }
+
+    public void setRs(ResultSet rs) {
+        this.rs = rs;
+    }
+    
+    
+
+    public void cerrar() {
+        try {
+            cn.close();
+            conexion = null;
+        } catch (SQLException e) {
+            System.out.println("Error al cerrar la conexion con la BD:" + e.getMessage());
+        }
+    }
 }

@@ -3,20 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CRUD.Categorias;
-
-import CRUD.Laboratorios.*;
+package vista.Laboratorios;
 
 /**
  *
  * @author 52351
  */
-public class modificarCategorias extends javax.swing.JPanel {
+public class modificarLaboratorio extends javax.swing.JPanel {
 
     /**
      * Creates new form modificarLaboratorio
      */
-    public modificarCategorias() {
+    public modificarLaboratorio() {
         initComponents();
     }
 
@@ -33,7 +31,9 @@ public class modificarCategorias extends javax.swing.JPanel {
         nombretxtUL = new javax.swing.JTextField();
         idUL = new javax.swing.JLabel();
         nombreUL = new javax.swing.JLabel();
+        origenUL = new javax.swing.JLabel();
         estatusUL = new javax.swing.JLabel();
+        origentxtUL = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         modificarUL = new javax.swing.JLabel();
@@ -49,6 +49,9 @@ public class modificarCategorias extends javax.swing.JPanel {
 
         nombreUL.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         nombreUL.setText("NOMBRE:");
+
+        origenUL.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        origenUL.setText("ORIGEN:");
 
         estatusUL.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         estatusUL.setText("ESTATUS:");
@@ -104,16 +107,18 @@ public class modificarCategorias extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(126, 126, 126)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(origenUL)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(idUL)
                         .addGap(78, 78, 78)
                         .addComponent(idtxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nombreUL)
                             .addComponent(estatusUL))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(origentxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nombretxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(233, Short.MAX_VALUE))
@@ -129,16 +134,21 @@ public class modificarCategorias extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(nombreUL)
                     .addComponent(nombretxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(origentxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(origenUL))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(estatusUL)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        getAccessibleContext().setAccessibleName("Modificar Categoria ");
+        getAccessibleContext().setAccessibleName("Modificar Laboratorio");
+        getAccessibleContext().setAccessibleDescription("");
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -152,5 +162,7 @@ public class modificarCategorias extends javax.swing.JPanel {
     private javax.swing.JLabel modificarUL;
     private javax.swing.JLabel nombreUL;
     private javax.swing.JTextField nombretxtUL;
+    private javax.swing.JLabel origenUL;
+    private javax.swing.JTextField origentxtUL;
     // End of variables declaration//GEN-END:variables
 }

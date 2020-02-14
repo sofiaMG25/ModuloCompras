@@ -1,7 +1,8 @@
 package MainPrincipal;
 
-import CRUD.Laboratorios.mostrarLaboratorios;
-import CRUD.Empaques.mostrarEmpaques;
+import ConexionSQLServer.ConexionSQL;
+import vista.Laboratorios.mostrarLaboratorios;
+import vista.Empaques.mostrarEmpaques;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
@@ -15,15 +16,15 @@ import javax.swing.JPanel;
  * @author 52351
  */
 public class Main extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form Main
      */
     public Main() {
         initComponents();
-
         System.out.println(workSpace.getSize());
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -452,7 +453,7 @@ public class Main extends javax.swing.JFrame {
             workSpace.revalidate();
             workSpace.repaint();
             mostrarlab.setMostrarLaboratorios(this);
-        
+            
     }//GEN-LAST:event_laboratoriosMouseClicked
 
     private void laboratoriosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laboratoriosMouseEntered
@@ -546,7 +547,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel usuario;
     private javax.swing.JPanel workSpace;
     // End of variables declaration//GEN-END:variables
-
+    private ConexionSQL con;
+    
+    
     public JPanel getworkSpace() {
         return workSpace;
     }

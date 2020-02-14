@@ -1,9 +1,8 @@
 
-package CRUD.UnidadMedida;
-import CRUD.Laboratorios.*;
+package Vista.Categorias;
 import MainPrincipal.Main;
 import java.awt.BorderLayout;
-import RenderizadoDetablas.RenderTable;
+import ClasesExtras.RenderTable;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
@@ -14,7 +13,7 @@ import sun.swing.table.DefaultTableCellHeaderRenderer;
  *
  * @author 52351
  */
-public class mostrarUnidadMedida extends javax.swing.JPanel {
+public class mostrarCategorias extends javax.swing.JPanel {
 
     /**
      * Creates new form mostrarLaboratorios
@@ -23,7 +22,7 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
         mainPrincipal = workspace;
     }
     
-    public mostrarUnidadMedida() {
+    public mostrarCategorias() {
         initComponents();
     }
     
@@ -40,7 +39,7 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
 
         jComboBox1 = new javax.swing.JComboBox<>();
         mainMostrarLab = new javax.swing.JPanel();
-        tablaMostrarUnidad = new javax.swing.JScrollPane();
+        tablaMostrarCat = new javax.swing.JScrollPane();
         jTableML = new javax.swing.JTable();
         opcionesMostrarLab = new javax.swing.JPanel();
         nuevolabML = new javax.swing.JLabel();
@@ -57,23 +56,23 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
 
         jTableML.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID", "NOMBRE", "SIGLAS", "ESTATUS", "", ""
+                "ID", "NOMBRE", "ESTATUS", "", ""
             }
         ));
-        tablaMostrarUnidad.setViewportView(jTableML);
+        tablaMostrarCat.setViewportView(jTableML);
 
         opcionesMostrarLab.setBackground(new java.awt.Color(48, 45, 45));
 
         nuevolabML.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
         nuevolabML.setForeground(new java.awt.Color(255, 255, 255));
         nuevolabML.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/save.png"))); // NOI18N
-        nuevolabML.setText("NUEVA UNIDAD");
+        nuevolabML.setText("NUEVA CATEGORIA");
         nuevolabML.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
         nuevolabML.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         nuevolabML.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -118,7 +117,7 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
         buscarML.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
         buscarML.setForeground(new java.awt.Color(102, 102, 102));
         buscarML.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/most.png"))); // NOI18N
-        buscarML.setText("BUSCAR UNIDAD");
+        buscarML.setText("BUSCAR CATEGORIA");
         buscarML.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
         buscarML.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
@@ -129,7 +128,7 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
             .addGroup(mainMostrarLabLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(mainMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tablaMostrarUnidad)
+                    .addComponent(tablaMostrarCat)
                     .addComponent(opcionesMostrarLab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainMostrarLabLayout.createSequentialGroup()
                         .addGap(0, 197, Short.MAX_VALUE)
@@ -146,7 +145,7 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
                     .addComponent(buscarML)
                     .addComponent(buscartxtML, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tablaMostrarUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tablaMostrarCat, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(opcionesMostrarLab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
@@ -168,12 +167,13 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        getAccessibleContext().setAccessibleName("Mostrar Unidad Medida");
+        getAccessibleContext().setAccessibleName("Mostrar Categorias");
+        getAccessibleContext().setAccessibleDescription("");
     }// </editor-fold>//GEN-END:initComponents
 
     private void nuevolabMLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevolabMLMouseClicked
        mainPrincipal.getworkSpace().removeAll();
-       agregarUnidadMedida nuevolab = new agregarUnidadMedida();
+       agregarCategorias nuevolab = new agregarCategorias();
        nuevolab.setSize(mainPrincipal.getworkSpace().getSize());
        nuevolab.setVisible(true);
        nuevolab.setMain(mainPrincipal);
@@ -192,12 +192,12 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
        mainPrincipal.getworkSpace().repaint();
     }//GEN-LAST:event_cancelarMLMouseClicked
 
-    public void MostrarDatosUnidad(){
+    public void MostrarDatosCategorias(){
         
         JButton btnModificar = new JButton();
         JButton btnEliminar = new JButton();
         TableCellRenderer tcr = new DefaultTableCellHeaderRenderer();
-        this.jTableML.setDefaultRenderer(Object.class, tcr);
+        this.jTableML.setDefaultRenderer(Object.class,  tcr);
         DefaultTableModel modelTable = new DefaultTableModel(
                 new Object[][]{{"1","juan",btnModificar,btnEliminar},{"2","David",btnModificar,btnEliminar}}
                 , new Object[]{"Codigo","Nombre","Modificar","Eliminar"}){
@@ -211,7 +211,7 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
     }
     
     public void activeEventListenerMostrarLab(){
-        MostrarDatosUnidad();
+        MostrarDatosCategorias();
     }
     
 
@@ -224,6 +224,6 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
     private javax.swing.JPanel mainMostrarLab;
     private javax.swing.JLabel nuevolabML;
     private javax.swing.JPanel opcionesMostrarLab;
-    private javax.swing.JScrollPane tablaMostrarUnidad;
+    private javax.swing.JScrollPane tablaMostrarCat;
     // End of variables declaration//GEN-END:variables
 }

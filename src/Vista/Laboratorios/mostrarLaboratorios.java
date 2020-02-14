@@ -1,11 +1,14 @@
 
-package CRUD.Laboratorios;
+package vista.Laboratorios;
 
 import java.awt.BorderLayout;
-import RenderizadoDetablas.RenderTable;
+import ClasesExtras.RenderTable;
+import DAOLaboratorios.DAOLaboratoriosImp;
+import DAOLaboratorios.Laboratorios;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 import MainPrincipal.Main;
+import java.util.LinkedList;
 
 /**
  *
@@ -191,18 +194,49 @@ public class mostrarLaboratorios extends javax.swing.JPanel {
         
         JButton btnModificar = new JButton();
         JButton btnEliminar = new JButton();
-//        TableCellRenderer tcr = new DefaultTableCellHeaderRenderer();
         this.jTableML.setDefaultRenderer(Object.class, new RenderTable());
+       // this.jTableML.getColumnModel().getColumn(0).setCellRenderer(new RenderTable());
+        LinkedList<Laboratorios> lab = new DAOLaboratoriosImp().show();
+        Object listaDatos[][] =  new Object[lab.size()][6];
+        for (int i = 0; i < lab.size(); i++) {
+            listaDatos[i][0] = lab.get(i).getId();
+            listaDatos[i][1] = lab.get(i).getNombre();
+            listaDatos[i][2] = lab.get(i).getOrigen();
+            listaDatos[i][3] = lab.get(i).getEstatus();
+            listaDatos[i][4] = btnModificar;
+            listaDatos[i][5] = btnEliminar;
+        }
+        
+        
         DefaultTableModel modelTable = new DefaultTableModel(
-                new Object[][]{{"1","juan",btnModificar,btnEliminar},{"2","David",btnModificar,btnEliminar}}
-                , new Object[]{"Codigo","Nombre","Modificar","Eliminar"}){
+                listaDatos
+                , new Object[]{"ID","NOMBRE","ORIGEN","ESTATUS","MOFIFICAR","ELIMINAR"}){
                   public boolean isCellEditable(int row,int column){
                       return false;
                   }
                 };
+       
         
         this.jTableML.setModel(modelTable);
-        this.jTableML.setRowHeight(30);
+        this.jTableML.getColumnModel().getColumn(0).setMinWidth(10);
+        this.jTableML.getColumnModel().getColumn(0).setMaxWidth(50);
+        
+        this.jTableML.getColumnModel().getColumn(1).setMinWidth(50);
+        this.jTableML.getColumnModel().getColumn(1).setMaxWidth(350);
+        
+        this.jTableML.getColumnModel().getColumn(2).setMinWidth(50);
+        this.jTableML.getColumnModel().getColumn(2).setMaxWidth(350);
+        
+        this.jTableML.getColumnModel().getColumn(3).setMinWidth(10);
+        this.jTableML.getColumnModel().getColumn(3).setMaxWidth(200);
+        
+        this.jTableML.getColumnModel().getColumn(4).setMinWidth(50);
+        this.jTableML.getColumnModel().getColumn(4).setMaxWidth(200);
+        
+        this.jTableML.getColumnModel().getColumn(5).setMinWidth(50);
+        this.jTableML.getColumnModel().getColumn(5).setMaxWidth(200);
+        
+        
     }
     
     public void activeEventListenerMostrarLab(){

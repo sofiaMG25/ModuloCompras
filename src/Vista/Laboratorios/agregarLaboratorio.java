@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CRUD.Laboratorios;
+package vista.Laboratorios;
 
+import ClasesExtras.CRUDgenerico;
+import DAOLaboratorios.DAOLaboratoriosImp;
+import DAOLaboratorios.Laboratorios;
 import MainPrincipal.Main;
 import java.awt.BorderLayout;
 
@@ -84,6 +87,11 @@ public class agregarLaboratorio extends javax.swing.JPanel {
         guardar.setText("GUARDAR ");
         guardar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
         guardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        guardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                guardarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout opcionesLayout = new javax.swing.GroupLayout(opciones);
         opciones.setLayout(opcionesLayout);
@@ -158,7 +166,22 @@ public class agregarLaboratorio extends javax.swing.JPanel {
             mostrarlab.setMostrarLaboratorios(mainPrincipal);
     }//GEN-LAST:event_canselarMouseClicked
 
+    private void guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarMouseClicked
+        if(nombretxt.equals(""))
+            nombretxt.requestFocus();
+        else if(origentxt.equals(""))
+            origentxt.requestFocus();
+        else{
+            CRUDgenerico laboratorio = new DAOLaboratoriosImp();
+            laboratorio.Insert(new Laboratorios(nombretxt.getText(),origentxt.getText()));
+            LimpiarVariables();
+        }
+    }//GEN-LAST:event_guardarMouseClicked
 
+    private void LimpiarVariables(){
+        nombretxt.setText("");
+        origentxt.setText("");
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel canselar;
     private javax.swing.JLabel guardar;
