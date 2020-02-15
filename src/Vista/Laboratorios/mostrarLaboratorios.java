@@ -1,4 +1,3 @@
-
 package vista.Laboratorios;
 
 import java.awt.BorderLayout;
@@ -22,13 +21,13 @@ public class mostrarLaboratorios extends javax.swing.JPanel {
     public void setMostrarLaboratorios(Main workspace) {
         mainPrincipal = workspace;
     }
-    
+
     public mostrarLaboratorios() {
         initComponents();
     }
-    
+
     private Main mainPrincipal;
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,15 +56,20 @@ public class mostrarLaboratorios extends javax.swing.JPanel {
 
         jTableML.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID", "NOMBRE", "ORIGEN", "ESTATUS", "", ""
+                "ID", "NOMBRE", "ORIGEN", "ESTATUS"
             }
         ));
+        jTableML.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableMLMouseClicked(evt);
+            }
+        });
         tablaMostrarLab.setViewportView(jTableML);
 
         opcionesMostrarLab.setBackground(new java.awt.Color(48, 45, 45));
@@ -170,79 +174,101 @@ public class mostrarLaboratorios extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nuevolabMLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevolabMLMouseClicked
-       mainPrincipal.getworkSpace().removeAll();
-       agregarLaboratorio nuevolab = new agregarLaboratorio();
-       nuevolab.setSize(mainPrincipal.getworkSpace().getSize());
-       nuevolab.setVisible(true);
-       nuevolab.setMain(mainPrincipal);
-       //agregarLaboratorio.setMain(mainPrincipal);
-       //nuevolab.getEnableComponents();
-       mainPrincipal.getworkSpace().add(nuevolab,BorderLayout.CENTER);
-       mainPrincipal.getworkSpace().revalidate();
-       mainPrincipal.getworkSpace().repaint();
-        
-        
+        mainPrincipal.getworkSpace().removeAll();
+        agregarLaboratorio nuevolab = new agregarLaboratorio();
+        nuevolab.setSize(mainPrincipal.getworkSpace().getSize());
+        nuevolab.setVisible(true);
+        nuevolab.setMain(mainPrincipal);
+        //agregarLaboratorio.setMain(mainPrincipal);
+        //nuevolab.getEnableComponents();
+        mainPrincipal.getworkSpace().add(nuevolab, BorderLayout.CENTER);
+        mainPrincipal.getworkSpace().revalidate();
+        mainPrincipal.getworkSpace().repaint();
+
+
     }//GEN-LAST:event_nuevolabMLMouseClicked
 
     private void cancelarMLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarMLMouseClicked
-       mainPrincipal.getworkSpace().removeAll();
-       mainPrincipal.getworkSpace().revalidate();
-       mainPrincipal.getworkSpace().repaint();
+        mainPrincipal.getworkSpace().removeAll();
+        mainPrincipal.getworkSpace().revalidate();
+        mainPrincipal.getworkSpace().repaint();
     }//GEN-LAST:event_cancelarMLMouseClicked
 
-    public void MostrarDatosLaboratorio(){
+    /**
+     * Método que funciona para detectar un evento de la tabla Laboratorios.
+     *
+     * @param evt evento al dar click a la tabla.
+     */
+    private void jTableMLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMLMouseClicked
+
+        int row;
+        row = jTableML.getSelectedRow();
         
+        //Verificamos que el evento este en el rango de la tabla.
+        if (row > -1 && row <= jTableML.getSelectedRow()) {
+            //creamos la ventana modificar
+            modificarLaboratorio modificarLab = new modificarLaboratorio();
+            this.mainPrincipal.getworkSpace().removeAll();
+            modificarLab.setSize(mainPrincipal.getworkSpace().getSize());
+            modificarLab.setVisible(true);
+            modificarLab.setMainPrincipal(mainPrincipal);
+            //Datos de la tabla, selecionar un row
+            int id = Integer.parseInt(String.valueOf(this.jTableML.getValueAt(row, 0)));
+            String nombre = String.valueOf(this.jTableML.getValueAt(row, 1));
+            String origen = String.valueOf(this.jTableML.getValueAt(row, 2));
+            char estatus = String.valueOf(this.jTableML.getValueAt(row, 3)).charAt(0);
+            //Ingresan los datos de la tabla a la interfaz Modificar Laboratorio
+            modificarLab.ObtenerLaboratoriModificar(
+                    new Laboratorios(id,nombre,origen,estatus));
+            
+            this.mainPrincipal.getworkSpace().add(modificarLab,BorderLayout.CENTER);
+            this.mainPrincipal.getworkSpace().revalidate();
+            this.mainPrincipal.getworkSpace().repaint();
+        }
+    }//GEN-LAST:event_jTableMLMouseClicked
+
+    private void MostrarDatosLaboratorio() {
+
         JButton btnModificar = new JButton();
         JButton btnEliminar = new JButton();
         this.jTableML.setDefaultRenderer(Object.class, new RenderTable());
-       // this.jTableML.getColumnModel().getColumn(0).setCellRenderer(new RenderTable());
+        // this.jTableML.getColumnModel().getColumn(0).setCellRenderer(new RenderTable());
         LinkedList<Laboratorios> lab = new DAOLaboratoriosImp().show();
-        Object listaDatos[][] =  new Object[lab.size()][6];
+        Object listaDatos[][] = new Object[lab.size()][4];
         for (int i = 0; i < lab.size(); i++) {
             listaDatos[i][0] = lab.get(i).getId();
             listaDatos[i][1] = lab.get(i).getNombre();
             listaDatos[i][2] = lab.get(i).getOrigen();
             listaDatos[i][3] = lab.get(i).getEstatus();
-            listaDatos[i][4] = btnModificar;
-            listaDatos[i][5] = btnEliminar;
         }
-        
-        
+
         DefaultTableModel modelTable = new DefaultTableModel(
-                listaDatos
-                , new Object[]{"ID","NOMBRE","ORIGEN","ESTATUS","MOFIFICAR","ELIMINAR"}){
-                  public boolean isCellEditable(int row,int column){
-                      return false;
-                  }
-                };
-       
-        
+                listaDatos,
+                new Object[]{"ID", "NOMBRE", "ORIGEN", "ESTATUS"}) {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
         this.jTableML.setModel(modelTable);
         this.jTableML.getColumnModel().getColumn(0).setMinWidth(10);
         this.jTableML.getColumnModel().getColumn(0).setMaxWidth(50);
-        
+
         this.jTableML.getColumnModel().getColumn(1).setMinWidth(50);
         this.jTableML.getColumnModel().getColumn(1).setMaxWidth(350);
-        
+
         this.jTableML.getColumnModel().getColumn(2).setMinWidth(50);
         this.jTableML.getColumnModel().getColumn(2).setMaxWidth(350);
-        
+
         this.jTableML.getColumnModel().getColumn(3).setMinWidth(10);
         this.jTableML.getColumnModel().getColumn(3).setMaxWidth(200);
-        
-        this.jTableML.getColumnModel().getColumn(4).setMinWidth(50);
-        this.jTableML.getColumnModel().getColumn(4).setMaxWidth(200);
-        
-        this.jTableML.getColumnModel().getColumn(5).setMinWidth(50);
-        this.jTableML.getColumnModel().getColumn(5).setMaxWidth(200);
-        
-        
+
     }
-    
-    public void activeEventListenerMostrarLab(){
+
+    public void activeEventListenerMostrarLab() {
         MostrarDatosLaboratorio();
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel buscarML;

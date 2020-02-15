@@ -16,10 +16,12 @@ public class DAOLaboratoriosImp implements DAOLaboratorios {
             conexion.setPs(conexion.getCn().prepareCall(sql));
             conexion.getPs().setString(1, nuevo.getNombre());
             conexion.getPs().setString(2, nuevo.getOrigen());
-            conexion.setRs(conexion.getPs().executeQuery());
-            while (conexion.getRs().next()) {
-                System.out.println(conexion.getRs().getString(1).toString());
-            }
+            if(conexion.getPs().execute())
+                System.out.println("El registro fué exitoso.");
+//            conexion.setRs(conexion.getPs().executeQuery());
+//            while (conexion.getRs().next()) {
+//                System.out.println(conexion.getRs().getString(1).toString());
+//            }
             conexion.getPs().close();
             conexion.getRs().close();
         } catch (SQLException ex) {
@@ -32,7 +34,7 @@ public class DAOLaboratoriosImp implements DAOLaboratorios {
 
     @Override
     public void upadate(Laboratorios nuevo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
@@ -48,10 +50,12 @@ public class DAOLaboratoriosImp implements DAOLaboratorios {
             conexion.setPs(conexion.getCn().prepareCall(sql));
             conexion.setRs(conexion.getPs().executeQuery());
             laboratorios = new LinkedList<Laboratorios>();
+            char estatus;
             while(conexion.getRs().next()){
+                estatus = conexion.getRs().getString("estatus").charAt(0);
                 laboratorios.add(new Laboratorios(conexion.getRs().getInt("idLaboratorio")
                         ,conexion.getRs().getString("nombre"),conexion.getRs().getString("origen"),
-                                                                                                    'A'));
+                                                                       estatus));
             }
             conexion.getPs().close();
             conexion.getRs().close();

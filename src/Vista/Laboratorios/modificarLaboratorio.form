@@ -61,7 +61,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="origentxtUL" min="-2" pref="314" max="-2" attributes="0"/>
                           <Component id="nombretxtUL" min="-2" pref="314" max="-2" attributes="0"/>
-                          <Component id="jComboBox1" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
+                          <Component id="estatusCBox" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -90,7 +90,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="estatusUL" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="estatusCBox" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="65" max="32767" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
@@ -141,7 +141,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="origentxtUL">
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox1">
+    <Component class="javax.swing.JComboBox" name="estatusCBox">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="14" style="1"/>
@@ -217,6 +217,9 @@
               <Color id="Cursor de Mano"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="modificarULMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="canselarUL">
           <Properties>
@@ -244,6 +247,9 @@
               <Color id="Cursor de Mano"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="canselarULMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

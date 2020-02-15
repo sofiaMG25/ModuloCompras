@@ -16,7 +16,7 @@ import javax.swing.JPanel;
  * @author 52351
  */
 public class Main extends javax.swing.JFrame {
-    
+
     /**
      * Creates new form Main
      */
@@ -24,7 +24,6 @@ public class Main extends javax.swing.JFrame {
         initComponents();
         System.out.println(workSpace.getSize());
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -443,17 +442,17 @@ public class Main extends javax.swing.JFrame {
      * @param evt
      */
     private void laboratoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laboratoriosMouseClicked
-       
-            workSpace.removeAll();
-            mostrarLaboratorios mostrarlab = new mostrarLaboratorios();
-            mostrarlab.setSize(workSpace.getSize());
-            mostrarlab.setVisible(true);
-            mostrarlab.MostrarDatosLaboratorio();
-            workSpace.add(mostrarlab, BorderLayout.CENTER);
-            workSpace.revalidate();
-            workSpace.repaint();
-            mostrarlab.setMostrarLaboratorios(this);
-            
+
+        workSpace.removeAll();
+        mostrarLaboratorios mostrarlab = new mostrarLaboratorios();
+        mostrarlab.setSize(workSpace.getSize());
+        mostrarlab.setVisible(true);
+        mostrarlab.activeEventListenerMostrarLab();
+        workSpace.add(mostrarlab, BorderLayout.CENTER);
+        workSpace.revalidate();
+        workSpace.repaint();
+        mostrarlab.setMostrarLaboratorios(this);
+
     }//GEN-LAST:event_laboratoriosMouseClicked
 
     private void laboratoriosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laboratoriosMouseEntered
@@ -470,7 +469,7 @@ public class Main extends javax.swing.JFrame {
         workSpace.add(mostrarEmp, BorderLayout.CENTER);
         workSpace.revalidate();
         workSpace.repaint();
-        
+
 
     }//GEN-LAST:event_empaquesMouseClicked
 
@@ -548,8 +547,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel workSpace;
     // End of variables declaration//GEN-END:variables
     private ConexionSQL con;
-    
-    
+
     public JPanel getworkSpace() {
         return workSpace;
     }

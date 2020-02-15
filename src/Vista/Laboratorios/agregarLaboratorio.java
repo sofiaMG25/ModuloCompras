@@ -159,7 +159,7 @@ public class agregarLaboratorio extends javax.swing.JPanel {
             mostrarLaboratorios mostrarlab = new mostrarLaboratorios();
             mostrarlab.setSize(mainPrincipal.getworkSpace().getSize());
             mostrarlab.setVisible(true);
-            mostrarlab.MostrarDatosLaboratorio();
+            mostrarlab.activeEventListenerMostrarLab();
             mainPrincipal.getworkSpace().add(mostrarlab, BorderLayout.CENTER);
             mainPrincipal.getworkSpace().revalidate();
             mainPrincipal.getworkSpace().repaint();
