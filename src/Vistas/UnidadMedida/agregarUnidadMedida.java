@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vista.UnidadMedida;
+package Vistas.UnidadMedida;
 
 import MainPrincipal.Main;
 import java.awt.BorderLayout;
@@ -157,7 +157,7 @@ public class agregarUnidadMedida extends javax.swing.JPanel {
             mainPrincipal.getworkSpace().add(mostrarlab, BorderLayout.CENTER);
             mainPrincipal.getworkSpace().revalidate();
             mainPrincipal.getworkSpace().repaint();
-            mostrarlab.setMostrarLaboratorios(mainPrincipal);
+            mostrarlab.setMostrarUnidadMedida(mainPrincipal);
     }//GEN-LAST:event_canselarMouseClicked
 
 

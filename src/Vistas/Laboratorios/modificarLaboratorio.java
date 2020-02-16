@@ -3,19 +3,31 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vista.UnidadMedida;
+package Vistas.Laboratorios;
+
+import ClasesExtras.CRUDgenerico;
+import DAOLaboratorios.DAOLaboratoriosImp;
+import DAOLaboratorios.Laboratorios;
+import MainPrincipal.Main;
+import java.awt.BorderLayout;
 
 /**
  *
  * @author 52351
  */
-public class modificarUnidadMedida extends javax.swing.JPanel {
+public class modificarLaboratorio extends javax.swing.JPanel {
 
     /**
      * Creates new form modificarLaboratorio
      */
-    public modificarUnidadMedida() {
+    public modificarLaboratorio() {
         initComponents();
+    }
+
+    private Main mainPrincipal;
+
+    public void setMainPrincipal(Main main) {
+        mainPrincipal = main;
     }
 
     /**
@@ -34,7 +46,7 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
         origenUL = new javax.swing.JLabel();
         estatusUL = new javax.swing.JLabel();
         origentxtUL = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        estatusCBox = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         modificarUL = new javax.swing.JLabel();
         canselarUL = new javax.swing.JLabel();
@@ -51,13 +63,13 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
         nombreUL.setText("NOMBRE:");
 
         origenUL.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        origenUL.setText("SIGLAS:");
+        origenUL.setText("ORIGEN:");
 
         estatusUL.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         estatusUL.setText("ESTATUS:");
 
-        jComboBox1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UNA OPCIÓN", "ACTIVO", "INACTIVO" }));
+        estatusCBox.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        estatusCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UNA OPCIÓN", "ACTIVO", "INACTIVO" }));
 
         jPanel1.setBackground(new java.awt.Color(48, 45, 45));
 
@@ -67,6 +79,11 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
         modificarUL.setText("MODIFICAR");
         modificarUL.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
         modificarUL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        modificarUL.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                modificarULMouseClicked(evt);
+            }
+        });
 
         canselarUL.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
         canselarUL.setForeground(new java.awt.Color(255, 255, 255));
@@ -74,6 +91,11 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
         canselarUL.setText("CANCELAR");
         canselarUL.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
         canselarUL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        canselarUL.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                canselarULMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -120,7 +142,7 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(origentxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nombretxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(estatusCBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(233, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -141,22 +163,68 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(estatusUL)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(estatusCBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        getAccessibleContext().setAccessibleName("Modificar Unidad");
+        getAccessibleContext().setAccessibleName("Modificar Laboratorio");
+        getAccessibleContext().setAccessibleDescription("");
     }// </editor-fold>//GEN-END:initComponents
+    /**
+     * Método que tiene como función retornar a la ventana MostrarLaboratorios
+     *
+     * @param evt evento que se activa al dar click
+     */
+    private void canselarULMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canselarULMouseClicked
+        mainPrincipal.getworkSpace().removeAll();
+        mostrarLaboratorios mostrarLab = new mostrarLaboratorios();
+        mostrarLab.setSize(mainPrincipal.getworkSpace().getSize());
+        mostrarLab.setVisible(true);
+        mostrarLab.activeEventListenerMostrarLab();
+        mainPrincipal.getworkSpace().add(mostrarLab, BorderLayout.CENTER);
+        mainPrincipal.getworkSpace().revalidate();
+        mainPrincipal.getworkSpace().repaint();
+        mostrarLab.setMostrarLaboratorios(mainPrincipal);
+    }//GEN-LAST:event_canselarULMouseClicked
 
+    /**
+     * Método que funciona para guardar los datos modificados
+     * @param evt evento al dar click
+     */
+    private void modificarULMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarULMouseClicked
+      CRUDgenerico guardarLab = new DAOLaboratoriosImp();
+      //Datos obtenidos de los campos 
+      int id = Integer.parseInt(this.idtxtUL.getText());
+      String nombre = this.nombretxtUL.getText();
+      String origen = this.origentxtUL.getText();
+      char estatus = String.valueOf(this.estatusCBox.getSelectedItem()).charAt(0);
+      //Guardar los datos de laboratorio
+      guardarLab.upadate(new Laboratorios(id, nombre, origen, estatus));
+        
+    }//GEN-LAST:event_modificarULMouseClicked
+
+    /**
+     * Método que funciona para abstraer los datos del laboratotio
+     */
+    public void ObtenerLaboratoriModificar(Laboratorios lab) {
+        this.idtxtUL.setText(String.valueOf(lab.getId()));
+        this.nombretxtUL.setText(lab.getNombre());
+        this.origentxtUL.setText(lab.getOrigen());
+        if (lab.getEstatus() == 'A') {
+            this.estatusCBox.setSelectedIndex(1);
+        } else {
+            this.estatusCBox.setSelectedIndex(2);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel canselarUL;
+    private javax.swing.JComboBox<String> estatusCBox;
     private javax.swing.JLabel estatusUL;
     private javax.swing.JLabel idUL;
     private javax.swing.JTextField idtxtUL;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel modificarUL;
     private javax.swing.JLabel nombreUL;

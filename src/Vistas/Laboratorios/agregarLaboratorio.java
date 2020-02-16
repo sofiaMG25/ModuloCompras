@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vista.Laboratorios;
+package Vistas.Laboratorios;
 
 import ClasesExtras.CRUDgenerico;
 import DAOLaboratorios.DAOLaboratoriosImp;

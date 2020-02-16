@@ -3,15 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vista.Empaques;
+package Vistas.Empaques;
 
 import MainPrincipal.Main;
-import ClasesExtras.RenderTable;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
-import sun.swing.table.DefaultTableCellHeaderRenderer;
 
 /**
  *
@@ -33,10 +30,10 @@ public class mostrarEmpaques extends javax.swing.JPanel {
         JButton btnModificar = new JButton();
         JButton btnEliminar = new JButton();
         //TableCellRenderer tcr = new DefaultTableCellHeaderRenderer();
-        this.jTableMEmp.setDefaultRenderer(Object.class, new RenderTable());
+        //this.jTableMEmp.setDefaultRenderer(Object.class, new RenderTable());
         DefaultTableModel modelTable = new DefaultTableModel(
-                new Object[][]{{"1","juan",btnModificar,btnEliminar},{"2","David",btnModificar,btnEliminar}}
-                , new Object[]{"Codigo","Nombre","Modificar","Eliminar"}){
+                new Object[][]{{"1","Tetrapack","1000","A"},{"2","Sellado","100","I"}}
+                , new Object[]{"ID","Nombre","Capacidad","Estatus"}){
                   public boolean isCellEditable(int row,int column){
                       return false;
                   }

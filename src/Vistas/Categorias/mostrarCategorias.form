@@ -37,7 +37,8 @@
     </Property>
   </Properties>
   <AccessibilityProperties>
-    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Mostrar Unidad Medida"/>
+    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Mostrar Categorias"/>
+    <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
   </AccessibilityProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -84,13 +85,13 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="tablaMostrarUnidad" max="32767" attributes="0"/>
+                      <Component id="tablaMostrarCat" max="32767" attributes="0"/>
                       <Component id="opcionesMostrarLab" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="0" pref="197" max="32767" attributes="0"/>
-                          <Component id="buscartxtML" min="-2" pref="314" max="-2" attributes="0"/>
+                          <Component id="buscartxtMC" min="-2" pref="314" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="buscarML" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="buscarMC" min="-2" pref="200" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -102,11 +103,11 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="buscarML" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="buscartxtML" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                      <Component id="buscarMC" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="buscartxtMC" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="tablaMostrarUnidad" min="-2" pref="234" max="-2" attributes="0"/>
+                  <Component id="tablaMostrarCat" min="-2" pref="234" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="opcionesMostrarLab" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
@@ -115,17 +116,16 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JScrollPane" name="tablaMostrarUnidad">
+        <Container class="javax.swing.JScrollPane" name="tablaMostrarCat">
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTableML">
+            <Component class="javax.swing.JTable" name="jTableMC">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="6" rowCount="4">
+                  <Table columnCount="5" rowCount="4">
                     <Column editable="true" title="ID" type="java.lang.Object"/>
                     <Column editable="true" title="NOMBRE" type="java.lang.Object"/>
-                    <Column editable="true" title="SIGLAS" type="java.lang.Object"/>
                     <Column editable="true" title="ESTATUS" type="java.lang.Object"/>
                     <Column editable="true" title="" type="java.lang.Object"/>
                     <Column editable="true" title="" type="java.lang.Object"/>
@@ -133,11 +133,6 @@
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>
@@ -184,9 +179,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                      <Component id="nuevolabML" min="-2" pref="193" max="-2" attributes="0"/>
+                      <Component id="nuevaCat" min="-2" pref="193" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="cancelarML" min="-2" pref="121" max="-2" attributes="0"/>
+                      <Component id="cancelarMC" min="-2" pref="121" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -196,8 +191,8 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace pref="44" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="cancelarML" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="nuevolabML" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cancelarMC" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="nuevaCat" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
@@ -205,7 +200,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="nuevolabML">
+            <Component class="javax.swing.JLabel" name="nuevaCat">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tw Cen MT Condensed Extra Bold" size="18" style="2"/>
@@ -216,7 +211,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/imagenes/save.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="NUEVA UNIDAD"/>
+                <Property name="text" type="java.lang.String" value="NUEVA CATEGORIA"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
                     <BevelBorder>
@@ -232,10 +227,10 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="nuevolabMLMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="nuevaCatMouseClicked"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="cancelarML">
+            <Component class="javax.swing.JLabel" name="cancelarMC">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tw Cen MT Condensed Extra Bold" size="18" style="2"/>
@@ -262,14 +257,14 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cancelarMLMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cancelarMCMouseClicked"/>
               </Events>
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JTextField" name="buscartxtML">
+        <Component class="javax.swing.JTextField" name="buscartxtMC">
         </Component>
-        <Component class="javax.swing.JLabel" name="buscarML">
+        <Component class="javax.swing.JLabel" name="buscarMC">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tw Cen MT Condensed Extra Bold" size="18" style="2"/>
@@ -280,7 +275,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagenes/most.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="BUSCAR UNIDAD"/>
+            <Property name="text" type="java.lang.String" value="BUSCAR CATEGORIA"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
                 <BevelBorder>

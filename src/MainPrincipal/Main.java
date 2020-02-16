@@ -1,8 +1,10 @@
 package MainPrincipal;
 
 import ConexionSQLServer.ConexionSQL;
-import vista.Laboratorios.mostrarLaboratorios;
-import vista.Empaques.mostrarEmpaques;
+import Vistas.Laboratorios.mostrarLaboratorios;
+import Vistas.Empaques.mostrarEmpaques;
+import Vistas.Categorias.mostrarCategorias;
+import Vistas.UnidadMedida.mostrarUnidadMedida;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
@@ -106,6 +108,11 @@ public class Main extends javax.swing.JFrame {
         categorias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cate.png"))); // NOI18N
         categorias.setText("Categoria");
         categorias.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        categorias.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                categoriasMouseClicked(evt);
+            }
+        });
 
         empaques.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
         empaques.setForeground(new java.awt.Color(255, 255, 255));
@@ -122,6 +129,11 @@ public class Main extends javax.swing.JFrame {
         unidadMedidas.setForeground(new java.awt.Color(255, 255, 255));
         unidadMedidas.setText("Unidad  de medida");
         unidadMedidas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        unidadMedidas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                unidadMedidasMouseClicked(evt);
+            }
+        });
 
         sucursales.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
         sucursales.setForeground(new java.awt.Color(255, 255, 255));
@@ -472,6 +484,48 @@ public class Main extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_empaquesMouseClicked
+
+    private void categoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoriasMouseClicked
+        //Quitas el jpanel principal que esta en el centro
+        workSpace.removeAll();
+        //Instaciamos el nuevo jpanel a reemplazar
+        mostrarCategorias mc =new mostrarCategorias();
+        //Redimensionamos el jpanel nuevo
+        mc.setSize(workSpace.getSize());
+        //Hacemos visible
+        mc.setVisible(true);
+        //Seleccionamos la función para mostrar el jpanel
+        mc.setMostrarCategorias(this);
+        //Cargamos el jpanel
+        mc.MostrarDatosCategorias();
+        //Agregamos el jpanel y centramos
+        workSpace.add(mc, BorderLayout.CENTER);
+        //Validamos el jpanel
+        workSpace.revalidate();
+        //Dibujamos el jpanel
+        workSpace.repaint();
+    }//GEN-LAST:event_categoriasMouseClicked
+
+    private void unidadMedidasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_unidadMedidasMouseClicked
+        //Quitas el jpanel principal que esta en el centro
+        workSpace.removeAll();
+        //Instaciamos el nuevo jpanel a reemplazar
+        mostrarUnidadMedida mum =new mostrarUnidadMedida();
+        //Redimensionamos el jpanel nuevo
+        mum.setSize(workSpace.getSize());
+        //Hacemos visible
+        mum.setVisible(true);
+        //Seleccionamos la función para mostrar el jpanel
+        mum.setMostrarUnidadMedida(this);
+        //Cargamos el jpanel
+        mum.MostrarDatosUnidad();
+        //Agregamos el jpanel y centramos
+        workSpace.add(mum, BorderLayout.CENTER);
+        //Validamos el jpanel
+        workSpace.revalidate();
+        //Dibujamos el jpanel
+        workSpace.repaint();
+    }//GEN-LAST:event_unidadMedidasMouseClicked
 
     /**
      * @param args the command line arguments
