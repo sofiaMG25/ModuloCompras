@@ -1,8 +1,8 @@
 package Vistas.Laboratorios;
 
 import java.awt.BorderLayout;
-import DAOLaboratorios.DAOLaboratoriosImp;
-import DAOLaboratorios.Laboratorios;
+import DAOs.DAOLaboratoriosImp;
+import DAOs.Laboratorios;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 import MainPrincipal.Main;

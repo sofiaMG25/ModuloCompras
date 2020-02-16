@@ -6,8 +6,8 @@
 package Vistas.Laboratorios;
 
 import ClasesExtras.CRUDgenerico;
-import DAOLaboratorios.DAOLaboratoriosImp;
-import DAOLaboratorios.Laboratorios;
+import DAOs.DAOLaboratoriosImp;
+import DAOs.Laboratorios;
 import MainPrincipal.Main;
 import java.awt.BorderLayout;
 

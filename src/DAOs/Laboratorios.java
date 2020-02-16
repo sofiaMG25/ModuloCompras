@@ -1,5 +1,5 @@
 
-package DAOLaboratorios;
+package DAOs;
 public class Laboratorios {
     private int id;
     private String nombre;

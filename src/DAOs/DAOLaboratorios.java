@@ -1,5 +1,5 @@
 
-package DAOLaboratorios;
+package DAOs;
 
 import ClasesExtras.CRUDgenerico;
 

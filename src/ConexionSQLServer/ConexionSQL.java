@@ -11,12 +11,12 @@ public class ConexionSQL {
 
     private String url = "jdbc:sqlserver://localhost:1433;"
             + "databaseName=ERP2020;";
-    //private String user = "sa";
-    //private String password = "admin";
+    private String user = "sa";
+    private String password = "admin";
     //private String user = "DavidR";
     //private String password = "Hola.123"; 
-    private String user = "Parra";
-    private String password = "Hola.123"; 
+    //private String user = "Parra";
+    //private String password = "Hola.123"; 
     static ConexionSQL conexion = null;
     private Connection cn = null;
     private PreparedStatement ps;

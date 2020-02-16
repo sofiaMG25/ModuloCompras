@@ -1,4 +1,4 @@
-package DAOLaboratorios;
+package DAOs;
 
 import ConexionSQLServer.ConexionSQL;
 import java.sql.SQLException;
