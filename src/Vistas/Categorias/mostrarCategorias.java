@@ -1,11 +1,15 @@
-
 package Vistas.Categorias;
+
 import MainPrincipal.Main;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
+import DAOs.*;
 import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
 import MainPrincipal.Main;
+import java.util.LinkedList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author 52351
@@ -18,13 +22,13 @@ public class mostrarCategorias extends javax.swing.JPanel {
     public void setMostrarCategorias(Main workspace) {
         mainPrincipal = workspace;
     }
-    
+
     public mostrarCategorias() {
         initComponents();
     }
-    
+
     private Main mainPrincipal;
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,6 +66,11 @@ public class mostrarCategorias extends javax.swing.JPanel {
                 "ID", "NOMBRE", "ESTATUS", "", ""
             }
         ));
+        jTableMC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableMCMouseClicked(evt);
+            }
+        });
         tablaMostrarCat.setViewportView(jTableMC);
 
         opcionesMostrarLab.setBackground(new java.awt.Color(48, 45, 45));
@@ -117,6 +126,11 @@ public class mostrarCategorias extends javax.swing.JPanel {
         buscarMC.setText("BUSCAR CATEGORIA");
         buscarMC.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
         buscarMC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buscarMC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buscarMCMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout mainMostrarLabLayout = new javax.swing.GroupLayout(mainMostrarLab);
         mainMostrarLab.setLayout(mainMostrarLabLayout);
@@ -169,48 +183,120 @@ public class mostrarCategorias extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nuevaCatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevaCatMouseClicked
-       mainPrincipal.getworkSpace().removeAll();
-       agregarCategorias nuevaCat = new agregarCategorias();
-       nuevaCat.setSize(mainPrincipal.getworkSpace().getSize());
-       nuevaCat.setVisible(true);
-       nuevaCat.setMain(mainPrincipal);
-       //agregarLaboratorio.setMain(mainPrincipal);
-       //nuevolab.getEnableComponents();
-       mainPrincipal.getworkSpace().add(nuevaCat,BorderLayout.CENTER);
-       mainPrincipal.getworkSpace().revalidate();
-       mainPrincipal.getworkSpace().repaint();
-        
-        
+        mainPrincipal.getworkSpace().removeAll();
+        agregarCategorias nuevaCat = new agregarCategorias();
+        nuevaCat.setSize(mainPrincipal.getworkSpace().getSize());
+        nuevaCat.setVisible(true);
+        nuevaCat.setMain(mainPrincipal);
+        //agregarLaboratorio.setMain(mainPrincipal);
+        //nuevolab.getEnableComponents();
+        mainPrincipal.getworkSpace().add(nuevaCat, BorderLayout.CENTER);
+        mainPrincipal.getworkSpace().revalidate();
+        mainPrincipal.getworkSpace().repaint();
+
+
     }//GEN-LAST:event_nuevaCatMouseClicked
 
     private void cancelarMCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarMCMouseClicked
-       mainPrincipal.getworkSpace().removeAll();
-       mainPrincipal.getworkSpace().revalidate();
-       mainPrincipal.getworkSpace().repaint();
+        mainPrincipal.getworkSpace().removeAll();
+        mainPrincipal.getworkSpace().revalidate();
+        mainPrincipal.getworkSpace().repaint();
     }//GEN-LAST:event_cancelarMCMouseClicked
 
-    public void MostrarDatosCategorias(){
-        
-        JButton btnModificar = new JButton();
-        JButton btnEliminar = new JButton();
-        //TableCellRenderer tcr = new DefaultTableCellHeaderRenderer();
-        //this.jTableML.setDefaultRenderer(Object.class,  tcr);
+    private void jTableMCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMCMouseClicked
+        int row;
+        row = jTableMC.getSelectedRow();
+
+        //Verificamos que el evento este en el rango de la tabla.
+        if (row > -1 && row <= jTableMC.getSelectedRow()) {
+            //creamos la ventana modificar
+            modificarCategorias modificarCat = new modificarCategorias();
+            this.mainPrincipal.getworkSpace().removeAll();
+            modificarCat.setSize(mainPrincipal.getworkSpace().getSize());
+            modificarCat.setVisible(true);
+            modificarCat.setMainPrincipal(mainPrincipal);
+            //Datos de la tabla, selecionar un row
+            int id = Integer.parseInt(String.valueOf(this.jTableMC.getValueAt(row, 0)));
+            String nombre = String.valueOf(this.jTableMC.getValueAt(row, 1));
+            char estatus = String.valueOf(this.jTableMC.getValueAt(row, 2)).charAt(0);
+            //Ingresan los datos de la tabla a la interfaz Modificar Laboratorio
+            modificarCat.ObtenerLaboratoriModificar(
+                    new Categorias(id, nombre, estatus));
+
+            this.mainPrincipal.getworkSpace().add(modificarCat, BorderLayout.CENTER);
+            this.mainPrincipal.getworkSpace().revalidate();
+            this.mainPrincipal.getworkSpace().repaint();
+        }
+    }//GEN-LAST:event_jTableMCMouseClicked
+
+    private void buscarMCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscarMCMouseClicked
+        if (buscartxtMC.getText() == "" || buscartxtMC.getText() == null) {
+            JOptionPane.showMessageDialog(null, "Debes escribir algo para filtrar...",
+                    "Mensaje", JOptionPane.WARNING_MESSAGE);
+        } else {
+            LinkedList<Categorias> cat = new DAOCategoriasImp().consultaInd(buscartxtMC.getText());
+            Object listaDatos[][] = new Object[cat.size()][3];
+            for (int i = 0; i < cat.size(); i++) {
+                listaDatos[i][0] = cat.get(i).getId();
+                listaDatos[i][1] = cat.get(i).getNombre();
+                listaDatos[i][2] = cat.get(i).getEstatus();
+            }
+
+            DefaultTableModel modelTable = new DefaultTableModel(
+                    listaDatos,
+                    new Object[]{"ID", "NOMBRE", "ESTATUS"}) {
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+
+            this.jTableMC.setModel(modelTable);
+            this.jTableMC.getColumnModel().getColumn(0).setMinWidth(10);
+            this.jTableMC.getColumnModel().getColumn(0).setMaxWidth(50);
+
+            this.jTableMC.getColumnModel().getColumn(1).setMinWidth(50);
+            this.jTableMC.getColumnModel().getColumn(1).setMaxWidth(350);
+
+            this.jTableMC.getColumnModel().getColumn(2).setMinWidth(50);
+            this.jTableMC.getColumnModel().getColumn(2).setMaxWidth(350);
+
+        }
+
+    }//GEN-LAST:event_buscarMCMouseClicked
+
+    public void MostrarDatosCategorias() {
+        LinkedList<Categorias> cat = new DAOCategoriasImp().show();
+        Object listaDatos[][] = new Object[cat.size()][3];
+        for (int i = 0; i < cat.size(); i++) {
+            listaDatos[i][0] = cat.get(i).getId();
+            listaDatos[i][1] = cat.get(i).getNombre();
+            listaDatos[i][2] = cat.get(i).getEstatus();
+        }
+
         DefaultTableModel modelTable = new DefaultTableModel(
-                new Object[][]{{"1","juan","A"},{"2","David","I"}}
-                , new Object[]{"ID","Nombre","Estatus"}){
-                  public boolean isCellEditable(int row,int column){
-                      return false;
-                  }
-                };
-        
+                listaDatos,
+                new Object[]{"ID", "NOMBRE", "ESTATUS"}) {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
         this.jTableMC.setModel(modelTable);
-        this.jTableMC.setRowHeight(30);
+        this.jTableMC.getColumnModel().getColumn(0).setMinWidth(10);
+        this.jTableMC.getColumnModel().getColumn(0).setMaxWidth(50);
+
+        this.jTableMC.getColumnModel().getColumn(1).setMinWidth(50);
+        this.jTableMC.getColumnModel().getColumn(1).setMaxWidth(350);
+
+        this.jTableMC.getColumnModel().getColumn(2).setMinWidth(50);
+        this.jTableMC.getColumnModel().getColumn(2).setMaxWidth(350);
+
     }
-    
-    public void activeEventListenerMostrarLab(){
+
+    public void activeEventListenerMostrarLab() {
         MostrarDatosCategorias();
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel buscarMC;
