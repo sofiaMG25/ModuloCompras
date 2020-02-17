@@ -49,7 +49,7 @@ public class modificarLaboratorio extends javax.swing.JPanel {
         estatusCBox = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         modificarUL = new javax.swing.JLabel();
-        canselarUL = new javax.swing.JLabel();
+        cancelarUL = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(228, 225, 225));
         setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Modicar Laboratorio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
@@ -85,15 +85,15 @@ public class modificarLaboratorio extends javax.swing.JPanel {
             }
         });
 
-        canselarUL.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        canselarUL.setForeground(new java.awt.Color(255, 255, 255));
-        canselarUL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar.png"))); // NOI18N
-        canselarUL.setText("CANCELAR");
-        canselarUL.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
-        canselarUL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        canselarUL.addMouseListener(new java.awt.event.MouseAdapter() {
+        cancelarUL.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        cancelarUL.setForeground(new java.awt.Color(255, 255, 255));
+        cancelarUL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar.png"))); // NOI18N
+        cancelarUL.setText("CANCELAR");
+        cancelarUL.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        cancelarUL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cancelarUL.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                canselarULMouseClicked(evt);
+                cancelarULMouseClicked(evt);
             }
         });
 
@@ -105,7 +105,7 @@ public class modificarLaboratorio extends javax.swing.JPanel {
                 .addGap(115, 115, 115)
                 .addComponent(modificarUL, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(canselarUL, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cancelarUL, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(73, 73, 73))
         );
         jPanel1Layout.setVerticalGroup(
@@ -113,7 +113,7 @@ public class modificarLaboratorio extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(71, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(canselarUL)
+                    .addComponent(cancelarUL)
                     .addComponent(modificarUL))
                 .addGap(45, 45, 45))
         );
@@ -177,7 +177,7 @@ public class modificarLaboratorio extends javax.swing.JPanel {
      *
      * @param evt evento que se activa al dar click
      */
-    private void canselarULMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canselarULMouseClicked
+    private void cancelarULMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarULMouseClicked
         mainPrincipal.getworkSpace().removeAll();
         mostrarLaboratorios mostrarLab = new mostrarLaboratorios();
         mostrarLab.setSize(mainPrincipal.getworkSpace().getSize());
@@ -187,7 +187,7 @@ public class modificarLaboratorio extends javax.swing.JPanel {
         mainPrincipal.getworkSpace().revalidate();
         mainPrincipal.getworkSpace().repaint();
         mostrarLab.setMostrarLaboratorios(mainPrincipal);
-    }//GEN-LAST:event_canselarULMouseClicked
+    }//GEN-LAST:event_cancelarULMouseClicked
 
     /**
      * Método que funciona para guardar los datos modificados
@@ -220,7 +220,7 @@ public class modificarLaboratorio extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel canselarUL;
+    private javax.swing.JLabel cancelarUL;
     private javax.swing.JComboBox<String> estatusCBox;
     private javax.swing.JLabel estatusUL;
     private javax.swing.JLabel idUL;

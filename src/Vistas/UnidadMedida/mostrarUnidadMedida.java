@@ -6,6 +6,9 @@ import javax.swing.JButton;
 import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
 import MainPrincipal.Main;
+import java.util.LinkedList;
+import DAOs.*;
+import javax.swing.JOptionPane;
 /**
  *
  * @author 52351
@@ -62,6 +65,11 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
                 "ID", "NOMBRE", "SIGLAS", "ESTATUS", "", ""
             }
         ));
+        jTableMUM.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableMUMMouseClicked(evt);
+            }
+        });
         tablaMostrarUnidad.setViewportView(jTableMUM);
 
         opcionesMostrarLab.setBackground(new java.awt.Color(48, 45, 45));
@@ -117,6 +125,11 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
         buscarMUM.setText("BUSCAR UNIDAD");
         buscarMUM.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
         buscarMUM.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buscarMUM.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buscarMUMMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout mainMostrarLabLayout = new javax.swing.GroupLayout(mainMostrarLab);
         mainMostrarLab.setLayout(mainMostrarLabLayout);
@@ -188,22 +201,100 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
        mainPrincipal.getworkSpace().repaint();
     }//GEN-LAST:event_cancelarMUMMouseClicked
 
+    private void jTableMUMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMUMMouseClicked
+        int row;
+        row = jTableMUM.getSelectedRow();
+        
+        //Verificamos que el evento este en el rango de la tabla.
+        if (row > -1 && row <= jTableMUM.getSelectedRow()) {
+            //creamos la ventana modificar
+            modificarUnidadMedida modificarUni = new modificarUnidadMedida();
+            this.mainPrincipal.getworkSpace().removeAll();
+            modificarUni.setSize(mainPrincipal.getworkSpace().getSize());
+            modificarUni.setVisible(true);
+            modificarUni.setMainPrincipal(mainPrincipal);
+            //Datos de la tabla, selecionar un row
+            int id = Integer.parseInt(String.valueOf(this.jTableMUM.getValueAt(row, 0)));
+            String nombre = String.valueOf(this.jTableMUM.getValueAt(row, 1));
+            String capacidad = String.valueOf(this.jTableMUM.getValueAt(row, 2));
+            char estatus = String.valueOf(this.jTableMUM.getValueAt(row, 3)).charAt(0);
+            //Ingresan los datos de la tabla a la interfaz Modificar Laboratorio
+            modificarUni.ObtenerLaboratoriModificar(
+                    new UnidadMedida(id,nombre,Float.parseFloat(capacidad),estatus));
+            
+            this.mainPrincipal.getworkSpace().add(modificarUni,BorderLayout.CENTER);
+            this.mainPrincipal.getworkSpace().revalidate();
+            this.mainPrincipal.getworkSpace().repaint();
+        }
+    }//GEN-LAST:event_jTableMUMMouseClicked
+
+    private void buscarMUMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscarMUMMouseClicked
+        if (buscartxtMUM.getText() == "" || buscartxtMUM.getText() == null) {
+            JOptionPane.showMessageDialog(null, "Debes escribir algo para filtrar...",
+                    "Mensaje", JOptionPane.WARNING_MESSAGE);
+        } else {
+            LinkedList<UnidadMedida> uni = new DAOUnidadImp().consultaInd(buscartxtMUM.getText());
+            Object listaDatos[][] = new Object[uni.size()][4];
+            for (int i = 0; i < uni.size(); i++) {
+                listaDatos[i][0] = uni.get(i).getId();
+                listaDatos[i][1] = uni.get(i).getNombre();
+                listaDatos[i][2] = uni.get(i).getEstatus();
+                listaDatos[i][3] = uni.get(i).getEstatus();
+            }
+
+            DefaultTableModel modelTable = new DefaultTableModel(
+                    listaDatos,
+                    new Object[]{"ID", "NOMBRE","CAPACIDAD" ,"ESTATUS"}) {
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+
+            this.jTableMUM.setModel(modelTable);
+            this.jTableMUM.getColumnModel().getColumn(0).setMinWidth(10);
+            this.jTableMUM.getColumnModel().getColumn(0).setMaxWidth(50);
+
+            this.jTableMUM.getColumnModel().getColumn(1).setMinWidth(50);
+            this.jTableMUM.getColumnModel().getColumn(1).setMaxWidth(350);
+
+            this.jTableMUM.getColumnModel().getColumn(2).setMinWidth(50);
+            this.jTableMUM.getColumnModel().getColumn(2).setMaxWidth(350);
+
+        }
+    }//GEN-LAST:event_buscarMUMMouseClicked
+
     public void MostrarDatosUnidad(){
         
-        JButton btnModificar = new JButton();
-        JButton btnEliminar = new JButton();
-        //TableCellRenderer tcr = new DefaultTableCellHeaderRenderer();
-        //this.jTableML.setDefaultRenderer(Object.class, tcr);
+         LinkedList<UnidadMedida> uni = new DAOUnidadImp().show();
+        Object listaDatos[][] = new Object[uni.size()][4];
+        for (int i = 0; i < uni.size(); i++) {
+            listaDatos[i][0] = uni.get(i).getId();
+            listaDatos[i][1] = uni.get(i).getNombre();
+            listaDatos[i][2] = uni.get(i).getCapacidad();
+            listaDatos[i][3] = uni.get(i).getEstatus();
+        }
+
         DefaultTableModel modelTable = new DefaultTableModel(
-                new Object[][]{{"1","Litros","1000","A"},{"2","Kilos","1000","A"}}
-                , new Object[]{"ID","Nombre","Capacidad","Estatus"}){
-                  public boolean isCellEditable(int row,int column){
-                      return false;
-                  }
-                };
-        
+                listaDatos,
+                new Object[]{"ID", "NOMBRE", "CAPACIDAD", "ESTATUS"}) {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
         this.jTableMUM.setModel(modelTable);
-        this.jTableMUM.setRowHeight(30);
+        this.jTableMUM.getColumnModel().getColumn(0).setMinWidth(10);
+        this.jTableMUM.getColumnModel().getColumn(0).setMaxWidth(50);
+
+        this.jTableMUM.getColumnModel().getColumn(1).setMinWidth(50);
+        this.jTableMUM.getColumnModel().getColumn(1).setMaxWidth(350);
+
+        this.jTableMUM.getColumnModel().getColumn(2).setMinWidth(50);
+        this.jTableMUM.getColumnModel().getColumn(2).setMaxWidth(350);
+
+        this.jTableMUM.getColumnModel().getColumn(3).setMinWidth(10);
+        this.jTableMUM.getColumnModel().getColumn(3).setMaxWidth(200);
+
     }
     
     public void activeEventListenerMostrarLab(){

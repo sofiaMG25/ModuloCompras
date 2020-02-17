@@ -39,7 +39,7 @@ public class modificarEmpaque extends javax.swing.JPanel {
         JCBoxunidadUEmp = new javax.swing.JComboBox<>();
         opcionesUEmp = new javax.swing.JPanel();
         modificarUEmp = new javax.swing.JLabel();
-        canselarUEmp = new javax.swing.JLabel();
+        cancelarUEmp = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(228, 225, 225));
         setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Modificar empaque", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
@@ -76,12 +76,12 @@ public class modificarEmpaque extends javax.swing.JPanel {
         modificarUEmp.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
         modificarUEmp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        canselarUEmp.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        canselarUEmp.setForeground(new java.awt.Color(255, 255, 255));
-        canselarUEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar.png"))); // NOI18N
-        canselarUEmp.setText("CANCELAR");
-        canselarUEmp.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
-        canselarUEmp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cancelarUEmp.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        cancelarUEmp.setForeground(new java.awt.Color(255, 255, 255));
+        cancelarUEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar.png"))); // NOI18N
+        cancelarUEmp.setText("CANCELAR");
+        cancelarUEmp.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        cancelarUEmp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout opcionesUEmpLayout = new javax.swing.GroupLayout(opcionesUEmp);
         opcionesUEmp.setLayout(opcionesUEmpLayout);
@@ -91,7 +91,7 @@ public class modificarEmpaque extends javax.swing.JPanel {
                 .addGap(115, 115, 115)
                 .addComponent(modificarUEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(canselarUEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cancelarUEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(73, 73, 73))
         );
         opcionesUEmpLayout.setVerticalGroup(
@@ -99,7 +99,7 @@ public class modificarEmpaque extends javax.swing.JPanel {
             .addGroup(opcionesUEmpLayout.createSequentialGroup()
                 .addContainerGap(71, Short.MAX_VALUE)
                 .addGroup(opcionesUEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(canselarUEmp)
+                    .addComponent(cancelarUEmp)
                     .addComponent(modificarUEmp))
                 .addGap(45, 45, 45))
         );
@@ -166,7 +166,7 @@ public class modificarEmpaque extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> JCBoxunidadUEmp;
-    private javax.swing.JLabel canselarUEmp;
+    private javax.swing.JLabel cancelarUEmp;
     private javax.swing.JLabel estatusEmp;
     private javax.swing.JLabel estatusUEmp;
     private javax.swing.JLabel idUEmp;

@@ -54,7 +54,7 @@ public class agregarLaboratorio extends javax.swing.JPanel {
         nombretxt = new javax.swing.JTextField();
         origentxt = new javax.swing.JTextField();
         opciones = new javax.swing.JPanel();
-        canselar = new javax.swing.JLabel();
+        cancelar = new javax.swing.JLabel();
         guardar = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(228, 225, 225));
@@ -69,15 +69,15 @@ public class agregarLaboratorio extends javax.swing.JPanel {
 
         opciones.setBackground(new java.awt.Color(48, 45, 45));
 
-        canselar.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        canselar.setForeground(new java.awt.Color(255, 255, 255));
-        canselar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar.png"))); // NOI18N
-        canselar.setText("CANCELAR");
-        canselar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
-        canselar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        canselar.addMouseListener(new java.awt.event.MouseAdapter() {
+        cancelar.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        cancelar.setForeground(new java.awt.Color(255, 255, 255));
+        cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar.png"))); // NOI18N
+        cancelar.setText("CANCELAR");
+        cancelar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        cancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                canselarMouseClicked(evt);
+                cancelarMouseClicked(evt);
             }
         });
 
@@ -101,7 +101,7 @@ public class agregarLaboratorio extends javax.swing.JPanel {
                 .addGap(115, 115, 115)
                 .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(canselar, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(73, 73, 73))
         );
         opcionesLayout.setVerticalGroup(
@@ -109,7 +109,7 @@ public class agregarLaboratorio extends javax.swing.JPanel {
             .addGroup(opcionesLayout.createSequentialGroup()
                 .addContainerGap(71, Short.MAX_VALUE)
                 .addGroup(opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(canselar)
+                    .addComponent(cancelar)
                     .addComponent(guardar))
                 .addGap(45, 45, 45))
         );
@@ -154,7 +154,7 @@ public class agregarLaboratorio extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void canselarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canselarMouseClicked
+    private void cancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarMouseClicked
             mainPrincipal.getworkSpace().removeAll();
             mostrarLaboratorios mostrarlab = new mostrarLaboratorios();
             mostrarlab.setSize(mainPrincipal.getworkSpace().getSize());
@@ -164,7 +164,7 @@ public class agregarLaboratorio extends javax.swing.JPanel {
             mainPrincipal.getworkSpace().revalidate();
             mainPrincipal.getworkSpace().repaint();
             mostrarlab.setMostrarLaboratorios(mainPrincipal);
-    }//GEN-LAST:event_canselarMouseClicked
+    }//GEN-LAST:event_cancelarMouseClicked
 
     private void guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarMouseClicked
         if(nombretxt.equals(""))
@@ -183,7 +183,7 @@ public class agregarLaboratorio extends javax.swing.JPanel {
         origentxt.setText("");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel canselar;
+    private javax.swing.JLabel cancelar;
     private javax.swing.JLabel guardar;
     private javax.swing.JLabel nombreLabel;
     private javax.swing.JTextField nombretxt;

@@ -33,7 +33,7 @@ public class agregarEmpaque extends javax.swing.JPanel {
         capacidadtxtAEmp = new javax.swing.JTextField();
         estatustxtAEmp = new javax.swing.JTextField();
         opcionesAEmp = new javax.swing.JPanel();
-        canselarAEmp = new javax.swing.JLabel();
+        cancelarAEmp = new javax.swing.JLabel();
         guardarAEmp = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(228, 225, 225));
@@ -50,12 +50,12 @@ public class agregarEmpaque extends javax.swing.JPanel {
 
         opcionesAEmp.setBackground(new java.awt.Color(48, 45, 45));
 
-        canselarAEmp.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        canselarAEmp.setForeground(new java.awt.Color(255, 255, 255));
-        canselarAEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar.png"))); // NOI18N
-        canselarAEmp.setText("CANCELAR");
-        canselarAEmp.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
-        canselarAEmp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cancelarAEmp.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        cancelarAEmp.setForeground(new java.awt.Color(255, 255, 255));
+        cancelarAEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar.png"))); // NOI18N
+        cancelarAEmp.setText("CANCELAR");
+        cancelarAEmp.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        cancelarAEmp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         guardarAEmp.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
         guardarAEmp.setForeground(new java.awt.Color(255, 255, 255));
@@ -72,7 +72,7 @@ public class agregarEmpaque extends javax.swing.JPanel {
                 .addGap(115, 115, 115)
                 .addComponent(guardarAEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 283, Short.MAX_VALUE)
-                .addComponent(canselarAEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cancelarAEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(73, 73, 73))
         );
         opcionesAEmpLayout.setVerticalGroup(
@@ -80,7 +80,7 @@ public class agregarEmpaque extends javax.swing.JPanel {
             .addGroup(opcionesAEmpLayout.createSequentialGroup()
                 .addContainerGap(71, Short.MAX_VALUE)
                 .addGroup(opcionesAEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(canselarAEmp)
+                    .addComponent(cancelarAEmp)
                     .addComponent(guardarAEmp))
                 .addGap(45, 45, 45))
         );
@@ -129,7 +129,7 @@ public class agregarEmpaque extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel canselarAEmp;
+    private javax.swing.JLabel cancelarAEmp;
     private javax.swing.JTextField capacidadtxtAEmp;
     private javax.swing.JLabel estatusAEmp;
     private javax.swing.JTextField estatustxtAEmp;

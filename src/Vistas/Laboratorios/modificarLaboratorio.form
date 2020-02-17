@@ -172,7 +172,7 @@
                   <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
                   <Component id="modificarUL" min="-2" pref="143" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="canselarUL" min="-2" pref="143" max="-2" attributes="0"/>
+                  <Component id="cancelarUL" min="-2" pref="143" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -182,7 +182,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace pref="71" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="canselarUL" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cancelarUL" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="modificarUL" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
@@ -221,7 +221,7 @@
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="modificarULMouseClicked"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="canselarUL">
+        <Component class="javax.swing.JLabel" name="cancelarUL">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tw Cen MT Condensed Extra Bold" size="18" style="2"/>
@@ -248,7 +248,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="canselarULMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cancelarULMouseClicked"/>
           </Events>
         </Component>
       </SubComponents>

@@ -169,6 +169,9 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTableMUMMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -295,6 +298,9 @@
               <Color id="Cursor de Mano"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buscarMUMMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
