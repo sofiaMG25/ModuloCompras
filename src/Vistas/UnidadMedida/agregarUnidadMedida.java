@@ -10,6 +10,7 @@ import DAOs.DAOUnidadImp;
 import DAOs.UnidadMedida;
 import MainPrincipal.Main;
 import java.awt.BorderLayout;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -22,15 +23,15 @@ public class agregarUnidadMedida extends javax.swing.JPanel {
      */
     public agregarUnidadMedida() {
         initComponents();
-        
+
     }
-    
-    public void setMain(Main main){
+
+    public void setMain(Main main) {
         mainPrincipal = main;
     }
-    
+
     private Main mainPrincipal;
-    
+
 //    public static void setMain(Main main){
 //        mainPrincipal = main;
 //    }
@@ -39,7 +40,6 @@ public class agregarUnidadMedida extends javax.swing.JPanel {
 //    public static void getEnableComponents(){
 //        mainPrincipal.getLabelComponents(false);
 //    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -66,6 +66,12 @@ public class agregarUnidadMedida extends javax.swing.JPanel {
 
         origenLabel.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         origenLabel.setText("CAPACIDAD:");
+
+        capacidadtxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                capacidadtxtKeyTyped(evt);
+            }
+        });
 
         opciones.setBackground(new java.awt.Color(48, 45, 45));
 
@@ -157,30 +163,42 @@ public class agregarUnidadMedida extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarMouseClicked
-            mainPrincipal.getworkSpace().removeAll();
-            mostrarUnidadMedida mostrarlab = new mostrarUnidadMedida();
-            mostrarlab.setSize(mainPrincipal.getworkSpace().getSize());
-            mostrarlab.setVisible(true);
-            mostrarlab.MostrarDatosUnidad();
-            mainPrincipal.getworkSpace().add(mostrarlab, BorderLayout.CENTER);
-            mainPrincipal.getworkSpace().revalidate();
-            mainPrincipal.getworkSpace().repaint();
-            mostrarlab.setMostrarUnidadMedida(mainPrincipal);
+        mainPrincipal.getworkSpace().removeAll();
+        mostrarUnidadMedida mostrarlab = new mostrarUnidadMedida();
+        mostrarlab.setSize(mainPrincipal.getworkSpace().getSize());
+        mostrarlab.setVisible(true);
+        mostrarlab.MostrarDatosUnidad();
+        mainPrincipal.getworkSpace().add(mostrarlab, BorderLayout.CENTER);
+        mainPrincipal.getworkSpace().revalidate();
+        mainPrincipal.getworkSpace().repaint();
+        mostrarlab.setMostrarUnidadMedida(mainPrincipal);
     }//GEN-LAST:event_cancelarMouseClicked
 
     private void guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarMouseClicked
-        if(nombretxt.equals(""))
+        if (nombretxt.equals("")) {
             nombretxt.requestFocus();
-        else if(capacidadtxt.equals(""))
+        } else if (capacidadtxt.equals("")) {
             capacidadtxt.requestFocus();
-        else{
+        } else {
             CRUDgenerico unidad = new DAOUnidadImp();
-            unidad.Insert(new UnidadMedida(0,nombretxt.getText(),Float.parseFloat(capacidadtxt.getText()),'A'));
+            unidad.Insert(new UnidadMedida(0, nombretxt.getText(), Float.parseFloat(capacidadtxt.getText()), 'A'));
             LimpiarVariables();
         }
     }//GEN-LAST:event_guardarMouseClicked
-    
-    private void LimpiarVariables(){
+
+    private void capacidadtxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_capacidadtxtKeyTyped
+        char c = evt.getKeyChar();
+        if (((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)
+                && (c != '.')) {
+            evt.consume();
+        }
+        if (c == '.' && capacidadtxt.getText().contains(".")) {
+            evt.consume();
+
+        }
+    }//GEN-LAST:event_capacidadtxtKeyTyped
+
+    private void LimpiarVariables() {
         nombretxt.setText("");
         capacidadtxt.setText("");
     }

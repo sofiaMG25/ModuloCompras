@@ -106,6 +106,9 @@
     <Component class="javax.swing.JTextField" name="nombretxt">
     </Component>
     <Component class="javax.swing.JTextField" name="capacidadtxt">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="capacidadtxtKeyTyped"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="opciones">
       <Properties>

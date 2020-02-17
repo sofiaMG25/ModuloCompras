@@ -45,24 +45,17 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="idUL" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
-                      <Component id="idtxtUL" min="-2" pref="45" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="nombreUL" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="estatusUL" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="origenUL" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="capacidadtxtUL" min="-2" pref="314" max="-2" attributes="0"/>
-                          <Component id="nombretxtUL" min="-2" pref="314" max="-2" attributes="0"/>
-                          <Component id="estatusBox" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+                  <Component id="nombreUL" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="estatusUL" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="origenUL" min="-2" max="-2" attributes="0"/>
+                  <Component id="idUL" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="idtxtUL" min="-2" pref="45" max="-2" attributes="0"/>
+                  <Component id="capacidadtxtUL" min="-2" pref="314" max="-2" attributes="0"/>
+                  <Component id="nombretxtUL" min="-2" pref="314" max="-2" attributes="0"/>
+                  <Component id="estatusBox" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -173,7 +166,7 @@
                   <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
                   <Component id="cancelarUL" min="-2" pref="143" max="-2" attributes="0"/>
                   <EmptySpace pref="73" max="32767" attributes="0"/>
-                  <Component id="modificarUL1" min="-2" pref="143" max="-2" attributes="0"/>
+                  <Component id="eliminarUL" min="-2" pref="143" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -185,7 +178,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="cancelarUL" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="modificarUL" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="modificarUL1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="eliminarUL" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
               </Group>
@@ -250,7 +243,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="modificarUL1">
+        <Component class="javax.swing.JLabel" name="eliminarUL">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tw Cen MT Condensed Extra Bold" size="18" style="2"/>
@@ -277,7 +270,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="modificarUL1MouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="eliminarULMouseClicked"/>
           </Events>
         </Component>
       </SubComponents>

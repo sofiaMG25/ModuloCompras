@@ -8,6 +8,7 @@ package Vistas.UnidadMedida;
 import ClasesExtras.CRUDgenerico;
 import MainPrincipal.Main;
 import DAOs.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,7 +23,7 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
         initComponents();
     }
     private Main mainPrincipal;
-    
+
     public void setMainPrincipal(Main main) {
         mainPrincipal = main;
     }
@@ -47,7 +48,7 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         modificarUL = new javax.swing.JLabel();
         cancelarUL = new javax.swing.JLabel();
-        modificarUL1 = new javax.swing.JLabel();
+        eliminarUL = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(228, 225, 225));
         setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Modicar Laboratorio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
@@ -90,15 +91,15 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
         cancelarUL.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
         cancelarUL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        modificarUL1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        modificarUL1.setForeground(new java.awt.Color(255, 255, 255));
-        modificarUL1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/trash.png"))); // NOI18N
-        modificarUL1.setText("Eliminar");
-        modificarUL1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
-        modificarUL1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        modificarUL1.addMouseListener(new java.awt.event.MouseAdapter() {
+        eliminarUL.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        eliminarUL.setForeground(new java.awt.Color(255, 255, 255));
+        eliminarUL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/trash.png"))); // NOI18N
+        eliminarUL.setText("Eliminar");
+        eliminarUL.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        eliminarUL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        eliminarUL.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                modificarUL1MouseClicked(evt);
+                eliminarULMouseClicked(evt);
             }
         });
 
@@ -112,7 +113,7 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
                 .addGap(92, 92, 92)
                 .addComponent(cancelarUL, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                .addComponent(modificarUL1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(eliminarUL, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47))
         );
         jPanel1Layout.setVerticalGroup(
@@ -122,7 +123,7 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelarUL)
                     .addComponent(modificarUL)
-                    .addComponent(modificarUL1))
+                    .addComponent(eliminarUL))
                 .addGap(45, 45, 45))
         );
 
@@ -137,20 +138,16 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(126, 126, 126)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(idUL)
-                        .addGap(78, 78, 78)
-                        .addComponent(idtxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nombreUL)
-                            .addComponent(estatusUL)
-                            .addComponent(origenUL))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(capacidadtxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nombretxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(estatusBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(nombreUL)
+                    .addComponent(estatusUL)
+                    .addComponent(origenUL)
+                    .addComponent(idUL))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(idtxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(capacidadtxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombretxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(estatusBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -181,6 +178,12 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void modificarULMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarULMouseClicked
+        if (nombretxtUL.getText() == "" || nombretxtUL.getText() == null) {
+            JOptionPane.showMessageDialog(null, "Debes escribir algo para guardar...",
+                    "Mensaje", JOptionPane.WARNING_MESSAGE);
+        }else if(capacidadtxtUL.equals(""))
+            capacidadtxtUL.requestFocus();
+        else{
         CRUDgenerico guardarUni = new DAOUnidadImp();
         //Datos obtenidos de los campos 
         int id = Integer.parseInt(this.idtxtUL.getText());
@@ -189,19 +192,23 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
         char estatus = String.valueOf(this.estatusBox.getSelectedItem()).charAt(0);
         //Guardar los datos de laboratorio
         guardarUni.upadate(new UnidadMedida(id, nombre, Float.parseFloat(capacidad), estatus));
-        
+        }
     }//GEN-LAST:event_modificarULMouseClicked
 
-    private void modificarUL1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarUL1MouseClicked
-        CRUDgenerico eliminarUni = new DAOUnidadImp();
-        //Datos obtenidos de los campos 
-        int id = Integer.parseInt(this.idtxtUL.getText());
-        String nombre = this.nombretxtUL.getText();
-        String capacidad = this.capacidadtxtUL.getText();
-        char estatus = String.valueOf(this.estatusBox.getSelectedItem()).charAt(0);
-        //Guardar los datos de Categorias
-        eliminarUni.delete(new UnidadMedida(id, nombre, Float.parseFloat(capacidad), estatus));
-    }//GEN-LAST:event_modificarUL1MouseClicked
+    private void eliminarULMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminarULMouseClicked
+        int resp = JOptionPane.showConfirmDialog(null, "¿Esta seguro?", "Alerta!",
+                JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
+        if (resp == 0) {
+            CRUDgenerico eliminarUni = new DAOUnidadImp();
+            //Datos obtenidos de los campos 
+            int id = Integer.parseInt(this.idtxtUL.getText());
+            String nombre = this.nombretxtUL.getText();
+            String capacidad = this.capacidadtxtUL.getText();
+            char estatus = String.valueOf(this.estatusBox.getSelectedItem()).charAt(0);
+            //Guardar los datos de Categorias
+            eliminarUni.delete(new UnidadMedida(id, nombre, Float.parseFloat(capacidad), estatus));
+        }
+    }//GEN-LAST:event_eliminarULMouseClicked
     /**
      * Método que funciona para abstraer los datos del laboratotio
      */
@@ -219,13 +226,13 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel cancelarUL;
     private javax.swing.JTextField capacidadtxtUL;
+    private javax.swing.JLabel eliminarUL;
     private javax.swing.JComboBox<String> estatusBox;
     private javax.swing.JLabel estatusUL;
     private javax.swing.JLabel idUL;
     private javax.swing.JTextField idtxtUL;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel modificarUL;
-    private javax.swing.JLabel modificarUL1;
     private javax.swing.JLabel nombreUL;
     private javax.swing.JTextField nombretxtUL;
     private javax.swing.JLabel origenUL;

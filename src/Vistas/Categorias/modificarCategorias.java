@@ -10,6 +10,7 @@ import DAOs.Categorias;
 import DAOs.DAOCategorias;
 import DAOs.DAOCategoriasImp;
 import MainPrincipal.Main;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,12 +24,13 @@ public class modificarCategorias extends javax.swing.JPanel {
     public modificarCategorias() {
         initComponents();
     }
-    
+
     private Main mainPrincipal;
-    
+
     public void setMainPrincipal(Main main) {
         mainPrincipal = main;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -172,24 +174,32 @@ public class modificarCategorias extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void modificarULMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarULMouseClicked
-      CRUDgenerico guardarCat = new DAOCategoriasImp();
-      //Datos obtenidos de los campos 
-      int id = Integer.parseInt(this.idtxtUL.getText());
-      String nombre = this.nombretxtUL.getText();
-      char estatus = String.valueOf(this.estatusBox.getSelectedItem()).charAt(0);
-      //Guardar los datos de laboratorio
-      guardarCat.upadate(new Categorias(id, nombre, estatus));
-        
+        if (nombretxtUL.getText() == "" || nombretxtUL.getText() == null) {
+            JOptionPane.showMessageDialog(null, "Debes escribir algo para guardar...",
+                    "Mensaje", JOptionPane.WARNING_MESSAGE);
+        } else {
+            CRUDgenerico guardarCat = new DAOCategoriasImp();
+            //Datos obtenidos de los campos 
+            int id = Integer.parseInt(this.idtxtUL.getText());
+            String nombre = this.nombretxtUL.getText();
+            char estatus = String.valueOf(this.estatusBox.getSelectedItem()).charAt(0);
+            //Guardar los datos de laboratorio
+            guardarCat.upadate(new Categorias(id, nombre, estatus));
+        }
     }//GEN-LAST:event_modificarULMouseClicked
 
     private void eliminarULMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminarULMouseClicked
-      CRUDgenerico eliminarCat = new DAOCategoriasImp();
-      //Datos obtenidos de los campos 
-      int id = Integer.parseInt(this.idtxtUL.getText());
-      String nombre = this.nombretxtUL.getText();
-      char estatus = String.valueOf(this.estatusBox.getSelectedItem()).charAt(0);
-      //Guardar los datos de Categorias
-      eliminarCat.delete(new Categorias(id, nombre, estatus));
+        int resp = JOptionPane.showConfirmDialog(null, "¿Esta seguro?", "Alerta!", 
+                JOptionPane.YES_NO_OPTION,JOptionPane.ERROR_MESSAGE);
+        if(resp==0){
+        CRUDgenerico eliminarCat = new DAOCategoriasImp();
+        //Datos obtenidos de los campos 
+        int id = Integer.parseInt(this.idtxtUL.getText());
+        String nombre = this.nombretxtUL.getText();
+        char estatus = String.valueOf(this.estatusBox.getSelectedItem()).charAt(0);
+        //Guardar los datos de Categorias
+        eliminarCat.delete(new Categorias(id, nombre, estatus));
+        }
     }//GEN-LAST:event_eliminarULMouseClicked
     /**
      * Método que funciona para abstraer los datos de la categoria
