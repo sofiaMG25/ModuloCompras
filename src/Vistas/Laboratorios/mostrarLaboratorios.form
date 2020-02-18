@@ -256,6 +256,9 @@
               <Color id="Cursor de Mano"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buscarMLMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

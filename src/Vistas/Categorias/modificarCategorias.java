@@ -178,7 +178,7 @@ public class modificarCategorias extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Debes escribir algo para guardar...",
                     "Mensaje", JOptionPane.WARNING_MESSAGE);
         } else {
-            CRUDgenerico guardarCat = new DAOCategoriasImp();
+            DAOCategoriasImp guardarCat = new DAOCategoriasImp();
             //Datos obtenidos de los campos 
             int id = Integer.parseInt(this.idtxtUL.getText());
             String nombre = this.nombretxtUL.getText();
@@ -192,7 +192,7 @@ public class modificarCategorias extends javax.swing.JPanel {
         int resp = JOptionPane.showConfirmDialog(null, "¿Esta seguro?", "Alerta!", 
                 JOptionPane.YES_NO_OPTION,JOptionPane.ERROR_MESSAGE);
         if(resp==0){
-        CRUDgenerico eliminarCat = new DAOCategoriasImp();
+        DAOCategoriasImp eliminarCat = new DAOCategoriasImp();
         //Datos obtenidos de los campos 
         int id = Integer.parseInt(this.idtxtUL.getText());
         String nombre = this.nombretxtUL.getText();

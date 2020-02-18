@@ -1,12 +1,15 @@
 package Vistas.Laboratorios;
 
+import DAOs.DAOEmpaquesImp;
 import java.awt.BorderLayout;
 import DAOs.DAOLaboratoriosImp;
+import DAOs.Empaques;
 import DAOs.Laboratorios;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 import MainPrincipal.Main;
 import java.util.LinkedList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -124,6 +127,11 @@ public class mostrarLaboratorios extends javax.swing.JPanel {
         buscarML.setText("BUSCAR LABORATORIO");
         buscarML.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
         buscarML.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buscarML.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buscarMLMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout mainMostrarLabLayout = new javax.swing.GroupLayout(mainMostrarLab);
         mainMostrarLab.setLayout(mainMostrarLabLayout);
@@ -200,6 +208,7 @@ public class mostrarLaboratorios extends javax.swing.JPanel {
      */
     private void jTableMLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMLMouseClicked
 
+       
         int row;
         row = jTableML.getSelectedRow();
         
@@ -223,15 +232,44 @@ public class mostrarLaboratorios extends javax.swing.JPanel {
             this.mainPrincipal.getworkSpace().add(modificarLab,BorderLayout.CENTER);
             this.mainPrincipal.getworkSpace().revalidate();
             this.mainPrincipal.getworkSpace().repaint();
+       
         }
     }//GEN-LAST:event_jTableMLMouseClicked
 
+    private void buscarMLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscarMLMouseClicked
+         LinkedList<Laboratorios> lab = new DAOLaboratoriosImp().busquedaPorNombre(buscartxtML.getText());
+        Object listaDatos[][] = new Object[lab.size()][4];
+        for (int i = 0; i < lab.size(); i++) {
+            listaDatos[i][0] = lab.get(i).getId();
+            listaDatos[i][1] = lab.get(i).getNombre();
+            listaDatos[i][2] = lab.get(i).getOrigen();
+            listaDatos[i][3] = lab.get(i).getEstatus();
+        }
+
+        DefaultTableModel modelTable = new DefaultTableModel(
+                listaDatos,
+                new Object[]{"ID", "NOMBRE", "ORIGEN", "ESTATUS"}) {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        this.jTableML.setModel(modelTable);
+        this.jTableML.getColumnModel().getColumn(0).setMinWidth(10);
+        this.jTableML.getColumnModel().getColumn(0).setMaxWidth(50);
+
+        this.jTableML.getColumnModel().getColumn(1).setMinWidth(50);
+        this.jTableML.getColumnModel().getColumn(1).setMaxWidth(350);
+
+        this.jTableML.getColumnModel().getColumn(2).setMinWidth(50);
+        this.jTableML.getColumnModel().getColumn(2).setMaxWidth(350);
+
+        this.jTableML.getColumnModel().getColumn(3).setMinWidth(10);
+        this.jTableML.getColumnModel().getColumn(3).setMaxWidth(200);
+    }//GEN-LAST:event_buscarMLMouseClicked
+
     private void MostrarDatosLaboratorio() {
 
-        JButton btnModificar = new JButton();
-        JButton btnEliminar = new JButton();
-        //this.jTableML.setDefaultRenderer(Object.class, new RenderTable());
-        // this.jTableML.getColumnModel().getColumn(0).setCellRenderer(new RenderTable());
         LinkedList<Laboratorios> lab = new DAOLaboratoriosImp().show();
         Object listaDatos[][] = new Object[lab.size()][4];
         for (int i = 0; i < lab.size(); i++) {

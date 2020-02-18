@@ -191,7 +191,7 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
         String capacidad = this.capacidadtxtUL.getText();
         char estatus = String.valueOf(this.estatusBox.getSelectedItem()).charAt(0);
         //Guardar los datos de laboratorio
-        guardarUni.upadate(new UnidadMedida(id, nombre, Float.parseFloat(capacidad), estatus));
+        guardarUni.upadate(new UnidadMedida(id, nombre, capacidad, estatus));
         }
     }//GEN-LAST:event_modificarULMouseClicked
 
@@ -206,7 +206,7 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
             String capacidad = this.capacidadtxtUL.getText();
             char estatus = String.valueOf(this.estatusBox.getSelectedItem()).charAt(0);
             //Guardar los datos de Categorias
-            eliminarUni.delete(new UnidadMedida(id, nombre, Float.parseFloat(capacidad), estatus));
+            eliminarUni.delete(new UnidadMedida(id, nombre,capacidad, estatus));
         }
     }//GEN-LAST:event_eliminarULMouseClicked
     /**
@@ -215,7 +215,7 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
     public void ObtenerLaboratoriModificar(UnidadMedida uni) {
         this.idtxtUL.setText(String.valueOf(uni.getId()));
         this.nombretxtUL.setText(uni.getNombre());
-        this.capacidadtxtUL.setText(String.valueOf(uni.getCapacidad()));
+        this.capacidadtxtUL.setText(String.valueOf(uni.getSiglas()));
         if (uni.getEstatus() == 'A') {
             this.estatusBox.setSelectedIndex(1);
         } else {

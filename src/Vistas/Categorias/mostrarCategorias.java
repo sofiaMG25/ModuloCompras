@@ -38,7 +38,7 @@ public class mostrarCategorias extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<String>();
         mainMostrarLab = new javax.swing.JPanel();
         tablaMostrarCat = new javax.swing.JScrollPane();
         jTableMC = new javax.swing.JTable();
@@ -48,7 +48,7 @@ public class mostrarCategorias extends javax.swing.JPanel {
         buscartxtMC = new javax.swing.JTextField();
         buscarMC = new javax.swing.JLabel();
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setBackground(new java.awt.Color(228, 225, 225));
         setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Mostrar laboratorios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
@@ -57,13 +57,13 @@ public class mostrarCategorias extends javax.swing.JPanel {
 
         jTableMC.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "ID", "NOMBRE", "ESTATUS", "", ""
+                "ID", "NOMBRE", "ESTATUS"
             }
         ));
         jTableMC.addMouseListener(new java.awt.event.MouseAdapter() {

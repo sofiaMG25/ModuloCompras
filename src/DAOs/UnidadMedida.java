@@ -12,13 +12,13 @@ package DAOs;
 public class UnidadMedida {
     private int id;
     private String nombre;
-    private float capacidad;
+    private String siglas;
     private char estatus;
 
-    public UnidadMedida(int id, String nombre, float capacidad, char estatus) {
+    public UnidadMedida(int id, String nombre, String siglas, char estatus) {
         this.id = id;
         this.nombre = nombre;
-        this.capacidad = capacidad;
+        this.siglas = siglas;
         this.estatus = estatus;
     }
 
@@ -38,13 +38,15 @@ public class UnidadMedida {
         this.nombre = nombre;
     }
 
-    public float getCapacidad() {
-        return capacidad;
+    public String getSiglas() {
+        return siglas;
     }
 
-    public void setCapacidad(float capacidad) {
-        this.capacidad = capacidad;
+    public void setSiglas(String siglas) {
+        this.siglas = siglas;
     }
+
+   
 
     public char getEstatus() {
         return estatus;

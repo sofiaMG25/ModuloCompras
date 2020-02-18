@@ -5,9 +5,13 @@
  */
 package Vistas.Empaques;
 
+import ClasesExtras.CRUDgenerico;
+import DAOs.DAOEmpaquesImp;
+import DAOs.Empaques;
 import MainPrincipal.Main;
 import java.awt.BorderLayout;
-import javax.swing.JButton;
+import java.util.LinkedList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,25 +26,50 @@ public class mostrarEmpaques extends javax.swing.JPanel {
     public mostrarEmpaques() {
         initComponents();
     }
-    public void setMostrarEmpaques(Main worksapce){
+    
+    public void activeEventListenerMostrarEmp() {
+        MostrarDatosEmpaque();
+    }
+
+    public void setMostrarEmpaques(Main worksapce) {
         mainPrincipal = worksapce;
     }
-    public void MostrarDatosEmpaque(){
-        
-        JButton btnModificar = new JButton();
-        JButton btnEliminar = new JButton();
-        //TableCellRenderer tcr = new DefaultTableCellHeaderRenderer();
-        //this.jTableMEmp.setDefaultRenderer(Object.class, new RenderTable());
+
+    public void MostrarDatosEmpaque() {
+        LinkedList<Empaques> emp = new DAOEmpaquesImp().show();
+        Object listaDatos[][] = new Object[emp.size()][5];
+        for (int i = 0; i < emp.size(); i++) {
+            listaDatos[i][0] = emp.get(i).getIdEmpaque();
+            listaDatos[i][1] = emp.get(i).getNombre();
+            listaDatos[i][2] = emp.get(i).getCapacidad();
+            listaDatos[i][3] = emp.get(i).getEstatus();
+            listaDatos[i][4] = emp.get(i).getIdUnidad();
+        }
+
         DefaultTableModel modelTable = new DefaultTableModel(
-                new Object[][]{{"1","Tetrapack","1000","A"},{"2","Sellado","100","I"}}
-                , new Object[]{"ID","Nombre","Capacidad","Estatus"}){
-                  public boolean isCellEditable(int row,int column){
-                      return false;
-                  }
+                listaDatos,
+                new Object[]{"ID", "NOMBRE", "CAPACIDAD", "ESTATUS", "UNIDAD DE MEDIDA"}) {
+                    public boolean isCellEditable(int row, int column) {
+                        return false;
+                    }
                 };
-        
+
         this.jTableMEmp.setModel(modelTable);
-        this.jTableMEmp.setRowHeight(30);
+        this.jTableMEmp.getColumnModel().getColumn(0).setMinWidth(10);
+        this.jTableMEmp.getColumnModel().getColumn(0).setMaxWidth(50);
+
+        this.jTableMEmp.getColumnModel().getColumn(1).setMinWidth(50);
+        this.jTableMEmp.getColumnModel().getColumn(1).setMaxWidth(350);
+
+        this.jTableMEmp.getColumnModel().getColumn(2).setMinWidth(50);
+        this.jTableMEmp.getColumnModel().getColumn(2).setMaxWidth(350);
+
+        this.jTableMEmp.getColumnModel().getColumn(3).setMinWidth(10);
+        this.jTableMEmp.getColumnModel().getColumn(3).setMaxWidth(200);
+
+        this.jTableMEmp.getColumnModel().getColumn(4).setMinWidth(10);
+        this.jTableMEmp.getColumnModel().getColumn(4).setMaxWidth(200);
+
     }
 
     /**
@@ -77,6 +106,11 @@ public class mostrarEmpaques extends javax.swing.JPanel {
                 "ID", "NOMBRE", "CAPACIDAD", "ESTATUS", "UNIDAD"
             }
         ));
+        jTableMEmp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableMEmpMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableMEmp);
 
         buscarMEmp.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
@@ -85,6 +119,11 @@ public class mostrarEmpaques extends javax.swing.JPanel {
         buscarMEmp.setText("BUSCAR EMPAQUE");
         buscarMEmp.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
         buscarMEmp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buscarMEmp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buscarMEmpMouseClicked(evt);
+            }
+        });
 
         opcionesMostrarEmp.setBackground(new java.awt.Color(48, 45, 45));
 
@@ -106,6 +145,11 @@ public class mostrarEmpaques extends javax.swing.JPanel {
         cancelarMEmp.setText("CANCELAR");
         cancelarMEmp.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
         cancelarMEmp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cancelarMEmp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelarMEmpMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout opcionesMostrarEmpLayout = new javax.swing.GroupLayout(opcionesMostrarEmp);
         opcionesMostrarEmp.setLayout(opcionesMostrarEmpLayout);
@@ -135,7 +179,6 @@ public class mostrarEmpaques extends javax.swing.JPanel {
             .addGroup(mainMostrarEmpLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(mainMostrarEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
                     .addGroup(mainMostrarEmpLayout.createSequentialGroup()
                         .addGap(0, 232, Short.MAX_VALUE)
                         .addComponent(buscartxtMEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -143,6 +186,7 @@ public class mostrarEmpaques extends javax.swing.JPanel {
                         .addComponent(buscarMEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(opcionesMostrarEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         mainMostrarEmpLayout.setVerticalGroup(
             mainMostrarEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,14 +220,88 @@ public class mostrarEmpaques extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nuevoMEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevoMEmpMouseClicked
-        mainPrincipal.getworkSpace().removeAll();
-        agregarEmpaque nuevoEmp = new agregarEmpaque();
-        nuevoEmp.setSize(mainPrincipal.getworkSpace().getSize());
-        nuevoEmp.setVisible(true);
-        mainPrincipal.getworkSpace().add(nuevoEmp,BorderLayout.CENTER);
+        if (new DAOEmpaquesImp().obternerIdunidades() != null) {
+            mainPrincipal.getworkSpace().removeAll();
+            agregarEmpaque nuevoEmp = new agregarEmpaque();
+            nuevoEmp.setSize(mainPrincipal.getworkSpace().getSize());
+            nuevoEmp.setVisible(true);
+            nuevoEmp.setMainPrincipal(mainPrincipal);
+            mainPrincipal.getworkSpace().add(nuevoEmp, BorderLayout.CENTER);
+            mainPrincipal.getworkSpace().revalidate();
+            mainPrincipal.getworkSpace().repaint                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ();
+        }else{
+            JOptionPane.showMessageDialog(this,"Unidad no disponibles, registre por lo menos una "
+                    + "unidad de medida en el sistema","Error",JOptionPane.ERROR_MESSAGE);
+            
+        }
+    }//GEN-LAST:event_nuevoMEmpMouseClicked
+
+    private void cancelarMEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarMEmpMouseClicked
+       mainPrincipal.getworkSpace().removeAll();
         mainPrincipal.getworkSpace().revalidate();
         mainPrincipal.getworkSpace().repaint();
-    }//GEN-LAST:event_nuevoMEmpMouseClicked
+    }//GEN-LAST:event_cancelarMEmpMouseClicked
+
+    private void jTableMEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMEmpMouseClicked
+        int row;
+        row = jTableMEmp.getSelectedRow(); 
+        //Verificamos que el evento este en el rango de la tabla.
+        if (row > -1 && row <= jTableMEmp.getSelectedRow()) {
+            //creamos la ventana modificar
+            modificarEmpaque modificarEmpaque = new modificarEmpaque();
+            this.mainPrincipal.getworkSpace().removeAll();
+            modificarEmpaque.setSize(mainPrincipal.getworkSpace().getSize());
+            modificarEmpaque.setVisible(true);
+            modificarEmpaque.setMainPrincipal(mainPrincipal);
+            //Datos de la tabla, selecionar un row
+            int id = Integer.parseInt(String.valueOf(this.jTableMEmp.getValueAt(row, 0)));
+            String nombre = String.valueOf(this.jTableMEmp.getValueAt(row, 1));
+            String capacidad = String.valueOf(this.jTableMEmp.getValueAt(row, 2));
+            char estatus = String.valueOf(this.jTableMEmp.getValueAt(row, 3)).charAt(0);
+            String idUnidad = String.valueOf(this.jTableMEmp.getValueAt(row, 4));
+            //Ingresan los datos de la tabla a la interfaz Modificar Laboratorio
+            modificarEmpaque.ObtenerLaboratoriModificar(new Empaques
+            (id, nombre,Float.parseFloat(capacidad), estatus, idUnidad));
+            
+            this.mainPrincipal.getworkSpace().add(modificarEmpaque,BorderLayout.CENTER);
+            this.mainPrincipal.getworkSpace().revalidate();
+            this.mainPrincipal.getworkSpace().repaint();
+        }
+    }//GEN-LAST:event_jTableMEmpMouseClicked
+
+    private void buscarMEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscarMEmpMouseClicked
+        LinkedList<Empaques> lab = new DAOEmpaquesImp().busquedaPorNombre(buscartxtMEmp.getText());
+        Object listaDatos[][] = new Object[lab.size()][5];
+        for (int i = 0; i < lab.size(); i++) {
+            listaDatos[i][0] = lab.get(i).getIdEmpaque();
+            listaDatos[i][1] = lab.get(i).getNombre();
+            listaDatos[i][2] = lab.get(i).getCapacidad();
+            listaDatos[i][3] = lab.get(i).getEstatus();
+            listaDatos[i][4] = lab.get(i).getIdUnidad();
+        }
+
+        DefaultTableModel modelTable = new DefaultTableModel(
+                listaDatos,
+                new Object[]{"ID", "NOMBRE", "ORIGEN", "ESTATUS"}) {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        this.jTableMEmp.setModel(modelTable);
+        this.jTableMEmp.getColumnModel().getColumn(0).setMinWidth(10);
+        this.jTableMEmp.getColumnModel().getColumn(0).setMaxWidth(50);
+
+        this.jTableMEmp.getColumnModel().getColumn(1).setMinWidth(50);
+        this.jTableMEmp.getColumnModel().getColumn(1).setMaxWidth(350);
+
+        this.jTableMEmp.getColumnModel().getColumn(2).setMinWidth(50);
+        this.jTableMEmp.getColumnModel().getColumn(2).setMaxWidth(350);
+
+        this.jTableMEmp.getColumnModel().getColumn(3).setMinWidth(10);
+        this.jTableMEmp.getColumnModel().getColumn(3).setMaxWidth(200);
+        
+    }//GEN-LAST:event_buscarMEmpMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -197,5 +315,5 @@ public class mostrarEmpaques extends javax.swing.JPanel {
     private javax.swing.JPanel opcionesMostrarEmp;
     // End of variables declaration//GEN-END:variables
     private Main mainPrincipal;
-    
+
 }

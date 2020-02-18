@@ -10,6 +10,7 @@ import DAOs.DAOLaboratoriosImp;
 import DAOs.Laboratorios;
 import MainPrincipal.Main;
 import java.awt.BorderLayout;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -46,10 +47,11 @@ public class modificarLaboratorio extends javax.swing.JPanel {
         origenUL = new javax.swing.JLabel();
         estatusUL = new javax.swing.JLabel();
         origentxtUL = new javax.swing.JTextField();
-        estatusCBox = new javax.swing.JComboBox<>();
+        estatusCBox = new javax.swing.JComboBox<String>();
         jPanel1 = new javax.swing.JPanel();
         modificarUL = new javax.swing.JLabel();
         cancelarUL = new javax.swing.JLabel();
+        eliminarEmp = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(228, 225, 225));
         setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Modicar Laboratorio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
@@ -69,7 +71,7 @@ public class modificarLaboratorio extends javax.swing.JPanel {
         estatusUL.setText("ESTATUS:");
 
         estatusCBox.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        estatusCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UNA OPCIÓN", "ACTIVO", "INACTIVO" }));
+        estatusCBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONE UNA OPCIÓN", "ACTIVO", "INACTIVO" }));
 
         jPanel1.setBackground(new java.awt.Color(48, 45, 45));
 
@@ -82,6 +84,9 @@ public class modificarLaboratorio extends javax.swing.JPanel {
         modificarUL.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 modificarULMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                modificarULMouseEntered(evt);
             }
         });
 
@@ -97,16 +102,30 @@ public class modificarLaboratorio extends javax.swing.JPanel {
             }
         });
 
+        eliminarEmp.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        eliminarEmp.setForeground(new java.awt.Color(255, 255, 255));
+        eliminarEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/trash.png"))); // NOI18N
+        eliminarEmp.setText("Eliminar");
+        eliminarEmp.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        eliminarEmp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        eliminarEmp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                eliminarEmpMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(115, 115, 115)
+                .addGap(63, 63, 63)
                 .addComponent(modificarUL, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(73, 73, 73)
                 .addComponent(cancelarUL, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(eliminarEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(90, 90, 90))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,7 +133,8 @@ public class modificarLaboratorio extends javax.swing.JPanel {
                 .addContainerGap(71, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelarUL)
-                    .addComponent(modificarUL))
+                    .addComponent(modificarUL)
+                    .addComponent(eliminarEmp))
                 .addGap(45, 45, 45))
         );
 
@@ -205,6 +225,23 @@ public class modificarLaboratorio extends javax.swing.JPanel {
         
     }//GEN-LAST:event_modificarULMouseClicked
 
+    private void modificarULMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarULMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modificarULMouseEntered
+
+    private void eliminarEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminarEmpMouseClicked
+        if(JOptionPane.showConfirmDialog(this,"¿Seguro que quiere eliminar?","Eliminación"
+            ,JOptionPane.INFORMATION_MESSAGE) == JOptionPane.YES_OPTION)
+    {
+        DAOLaboratoriosImp eliminarlab = new DAOLaboratoriosImp();
+        //Datos obtenidos de los campos
+        int id = Integer.parseInt(this.idtxtUL.getText());
+        //Guardar los datos de Categorias
+        eliminarlab.delete(new Laboratorios(id));
+        }
+
+    }//GEN-LAST:event_eliminarEmpMouseClicked
+
     /**
      * Método que funciona para abstraer los datos del laboratotio
      */
@@ -221,6 +258,7 @@ public class modificarLaboratorio extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel cancelarUL;
+    private javax.swing.JLabel eliminarEmp;
     private javax.swing.JComboBox<String> estatusCBox;
     private javax.swing.JLabel estatusUL;
     private javax.swing.JLabel idUL;

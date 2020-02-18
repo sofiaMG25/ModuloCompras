@@ -17,6 +17,10 @@ public class Laboratorios {
         this.origen = origen;
         this.estatus = estatus;
     }
+
+    public Laboratorios(int id) {
+        this.id = id;
+    }
     
     
     

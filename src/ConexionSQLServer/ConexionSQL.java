@@ -11,8 +11,8 @@ public class ConexionSQL {
 
     private String url = "jdbc:sqlserver://localhost:1433;"
             + "databaseName=ERP2020;";
-    private String user = "sa";
-    private String password = "admin";
+    private static String user;
+    private static String password;
     //private String user = "DavidR";
     //private String password = "Hola.123"; 
     //private String user = "Parra";
@@ -26,7 +26,7 @@ public class ConexionSQL {
     public ConexionSQL() {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            cn = DriverManager.getConnection(url, user, password);
+            cn = DriverManager.getConnection(url, user,password);
             System.out.println("conectado..");
         } catch (SQLException e) {
             System.out.println("Error al conectar con la BD:" + e.getMessage());
@@ -70,6 +70,24 @@ public class ConexionSQL {
     public void setRs(ResultSet rs) {
         this.rs = rs;
     }
+
+    public static String getUser() {
+        return user;
+    }
+
+    public static void setUser(String user) {
+        ConexionSQL.user = user;
+    }
+
+    public static String getPassword() {
+        return password;
+    }
+
+    public static void setPassword(String password) {
+        ConexionSQL.password = password;
+    }
+
+    
     
     
 

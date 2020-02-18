@@ -163,7 +163,7 @@ public class agregarCategorias extends javax.swing.JPanel {
         if(nombretxt.equals(""))
             nombretxt.requestFocus();
         else{
-            CRUDgenerico cat = new DAOCategoriasImp();
+            DAOCategoriasImp cat = new DAOCategoriasImp();
             cat.Insert(new Categorias(0,nombretxt.getText(),'A'));
             LimpiarVariables();
         }

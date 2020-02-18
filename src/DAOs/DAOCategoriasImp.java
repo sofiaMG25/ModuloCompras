@@ -16,13 +16,11 @@ public class DAOCategoriasImp implements DAOCategorias{
     
     @Override
     public void Insert(Categorias nuevo) {
-        String sql="call dbo.AgregarCategoria (?,?,?)";
+        String sql="{call AgregarCategoria (?)}";
         String res="";
         try {
           cn.setPs(cn.getCn().prepareStatement(sql));
           cn.getPs().setString(1, nuevo.getNombre());
-          cn.getPs().setString(2, "A");
-          cn.getPs().setString(3, res);
           if(cn.getPs().execute())
                 System.out.println("El registro fué exitoso.");
             cn.getPs().close();
@@ -35,14 +33,14 @@ public class DAOCategoriasImp implements DAOCategorias{
 
     @Override
     public void upadate(Categorias nuevo) {
-       String sql="call dbo.EditarCategoria (?,?,?,?)";
-       String res="";
+       String sql="{call EditarCategoria (?,?,?)}";
+
         try {
-            cn.setPs(cn.getCn().prepareStatement(sql));
+          cn.setPs(cn.getCn().prepareStatement(sql));
           cn.getPs().setString(1, String.valueOf(nuevo.getId()));
           cn.getPs().setString(2, nuevo.getNombre());
           cn.getPs().setString(3, String.valueOf(nuevo.getEstatus()));
-          cn.getPs().setString(4, res);
+
           if(cn.getPs().execute())
                 System.out.println("Se actualizó con éxito.");
             cn.getPs().close();
@@ -54,12 +52,11 @@ public class DAOCategoriasImp implements DAOCategorias{
 
     @Override
     public void delete(Categorias nuevo) {
-        String sql="call dbo.EliminarCategoria (?,?)";
-       String res="";
+        String sql="{call EliminarCategoria (?)}";
         try {
             cn.setPs(cn.getCn().prepareStatement(sql));
           cn.getPs().setString(1, String.valueOf(nuevo.getId()));
-          cn.getPs().setString(2, res);
+         
           if(cn.getPs().execute())
                 System.out.println("Se eliminó con éxito.");
             cn.getPs().close();
@@ -95,7 +92,7 @@ public class DAOCategoriasImp implements DAOCategorias{
     public LinkedList<Categorias> consultaInd(String nombre){
         LinkedList<Categorias> categorias;
         try {
-            String sql = "SELECT * FROM Categorias Where nombre="+"'"+nombre+"'";
+            String sql = "SELECT * FROM Categorias Where nombre like "+"'%"+nombre+"%'";
             cn.setPs(cn.getCn().prepareCall(sql));
             cn.setRs(cn.getPs().executeQuery());
             categorias = new LinkedList<Categorias>();

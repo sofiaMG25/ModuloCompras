@@ -37,7 +37,7 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<String>();
         mainMostrarLab = new javax.swing.JPanel();
         tablaMostrarUnidad = new javax.swing.JScrollPane();
         jTableMUM = new javax.swing.JTable();
@@ -47,7 +47,7 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
         buscartxtMUM = new javax.swing.JTextField();
         buscarMUM = new javax.swing.JLabel();
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setBackground(new java.awt.Color(228, 225, 225));
         setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Mostrar laboratorios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
@@ -56,13 +56,13 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
 
         jTableMUM.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID", "NOMBRE", "SIGLAS", "ESTATUS", "", ""
+                "ID", "NOMBRE", "SIGLAS", "ESTATUS"
             }
         ));
         jTableMUM.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -216,11 +216,11 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
             //Datos de la tabla, selecionar un row
             int id = Integer.parseInt(String.valueOf(this.jTableMUM.getValueAt(row, 0)));
             String nombre = String.valueOf(this.jTableMUM.getValueAt(row, 1));
-            String capacidad = String.valueOf(this.jTableMUM.getValueAt(row, 2));
+            String siglas = String.valueOf(this.jTableMUM.getValueAt(row, 2));
             char estatus = String.valueOf(this.jTableMUM.getValueAt(row, 3)).charAt(0);
             //Ingresan los datos de la tabla a la interfaz Modificar Laboratorio
             modificarUni.ObtenerLaboratoriModificar(
-                    new UnidadMedida(id,nombre,Float.parseFloat(capacidad),estatus));
+                    new UnidadMedida(id,nombre,siglas,estatus));
             
             this.mainPrincipal.getworkSpace().add(modificarUni,BorderLayout.CENTER);
             this.mainPrincipal.getworkSpace().revalidate();
@@ -270,7 +270,7 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
         for (int i = 0; i < uni.size(); i++) {
             listaDatos[i][0] = uni.get(i).getId();
             listaDatos[i][1] = uni.get(i).getNombre();
-            listaDatos[i][2] = uni.get(i).getCapacidad();
+            listaDatos[i][2] = uni.get(i).getSiglas();
             listaDatos[i][3] = uni.get(i).getEstatus();
         }
 

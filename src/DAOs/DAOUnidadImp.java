@@ -16,14 +16,13 @@ public class DAOUnidadImp implements DAOUnidad{
     ConexionSQL cn =ConexionSQL.getInstance();
     @Override
     public void Insert(UnidadMedida nuevo) {
-        String sql="call dbo.AgregarUnidad (?,?,?,?)";
-        String res="";
+        String sql="{call AgregarUnidad (?,?)}";
+        
         try {
           cn.setPs(cn.getCn().prepareStatement(sql));
           cn.getPs().setString(1, nuevo.getNombre());
-          cn.getPs().setString(2, String.valueOf(nuevo.getCapacidad()));
-          cn.getPs().setString(3, "A");
-          cn.getPs().setString(4, res);
+          cn.getPs().setString(2, String.valueOf(nuevo.getSiglas()));
+       
           if(cn.getPs().execute())
                 System.out.println("El registro fué exitoso.");
             cn.getPs().close();
@@ -36,15 +35,14 @@ public class DAOUnidadImp implements DAOUnidad{
 
     @Override
     public void upadate(UnidadMedida nuevo) {
-        String sql="call dbo.EditarUnidad (?,?,?,?,?)";
-       String res="";
+        String sql="{call EditarUnidad (?,?,?,?)}";
         try {
             cn.setPs(cn.getCn().prepareStatement(sql));
           cn.getPs().setString(1, String.valueOf(nuevo.getId()));
           cn.getPs().setString(2, nuevo.getNombre());
-          cn.getPs().setString(3, String.valueOf(nuevo.getCapacidad()));
+          cn.getPs().setString(3, String.valueOf(nuevo.getSiglas()));
           cn.getPs().setString(4, String.valueOf(nuevo.getEstatus()));
-          cn.getPs().setString(5, res);
+       
           if(cn.getPs().execute())
                 System.out.println("Se actualizó con éxito.");
             cn.getPs().close();
@@ -56,12 +54,12 @@ public class DAOUnidadImp implements DAOUnidad{
 
     @Override
     public void delete(UnidadMedida nuevo) {
-        String sql="call dbo.EliminarUnidad (?,?)";
-       String res="";
+        String sql="{call EliminarUnidad (?)}";
+  
         try {
             cn.setPs(cn.getCn().prepareStatement(sql));
           cn.getPs().setString(1, String.valueOf(nuevo.getId()));
-          cn.getPs().setString(2, res);
+
           if(cn.getPs().execute())
                 System.out.println("Se eliminó con éxito.");
             cn.getPs().close();
@@ -82,8 +80,9 @@ public class DAOUnidadImp implements DAOUnidad{
             char estatus;
             while(cn.getRs().next()){
                 estatus = cn.getRs().getString("estatus").charAt(0);
-                unidad.add(new UnidadMedida(cn.getRs().getInt("idUnidad")
-                        ,cn.getRs().getString("nombre"),cn.getRs().getFloat("capacidad"),estatus));
+                unidad.add(new UnidadMedida(cn.getRs().getInt(1),
+                        cn.getRs().getString(2),
+                        cn.getRs().getString(3), estatus));
             }
             cn.getPs().close();
             cn.getRs().close();
@@ -97,7 +96,7 @@ public class DAOUnidadImp implements DAOUnidad{
     public LinkedList<UnidadMedida> consultaInd(String nombre){
         LinkedList<UnidadMedida> unidad;
         try {
-            String sql = "SELECT * FROM UnidadMedida Where nombre="+"'"+nombre+"'";
+            String sql = "SELECT * FROM UnidadMedida Where nombre like "+"'%"+nombre+"%'";
             cn.setPs(cn.getCn().prepareCall(sql));
             cn.setRs(cn.getPs().executeQuery());
             unidad = new LinkedList<UnidadMedida>();
@@ -105,7 +104,7 @@ public class DAOUnidadImp implements DAOUnidad{
             while(cn.getRs().next()){
                 estatus = cn.getRs().getString("estatus").charAt(0);
                 unidad.add(new UnidadMedida(cn.getRs().getInt("idUnidad")
-                        ,cn.getRs().getString("nombre"),cn.getRs().getFloat("capacidad"),estatus));
+                        ,cn.getRs().getString("nombre"),cn.getRs().getString("siglas"),estatus));
             }
             cn.getPs().close();
             cn.getRs().close();

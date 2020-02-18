@@ -65,7 +65,7 @@ public class agregarUnidadMedida extends javax.swing.JPanel {
         nombreLabel.setText("NOMBRE:");
 
         origenLabel.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        origenLabel.setText("CAPACIDAD:");
+        origenLabel.setText("SIGLAS:");
 
         capacidadtxt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -135,7 +135,7 @@ public class agregarUnidadMedida extends javax.swing.JPanel {
                         .addComponent(origenLabel)
                         .addGap(26, 26, 26)
                         .addComponent(capacidadtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(219, Short.MAX_VALUE))
+                .addContainerGap(262, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(opciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -180,22 +180,14 @@ public class agregarUnidadMedida extends javax.swing.JPanel {
         } else if (capacidadtxt.equals("")) {
             capacidadtxt.requestFocus();
         } else {
-            CRUDgenerico unidad = new DAOUnidadImp();
-            unidad.Insert(new UnidadMedida(0, nombretxt.getText(), Float.parseFloat(capacidadtxt.getText()), 'A'));
+            DAOUnidadImp unidad = new DAOUnidadImp();
+            unidad.Insert(new UnidadMedida(0, nombretxt.getText(),capacidadtxt.getText(), 'A'));
             LimpiarVariables();
         }
     }//GEN-LAST:event_guardarMouseClicked
 
     private void capacidadtxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_capacidadtxtKeyTyped
-        char c = evt.getKeyChar();
-        if (((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)
-                && (c != '.')) {
-            evt.consume();
-        }
-        if (c == '.' && capacidadtxt.getText().contains(".")) {
-            evt.consume();
-
-        }
+       
     }//GEN-LAST:event_capacidadtxtKeyTyped
 
     private void LimpiarVariables() {
