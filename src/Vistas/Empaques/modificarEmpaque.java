@@ -23,21 +23,21 @@ public class modificarEmpaque extends javax.swing.JPanel {
     /**
      * Creates new form modificarEmpaque
      */
-    
     private Main mainPrincipal;
+
     public modificarEmpaque() {
         initComponents();
     }
-    
+
     public void setMainPrincipal(Main main) {
         mainPrincipal = main;
     }
-    
-    public void ObtenerLaboratoriModificar(Empaques emp){
+
+    public void ObtenerLaboratoriModificar(Empaques emp) {
         this.idtxtUEmp.setText(String.valueOf(emp.getIdEmpaque()));
         this.nombretxtEmp.setText(emp.getNombre());
         this.capacidadtxtEmp.setText(String.valueOf(emp.getCapacidad()));
-       if (emp.getEstatus() == 'A') {
+        if (emp.getEstatus() == 'A') {
             this.jCBoxestatusUEmp.setSelectedIndex(1);
         } else {
             this.jCBoxestatusUEmp.setSelectedIndex(2);
@@ -49,12 +49,12 @@ public class modificarEmpaque extends javax.swing.JPanel {
         }
         JCBoxunidadUEmp.setModel(model);
         for (int i = 0; i < JCBoxunidadUEmp.getItemCount(); i++) {
-            if(JCBoxunidadUEmp.getItemAt(i).equals(emp.getIdUnidad())){
+            if (JCBoxunidadUEmp.getItemAt(i).equals(emp.getIdUnidad())) {
                 this.JCBoxunidadUEmp.setSelectedIndex(i);
                 break;
             }
         }
-       
+
     }
 
     /**
@@ -79,7 +79,6 @@ public class modificarEmpaque extends javax.swing.JPanel {
         opcionesUEmp = new javax.swing.JPanel();
         modificarUEmp = new javax.swing.JLabel();
         cancelarUEmp = new javax.swing.JLabel();
-        eliminarEmp = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(228, 225, 225));
         setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Modificar empaque", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
@@ -133,18 +132,6 @@ public class modificarEmpaque extends javax.swing.JPanel {
             }
         });
 
-        eliminarEmp.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        eliminarEmp.setForeground(new java.awt.Color(255, 255, 255));
-        eliminarEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/trash.png"))); // NOI18N
-        eliminarEmp.setText("Eliminar");
-        eliminarEmp.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
-        eliminarEmp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        eliminarEmp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                eliminarEmpMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout opcionesUEmpLayout = new javax.swing.GroupLayout(opcionesUEmp);
         opcionesUEmp.setLayout(opcionesUEmpLayout);
         opcionesUEmpLayout.setHorizontalGroup(
@@ -154,9 +141,7 @@ public class modificarEmpaque extends javax.swing.JPanel {
                 .addComponent(modificarUEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cancelarUEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(91, 91, 91)
-                .addComponent(eliminarEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69))
+                .addGap(27, 27, 27))
         );
         opcionesUEmpLayout.setVerticalGroup(
             opcionesUEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,8 +149,7 @@ public class modificarEmpaque extends javax.swing.JPanel {
                 .addContainerGap(71, Short.MAX_VALUE)
                 .addGroup(opcionesUEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelarUEmp)
-                    .addComponent(modificarUEmp)
-                    .addComponent(eliminarEmp))
+                    .addComponent(modificarUEmp))
                 .addGap(45, 45, 45))
         );
 
@@ -238,35 +222,44 @@ public class modificarEmpaque extends javax.swing.JPanel {
         mainPrincipal.getworkSpace().revalidate();
         mainPrincipal.getworkSpace().repaint();
         mostrarEmp.setMostrarEmpaques(mainPrincipal);
-        
-        
+
+
     }//GEN-LAST:event_cancelarUEmpMouseClicked
 
-    private void eliminarEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminarEmpMouseClicked
-        if(JOptionPane.showConfirmDialog(this,"¿Seguro que quiere eliminar?","Eliminación"
-                ,JOptionPane.INFORMATION_MESSAGE) == JOptionPane.YES_OPTION)
-        {  
-        DAOEmpaquesImp eliminarEmp = new DAOEmpaquesImp();
-        //Datos obtenidos de los campos 
-        int id = Integer.parseInt(this.idtxtUEmp.getText());
-        //Guardar los datos de Categorias
-        eliminarEmp.delete(new Empaques(id));
-        }          
-        
-        
-    }//GEN-LAST:event_eliminarEmpMouseClicked
-
     private void modificarUEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarUEmpMouseClicked
-       CRUDgenerico guardarEmp = new DAOEmpaquesImp();
-      //Datos obtenidos de los campos 
-      int id = Integer.parseInt(this.idtxtUEmp.getText());
-      String nombre = this.nombretxtEmp.getText();
-      String capacidad = this.capacidadtxtEmp.getText();
-      char estatus = String.valueOf(this.jCBoxestatusUEmp.getSelectedItem()).charAt(0);
-      String unidad = this.JCBoxunidadUEmp.getSelectedItem().toString();
-      //Guardar los datos de laboratorio
-      guardarEmp.upadate(new Empaques(id, nombre, Float.parseFloat(capacidad), estatus,unidad));
-        
+        if (nombretxtEmp.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Ingrese un nombre valido", "Error", JOptionPane.ERROR_MESSAGE);
+            requestFocus();
+            return;
+        }
+        try {
+            float cap = Float.parseFloat(capacidadtxtEmp.getText());
+            if (cap <= 0) {
+                JOptionPane.showMessageDialog(this, "La capacidad tiene que ser mayor a cero", "Error", JOptionPane.ERROR_MESSAGE);
+                capacidadtxtEmp.requestFocus();
+                return;
+            } else if (jCBoxestatusUEmp.getSelectedIndex() <= 0) {
+                JOptionPane.showMessageDialog(this, "Seleccione un estatus", "Error", JOptionPane.ERROR_MESSAGE);
+                jCBoxestatusUEmp.requestFocus();
+            } else if (JCBoxunidadUEmp.getSelectedIndex() <= 0) {
+                JOptionPane.showMessageDialog(this, "Seleccione una unidad", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                CRUDgenerico guardarEmp = new DAOEmpaquesImp();
+                //Datos obtenidos de los campos 
+                int id = Integer.parseInt(this.idtxtUEmp.getText());
+                String nombre = this.nombretxtEmp.getText();
+                String capacidad = this.capacidadtxtEmp.getText();
+                char estatus = String.valueOf(this.jCBoxestatusUEmp.getSelectedItem()).charAt(0);
+                String unidad = this.JCBoxunidadUEmp.getSelectedItem().toString();
+                //Guardar los datos de laboratorio
+                guardarEmp.upadate(new Empaques(id, nombre, Float.parseFloat(capacidad), estatus, unidad));
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
     }//GEN-LAST:event_modificarUEmpMouseClicked
 
 
@@ -274,7 +267,6 @@ public class modificarEmpaque extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> JCBoxunidadUEmp;
     private javax.swing.JLabel cancelarUEmp;
     private javax.swing.JTextField capacidadtxtEmp;
-    private javax.swing.JLabel eliminarEmp;
     private javax.swing.JLabel estatusEmp;
     private javax.swing.JLabel estatusUEmp;
     private javax.swing.JLabel idUEmp;

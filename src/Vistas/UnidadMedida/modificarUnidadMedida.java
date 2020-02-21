@@ -44,11 +44,10 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
         origenUL = new javax.swing.JLabel();
         estatusUL = new javax.swing.JLabel();
         capacidadtxtUL = new javax.swing.JTextField();
-        estatusBox = new javax.swing.JComboBox<>();
+        estatusBox = new javax.swing.JComboBox<String>();
         jPanel1 = new javax.swing.JPanel();
         modificarUL = new javax.swing.JLabel();
         cancelarUL = new javax.swing.JLabel();
-        eliminarUL = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(228, 225, 225));
         setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Modicar Laboratorio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
@@ -68,7 +67,7 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
         estatusUL.setText("ESTATUS:");
 
         estatusBox.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        estatusBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UNA OPCIÓN", "ACTIVO", "INACTIVO" }));
+        estatusBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONE UNA OPCIÓN", "ACTIVO", "INACTIVO" }));
 
         jPanel1.setBackground(new java.awt.Color(48, 45, 45));
 
@@ -91,30 +90,16 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
         cancelarUL.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
         cancelarUL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        eliminarUL.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        eliminarUL.setForeground(new java.awt.Color(255, 255, 255));
-        eliminarUL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/trash.png"))); // NOI18N
-        eliminarUL.setText("Eliminar");
-        eliminarUL.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
-        eliminarUL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        eliminarUL.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                eliminarULMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(115, 115, 115)
+                .addGap(67, 67, 67)
                 .addComponent(modificarUL, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(92, 92, 92)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cancelarUL, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                .addComponent(eliminarUL, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
+                .addGap(60, 60, 60))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,8 +107,7 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
                 .addContainerGap(71, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelarUL)
-                    .addComponent(modificarUL)
-                    .addComponent(eliminarUL))
+                    .addComponent(modificarUL))
                 .addGap(45, 45, 45))
         );
 
@@ -148,7 +132,7 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
                     .addComponent(capacidadtxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nombretxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(estatusBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(208, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,37 +162,30 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void modificarULMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarULMouseClicked
-        if (nombretxtUL.getText() == "" || nombretxtUL.getText() == null) {
-            JOptionPane.showMessageDialog(null, "Debes escribir algo para guardar...",
-                    "Mensaje", JOptionPane.WARNING_MESSAGE);
-        }else if(capacidadtxtUL.equals(""))
+        if (nombretxtUL.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Ingresa un nombre valido", "Error", JOptionPane.WARNING_MESSAGE);
+            nombretxtUL.requestFocus();
+        } else if (capacidadtxtUL.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Ingresa una capasidad validad", "Error", JOptionPane.WARNING_MESSAGE);
             capacidadtxtUL.requestFocus();
-        else{
-        CRUDgenerico guardarUni = new DAOUnidadImp();
-        //Datos obtenidos de los campos 
-        int id = Integer.parseInt(this.idtxtUL.getText());
-        String nombre = this.nombretxtUL.getText();
-        String capacidad = this.capacidadtxtUL.getText();
-        char estatus = String.valueOf(this.estatusBox.getSelectedItem()).charAt(0);
-        //Guardar los datos de laboratorio
-        guardarUni.upadate(new UnidadMedida(id, nombre, capacidad, estatus));
+        } else if (estatusBox.getSelectedIndex() <= 0) {
+            JOptionPane.showMessageDialog(null, "Seleccione una opción ", "Error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                CRUDgenerico guardarUni = new DAOUnidadImp();
+                //Datos obtenidos de los campos 
+                int id = Integer.parseInt(this.idtxtUL.getText());
+                String nombre = this.nombretxtUL.getText();
+                String capacidad = this.capacidadtxtUL.getText();
+                char estatus = String.valueOf(this.estatusBox.getSelectedItem()).charAt(0);
+                //Guardar los datos de laboratorio
+                guardarUni.upadate(new UnidadMedida(id, nombre, capacidad, estatus));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+            }
+
         }
     }//GEN-LAST:event_modificarULMouseClicked
-
-    private void eliminarULMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminarULMouseClicked
-        int resp = JOptionPane.showConfirmDialog(null, "¿Esta seguro?", "Alerta!",
-                JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
-        if (resp == 0) {
-            CRUDgenerico eliminarUni = new DAOUnidadImp();
-            //Datos obtenidos de los campos 
-            int id = Integer.parseInt(this.idtxtUL.getText());
-            String nombre = this.nombretxtUL.getText();
-            String capacidad = this.capacidadtxtUL.getText();
-            char estatus = String.valueOf(this.estatusBox.getSelectedItem()).charAt(0);
-            //Guardar los datos de Categorias
-            eliminarUni.delete(new UnidadMedida(id, nombre,capacidad, estatus));
-        }
-    }//GEN-LAST:event_eliminarULMouseClicked
     /**
      * Método que funciona para abstraer los datos del laboratotio
      */
@@ -226,7 +203,6 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel cancelarUL;
     private javax.swing.JTextField capacidadtxtUL;
-    private javax.swing.JLabel eliminarUL;
     private javax.swing.JComboBox<String> estatusBox;
     private javax.swing.JLabel estatusUL;
     private javax.swing.JLabel idUL;

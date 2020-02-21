@@ -94,6 +94,9 @@ public class agregarEmpaque extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 guardarAEmpMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                guardarAEmpMouseEntered(evt);
+            }
         });
 
         javax.swing.GroupLayout opcionesAEmpLayout = new javax.swing.GroupLayout(opcionesAEmp);
@@ -174,7 +177,7 @@ public class agregarEmpaque extends javax.swing.JPanel {
             nombretxtAEmp.requestFocus();
         } else if (capacidadtxtAEmp.getText().equals("")) {
             capacidadtxtAEmp.requestFocus();
-        } else if (jComboBox1.getSelectedIndex() == 0) {
+        } else if (jComboBox1.getSelectedIndex() <= 0) {
             jComboBox1.requestFocus();
         } else {
             try {
@@ -199,6 +202,10 @@ public class agregarEmpaque extends javax.swing.JPanel {
         mainPrincipal.getworkSpace().repaint();
 
     }//GEN-LAST:event_cancelarAEmpMouseClicked
+
+    private void guardarAEmpMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarAEmpMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_guardarAEmpMouseEntered
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

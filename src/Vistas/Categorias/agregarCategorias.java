@@ -10,6 +10,7 @@ import DAOs.Categorias;
 import DAOs.DAOCategoriasImp;
 import MainPrincipal.Main;
 import java.awt.BorderLayout;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,15 +23,15 @@ public class agregarCategorias extends javax.swing.JPanel {
      */
     public agregarCategorias() {
         initComponents();
-        
+
     }
-    
-    public void setMain(Main main){
+
+    public void setMain(Main main) {
         mainPrincipal = main;
     }
-    
+
     private Main mainPrincipal;
-    
+
 //    public static void setMain(Main main){
 //        mainPrincipal = main;
 //    }
@@ -39,7 +40,6 @@ public class agregarCategorias extends javax.swing.JPanel {
 //    public static void getEnableComponents(){
 //        mainPrincipal.getLabelComponents(false);
 //    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -148,28 +148,29 @@ public class agregarCategorias extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarMouseClicked
-            mainPrincipal.getworkSpace().removeAll();
-            mostrarCategorias mostrarlab = new mostrarCategorias();
-            mostrarlab.setSize(mainPrincipal.getworkSpace().getSize());
-            mostrarlab.setVisible(true);
-            mostrarlab.MostrarDatosCategorias();
-            mainPrincipal.getworkSpace().add(mostrarlab, BorderLayout.CENTER);
-            mainPrincipal.getworkSpace().revalidate();
-            mainPrincipal.getworkSpace().repaint();
-            mostrarlab.setMostrarCategorias(mainPrincipal);
+        mainPrincipal.getworkSpace().removeAll();
+        mostrarCategorias mostrarlab = new mostrarCategorias();
+        mostrarlab.setSize(mainPrincipal.getworkSpace().getSize());
+        mostrarlab.setVisible(true);
+        mostrarlab.MostrarDatosCategorias();
+        mainPrincipal.getworkSpace().add(mostrarlab, BorderLayout.CENTER);
+        mainPrincipal.getworkSpace().revalidate();
+        mainPrincipal.getworkSpace().repaint();
+        mostrarlab.setMostrarCategorias(mainPrincipal);
     }//GEN-LAST:event_cancelarMouseClicked
 
     private void guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarMouseClicked
-        if(nombretxt.equals(""))
+        if (nombretxt.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Ingrese un nombre valido", "Error", JOptionPane.ERROR_MESSAGE);
             nombretxt.requestFocus();
-        else{
+        } else {
             DAOCategoriasImp cat = new DAOCategoriasImp();
-            cat.Insert(new Categorias(0,nombretxt.getText(),'A'));
+            cat.Insert(new Categorias(0, nombretxt.getText(), 'A'));
             LimpiarVariables();
         }
     }//GEN-LAST:event_guardarMouseClicked
 
-    private void LimpiarVariables(){
+    private void LimpiarVariables() {
         nombretxt.setText("");
     }
 

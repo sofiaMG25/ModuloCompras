@@ -10,6 +10,7 @@ import DAOs.DAOLaboratoriosImp;
 import DAOs.Laboratorios;
 import MainPrincipal.Main;
 import java.awt.BorderLayout;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,15 +23,15 @@ public class agregarLaboratorio extends javax.swing.JPanel {
      */
     public agregarLaboratorio() {
         initComponents();
-        
+
     }
-    
-    public void setMain(Main main){
+
+    public void setMain(Main main) {
         mainPrincipal = main;
     }
-    
+
     private Main mainPrincipal;
-    
+
 //    public static void setMain(Main main){
 //        mainPrincipal = main;
 //    }
@@ -39,7 +40,6 @@ public class agregarLaboratorio extends javax.swing.JPanel {
 //    public static void getEnableComponents(){
 //        mainPrincipal.getLabelComponents(false);
 //    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -72,7 +72,7 @@ public class agregarLaboratorio extends javax.swing.JPanel {
         cancelar.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
         cancelar.setForeground(new java.awt.Color(255, 255, 255));
         cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar.png"))); // NOI18N
-        cancelar.setText("CANCELAR");
+        cancelar.setText("VOLVER ");
         cancelar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
         cancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cancelar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -101,8 +101,8 @@ public class agregarLaboratorio extends javax.swing.JPanel {
                 .addGap(115, 115, 115)
                 .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73))
+                .addComponent(cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(111, 111, 111))
         );
         opcionesLayout.setVerticalGroup(
             opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,30 +155,33 @@ public class agregarLaboratorio extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarMouseClicked
-            mainPrincipal.getworkSpace().removeAll();
-            mostrarLaboratorios mostrarlab = new mostrarLaboratorios();
-            mostrarlab.setSize(mainPrincipal.getworkSpace().getSize());
-            mostrarlab.setVisible(true);
-            mostrarlab.activeEventListenerMostrarLab();
-            mainPrincipal.getworkSpace().add(mostrarlab, BorderLayout.CENTER);
-            mainPrincipal.getworkSpace().revalidate();
-            mainPrincipal.getworkSpace().repaint();
-            mostrarlab.setMostrarLaboratorios(mainPrincipal);
+        mainPrincipal.getworkSpace().removeAll();
+        mostrarLaboratorios mostrarlab = new mostrarLaboratorios();
+        mostrarlab.setSize(mainPrincipal.getworkSpace().getSize());
+        mostrarlab.setVisible(true);
+        mostrarlab.activeEventListenerMostrarLab();
+        mainPrincipal.getworkSpace().add(mostrarlab, BorderLayout.CENTER);
+        mainPrincipal.getworkSpace().revalidate();
+        mainPrincipal.getworkSpace().repaint();
+        mostrarlab.setMostrarLaboratorios(mainPrincipal);
     }//GEN-LAST:event_cancelarMouseClicked
 
     private void guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarMouseClicked
-        if(nombretxt.equals(""))
+        if (nombretxt.getText().equals("")) {
+            JOptionPane.showMessageDialog(this,"Ingrese un nombre ","Error",JOptionPane.ERROR_MESSAGE);
             nombretxt.requestFocus();
-        else if(origentxt.equals(""))
+
+        } else if (origentxt.getText().equals("")) {
+            JOptionPane.showMessageDialog(this,"Ingrese un origen ","Error",JOptionPane.ERROR_MESSAGE);
             origentxt.requestFocus();
-        else{
+        } else {
             CRUDgenerico laboratorio = new DAOLaboratoriosImp();
-            laboratorio.Insert(new Laboratorios(nombretxt.getText(),origentxt.getText()));
+            laboratorio.Insert(new Laboratorios(nombretxt.getText(), origentxt.getText()));
             LimpiarVariables();
         }
     }//GEN-LAST:event_guardarMouseClicked
 
-    private void LimpiarVariables(){
+    private void LimpiarVariables() {
         nombretxt.setText("");
         origentxt.setText("");
     }

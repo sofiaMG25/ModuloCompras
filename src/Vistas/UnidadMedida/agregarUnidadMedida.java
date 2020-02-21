@@ -175,9 +175,9 @@ public class agregarUnidadMedida extends javax.swing.JPanel {
     }//GEN-LAST:event_cancelarMouseClicked
 
     private void guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarMouseClicked
-        if (nombretxt.equals("")) {
+        if (nombretxt.getText().equals("")) {
             nombretxt.requestFocus();
-        } else if (capacidadtxt.equals("")) {
+        } else if (capacidadtxt.getText().equals("")) {
             capacidadtxt.requestFocus();
         } else {
             DAOUnidadImp unidad = new DAOUnidadImp();
