@@ -6,6 +6,8 @@ import Vistas.Empaques.mostrarEmpaques;
 import Vistas.Categorias.mostrarCategorias;
 import Vistas.UnidadMedida.mostrarUnidadMedida;
 import java.awt.BorderLayout;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.JPanel;
 
 /*
@@ -17,14 +19,26 @@ import javax.swing.JPanel;
  *
  * @author 52351
  */
-public class Main extends javax.swing.JFrame {
+public class Main extends javax.swing.JFrame implements Runnable {
 
     /**
      * Creates new form Main
      */
+    protected static String user;
+
     public Main() {
         initComponents();
         System.out.println(workSpace.getSize());
+        usuario.setText(user);
+        iniciarHilo();
+
+    }
+
+    private Thread hiloFecha;
+
+    public void iniciarHilo() {
+        hiloFecha = new Thread(this);
+        hiloFecha.start();
     }
 
     /**
@@ -87,7 +101,7 @@ public class Main extends javax.swing.JFrame {
         Separador1.setFont(new java.awt.Font("Trebuchet MS", 3, 24)); // NOI18N
 
         listaMenu.setBackground(new java.awt.Color(0, 102, 102));
-        listaMenu.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 51), 2, true), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 51))); // NOI18N
+        listaMenu.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 51), 2, true), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 51))); // NOI18N
 
         laboratorios.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
         laboratorios.setForeground(new java.awt.Color(255, 255, 255));
@@ -362,6 +376,11 @@ public class Main extends javax.swing.JFrame {
         fecha_hora.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 3, 18)); // NOI18N
         fecha_hora.setForeground(new java.awt.Color(255, 255, 255));
         fecha_hora.setText("10:40 AM, 07/02/2020");
+        fecha_hora.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                fecha_horaMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout footerLayout = new javax.swing.GroupLayout(footer);
         footer.setLayout(footerLayout);
@@ -489,7 +508,7 @@ public class Main extends javax.swing.JFrame {
         //Quitas el jpanel principal que esta en el centro
         workSpace.removeAll();
         //Instaciamos el nuevo jpanel a reemplazar
-        mostrarCategorias mc =new mostrarCategorias();
+        mostrarCategorias mc = new mostrarCategorias();
         //Redimensionamos el jpanel nuevo
         mc.setSize(workSpace.getSize());
         //Hacemos visible
@@ -510,7 +529,7 @@ public class Main extends javax.swing.JFrame {
         //Quitas el jpanel principal que esta en el centro
         workSpace.removeAll();
         //Instaciamos el nuevo jpanel a reemplazar
-        mostrarUnidadMedida mum =new mostrarUnidadMedida();
+        mostrarUnidadMedida mum = new mostrarUnidadMedida();
         //Redimensionamos el jpanel nuevo
         mum.setSize(workSpace.getSize());
         //Hacemos visible
@@ -526,6 +545,11 @@ public class Main extends javax.swing.JFrame {
         //Dibujamos el jpanel
         workSpace.repaint();
     }//GEN-LAST:event_unidadMedidasMouseClicked
+
+    private void fecha_horaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fecha_horaMouseClicked
+
+
+    }//GEN-LAST:event_fecha_horaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -608,6 +632,27 @@ public class Main extends javax.swing.JFrame {
 
     public void getLabelComponents(boolean bandera) {
         this.laboratorios.setEnabled(bandera);
+    }
+
+    @Override
+    public void run() {
+        for (;;) {
+            Calendar fecha = new GregorianCalendar();
+
+            int anio = fecha.get(Calendar.YEAR);
+            int mes = fecha.get(Calendar.MONTH);
+            int dia = fecha.get(Calendar.DAY_OF_MONTH);
+            int hora = fecha.get(Calendar.HOUR_OF_DAY);
+            int minuto = fecha.get(Calendar.MINUTE);
+            int segundo = fecha.get(Calendar.SECOND);
+            String am_pm;
+            
+            System.out.println(Calendar.AM_PM);
+            
+            String fechaCompleta = "" + dia + "/ " + mes + "/ " + anio + "  " + hora + ":" + minuto + ":" + segundo;
+
+            fecha_hora.setText(fechaCompleta);
+        }
     }
 
 }
