@@ -387,9 +387,9 @@ public class mostrarLaboratorios extends javax.swing.JPanel {
     }//GEN-LAST:event_previewMouseClicked
 
     private void MostrarDatosLaboratorio() {
-
+        //Obtiene los registros en paginas de 10 en 10
         LinkedList<Laboratorios> lab = new DAOLaboratoriosImp().show(cambioPagina);
-        if (nextORpreview == 1) {
+        if (nextORpreview == 1) {// si es siguiente actualiza los nuevo registros
             tamanoRegistros += lab.size();
             tamanoRegistrosVuelta = tamanoRegistros;
         } else if (nextORpreview == 0) {
