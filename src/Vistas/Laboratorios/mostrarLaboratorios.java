@@ -391,7 +391,7 @@ public class mostrarLaboratorios extends javax.swing.JPanel {
         LinkedList<Laboratorios> lab = new DAOLaboratoriosImp().show(cambioPagina);
         if (nextORpreview == 1) {// si es siguiente actualiza los nuevo registros
             tamanoRegistros += lab.size();
-            tamanoRegistrosVuelta = tamanoRegistros;
+            tamanoRegistrosVuelta = tamanoRegistros;//auxiliar de cambio de pagina
         } else if (nextORpreview == 0) {
             tamanoRegistros -= (tamanoRegistrosVuelta - lab.size());
         }
