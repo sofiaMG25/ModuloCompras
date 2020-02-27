@@ -67,7 +67,7 @@ public class DAOCategoriasImp implements DAOCategorias{
     }
 
     @Override
-    public LinkedList<Categorias> show() {
+    public LinkedList<Categorias> show(int pagina) {
         LinkedList<Categorias> categorias;
         try {
             String sql = "SELECT * FROM Categorias";

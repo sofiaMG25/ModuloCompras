@@ -6,8 +6,10 @@ import Vistas.Empaques.mostrarEmpaques;
 import Vistas.Categorias.mostrarCategorias;
 import Vistas.UnidadMedida.mostrarUnidadMedida;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /*
@@ -28,6 +30,9 @@ public class Main extends javax.swing.JFrame implements Runnable {
 
     public Main() {
         initComponents();
+        footer.repaint();
+        workSpace.repaint();
+        this.pack();
         System.out.println(workSpace.getSize());
         usuario.setText(user);
         iniciarHilo();
@@ -41,15 +46,12 @@ public class Main extends javax.swing.JFrame implements Runnable {
         hiloFecha.start();
     }
 
-
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         main = new javax.swing.JPanel();
         menu = new javax.swing.JPanel();
-        opcionesMenu = new javax.swing.JLabel();
         Separador1 = new javax.swing.JSeparator();
         listaMenu = new javax.swing.JPanel();
         laboratorios = new javax.swing.JLabel();
@@ -75,9 +77,12 @@ public class Main extends javax.swing.JFrame implements Runnable {
         jSeparator6 = new javax.swing.JSeparator();
         jSeparator7 = new javax.swing.JSeparator();
         jSeparator8 = new javax.swing.JSeparator();
+        jPanel1 = new javax.swing.JPanel();
+        opcionesMenu = new javax.swing.JLabel();
         header = new javax.swing.JPanel();
         titulo = new javax.swing.JLabel();
         saludo = new javax.swing.JLabel();
+        cerraSesion = new javax.swing.JLabel();
         body = new javax.swing.JPanel();
         footer = new javax.swing.JPanel();
         usuario = new javax.swing.JLabel();
@@ -90,27 +95,44 @@ public class Main extends javax.swing.JFrame implements Runnable {
         main.setBackground(new java.awt.Color(0, 51, 51));
 
         menu.setBackground(new java.awt.Color(0, 51, 51));
-
-        opcionesMenu.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 3, 24)); // NOI18N
-        opcionesMenu.setForeground(new java.awt.Color(255, 255, 255));
-        opcionesMenu.setText("Opciones ");
+        menu.setLayout(new java.awt.BorderLayout());
 
         Separador1.setFont(new java.awt.Font("Trebuchet MS", 3, 24)); // NOI18N
+        menu.add(Separador1, java.awt.BorderLayout.PAGE_START);
 
         listaMenu.setBackground(new java.awt.Color(0, 102, 102));
-        listaMenu.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 51), 2, true), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 51))); // NOI18N
+        listaMenu.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 51), 2, true), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 51))); // NOI18N
 
         laboratorios.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
         laboratorios.setForeground(new java.awt.Color(255, 255, 255));
         laboratorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lab.png"))); // NOI18N
         laboratorios.setText("Laboratorio");
         laboratorios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        laboratorios.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                laboratoriosMouseDragged(evt);
+            }
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                laboratoriosMouseMoved(evt);
+            }
+        });
+        laboratorios.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                laboratoriosFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                laboratoriosFocusLost(evt);
+            }
+        });
         laboratorios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 laboratoriosMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 laboratoriosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                laboratoriosMouseExited(evt);
             }
         });
 
@@ -119,9 +141,20 @@ public class Main extends javax.swing.JFrame implements Runnable {
         categorias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cate.png"))); // NOI18N
         categorias.setText("Categoria");
         categorias.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        categorias.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                categoriasMouseDragged(evt);
+            }
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                categoriasMouseMoved(evt);
+            }
+        });
         categorias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 categoriasMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                categoriasMouseExited(evt);
             }
         });
 
@@ -130,9 +163,17 @@ public class Main extends javax.swing.JFrame implements Runnable {
         empaques.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/orden.png"))); // NOI18N
         empaques.setText("Empaques");
         empaques.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        empaques.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                empaquesMouseMoved(evt);
+            }
+        });
         empaques.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 empaquesMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                empaquesMouseExited(evt);
             }
         });
 
@@ -140,9 +181,17 @@ public class Main extends javax.swing.JFrame implements Runnable {
         unidadMedidas.setForeground(new java.awt.Color(255, 255, 255));
         unidadMedidas.setText("Unidad  de medida");
         unidadMedidas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        unidadMedidas.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                unidadMedidasMouseMoved(evt);
+            }
+        });
         unidadMedidas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 unidadMedidasMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                unidadMedidasMouseExited(evt);
             }
         });
 
@@ -151,64 +200,184 @@ public class Main extends javax.swing.JFrame implements Runnable {
         sucursales.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sucu.png"))); // NOI18N
         sucursales.setText("Sucursales");
         sucursales.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        sucursales.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                sucursalesMouseMoved(evt);
+            }
+        });
+        sucursales.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                sucursalesMouseExited(evt);
+            }
+        });
 
         presentProductos.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
         presentProductos.setForeground(new java.awt.Color(255, 255, 255));
         presentProductos.setText("Presentaciones de productos");
         presentProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        presentProductos.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                presentProductosMouseMoved(evt);
+            }
+        });
+        presentProductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                presentProductosMouseExited(evt);
+            }
+        });
 
         imgProductos.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
         imgProductos.setForeground(new java.awt.Color(255, 255, 255));
         imgProductos.setText("Imagenes de producto");
         imgProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        imgProductos.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                imgProductosMouseMoved(evt);
+            }
+        });
+        imgProductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                imgProductosMouseExited(evt);
+            }
+        });
 
         productos.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
         productos.setForeground(new java.awt.Color(255, 255, 255));
         productos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/prod.png"))); // NOI18N
         productos.setText("Productos");
         productos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        productos.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                productosMouseMoved(evt);
+            }
+        });
+        productos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                productosMouseExited(evt);
+            }
+        });
 
         existenciaSuc.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
         existenciaSuc.setForeground(new java.awt.Color(255, 255, 255));
         existenciaSuc.setText("Existencia de sucursal");
         existenciaSuc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        existenciaSuc.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                existenciaSucMouseMoved(evt);
+            }
+        });
+        existenciaSuc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                existenciaSucMouseExited(evt);
+            }
+        });
 
         pedidos.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
         pedidos.setForeground(new java.awt.Color(255, 255, 255));
         pedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pedi.png"))); // NOI18N
         pedidos.setText("Pedidos");
         pedidos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pedidos.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                pedidosMouseMoved(evt);
+            }
+        });
+        pedidos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                pedidosMouseExited(evt);
+            }
+        });
 
         pedidoDetalles.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
         pedidoDetalles.setForeground(new java.awt.Color(255, 255, 255));
         pedidoDetalles.setText("Pedido detalle");
         pedidoDetalles.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pedidoDetalles.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                pedidoDetallesMouseMoved(evt);
+            }
+        });
+        pedidoDetalles.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                pedidoDetallesMouseExited(evt);
+            }
+        });
 
         pagos.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
         pagos.setForeground(new java.awt.Color(255, 255, 255));
         pagos.setText("pagos");
         pagos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pagos.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                pagosMouseMoved(evt);
+            }
+        });
+        pagos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                pagosMouseExited(evt);
+            }
+        });
 
         provedores.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
         provedores.setForeground(new java.awt.Color(255, 255, 255));
         provedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/prov.png"))); // NOI18N
         provedores.setText("Proveedores");
         provedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        provedores.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                provedoresMouseMoved(evt);
+            }
+        });
+        provedores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                provedoresMouseExited(evt);
+            }
+        });
 
         contactosProv.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
         contactosProv.setForeground(new java.awt.Color(255, 255, 255));
         contactosProv.setText("Contactos Proveedor");
         contactosProv.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        contactosProv.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                contactosProvMouseMoved(evt);
+            }
+        });
+        contactosProv.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                contactosProvMouseExited(evt);
+            }
+        });
 
         productosProv.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
         productosProv.setForeground(new java.awt.Color(255, 255, 255));
         productosProv.setText("Productos proveedores");
         productosProv.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        productosProv.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                productosProvMouseMoved(evt);
+            }
+        });
+        productosProv.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                productosProvMouseExited(evt);
+            }
+        });
 
         cuentasProv.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
         cuentasProv.setForeground(new java.awt.Color(255, 255, 255));
         cuentasProv.setText("Cuentas proveedor");
         cuentasProv.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cuentasProv.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                cuentasProvMouseMoved(evt);
+            }
+        });
+        cuentasProv.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cuentasProvMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout listaMenuLayout = new javax.swing.GroupLayout(listaMenu);
         listaMenu.setLayout(listaMenuLayout);
@@ -304,31 +473,17 @@ public class Main extends javax.swing.JFrame implements Runnable {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
-        menu.setLayout(menuLayout);
-        menuLayout.setHorizontalGroup(
-            menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Separador1)
-            .addGroup(menuLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(menuLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(opcionesMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(listaMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        menuLayout.setVerticalGroup(
-            menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menuLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(opcionesMenu)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Separador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(listaMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        menu.add(listaMenu, java.awt.BorderLayout.PAGE_END);
+
+        jPanel1.setBackground(new java.awt.Color(0, 51, 51));
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
+        opcionesMenu.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 3, 24)); // NOI18N
+        opcionesMenu.setForeground(new java.awt.Color(255, 255, 255));
+        opcionesMenu.setText("Opciones ");
+        jPanel1.add(opcionesMenu, java.awt.BorderLayout.CENTER);
+
+        menu.add(jPanel1, java.awt.BorderLayout.CENTER);
 
         header.setBackground(new java.awt.Color(0, 0, 51));
 
@@ -340,6 +495,15 @@ public class Main extends javax.swing.JFrame implements Runnable {
         saludo.setForeground(new java.awt.Color(255, 255, 255));
         saludo.setText("BIENVENIDO");
 
+        cerraSesion.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 3, 24)); // NOI18N
+        cerraSesion.setForeground(new java.awt.Color(255, 255, 255));
+        cerraSesion.setText("CERRAR SESIÓN");
+        cerraSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cerraSesionMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
         header.setLayout(headerLayout);
         headerLayout.setHorizontalGroup(
@@ -347,7 +511,9 @@ public class Main extends javax.swing.JFrame implements Runnable {
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(164, 164, 164)
                 .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(345, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
+                .addComponent(cerraSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(saludo, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -357,7 +523,9 @@ public class Main extends javax.swing.JFrame implements Runnable {
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(titulo)
+                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cerraSesion)
+                    .addComponent(titulo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(saludo))
         );
@@ -397,7 +565,7 @@ public class Main extends javax.swing.JFrame implements Runnable {
                 .addGroup(footerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(usuario)
                     .addComponent(fecha_hora))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         workSpace.setBackground(new java.awt.Color(255, 255, 255));
@@ -406,7 +574,7 @@ public class Main extends javax.swing.JFrame implements Runnable {
         workSpace.setLayout(workSpaceLayout);
         workSpaceLayout.setHorizontalGroup(
             workSpaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 809, Short.MAX_VALUE)
         );
         workSpaceLayout.setVerticalGroup(
             workSpaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -480,6 +648,7 @@ public class Main extends javax.swing.JFrame implements Runnable {
         workSpace.revalidate();
         workSpace.repaint();
         mostrarlab.setMostrarLaboratorios(this);
+       
 
     }//GEN-LAST:event_laboratoriosMouseClicked
 
@@ -548,6 +717,160 @@ public class Main extends javax.swing.JFrame implements Runnable {
 
     }//GEN-LAST:event_fecha_horaMouseClicked
 
+    private void cerraSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cerraSesionMouseClicked
+        if (JOptionPane.showConfirmDialog(this, "Cerraras sesión, quieres continuar", "Cerrar sesión", JOptionPane.WARNING_MESSAGE)
+                == JOptionPane.YES_OPTION) {
+            con.cerrar();
+            this.setVisible(false);
+            new Login().setVisible(true);
+        }
+    }//GEN-LAST:event_cerraSesionMouseClicked
+
+    private void laboratoriosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_laboratoriosFocusGained
+        this.laboratorios.setForeground(new Color(142, 153, 242, 255));
+    }//GEN-LAST:event_laboratoriosFocusGained
+
+    private void laboratoriosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_laboratoriosFocusLost
+        this.laboratorios.setForeground(new Color(255, 255, 255, 255));
+    }//GEN-LAST:event_laboratoriosFocusLost
+
+    private void laboratoriosMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laboratoriosMouseMoved
+        this.laboratorios.setForeground(new Color(142, 153, 242, 255));
+    }//GEN-LAST:event_laboratoriosMouseMoved
+
+    private void laboratoriosMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laboratoriosMouseDragged
+        this.laboratorios.setForeground(new Color(255, 255, 255, 255));
+    }//GEN-LAST:event_laboratoriosMouseDragged
+
+    private void laboratoriosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laboratoriosMouseExited
+        this.laboratorios.setForeground(new Color(255, 255, 255, 255));
+    }//GEN-LAST:event_laboratoriosMouseExited
+
+    private void categoriasMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoriasMouseMoved
+        this.categorias.setForeground(new Color(142, 153, 242, 255));
+    }//GEN-LAST:event_categoriasMouseMoved
+
+    private void categoriasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoriasMouseExited
+        this.categorias.setForeground(new Color(255, 255, 255, 255));
+    }//GEN-LAST:event_categoriasMouseExited
+
+    private void empaquesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_empaquesMouseExited
+        this.empaques.setForeground(new Color(255, 255, 255, 255));
+    }//GEN-LAST:event_empaquesMouseExited
+
+    private void empaquesMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_empaquesMouseMoved
+        this.empaques.setForeground(new Color(142, 153, 242, 255));
+    }//GEN-LAST:event_empaquesMouseMoved
+
+    private void unidadMedidasMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_unidadMedidasMouseMoved
+        this.unidadMedidas.setForeground(new Color(142, 153, 242, 255));
+    }//GEN-LAST:event_unidadMedidasMouseMoved
+
+    private void unidadMedidasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_unidadMedidasMouseExited
+        this.unidadMedidas.setForeground(new Color(255, 255, 255, 255));
+    }//GEN-LAST:event_unidadMedidasMouseExited
+
+    private void productosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productosMouseExited
+        this.productos.setForeground(new Color(255, 255, 255, 255));
+    }//GEN-LAST:event_productosMouseExited
+
+    private void productosMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productosMouseMoved
+        this.productos.setForeground(new Color(142, 153, 242, 255));
+    }//GEN-LAST:event_productosMouseMoved
+
+    private void presentProductosMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_presentProductosMouseMoved
+        this.presentProductos.setForeground(new Color(142, 153, 242, 255));
+    }//GEN-LAST:event_presentProductosMouseMoved
+
+    private void presentProductosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_presentProductosMouseExited
+        this.presentProductos.setForeground(new Color(255, 255, 255, 255));
+    }//GEN-LAST:event_presentProductosMouseExited
+
+    private void imgProductosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgProductosMouseExited
+        this.imgProductos.setForeground(new Color(255, 255, 255, 255));
+    }//GEN-LAST:event_imgProductosMouseExited
+
+    private void imgProductosMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgProductosMouseMoved
+        this.imgProductos.setForeground(new Color(142, 153, 242, 255));
+    }//GEN-LAST:event_imgProductosMouseMoved
+
+    private void sucursalesMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sucursalesMouseMoved
+        this.sucursales.setForeground(new Color(142, 153, 242, 255));
+    }//GEN-LAST:event_sucursalesMouseMoved
+
+    private void sucursalesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sucursalesMouseExited
+        this.sucursales.setForeground(new Color(255, 255, 255, 255));
+    }//GEN-LAST:event_sucursalesMouseExited
+
+    private void existenciaSucMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_existenciaSucMouseExited
+        this.existenciaSuc.setForeground(new Color(255, 255, 255, 255));
+    }//GEN-LAST:event_existenciaSucMouseExited
+
+    private void existenciaSucMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_existenciaSucMouseMoved
+        this.existenciaSuc.setForeground(new Color(142, 153, 242, 255));
+    }//GEN-LAST:event_existenciaSucMouseMoved
+
+    private void pedidosMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pedidosMouseMoved
+        this.pedidos.setForeground(new Color(142, 153, 242, 255));
+    }//GEN-LAST:event_pedidosMouseMoved
+
+    private void pedidosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pedidosMouseExited
+        this.pedidos.setForeground(new Color(255, 255, 255, 255));
+    }//GEN-LAST:event_pedidosMouseExited
+
+    private void pedidoDetallesMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pedidoDetallesMouseMoved
+        this.pedidoDetalles.setForeground(new Color(142, 153, 242, 255));
+    }//GEN-LAST:event_pedidoDetallesMouseMoved
+
+    private void pedidoDetallesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pedidoDetallesMouseExited
+        this.pedidoDetalles.setForeground(new Color(255, 255, 255, 255));
+    }//GEN-LAST:event_pedidoDetallesMouseExited
+
+    private void pagosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pagosMouseExited
+        this.pagos.setForeground(new Color(255, 255, 255, 255));
+    }//GEN-LAST:event_pagosMouseExited
+
+    private void pagosMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pagosMouseMoved
+        this.pagos.setForeground(new Color(142, 153, 242, 255));
+    }//GEN-LAST:event_pagosMouseMoved
+
+    private void provedoresMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_provedoresMouseMoved
+        this.provedores.setForeground(new Color(142, 153, 242, 255));
+    }//GEN-LAST:event_provedoresMouseMoved
+
+    private void provedoresMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_provedoresMouseExited
+        this.provedores.setForeground(new Color(255, 255, 255, 255));
+    }//GEN-LAST:event_provedoresMouseExited
+
+    private void contactosProvMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contactosProvMouseMoved
+        this.contactosProv.setForeground(new Color(142, 153, 242, 255));
+    }//GEN-LAST:event_contactosProvMouseMoved
+
+    private void contactosProvMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contactosProvMouseExited
+        this.contactosProv.setForeground(new Color(255, 255, 255, 255));
+    }//GEN-LAST:event_contactosProvMouseExited
+
+    private void productosProvMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productosProvMouseExited
+        this.productosProv.setForeground(new Color(255, 255, 255, 255));
+    }//GEN-LAST:event_productosProvMouseExited
+
+    private void productosProvMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productosProvMouseMoved
+        this.productosProv.setForeground(new Color(142, 153, 242, 255));
+    }//GEN-LAST:event_productosProvMouseMoved
+
+    private void cuentasProvMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cuentasProvMouseMoved
+        this.cuentasProv.setForeground(new Color(142, 153, 242, 255));
+    }//GEN-LAST:event_cuentasProvMouseMoved
+
+    private void cuentasProvMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cuentasProvMouseExited
+        this.cuentasProv.setForeground(new Color(255, 255, 255, 255));
+
+    }//GEN-LAST:event_cuentasProvMouseExited
+
+    private void categoriasMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoriasMouseDragged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_categoriasMouseDragged
+
     /**
      * @param args the command line arguments
      */
@@ -587,6 +910,7 @@ public class Main extends javax.swing.JFrame implements Runnable {
     private javax.swing.JSeparator Separador1;
     private javax.swing.JPanel body;
     private javax.swing.JLabel categorias;
+    private javax.swing.JLabel cerraSesion;
     private javax.swing.JLabel contactosProv;
     private javax.swing.JLabel cuentasProv;
     private javax.swing.JLabel empaques;
@@ -595,6 +919,7 @@ public class Main extends javax.swing.JFrame implements Runnable {
     private javax.swing.JPanel footer;
     private javax.swing.JPanel header;
     private javax.swing.JLabel imgProductos;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -621,7 +946,7 @@ public class Main extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel usuario;
     private javax.swing.JPanel workSpace;
     // End of variables declaration//GEN-END:variables
-    private ConexionSQL con;
+    private ConexionSQL con = ConexionSQL.getInstance();
 
     public JPanel getworkSpace() {
         return workSpace;
@@ -642,10 +967,7 @@ public class Main extends javax.swing.JFrame implements Runnable {
             int hora = fecha.get(Calendar.HOUR_OF_DAY);
             int minuto = fecha.get(Calendar.MINUTE);
             int segundo = fecha.get(Calendar.SECOND);
-            String am_pm;
-            
-            System.out.println(Calendar.AM_PM);
-            
+
             String fechaCompleta = "" + dia + "/ " + mes + "/ " + anio + "  " + hora + ":" + minuto + ":" + segundo;
 
             fecha_hora.setText(fechaCompleta);

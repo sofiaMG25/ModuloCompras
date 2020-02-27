@@ -11,5 +11,5 @@ public interface CRUDgenerico<T> {
     void Insert(T nuevo);
     void upadate(T nuevo);
     void delete(T nuevo);
-    LinkedList<T> show();
+    LinkedList<T> show(int pagina);
 }

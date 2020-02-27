@@ -265,7 +265,7 @@ public class mostrarCategorias extends javax.swing.JPanel {
     }//GEN-LAST:event_buscarMCMouseClicked
 
     public void MostrarDatosCategorias() {
-        LinkedList<Categorias> cat = new DAOCategoriasImp().show();
+        LinkedList<Categorias> cat = new DAOCategoriasImp().show(1);
         Object listaDatos[][] = new Object[cat.size()][3];
         for (int i = 0; i < cat.size(); i++) {
             listaDatos[i][0] = cat.get(i).getId();

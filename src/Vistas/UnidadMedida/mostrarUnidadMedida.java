@@ -37,7 +37,7 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<String>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         mainMostrarLab = new javax.swing.JPanel();
         tablaMostrarUnidad = new javax.swing.JScrollPane();
         jTableMUM = new javax.swing.JTable();
@@ -46,8 +46,10 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
         cancelarMUM = new javax.swing.JLabel();
         buscartxtMUM = new javax.swing.JTextField();
         buscarMUM = new javax.swing.JLabel();
+        opcionesMostrarLab3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setBackground(new java.awt.Color(228, 225, 225));
         setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Mostrar laboratorios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
@@ -103,20 +105,20 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
         opcionesMostrarLabLayout.setHorizontalGroup(
             opcionesMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionesMostrarLabLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(31, 31, 31)
                 .addComponent(nuevoUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cancelarMUM, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86))
+                .addGap(39, 39, 39))
         );
         opcionesMostrarLabLayout.setVerticalGroup(
             opcionesMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionesMostrarLabLayout.createSequentialGroup()
-                .addContainerGap(44, Short.MAX_VALUE)
+            .addGroup(opcionesMostrarLabLayout.createSequentialGroup()
+                .addContainerGap(53, Short.MAX_VALUE)
                 .addGroup(opcionesMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelarMUM)
-                    .addComponent(nuevoUnidad))
-                .addGap(35, 35, 35))
+                    .addComponent(nuevoUnidad)
+                    .addComponent(cancelarMUM))
+                .addGap(39, 39, 39))
         );
 
         buscarMUM.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
@@ -131,6 +133,29 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
             }
         });
 
+        opcionesMostrarLab3.setBackground(new java.awt.Color(204, 204, 255));
+
+        jLabel1.setBackground(new java.awt.Color(255, 0, 51));
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel1.setText("Cambio pagina \"cada página contiene 10 registros.\"");
+
+        javax.swing.GroupLayout opcionesMostrarLab3Layout = new javax.swing.GroupLayout(opcionesMostrarLab3);
+        opcionesMostrarLab3.setLayout(opcionesMostrarLab3Layout);
+        opcionesMostrarLab3Layout.setHorizontalGroup(
+            opcionesMostrarLab3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(opcionesMostrarLab3Layout.createSequentialGroup()
+                .addGap(158, 158, 158)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        opcionesMostrarLab3Layout.setVerticalGroup(
+            opcionesMostrarLab3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionesMostrarLab3Layout.createSequentialGroup()
+                .addGap(0, 40, Short.MAX_VALUE)
+                .addComponent(jLabel1))
+        );
+
         javax.swing.GroupLayout mainMostrarLabLayout = new javax.swing.GroupLayout(mainMostrarLab);
         mainMostrarLab.setLayout(mainMostrarLabLayout);
         mainMostrarLabLayout.setHorizontalGroup(
@@ -144,7 +169,8 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
                         .addGap(0, 197, Short.MAX_VALUE)
                         .addComponent(buscartxtMUM, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(buscarMUM, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(buscarMUM, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(opcionesMostrarLab3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         mainMostrarLabLayout.setVerticalGroup(
@@ -154,11 +180,13 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
                 .addGroup(mainMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buscarMUM)
                     .addComponent(buscartxtMUM, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tablaMostrarUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addComponent(tablaMostrarUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(opcionesMostrarLab3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(opcionesMostrarLab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -265,7 +293,7 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
 
     public void MostrarDatosUnidad(){
         
-         LinkedList<UnidadMedida> uni = new DAOUnidadImp().show();
+         LinkedList<UnidadMedida> uni = new DAOUnidadImp().show(1);
         Object listaDatos[][] = new Object[uni.size()][4];
         for (int i = 0; i < uni.size(); i++) {
             listaDatos[i][0] = uni.get(i).getId();
@@ -306,11 +334,19 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
     private javax.swing.JLabel buscarMUM;
     private javax.swing.JTextField buscartxtMUM;
     private javax.swing.JLabel cancelarMUM;
+    private javax.swing.JLabel cancelarMUM1;
+    private javax.swing.JLabel cancelarMUM2;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JTable jTableMUM;
     private javax.swing.JPanel mainMostrarLab;
     private javax.swing.JLabel nuevoUnidad;
+    private javax.swing.JLabel nuevoUnidad1;
+    private javax.swing.JLabel nuevoUnidad2;
     private javax.swing.JPanel opcionesMostrarLab;
+    private javax.swing.JPanel opcionesMostrarLab1;
+    private javax.swing.JPanel opcionesMostrarLab2;
+    private javax.swing.JPanel opcionesMostrarLab3;
     private javax.swing.JScrollPane tablaMostrarUnidad;
     // End of variables declaration//GEN-END:variables
 }

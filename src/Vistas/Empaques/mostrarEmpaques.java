@@ -36,7 +36,7 @@ public class mostrarEmpaques extends javax.swing.JPanel {
     }
 
     public void MostrarDatosEmpaque() {
-        LinkedList<Empaques> emp = new DAOEmpaquesImp().show();
+        LinkedList<Empaques> emp = new DAOEmpaquesImp().show(1);
         Object listaDatos[][] = new Object[emp.size()][5];
         for (int i = 0; i < emp.size(); i++) {
             listaDatos[i][0] = emp.get(i).getIdEmpaque();

@@ -70,7 +70,7 @@ public class DAOEmpaquesImp implements DAOEmpaques {
     }
 
     @Override
-    public LinkedList<Empaques> show() {
+    public LinkedList<Empaques> show(int pagina) {
         LinkedList<Empaques> empaques;
         try {
             conexion.setPs(conexion.getCn().prepareCall("{call sp_busquedaEmpaques ()}"));

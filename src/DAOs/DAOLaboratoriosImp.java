@@ -74,11 +74,12 @@ public class DAOLaboratoriosImp implements DAOLaboratorios {
     }
 
     @Override
-    public LinkedList<Laboratorios> show() {
+    public LinkedList<Laboratorios> show(int pagina) {
         LinkedList<Laboratorios> laboratorios;
         try {
-            String sql = "SELECT * FROM laboratorios";
+            String sql = "SELECT * FROM sf_paginarRegistros (?) ";
             conexion.setPs(conexion.getCn().prepareCall(sql));
+            conexion.getPs().setInt(1, pagina);
             conexion.setRs(conexion.getPs().executeQuery());
             laboratorios = new LinkedList<Laboratorios>();
             char estatus;
@@ -117,6 +118,25 @@ public class DAOLaboratoriosImp implements DAOLaboratorios {
             JOptionPane.showMessageDialog(null,"Error con servidor",e.getMessage(),JOptionPane.ERROR_MESSAGE);
         }
         return null;
+    }
+
+    @Override
+    public int contarRegistros() {
+        int cantRegistros = 0;
+        try {
+            String sql = "select count(idLaboratorio) as registros from dbo.Laboratorios ";
+            conexion.setPs(conexion.getCn().prepareCall(sql));
+            conexion.setRs(conexion.getPs().executeQuery());
+            while(conexion.getRs().next()){
+                cantRegistros = conexion.getRs().getInt(1);
+            }
+            conexion.getPs().close();
+            conexion.getRs().close();
+            return cantRegistros;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return cantRegistros;
     }
 
 

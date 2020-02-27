@@ -7,5 +7,6 @@ import java.util.LinkedList;
 public interface DAOLaboratorios extends CRUDgenerico<Laboratorios>{
     
     LinkedList<Laboratorios> busquedaPorNombre(String nombre);
+    int contarRegistros();
     
 }

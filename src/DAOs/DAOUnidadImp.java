@@ -70,7 +70,7 @@ public class DAOUnidadImp implements DAOUnidad{
     }
 
     @Override
-    public LinkedList<UnidadMedida> show() {
+    public LinkedList<UnidadMedida> show(int pagina) {
         LinkedList<UnidadMedida> unidad;
         try {
             String sql = "SELECT * FROM UnidadMedida";

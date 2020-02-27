@@ -26,9 +26,16 @@ public class mostrarLaboratorios extends javax.swing.JPanel {
 
     public mostrarLaboratorios() {
         initComponents();
+        ContRegistro = new DAOLaboratoriosImp().contarRegistros();
+        leyenda.setVisible(false);
     }
 
     private Main mainPrincipal;
+    private int ContRegistro;
+    private int cambioPagina = 1;
+    private int tamanoRegistros = 0;
+    private int tamanoRegistrosVuelta;
+    private int nextORpreview = 1;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,6 +55,12 @@ public class mostrarLaboratorios extends javax.swing.JPanel {
         cancelarML = new javax.swing.JLabel();
         buscartxtML = new javax.swing.JTextField();
         buscarML = new javax.swing.JLabel();
+        opcionesMostrarLab3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        segmentacion = new javax.swing.JLabel();
+        next = new javax.swing.JButton();
+        preview = new javax.swing.JButton();
+        leyenda = new javax.swing.JLabel();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -105,20 +118,20 @@ public class mostrarLaboratorios extends javax.swing.JPanel {
         opcionesMostrarLabLayout.setHorizontalGroup(
             opcionesMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionesMostrarLabLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(48, 48, 48)
                 .addComponent(nuevolabML, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cancelarML, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86))
+                .addGap(37, 37, 37))
         );
         opcionesMostrarLabLayout.setVerticalGroup(
             opcionesMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionesMostrarLabLayout.createSequentialGroup()
-                .addContainerGap(44, Short.MAX_VALUE)
+            .addGroup(opcionesMostrarLabLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
                 .addGroup(opcionesMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelarML)
-                    .addComponent(nuevolabML))
-                .addGap(35, 35, 35))
+                    .addComponent(nuevolabML)
+                    .addComponent(cancelarML))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         buscarML.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
@@ -133,6 +146,71 @@ public class mostrarLaboratorios extends javax.swing.JPanel {
             }
         });
 
+        opcionesMostrarLab3.setBackground(java.awt.Color.lightGray);
+
+        jLabel1.setBackground(new java.awt.Color(255, 0, 51));
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel1.setText("Cambio pagina \"cada página contiene 10 registros.");
+
+        segmentacion.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+
+        next.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        next.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/flecha.png"))); // NOI18N
+        next.setText("Siguiente");
+        next.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nextMouseClicked(evt);
+            }
+        });
+
+        preview.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        preview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/regreso.png"))); // NOI18N
+        preview.setText("Anterior");
+        preview.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                previewMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout opcionesMostrarLab3Layout = new javax.swing.GroupLayout(opcionesMostrarLab3);
+        opcionesMostrarLab3.setLayout(opcionesMostrarLab3Layout);
+        opcionesMostrarLab3Layout.setHorizontalGroup(
+            opcionesMostrarLab3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(opcionesMostrarLab3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(next)
+                .addGap(29, 29, 29)
+                .addComponent(segmentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(preview)
+                .addGap(229, 229, 229))
+            .addGroup(opcionesMostrarLab3Layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        opcionesMostrarLab3Layout.setVerticalGroup(
+            opcionesMostrarLab3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(opcionesMostrarLab3Layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGroup(opcionesMostrarLab3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(opcionesMostrarLab3Layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(opcionesMostrarLab3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(preview)
+                            .addComponent(next)))
+                    .addGroup(opcionesMostrarLab3Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(segmentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        leyenda.setBackground(new java.awt.Color(255, 0, 51));
+        leyenda.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        leyenda.setForeground(new java.awt.Color(255, 51, 51));
+        leyenda.setText("No se encuentran mas registros en paginas.");
+
         javax.swing.GroupLayout mainMostrarLabLayout = new javax.swing.GroupLayout(mainMostrarLab);
         mainMostrarLab.setLayout(mainMostrarLabLayout);
         mainMostrarLabLayout.setHorizontalGroup(
@@ -140,14 +218,24 @@ public class mostrarLaboratorios extends javax.swing.JPanel {
             .addGroup(mainMostrarLabLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(mainMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tablaMostrarLab)
-                    .addComponent(opcionesMostrarLab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(mainMostrarLabLayout.createSequentialGroup()
+                        .addGroup(mainMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tablaMostrarLab)
+                            .addComponent(opcionesMostrarLab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainMostrarLabLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(buscartxtML, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(buscarML, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainMostrarLabLayout.createSequentialGroup()
-                        .addGap(0, 197, Short.MAX_VALUE)
-                        .addComponent(buscartxtML, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(buscarML, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addGap(0, 98, Short.MAX_VALUE)
+                        .addComponent(opcionesMostrarLab3, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(96, 96, 96))))
+            .addGroup(mainMostrarLabLayout.createSequentialGroup()
+                .addGap(219, 219, 219)
+                .addComponent(leyenda)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         mainMostrarLabLayout.setVerticalGroup(
             mainMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,8 +245,12 @@ public class mostrarLaboratorios extends javax.swing.JPanel {
                     .addComponent(buscarML)
                     .addComponent(buscartxtML, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tablaMostrarLab, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tablaMostrarLab, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(opcionesMostrarLab3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(leyenda)
+                .addGap(39, 39, 39)
                 .addComponent(opcionesMostrarLab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
@@ -208,10 +300,9 @@ public class mostrarLaboratorios extends javax.swing.JPanel {
      */
     private void jTableMLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMLMouseClicked
 
-       
         int row;
         row = jTableML.getSelectedRow();
-        
+
         //Verificamos que el evento este en el rango de la tabla.
         if (row > -1 && row <= jTableML.getSelectedRow()) {
             //creamos la ventana modificar
@@ -227,17 +318,17 @@ public class mostrarLaboratorios extends javax.swing.JPanel {
             char estatus = String.valueOf(this.jTableML.getValueAt(row, 3)).charAt(0);
             //Ingresan los datos de la tabla a la interfaz Modificar Laboratorio
             modificarLab.ObtenerLaboratoriModificar(
-                    new Laboratorios(id,nombre,origen,estatus));
-            
-            this.mainPrincipal.getworkSpace().add(modificarLab,BorderLayout.CENTER);
+                    new Laboratorios(id, nombre, origen, estatus));
+
+            this.mainPrincipal.getworkSpace().add(modificarLab, BorderLayout.CENTER);
             this.mainPrincipal.getworkSpace().revalidate();
             this.mainPrincipal.getworkSpace().repaint();
-       
+
         }
     }//GEN-LAST:event_jTableMLMouseClicked
 
     private void buscarMLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscarMLMouseClicked
-         LinkedList<Laboratorios> lab = new DAOLaboratoriosImp().busquedaPorNombre(buscartxtML.getText());
+        LinkedList<Laboratorios> lab = new DAOLaboratoriosImp().busquedaPorNombre(buscartxtML.getText());
         Object listaDatos[][] = new Object[lab.size()][4];
         for (int i = 0; i < lab.size(); i++) {
             listaDatos[i][0] = lab.get(i).getId();
@@ -268,9 +359,43 @@ public class mostrarLaboratorios extends javax.swing.JPanel {
         this.jTableML.getColumnModel().getColumn(3).setMaxWidth(200);
     }//GEN-LAST:event_buscarMLMouseClicked
 
+    private void nextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextMouseClicked
+        if (tamanoRegistros >= ContRegistro) {
+            next.setVisible(false);
+            leyenda.setVisible(true);
+        } else {
+            cambioPagina++;
+            preview.setVisible(true);
+            nextORpreview = 1;
+            MostrarDatosLaboratorio();
+            leyenda.setVisible(false);
+        }
+    }//GEN-LAST:event_nextMouseClicked
+
+    private void previewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_previewMouseClicked
+        if (tamanoRegistros <= 10) {
+            preview.setVisible(false);
+            leyenda.setVisible(true);
+        } else {
+            next.setVisible(true);
+            nextORpreview = 0;
+            cambioPagina--;
+            MostrarDatosLaboratorio();
+            leyenda.setVisible(false);
+            
+        }
+    }//GEN-LAST:event_previewMouseClicked
+
     private void MostrarDatosLaboratorio() {
 
-        LinkedList<Laboratorios> lab = new DAOLaboratoriosImp().show();
+        LinkedList<Laboratorios> lab = new DAOLaboratoriosImp().show(cambioPagina);
+        if (nextORpreview == 1) {
+            tamanoRegistros += lab.size();
+            tamanoRegistrosVuelta = tamanoRegistros;
+        } else if (nextORpreview == 0) {
+            tamanoRegistros -= (tamanoRegistrosVuelta - lab.size());
+        }
+        this.segmentacion.setText(tamanoRegistros + " registros  de " + ContRegistro + " en total");
         Object listaDatos[][] = new Object[lab.size()][4];
         for (int i = 0; i < lab.size(); i++) {
             listaDatos[i][0] = lab.get(i).getId();
@@ -312,10 +437,16 @@ public class mostrarLaboratorios extends javax.swing.JPanel {
     private javax.swing.JTextField buscartxtML;
     private javax.swing.JLabel cancelarML;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JTable jTableML;
+    private javax.swing.JLabel leyenda;
     private javax.swing.JPanel mainMostrarLab;
+    private javax.swing.JButton next;
     private javax.swing.JLabel nuevolabML;
     private javax.swing.JPanel opcionesMostrarLab;
+    private javax.swing.JPanel opcionesMostrarLab3;
+    private javax.swing.JButton preview;
+    private javax.swing.JLabel segmentacion;
     private javax.swing.JScrollPane tablaMostrarLab;
     // End of variables declaration//GEN-END:variables
 }

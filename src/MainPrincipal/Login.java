@@ -6,6 +6,8 @@
 package MainPrincipal;
 
 import ConexionSQLServer.ConexionSQL;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 /**
  *
@@ -193,6 +195,13 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void rederizarTamano(Main principal){
+        Toolkit pantalla = Toolkit.getDefaultToolkit();
+        Dimension tamanoP = pantalla.getScreenSize();
+        principal.setSize(tamanoP.getSize());
+        principal.setVisible(true);
+        principal.pack();
+    }
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         ConexionSQL.setUser(User.getText());
@@ -200,7 +209,7 @@ public class Login extends javax.swing.JFrame {
         conexion = ConexionSQL.getInstance();
         if (conexion.getCn() != null) {
             Main.user = ConexionSQL.getUser();
-            new Main().setVisible(true);
+            rederizarTamano(  new Main());
             this.setVisible(false);
         } else {
             conexion.setUser("");
