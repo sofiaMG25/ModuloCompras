@@ -29,11 +29,11 @@ public class agregarEmpaque extends javax.swing.JPanel {
 
     private void mostrarUnidadMedidas() {
         LinkedList<Empaques> empaquesUnidad = new DAOEmpaquesImp().obternerIdunidades();
-        DefaultComboBoxModel model = (DefaultComboBoxModel) jComboBox1.getModel();
+        DefaultComboBoxModel model = (DefaultComboBoxModel) comboxUnidadMed.getModel();
         for (int i = 0; i < empaquesUnidad.size(); i++) {
             model.addElement(empaquesUnidad.get(i).getIdUnidad());
         }
-        jComboBox1.setModel(model);
+        comboxUnidadMed.setModel(model);
     }
 
     private Main mainPrincipal;
@@ -59,7 +59,7 @@ public class agregarEmpaque extends javax.swing.JPanel {
         cancelarAEmp = new javax.swing.JLabel();
         guardarAEmp = new javax.swing.JLabel();
         unidadEmp = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        comboxUnidadMed = new javax.swing.JComboBox();
 
         setBackground(new java.awt.Color(228, 225, 225));
         setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Agregar un nuevo empaque", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
@@ -123,8 +123,8 @@ public class agregarEmpaque extends javax.swing.JPanel {
         unidadEmp.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         unidadEmp.setText("UNIDAD DE MEDIDA:");
 
-        jComboBox1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONA UNA UNIDAD DE MEDIDA" }));
+        comboxUnidadMed.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        comboxUnidadMed.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONA UNA UNIDAD DE MEDIDA" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -140,7 +140,7 @@ public class agregarEmpaque extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(unidadEmp)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(comboxUnidadMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nombreAEmp)
@@ -165,7 +165,7 @@ public class agregarEmpaque extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(unidadEmp)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboxUnidadMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
                 .addComponent(opcionesAEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -175,14 +175,15 @@ public class agregarEmpaque extends javax.swing.JPanel {
     private void guardarAEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarAEmpMouseClicked
         if (nombretxtAEmp.getText().equals("")) {
             nombretxtAEmp.requestFocus();
-        } else if (capacidadtxtAEmp.getText().equals("")) {
+        } else if (capacidadtxtAEmp.getText().equals("") || Integer.parseInt(capacidadtxtAEmp.getText()) <= 0) {
             capacidadtxtAEmp.requestFocus();
-        } else if (jComboBox1.getSelectedIndex() <= 0) {
-            jComboBox1.requestFocus();
+        } else if (comboxUnidadMed.getSelectedIndex() <= 0) {
+            comboxUnidadMed.requestFocus();
         } else {
             try {
                 new DAOEmpaquesImp().Insert(new Empaques(nombretxtAEmp.getText(),
-                        Float.parseFloat(capacidadtxtAEmp.getText()), jComboBox1.getSelectedItem().toString()));
+                        Float.parseFloat(capacidadtxtAEmp.getText()), comboxUnidadMed.getSelectedItem().toString()));
+                limpiarVariables();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Capacidad solo numeros", "Error de tipo de dato", JOptionPane.ERROR_MESSAGE);
             }
@@ -203,6 +204,12 @@ public class agregarEmpaque extends javax.swing.JPanel {
 
     }//GEN-LAST:event_cancelarAEmpMouseClicked
 
+    private void limpiarVariables(){
+        nombretxtAEmp.setText("");
+        capacidadtxtAEmp.setText("");
+        comboxUnidadMed.setSelectedIndex(0);
+    }
+    
     private void guardarAEmpMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarAEmpMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_guardarAEmpMouseEntered
@@ -212,8 +219,8 @@ public class agregarEmpaque extends javax.swing.JPanel {
     private javax.swing.JLabel cancelarAEmp;
     private javax.swing.JLabel capacidadEmp;
     private javax.swing.JTextField capacidadtxtAEmp;
+    private javax.swing.JComboBox comboxUnidadMed;
     private javax.swing.JLabel guardarAEmp;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel nombreAEmp;
     private javax.swing.JTextField nombretxtAEmp;
     private javax.swing.JPanel opcionesAEmp;

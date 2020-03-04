@@ -10,5 +10,5 @@ import ClasesExtras.CRUDgenerico;
  * @author Manuel
  */
 public interface DAOUnidad extends CRUDgenerico<UnidadMedida> {
-    
+    int contRegistro();
 }

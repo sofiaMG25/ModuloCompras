@@ -1,9 +1,6 @@
 
 package Vistas.UnidadMedida;
-import MainPrincipal.Main;
 import java.awt.BorderLayout;
-import javax.swing.JButton;
-import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
 import MainPrincipal.Main;
 import java.util.LinkedList;
@@ -24,9 +21,14 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
     
     public mostrarUnidadMedida() {
         initComponents();
+        ContRegistro = new DAOUnidadImp().contRegistro();
+        ContRegistro = Math.ceil((ContRegistro/10));
+        leyenda.setVisible(false);
     }
     
     private Main mainPrincipal;
+    private double ContRegistro;
+    private int cambioPagina = 1;
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,8 +48,12 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
         cancelarMUM = new javax.swing.JLabel();
         buscartxtMUM = new javax.swing.JTextField();
         buscarMUM = new javax.swing.JLabel();
-        opcionesMostrarLab3 = new javax.swing.JPanel();
+        opcionesMostrarUniMed = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        segmentacion = new javax.swing.JLabel();
+        preview = new javax.swing.JButton();
+        next = new javax.swing.JButton();
+        leyenda = new javax.swing.JLabel();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -105,20 +111,20 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
         opcionesMostrarLabLayout.setHorizontalGroup(
             opcionesMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionesMostrarLabLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addContainerGap()
                 .addComponent(nuevoUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cancelarMUM, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39))
+                .addGap(20, 20, 20))
         );
         opcionesMostrarLabLayout.setVerticalGroup(
             opcionesMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(opcionesMostrarLabLayout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
+                .addContainerGap(19, Short.MAX_VALUE)
                 .addGroup(opcionesMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nuevoUnidad)
                     .addComponent(cancelarMUM))
-                .addGap(39, 39, 39))
+                .addGap(27, 27, 27))
         );
 
         buscarMUM.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
@@ -133,28 +139,71 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
             }
         });
 
-        opcionesMostrarLab3.setBackground(new java.awt.Color(204, 204, 255));
+        opcionesMostrarUniMed.setBackground(java.awt.Color.lightGray);
 
         jLabel1.setBackground(new java.awt.Color(255, 0, 51));
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel1.setText("Cambio pagina \"cada página contiene 10 registros.\"");
+        jLabel1.setText("Cambio pagina \"cada página contiene 10 registros.");
 
-        javax.swing.GroupLayout opcionesMostrarLab3Layout = new javax.swing.GroupLayout(opcionesMostrarLab3);
-        opcionesMostrarLab3.setLayout(opcionesMostrarLab3Layout);
-        opcionesMostrarLab3Layout.setHorizontalGroup(
-            opcionesMostrarLab3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(opcionesMostrarLab3Layout.createSequentialGroup()
-                .addGap(158, 158, 158)
+        segmentacion.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+
+        preview.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        preview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/regreso.png"))); // NOI18N
+        preview.setText("Anterior");
+        preview.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                previewMouseClicked(evt);
+            }
+        });
+
+        next.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        next.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/flecha.png"))); // NOI18N
+        next.setText("Siguiente");
+        next.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nextMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout opcionesMostrarUniMedLayout = new javax.swing.GroupLayout(opcionesMostrarUniMed);
+        opcionesMostrarUniMed.setLayout(opcionesMostrarUniMedLayout);
+        opcionesMostrarUniMedLayout.setHorizontalGroup(
+            opcionesMostrarUniMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(opcionesMostrarUniMedLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(preview)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(segmentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(next)
+                .addGap(211, 211, 211))
+            .addGroup(opcionesMostrarUniMedLayout.createSequentialGroup()
+                .addGap(90, 90, 90)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        opcionesMostrarLab3Layout.setVerticalGroup(
-            opcionesMostrarLab3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionesMostrarLab3Layout.createSequentialGroup()
-                .addGap(0, 40, Short.MAX_VALUE)
-                .addComponent(jLabel1))
+        opcionesMostrarUniMedLayout.setVerticalGroup(
+            opcionesMostrarUniMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(opcionesMostrarUniMedLayout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGroup(opcionesMostrarUniMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(opcionesMostrarUniMedLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(segmentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(40, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionesMostrarUniMedLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(opcionesMostrarUniMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(next)
+                            .addComponent(preview))
+                        .addContainerGap())))
         );
+
+        leyenda.setBackground(new java.awt.Color(255, 0, 51));
+        leyenda.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        leyenda.setForeground(new java.awt.Color(255, 51, 51));
+        leyenda.setText("No se encuentran mas registros en paginas.");
 
         javax.swing.GroupLayout mainMostrarLabLayout = new javax.swing.GroupLayout(mainMostrarLab);
         mainMostrarLab.setLayout(mainMostrarLabLayout);
@@ -169,9 +218,16 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
                         .addGap(0, 197, Short.MAX_VALUE)
                         .addComponent(buscartxtMUM, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(buscarMUM, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(opcionesMostrarLab3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(buscarMUM, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(mainMostrarLabLayout.createSequentialGroup()
+                .addGap(198, 198, 198)
+                .addComponent(leyenda)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainMostrarLabLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(opcionesMostrarUniMed, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(98, 98, 98))
         );
         mainMostrarLabLayout.setVerticalGroup(
             mainMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,10 +236,12 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
                 .addGroup(mainMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buscarMUM)
                     .addComponent(buscartxtMUM, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(tablaMostrarUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(opcionesMostrarUniMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(opcionesMostrarLab3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(leyenda)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(opcionesMostrarLab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -291,10 +349,40 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_buscarMUMMouseClicked
 
+    private void previewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_previewMouseClicked
+        if (cambioPagina == 1) {
+            preview.setVisible(false);
+            next.setVisible(true);
+            leyenda.setVisible(true);
+            MostrarDatosUnidad();
+        } else {
+            next.setVisible(true);
+            cambioPagina--;
+            MostrarDatosUnidad();
+            leyenda.setVisible(false);
+
+        }
+    }//GEN-LAST:event_previewMouseClicked
+
+    private void nextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextMouseClicked
+        if (cambioPagina >= ContRegistro) {
+            next.setVisible(false);
+            preview.setVisible(true);
+            leyenda.setVisible(true);
+            MostrarDatosUnidad();
+        } else {
+            cambioPagina++;
+            preview.setVisible(true);
+            MostrarDatosUnidad();
+            leyenda.setVisible(false);
+        }
+    }//GEN-LAST:event_nextMouseClicked
+
     public void MostrarDatosUnidad(){
         
          LinkedList<UnidadMedida> uni = new DAOUnidadImp().show(1);
         Object listaDatos[][] = new Object[uni.size()][4];
+        this.segmentacion.setText("Página "+cambioPagina +" de "+ (int)ContRegistro+ " Páginas en total");
         for (int i = 0; i < uni.size(); i++) {
             listaDatos[i][0] = uni.get(i).getId();
             listaDatos[i][1] = uni.get(i).getNombre();
@@ -334,19 +422,17 @@ public class mostrarUnidadMedida extends javax.swing.JPanel {
     private javax.swing.JLabel buscarMUM;
     private javax.swing.JTextField buscartxtMUM;
     private javax.swing.JLabel cancelarMUM;
-    private javax.swing.JLabel cancelarMUM1;
-    private javax.swing.JLabel cancelarMUM2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTable jTableMUM;
+    private javax.swing.JLabel leyenda;
     private javax.swing.JPanel mainMostrarLab;
+    private javax.swing.JButton next;
     private javax.swing.JLabel nuevoUnidad;
-    private javax.swing.JLabel nuevoUnidad1;
-    private javax.swing.JLabel nuevoUnidad2;
     private javax.swing.JPanel opcionesMostrarLab;
-    private javax.swing.JPanel opcionesMostrarLab1;
-    private javax.swing.JPanel opcionesMostrarLab2;
-    private javax.swing.JPanel opcionesMostrarLab3;
+    private javax.swing.JPanel opcionesMostrarUniMed;
+    private javax.swing.JButton preview;
+    private javax.swing.JLabel segmentacion;
     private javax.swing.JScrollPane tablaMostrarUnidad;
     // End of variables declaration//GEN-END:variables
 }

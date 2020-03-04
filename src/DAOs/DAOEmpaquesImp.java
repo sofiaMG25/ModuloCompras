@@ -140,6 +140,25 @@ public class DAOEmpaquesImp implements DAOEmpaques {
         }
         return null;
     }
+
+    @Override
+    public int contRegistro() {
+       int cantRegistros = 0;
+        try {
+            String sql = "select count(idEmpaque) as registros from dbo.Empaques ";
+            conexion.setPs(conexion.getCn().prepareCall(sql));
+            conexion.setRs(conexion.getPs().executeQuery());
+            while(conexion.getRs().next()){
+                cantRegistros = conexion.getRs().getInt(1);
+            }
+            conexion.getPs().close();
+            conexion.getRs().close();
+            return cantRegistros;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return cantRegistros;
+    }
     
     
 

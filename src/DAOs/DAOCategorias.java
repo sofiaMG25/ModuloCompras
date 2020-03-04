@@ -10,5 +10,5 @@ import ClasesExtras.CRUDgenerico;
  * @author Manuel
  */
 public interface DAOCategorias extends CRUDgenerico<Categorias>{
-    
+    int contRegistros();
 }

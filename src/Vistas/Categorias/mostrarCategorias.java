@@ -25,9 +25,16 @@ public class mostrarCategorias extends javax.swing.JPanel {
 
     public mostrarCategorias() {
         initComponents();
+          leyenda.setVisible(false);
+          ContRegistro = new DAOCategoriasImp().contRegistros();
+          ContRegistro = Math.ceil((ContRegistro/10));
     }
 
     private Main mainPrincipal;
+    private double ContRegistro;
+    private int cambioPagina = 1;
+    
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,7 +45,7 @@ public class mostrarCategorias extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<String>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         mainMostrarLab = new javax.swing.JPanel();
         tablaMostrarCat = new javax.swing.JScrollPane();
         jTableMC = new javax.swing.JTable();
@@ -47,11 +54,17 @@ public class mostrarCategorias extends javax.swing.JPanel {
         cancelarMC = new javax.swing.JLabel();
         buscartxtMC = new javax.swing.JTextField();
         buscarMC = new javax.swing.JLabel();
+        opcionesMostrarEmp = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        segmentacion = new javax.swing.JLabel();
+        preview = new javax.swing.JButton();
+        next = new javax.swing.JButton();
+        leyenda = new javax.swing.JLabel();
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setBackground(new java.awt.Color(228, 225, 225));
-        setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Mostrar laboratorios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
+        setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Mostrar categorias", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
 
         mainMostrarLab.setBackground(new java.awt.Color(233, 231, 231));
 
@@ -104,20 +117,20 @@ public class mostrarCategorias extends javax.swing.JPanel {
         opcionesMostrarLabLayout.setHorizontalGroup(
             opcionesMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionesMostrarLabLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(37, 37, 37)
                 .addComponent(nuevaCat, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cancelarMC, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86))
+                .addGap(71, 71, 71))
         );
         opcionesMostrarLabLayout.setVerticalGroup(
             opcionesMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionesMostrarLabLayout.createSequentialGroup()
-                .addContainerGap(44, Short.MAX_VALUE)
+            .addGroup(opcionesMostrarLabLayout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
                 .addGroup(opcionesMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelarMC)
                     .addComponent(nuevaCat))
-                .addGap(35, 35, 35))
+                .addGap(19, 19, 19))
         );
 
         buscarMC.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
@@ -132,20 +145,97 @@ public class mostrarCategorias extends javax.swing.JPanel {
             }
         });
 
+        opcionesMostrarEmp.setBackground(java.awt.Color.lightGray);
+
+        jLabel1.setBackground(new java.awt.Color(255, 0, 51));
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel1.setText("Cambio pagina \"cada página contiene 10 registros.");
+
+        segmentacion.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+
+        preview.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        preview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/regreso.png"))); // NOI18N
+        preview.setText("Anterior");
+        preview.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                previewMouseClicked(evt);
+            }
+        });
+
+        next.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        next.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/flecha.png"))); // NOI18N
+        next.setText("Siguiente");
+        next.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nextMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout opcionesMostrarEmpLayout = new javax.swing.GroupLayout(opcionesMostrarEmp);
+        opcionesMostrarEmp.setLayout(opcionesMostrarEmpLayout);
+        opcionesMostrarEmpLayout.setHorizontalGroup(
+            opcionesMostrarEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(opcionesMostrarEmpLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(preview)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(segmentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(next)
+                .addGap(187, 187, 187))
+            .addGroup(opcionesMostrarEmpLayout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        opcionesMostrarEmpLayout.setVerticalGroup(
+            opcionesMostrarEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(opcionesMostrarEmpLayout.createSequentialGroup()
+                .addGroup(opcionesMostrarEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(next)
+                    .addGroup(opcionesMostrarEmpLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGroup(opcionesMostrarEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(opcionesMostrarEmpLayout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(preview))
+                            .addGroup(opcionesMostrarEmpLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(segmentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        leyenda.setBackground(new java.awt.Color(255, 0, 51));
+        leyenda.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        leyenda.setForeground(new java.awt.Color(255, 51, 51));
+        leyenda.setText("No se encuentran mas registros en paginas.");
+
         javax.swing.GroupLayout mainMostrarLabLayout = new javax.swing.GroupLayout(mainMostrarLab);
         mainMostrarLab.setLayout(mainMostrarLabLayout);
         mainMostrarLabLayout.setHorizontalGroup(
             mainMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainMostrarLabLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(mainMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tablaMostrarCat)
-                    .addComponent(opcionesMostrarLab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainMostrarLabLayout.createSequentialGroup()
-                        .addGap(0, 197, Short.MAX_VALUE)
-                        .addComponent(buscartxtMC, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(buscarMC, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(mainMostrarLabLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(mainMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tablaMostrarCat)
+                            .addComponent(opcionesMostrarLab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainMostrarLabLayout.createSequentialGroup()
+                                .addGap(0, 192, Short.MAX_VALUE)
+                                .addComponent(buscartxtMC, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(buscarMC, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(mainMostrarLabLayout.createSequentialGroup()
+                        .addGroup(mainMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(mainMostrarLabLayout.createSequentialGroup()
+                                .addGap(204, 204, 204)
+                                .addComponent(leyenda))
+                            .addGroup(mainMostrarLabLayout.createSequentialGroup()
+                                .addGap(84, 84, 84)
+                                .addComponent(opcionesMostrarEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         mainMostrarLabLayout.setVerticalGroup(
@@ -156,10 +246,14 @@ public class mostrarCategorias extends javax.swing.JPanel {
                     .addComponent(buscarMC)
                     .addComponent(buscartxtMC, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tablaMostrarCat, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tablaMostrarCat, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(opcionesMostrarEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(leyenda)
+                .addGap(18, 18, 18)
                 .addComponent(opcionesMostrarLab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -264,8 +358,34 @@ public class mostrarCategorias extends javax.swing.JPanel {
 
     }//GEN-LAST:event_buscarMCMouseClicked
 
+    private void nextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextMouseClicked
+        if (cambioPagina >= ContRegistro) {
+            next.setVisible(false);
+            leyenda.setVisible(true);
+        } else {
+            cambioPagina++;
+            preview.setVisible(true);
+            MostrarDatosCategorias();
+            leyenda.setVisible(false);
+        }
+    }//GEN-LAST:event_nextMouseClicked
+
+    private void previewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_previewMouseClicked
+        if (cambioPagina == 1) {
+            preview.setVisible(false);
+            leyenda.setVisible(true);
+        } else {
+            next.setVisible(true);
+            cambioPagina--;
+            MostrarDatosCategorias();
+            leyenda.setVisible(false);
+
+        }
+    }//GEN-LAST:event_previewMouseClicked
+
     public void MostrarDatosCategorias() {
-        LinkedList<Categorias> cat = new DAOCategoriasImp().show(1);
+        LinkedList<Categorias> cat = new DAOCategoriasImp().show(cambioPagina);
+        this.segmentacion.setText("Página "+cambioPagina +" de "+ (int)ContRegistro+ " Páginas en total");
         Object listaDatos[][] = new Object[cat.size()][3];
         for (int i = 0; i < cat.size(); i++) {
             listaDatos[i][0] = cat.get(i).getId();
@@ -276,6 +396,7 @@ public class mostrarCategorias extends javax.swing.JPanel {
         DefaultTableModel modelTable = new DefaultTableModel(
                 listaDatos,
                 new Object[]{"ID", "NOMBRE", "ESTATUS"}) {
+            @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
@@ -303,10 +424,16 @@ public class mostrarCategorias extends javax.swing.JPanel {
     private javax.swing.JTextField buscartxtMC;
     private javax.swing.JLabel cancelarMC;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JTable jTableMC;
+    private javax.swing.JLabel leyenda;
     private javax.swing.JPanel mainMostrarLab;
+    private javax.swing.JButton next;
     private javax.swing.JLabel nuevaCat;
+    private javax.swing.JPanel opcionesMostrarEmp;
     private javax.swing.JPanel opcionesMostrarLab;
+    private javax.swing.JButton preview;
+    private javax.swing.JLabel segmentacion;
     private javax.swing.JScrollPane tablaMostrarCat;
     // End of variables declaration//GEN-END:variables
 }

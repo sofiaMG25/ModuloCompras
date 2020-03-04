@@ -47,17 +47,17 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="nombreUL" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="estatusUL" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="origenUL" min="-2" max="-2" attributes="0"/>
+                  <Component id="siglas" min="-2" max="-2" attributes="0"/>
                   <Component id="idUL" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="idtxtUL" min="-2" pref="45" max="-2" attributes="0"/>
-                  <Component id="capacidadtxtUL" min="-2" pref="314" max="-2" attributes="0"/>
+                  <Component id="siglastxt" min="-2" pref="314" max="-2" attributes="0"/>
                   <Component id="nombretxtUL" min="-2" pref="314" max="-2" attributes="0"/>
                   <Component id="estatusBox" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="208" max="32767" attributes="0"/>
+              <EmptySpace pref="237" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -76,8 +76,8 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="capacidadtxtUL" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                  <Component id="origenUL" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="siglastxt" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                  <Component id="siglas" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -115,12 +115,12 @@
         <Property name="text" type="java.lang.String" value="NOMBRE:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="origenUL">
+    <Component class="javax.swing.JLabel" name="siglas">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="CAPACIDAD:"/>
+        <Property name="text" type="java.lang.String" value="SIGLAS:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="estatusUL">
@@ -131,7 +131,7 @@
         <Property name="text" type="java.lang.String" value="ESTATUS:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="capacidadtxtUL">
+    <Component class="javax.swing.JTextField" name="siglastxt">
     </Component>
     <Component class="javax.swing.JComboBox" name="estatusBox">
       <Properties>

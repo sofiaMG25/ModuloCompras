@@ -45,7 +45,7 @@
                   <Group type="102" attributes="0">
                       <Component id="unidadEmp" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
+                      <Component id="comboxUnidadMed" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -79,7 +79,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="unidadEmp" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="comboxUnidadMed" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="120" max="32767" attributes="0"/>
               <Component id="opcionesAEmp" min="-2" max="-2" attributes="0"/>
@@ -213,7 +213,7 @@
         <Property name="text" type="java.lang.String" value="UNIDAD DE MEDIDA:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox1">
+    <Component class="javax.swing.JComboBox" name="comboxUnidadMed">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="14" style="1"/>

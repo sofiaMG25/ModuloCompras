@@ -253,6 +253,7 @@ public class modificarEmpaque extends javax.swing.JPanel {
                 String unidad = this.JCBoxunidadUEmp.getSelectedItem().toString();
                 //Guardar los datos de laboratorio
                 guardarEmp.upadate(new Empaques(id, nombre, Float.parseFloat(capacidad), estatus, unidad));
+                limpiarVariables();
             }
 
         } catch (Exception e) {
@@ -262,6 +263,12 @@ public class modificarEmpaque extends javax.swing.JPanel {
 
     }//GEN-LAST:event_modificarUEmpMouseClicked
 
+    private void limpiarVariables(){
+        nombretxtEmp.setText("");
+        capacidadtxtEmp.setText("");
+        JCBoxunidadUEmp.setSelectedIndex(0);
+        jCBoxestatusUEmp.setSelectedIndex(0);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> JCBoxunidadUEmp;

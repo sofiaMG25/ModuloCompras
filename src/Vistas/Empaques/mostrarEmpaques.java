@@ -6,6 +6,7 @@
 package Vistas.Empaques;
 
 import ClasesExtras.CRUDgenerico;
+import DAOs.DAOEmpaques;
 import DAOs.DAOEmpaquesImp;
 import DAOs.Empaques;
 import MainPrincipal.Main;
@@ -25,8 +26,14 @@ public class mostrarEmpaques extends javax.swing.JPanel {
      */
     public mostrarEmpaques() {
         initComponents();
+        ContRegistro = new DAOEmpaquesImp().contRegistro();
+        ContRegistro = Math.ceil((ContRegistro/10));
+        leyenda.setVisible(false);
     }
-    
+
+    private double ContRegistro;
+    private int cambioPagina = 1;
+
     public void activeEventListenerMostrarEmp() {
         MostrarDatosEmpaque();
     }
@@ -38,6 +45,7 @@ public class mostrarEmpaques extends javax.swing.JPanel {
     public void MostrarDatosEmpaque() {
         LinkedList<Empaques> emp = new DAOEmpaquesImp().show(1);
         Object listaDatos[][] = new Object[emp.size()][5];
+         this.segmentacion.setText("Página "+cambioPagina +" de "+ (int)ContRegistro+ " Páginas en total");
         for (int i = 0; i < emp.size(); i++) {
             listaDatos[i][0] = emp.get(i).getIdEmpaque();
             listaDatos[i][1] = emp.get(i).getNombre();
@@ -49,10 +57,10 @@ public class mostrarEmpaques extends javax.swing.JPanel {
         DefaultTableModel modelTable = new DefaultTableModel(
                 listaDatos,
                 new Object[]{"ID", "NOMBRE", "CAPACIDAD", "ESTATUS", "UNIDAD DE MEDIDA"}) {
-                    public boolean isCellEditable(int row, int column) {
-                        return false;
-                    }
-                };
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
 
         this.jTableMEmp.setModel(modelTable);
         this.jTableMEmp.getColumnModel().getColumn(0).setMinWidth(10);
@@ -89,6 +97,12 @@ public class mostrarEmpaques extends javax.swing.JPanel {
         opcionesMostrarEmp = new javax.swing.JPanel();
         nuevoMEmp = new javax.swing.JLabel();
         cancelarMEmp = new javax.swing.JLabel();
+        opcionesMostrarLab3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        segmentacion = new javax.swing.JLabel();
+        preview = new javax.swing.JButton();
+        next = new javax.swing.JButton();
+        leyenda = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(233, 231, 231));
         setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Mostrar empaques", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
@@ -156,21 +170,83 @@ public class mostrarEmpaques extends javax.swing.JPanel {
         opcionesMostrarEmpLayout.setHorizontalGroup(
             opcionesMostrarEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionesMostrarEmpLayout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addGap(37, 37, 37)
                 .addComponent(nuevoMEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cancelarMEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70))
+                .addGap(41, 41, 41))
         );
         opcionesMostrarEmpLayout.setVerticalGroup(
             opcionesMostrarEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionesMostrarEmpLayout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
+            .addGroup(opcionesMostrarEmpLayout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(opcionesMostrarEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelarMEmp)
-                    .addComponent(nuevoMEmp))
-                .addGap(35, 35, 35))
+                    .addComponent(nuevoMEmp)
+                    .addComponent(cancelarMEmp))
+                .addGap(21, 21, 21))
         );
+
+        opcionesMostrarLab3.setBackground(java.awt.Color.lightGray);
+
+        jLabel1.setBackground(new java.awt.Color(255, 0, 51));
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel1.setText("Cambio pagina \"cada página contiene 10 registros.");
+
+        segmentacion.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+
+        preview.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        preview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/regreso.png"))); // NOI18N
+        preview.setText("Anterior");
+        preview.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                previewMouseClicked(evt);
+            }
+        });
+
+        next.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        next.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/flecha.png"))); // NOI18N
+        next.setText("Siguiente");
+        next.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nextMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout opcionesMostrarLab3Layout = new javax.swing.GroupLayout(opcionesMostrarLab3);
+        opcionesMostrarLab3.setLayout(opcionesMostrarLab3Layout);
+        opcionesMostrarLab3Layout.setHorizontalGroup(
+            opcionesMostrarLab3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(opcionesMostrarLab3Layout.createSequentialGroup()
+                .addGroup(opcionesMostrarLab3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(opcionesMostrarLab3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(preview)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(segmentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(next))
+                    .addGroup(opcionesMostrarLab3Layout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(jLabel1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        opcionesMostrarLab3Layout.setVerticalGroup(
+            opcionesMostrarLab3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(opcionesMostrarLab3Layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(opcionesMostrarLab3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(preview)
+                    .addComponent(segmentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(next))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        leyenda.setBackground(new java.awt.Color(255, 0, 51));
+        leyenda.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        leyenda.setForeground(new java.awt.Color(255, 51, 51));
+        leyenda.setText("No se encuentran mas registros en paginas.");
 
         javax.swing.GroupLayout mainMostrarEmpLayout = new javax.swing.GroupLayout(mainMostrarEmp);
         mainMostrarEmp.setLayout(mainMostrarEmpLayout);
@@ -187,6 +263,14 @@ public class mostrarEmpaques extends javax.swing.JPanel {
                     .addComponent(opcionesMostrarEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(mainMostrarEmpLayout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(leyenda)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainMostrarEmpLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(opcionesMostrarLab3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(98, 98, 98))
         );
         mainMostrarEmpLayout.setVerticalGroup(
             mainMostrarEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,8 +279,12 @@ public class mostrarEmpaques extends javax.swing.JPanel {
                     .addComponent(buscarMEmp)
                     .addComponent(buscartxtMEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(opcionesMostrarLab3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
+                .addComponent(leyenda)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(opcionesMostrarEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -212,10 +300,7 @@ public class mostrarEmpaques extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(mainMostrarEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(mainMostrarEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -228,23 +313,23 @@ public class mostrarEmpaques extends javax.swing.JPanel {
             nuevoEmp.setMainPrincipal(mainPrincipal);
             mainPrincipal.getworkSpace().add(nuevoEmp, BorderLayout.CENTER);
             mainPrincipal.getworkSpace().revalidate();
-            mainPrincipal.getworkSpace().repaint                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ();
-        }else{
-            JOptionPane.showMessageDialog(this,"Unidad no disponibles, registre por lo menos una "
-                    + "unidad de medida en el sistema","Error",JOptionPane.ERROR_MESSAGE);
-            
+            mainPrincipal.getworkSpace().repaint();
+        } else {
+            JOptionPane.showMessageDialog(this, "Unidad no disponibles, registre por lo menos una "
+                    + "unidad de medida en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
+
         }
     }//GEN-LAST:event_nuevoMEmpMouseClicked
 
     private void cancelarMEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarMEmpMouseClicked
-       mainPrincipal.getworkSpace().removeAll();
+        mainPrincipal.getworkSpace().removeAll();
         mainPrincipal.getworkSpace().revalidate();
         mainPrincipal.getworkSpace().repaint();
     }//GEN-LAST:event_cancelarMEmpMouseClicked
 
     private void jTableMEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMEmpMouseClicked
         int row;
-        row = jTableMEmp.getSelectedRow(); 
+        row = jTableMEmp.getSelectedRow();
         //Verificamos que el evento este en el rango de la tabla.
         if (row > -1 && row <= jTableMEmp.getSelectedRow()) {
             //creamos la ventana modificar
@@ -260,10 +345,9 @@ public class mostrarEmpaques extends javax.swing.JPanel {
             char estatus = String.valueOf(this.jTableMEmp.getValueAt(row, 3)).charAt(0);
             String idUnidad = String.valueOf(this.jTableMEmp.getValueAt(row, 4));
             //Ingresan los datos de la tabla a la interfaz Modificar Laboratorio
-            modificarEmpaque.ObtenerLaboratoriModificar(new Empaques
-            (id, nombre,Float.parseFloat(capacidad), estatus, idUnidad));
-            
-            this.mainPrincipal.getworkSpace().add(modificarEmpaque,BorderLayout.CENTER);
+            modificarEmpaque.ObtenerLaboratoriModificar(new Empaques(id, nombre, Float.parseFloat(capacidad), estatus, idUnidad));
+
+            this.mainPrincipal.getworkSpace().add(modificarEmpaque, BorderLayout.CENTER);
             this.mainPrincipal.getworkSpace().revalidate();
             this.mainPrincipal.getworkSpace().repaint();
         }
@@ -271,6 +355,7 @@ public class mostrarEmpaques extends javax.swing.JPanel {
 
     private void buscarMEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscarMEmpMouseClicked
         LinkedList<Empaques> lab = new DAOEmpaquesImp().busquedaPorNombre(buscartxtMEmp.getText());
+        this.segmentacion.setText("Página "+cambioPagina +" de "+ (int)ContRegistro+ " Páginas en total");
         Object listaDatos[][] = new Object[lab.size()][5];
         for (int i = 0; i < lab.size(); i++) {
             listaDatos[i][0] = lab.get(i).getIdEmpaque();
@@ -300,19 +385,54 @@ public class mostrarEmpaques extends javax.swing.JPanel {
 
         this.jTableMEmp.getColumnModel().getColumn(3).setMinWidth(10);
         this.jTableMEmp.getColumnModel().getColumn(3).setMaxWidth(200);
-        
+
     }//GEN-LAST:event_buscarMEmpMouseClicked
+
+    private void previewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_previewMouseClicked
+        if (cambioPagina == 1) {
+            preview.setVisible(false);
+            next.setVisible(true);
+            leyenda.setVisible(true);
+            MostrarDatosEmpaque();
+        } else {
+            next.setVisible(true);
+            cambioPagina--;
+            MostrarDatosEmpaque();
+            leyenda.setVisible(false);
+
+        }
+    }//GEN-LAST:event_previewMouseClicked
+
+    private void nextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextMouseClicked
+        if (cambioPagina >= ContRegistro) {
+            next.setVisible(false);
+            preview.setVisible(true);
+            leyenda.setVisible(true);
+            MostrarDatosEmpaque();
+        } else {
+            cambioPagina++;
+            preview.setVisible(true);
+            MostrarDatosEmpaque();
+            leyenda.setVisible(false);
+        }
+    }//GEN-LAST:event_nextMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel buscarMEmp;
     private javax.swing.JTextField buscartxtMEmp;
     private javax.swing.JLabel cancelarMEmp;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableMEmp;
+    private javax.swing.JLabel leyenda;
     private javax.swing.JPanel mainMostrarEmp;
+    private javax.swing.JButton next;
     private javax.swing.JLabel nuevoMEmp;
     private javax.swing.JPanel opcionesMostrarEmp;
+    private javax.swing.JPanel opcionesMostrarLab3;
+    private javax.swing.JButton preview;
+    private javax.swing.JLabel segmentacion;
     // End of variables declaration//GEN-END:variables
     private Main mainPrincipal;
 

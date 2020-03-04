@@ -45,13 +45,13 @@ public class modificarCategorias extends javax.swing.JPanel {
         idUL = new javax.swing.JLabel();
         nombreUL = new javax.swing.JLabel();
         estatusUL = new javax.swing.JLabel();
-        estatusBox = new javax.swing.JComboBox<String>();
+        estatusBox = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         modificarUL = new javax.swing.JLabel();
         cancelarUL = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(228, 225, 225));
-        setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Modicar Laboratorio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
+        setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Modicar categoria", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
 
         idtxtUL.setEnabled(false);
 
@@ -65,7 +65,7 @@ public class modificarCategorias extends javax.swing.JPanel {
         estatusUL.setText("ESTATUS:");
 
         estatusBox.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        estatusBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONE UNA OPCIÓN", "ACTIVO", "INACTIVO" }));
+        estatusBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UNA OPCIÓN", "ACTIVO", "INACTIVO" }));
 
         jPanel1.setBackground(new java.awt.Color(48, 45, 45));
 
@@ -171,6 +171,7 @@ public class modificarCategorias extends javax.swing.JPanel {
             char estatus = String.valueOf(this.estatusBox.getSelectedItem()).charAt(0);
             //Guardar los datos de laboratorio
             guardarCat.upadate(new Categorias(id, nombre, estatus));
+            limpiarVariables();
         }
     }//GEN-LAST:event_modificarULMouseClicked
     /**
@@ -184,6 +185,11 @@ public class modificarCategorias extends javax.swing.JPanel {
         } else {
             this.estatusBox.setSelectedIndex(2);
         }
+    }
+    
+    private void limpiarVariables(){
+        nombretxtUL.setText("");
+        estatusBox.setSelectedIndex(0);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

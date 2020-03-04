@@ -41,10 +41,10 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
         nombretxtUL = new javax.swing.JTextField();
         idUL = new javax.swing.JLabel();
         nombreUL = new javax.swing.JLabel();
-        origenUL = new javax.swing.JLabel();
+        siglas = new javax.swing.JLabel();
         estatusUL = new javax.swing.JLabel();
-        capacidadtxtUL = new javax.swing.JTextField();
-        estatusBox = new javax.swing.JComboBox<String>();
+        siglastxt = new javax.swing.JTextField();
+        estatusBox = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         modificarUL = new javax.swing.JLabel();
         cancelarUL = new javax.swing.JLabel();
@@ -60,14 +60,14 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
         nombreUL.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         nombreUL.setText("NOMBRE:");
 
-        origenUL.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        origenUL.setText("CAPACIDAD:");
+        siglas.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        siglas.setText("SIGLAS:");
 
         estatusUL.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         estatusUL.setText("ESTATUS:");
 
         estatusBox.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        estatusBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONE UNA OPCIÓN", "ACTIVO", "INACTIVO" }));
+        estatusBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UNA OPCIÓN", "ACTIVO", "INACTIVO" }));
 
         jPanel1.setBackground(new java.awt.Color(48, 45, 45));
 
@@ -124,15 +124,15 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nombreUL)
                     .addComponent(estatusUL)
-                    .addComponent(origenUL)
+                    .addComponent(siglas)
                     .addComponent(idUL))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(idtxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(capacidadtxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(siglastxt, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nombretxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(estatusBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(208, Short.MAX_VALUE))
+                .addContainerGap(237, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,8 +147,8 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
                     .addComponent(nombretxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(capacidadtxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(origenUL))
+                    .addComponent(siglastxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(siglas))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(estatusUL)
@@ -165,9 +165,9 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
         if (nombretxtUL.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Ingresa un nombre valido", "Error", JOptionPane.WARNING_MESSAGE);
             nombretxtUL.requestFocus();
-        } else if (capacidadtxtUL.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Ingresa una capasidad validad", "Error", JOptionPane.WARNING_MESSAGE);
-            capacidadtxtUL.requestFocus();
+        } else if (siglastxt.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Ingresa las siglas", "Error", JOptionPane.WARNING_MESSAGE);
+            siglastxt.requestFocus();
         } else if (estatusBox.getSelectedIndex() <= 0) {
             JOptionPane.showMessageDialog(null, "Seleccione una opción ", "Error", JOptionPane.WARNING_MESSAGE);
         } else {
@@ -176,10 +176,11 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
                 //Datos obtenidos de los campos 
                 int id = Integer.parseInt(this.idtxtUL.getText());
                 String nombre = this.nombretxtUL.getText();
-                String capacidad = this.capacidadtxtUL.getText();
+                String capacidad = this.siglastxt.getText();
                 char estatus = String.valueOf(this.estatusBox.getSelectedItem()).charAt(0);
                 //Guardar los datos de laboratorio
                 guardarUni.upadate(new UnidadMedida(id, nombre, capacidad, estatus));
+                limpiarVariables();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
             }
@@ -192,17 +193,22 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
     public void ObtenerLaboratoriModificar(UnidadMedida uni) {
         this.idtxtUL.setText(String.valueOf(uni.getId()));
         this.nombretxtUL.setText(uni.getNombre());
-        this.capacidadtxtUL.setText(String.valueOf(uni.getSiglas()));
+        this.siglastxt.setText(String.valueOf(uni.getSiglas()));
         if (uni.getEstatus() == 'A') {
             this.estatusBox.setSelectedIndex(1);
         } else {
             this.estatusBox.setSelectedIndex(2);
         }
     }
+    
+    private void limpiarVariables(){
+        nombretxtUL.setText("");
+        siglastxt.setText("");
+        estatusBox.setSelectedIndex(0);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel cancelarUL;
-    private javax.swing.JTextField capacidadtxtUL;
     private javax.swing.JComboBox<String> estatusBox;
     private javax.swing.JLabel estatusUL;
     private javax.swing.JLabel idUL;
@@ -211,6 +217,7 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
     private javax.swing.JLabel modificarUL;
     private javax.swing.JLabel nombreUL;
     private javax.swing.JTextField nombretxtUL;
-    private javax.swing.JLabel origenUL;
+    private javax.swing.JLabel siglas;
+    private javax.swing.JTextField siglastxt;
     // End of variables declaration//GEN-END:variables
 }

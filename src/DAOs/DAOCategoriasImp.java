@@ -70,8 +70,9 @@ public class DAOCategoriasImp implements DAOCategorias{
     public LinkedList<Categorias> show(int pagina) {
         LinkedList<Categorias> categorias;
         try {
-            String sql = "SELECT * FROM Categorias";
+            String sql = "select * from sf_paginarRegistroseCAT (?)";
             cn.setPs(cn.getCn().prepareCall(sql));
+            cn.getPs().setInt(1, pagina);
             cn.setRs(cn.getPs().executeQuery());
             categorias = new LinkedList<Categorias>();
             char estatus;
@@ -109,5 +110,24 @@ public class DAOCategoriasImp implements DAOCategorias{
             return null;
         }
         return categorias;
+    }
+
+    @Override
+    public int contRegistros() {
+       int cantRegistros = 0;
+        try {
+            String sql = "select count(idCategorias) as registros from dbo.Categorias ";
+            cn.setPs(cn.getCn().prepareCall(sql));
+            cn.setRs(cn.getPs().executeQuery());
+            while(cn.getRs().next()){
+                cantRegistros = cn.getRs().getInt(1);
+            }
+            cn.getPs().close();
+            cn.getRs().close();
+            return cantRegistros;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return cantRegistros;
     }
 }
