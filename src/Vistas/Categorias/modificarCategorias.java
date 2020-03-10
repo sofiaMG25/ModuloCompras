@@ -10,6 +10,7 @@ import DAOs.Categorias;
 import DAOs.DAOCategorias;
 import DAOs.DAOCategoriasImp;
 import MainPrincipal.Main;
+import java.awt.BorderLayout;
 import javax.swing.JOptionPane;
 
 /**
@@ -87,6 +88,11 @@ public class modificarCategorias extends javax.swing.JPanel {
         cancelarUL.setText("CANCELAR");
         cancelarUL.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
         cancelarUL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cancelarUL.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelarULMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -174,6 +180,28 @@ public class modificarCategorias extends javax.swing.JPanel {
             limpiarVariables();
         }
     }//GEN-LAST:event_modificarULMouseClicked
+
+    private void cancelarULMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarULMouseClicked
+     
+         //Quitas el jpanel principal que esta en el centro
+        mainPrincipal.getworkSpace().removeAll();
+        //Instaciamos el nuevo jpanel a reemplazar
+        mostrarCategorias mc = new mostrarCategorias();
+        //Redimensionamos el jpanel nuevo
+        mc.setSize(mainPrincipal.getworkSpace().getSize());
+        //Hacemos visible
+        mc.setVisible(true);
+        //Seleccionamos la función para mostrar el jpanel
+        mc.setMostrarCategorias(mainPrincipal);
+        //Cargamos el jpanel
+        mc.MostrarDatosCategorias();
+        //Agregamos el jpanel y centramos
+        mainPrincipal.getworkSpace().add(mc, BorderLayout.CENTER);
+        //Validamos el jpanel
+        mainPrincipal.getworkSpace().revalidate();
+        //Dibujamos el jpanel
+        mainPrincipal.getworkSpace().repaint();
+    }//GEN-LAST:event_cancelarULMouseClicked
     /**
      * Método que funciona para abstraer los datos de la categoria
      */

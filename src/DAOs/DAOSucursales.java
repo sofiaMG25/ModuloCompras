@@ -6,5 +6,6 @@ import java.util.LinkedList;
 
 public interface DAOSucursales extends CRUDgenerico<Sucursales>{
     int contRegistros();
-    LinkedList<String> obtenerCiudades();
+    LinkedList<String> obtenerCiudades();;
+    LinkedList<Sucursales> consultaInd(String nombre);
 }

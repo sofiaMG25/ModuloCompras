@@ -77,7 +77,7 @@ public class DAOLaboratoriosImp implements DAOLaboratorios {
     public LinkedList<Laboratorios> show(int pagina) {
         LinkedList<Laboratorios> laboratorios;
         try {
-            String sql = "SELECT * FROM sf_paginarRegistros (?) ";
+            String sql = "SELECT * FROM sf_paginarRegistros (?)";
             conexion.setPs(conexion.getCn().prepareCall(sql));
             conexion.getPs().setInt(1, pagina);
             conexion.setRs(conexion.getPs().executeQuery());

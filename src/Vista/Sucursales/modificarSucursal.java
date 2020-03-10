@@ -3,26 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vistas.UnidadMedida;
+package Vista.Sucursales;
 
-import ClasesExtras.CRUDgenerico;
+
+import DAOs.Sucursales;
 import MainPrincipal.Main;
-import DAOs.*;
-import java.awt.BorderLayout;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author 52351
  */
-public class modificarUnidadMedida extends javax.swing.JPanel {
+public class modificarSucursal extends javax.swing.JPanel {
 
     /**
      * Creates new form modificarLaboratorio
      */
-    public modificarUnidadMedida() {
+    public modificarSucursal() {
         initComponents();
     }
+
     private Main mainPrincipal;
 
     public void setMainPrincipal(Main main) {
@@ -42,16 +42,14 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
         nombretxtUL = new javax.swing.JTextField();
         idUL = new javax.swing.JLabel();
         nombreUL = new javax.swing.JLabel();
-        siglas = new javax.swing.JLabel();
         estatusUL = new javax.swing.JLabel();
-        siglastxt = new javax.swing.JTextField();
         estatusBox = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         modificarUL = new javax.swing.JLabel();
         cancelarUL = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(228, 225, 225));
-        setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Modicar Laboratorio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
+        setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Modicar categoria", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
 
         idtxtUL.setEnabled(false);
 
@@ -60,9 +58,6 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
 
         nombreUL.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         nombreUL.setText("NOMBRE:");
-
-        siglas.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        siglas.setText("SIGLAS:");
 
         estatusUL.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         estatusUL.setText("ESTATUS:");
@@ -95,31 +90,26 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
                 cancelarULMouseClicked(evt);
             }
         });
-        cancelarUL.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                cancelarULKeyPressed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(62, 62, 62)
+                .addGap(54, 54, 54)
                 .addComponent(modificarUL, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cancelarUL, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57))
+                .addGap(61, 61, 61))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(modificarUL)
-                    .addComponent(cancelarUL))
-                .addContainerGap())
+                    .addComponent(cancelarUL)
+                    .addComponent(modificarUL))
+                .addGap(45, 45, 45))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -133,17 +123,19 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(126, 126, 126)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nombreUL)
-                    .addComponent(estatusUL)
-                    .addComponent(siglas)
-                    .addComponent(idUL))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(idtxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(siglastxt, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nombretxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(estatusBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(237, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(idUL)
+                        .addGap(78, 78, 78)
+                        .addComponent(idtxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(nombreUL)
+                            .addComponent(estatusUL))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nombretxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(estatusBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(225, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,83 +148,46 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(nombreUL)
                     .addComponent(nombretxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(siglastxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(siglas))
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(estatusUL)
                     .addComponent(estatusBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        getAccessibleContext().setAccessibleName("Modificar Unidad");
+        getAccessibleContext().setAccessibleName("Modificar Categoria ");
     }// </editor-fold>//GEN-END:initComponents
 
     private void modificarULMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarULMouseClicked
         if (nombretxtUL.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Ingresa un nombre valido", "Error", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Ingrese un nombre valido", "Error", JOptionPane.ERROR_MESSAGE);
             nombretxtUL.requestFocus();
-        } else if (siglastxt.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Ingresa las siglas", "Error", JOptionPane.WARNING_MESSAGE);
-            siglastxt.requestFocus();
         } else if (estatusBox.getSelectedIndex() <= 0) {
-            JOptionPane.showMessageDialog(null, "Seleccione una opción ", "Error", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Seleccione una opción valida", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            try {
-                CRUDgenerico guardarUni = new DAOUnidadImp();
-                //Datos obtenidos de los campos 
-                int id = Integer.parseInt(this.idtxtUL.getText());
-                String nombre = this.nombretxtUL.getText();
-                String capacidad = this.siglastxt.getText();
-                char estatus = String.valueOf(this.estatusBox.getSelectedItem()).charAt(0);
-                //Guardar los datos de laboratorio
-                guardarUni.upadate(new UnidadMedida(id, nombre, capacidad, estatus));
-                limpiarVariables();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
-            }
-
+            //DAOCategoriasImp guardarCat = new DAOCategoriasImp();
+            //Datos obtenidos de los campos 
+            int id = Integer.parseInt(this.idtxtUL.getText());
+            String nombre = this.nombretxtUL.getText();
+            char estatus = String.valueOf(this.estatusBox.getSelectedItem()).charAt(0);
+            //Guardar los datos de laboratorio
+            //guardarCat.upadate(new Categorias(id, nombre, estatus));
+            limpiarVariables();
         }
     }//GEN-LAST:event_modificarULMouseClicked
 
-    private void cancelarULKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cancelarULKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cancelarULKeyPressed
-
     private void cancelarULMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarULMouseClicked
-        //Quitas el jpanel principal que esta en el centro
-        mainPrincipal.getworkSpace().removeAll();
-        //Instaciam os el nuevo jpanel a reemplazar
-        mostrarUnidadMedida mum = new mostrarUnidadMedida();
-        //Redimensionamos el jpanel nuevo
-        mum.setSize(mainPrincipal.getworkSpace().getSize());
-        //Hacemos visible
-        mum.setVisible(true);
-        //Seleccionamos la función para mostrar el jpanel
-        mum.setMostrarUnidadMedida(mainPrincipal);
-        //Cargamos el jpanel
-        mum.MostrarDatosUnidad();
-        //Agregamos el jpanel y centramos
-        mainPrincipal.getworkSpace().add(mum, BorderLayout.CENTER);
-        //Validamos el jpanel
-        mainPrincipal.getworkSpace().revalidate();
-        //Dibujamos el jpanel
-        mainPrincipal.getworkSpace().repaint();
-        
-        
+        // TODO add your handling code here:
     }//GEN-LAST:event_cancelarULMouseClicked
     /**
-     * Método que funciona para abstraer los datos del laboratotio
+     * Método que funciona para abstraer los datos de la categoria
      */
-    public void ObtenerLaboratoriModificar(UnidadMedida uni) {
-        this.idtxtUL.setText(String.valueOf(uni.getId()));
-        this.nombretxtUL.setText(uni.getNombre());
-        this.siglastxt.setText(String.valueOf(uni.getSiglas()));
-        if (uni.getEstatus() == 'A') {
+    public void ObtenerLaboratoriModificar(Sucursales cat) {
+     //   this.idtxtUL.setText(String.valueOf(cat.getId()));
+        this.nombretxtUL.setText(cat.getNombre());
+        if (cat.getEstatus() == 'A') {
             this.estatusBox.setSelectedIndex(1);
         } else {
             this.estatusBox.setSelectedIndex(2);
@@ -241,7 +196,6 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
     
     private void limpiarVariables(){
         nombretxtUL.setText("");
-        siglastxt.setText("");
         estatusBox.setSelectedIndex(0);
     }
 
@@ -255,7 +209,5 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
     private javax.swing.JLabel modificarUL;
     private javax.swing.JLabel nombreUL;
     private javax.swing.JTextField nombretxtUL;
-    private javax.swing.JLabel siglas;
-    private javax.swing.JTextField siglastxt;
     // End of variables declaration//GEN-END:variables
 }

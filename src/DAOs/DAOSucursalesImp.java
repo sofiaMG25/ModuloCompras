@@ -8,8 +8,6 @@ package DAOs;
 import ConexionSQLServer.ConexionSQL;
 import java.sql.SQLException;
 import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -110,6 +108,32 @@ public class DAOSucursalesImp implements DAOSucursales {
             System.out.println(ex.getMessage());
         }
        return ciudades;
+    }
+
+    @Override
+    public LinkedList<Sucursales> consultaInd(String nombre) {
+        LinkedList<Sucursales> sucursales;
+        try {
+            String sql = "{call sp_busquedaPorNombreSucursal (?)}";
+            cn.setPs(cn.getCn().prepareCall(sql));
+            cn.getPs().setString(1, nombre);
+            cn.setRs(cn.getPs().executeQuery());
+            sucursales = new LinkedList<Sucursales>();
+            char estatus;
+            while(cn.getRs().next()){
+                estatus = cn.getRs().getString("estatus").charAt(8);
+                sucursales.add(new Sucursales(cn.getRs().getInt(1), 
+                        cn.getRs().getString(2), cn.getRs().getString(3), cn.getRs().getString(4),
+                        cn.getRs().getString(5),cn.getRs().getString(6), cn.getRs().getFloat(7), 
+                        estatus, cn.getRs().getString(9)));
+            }
+            cn.getPs().close();
+            cn.getRs().close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+        return sucursales;
     }
 
 }

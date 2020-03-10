@@ -23,16 +23,14 @@ public class mostrarSucursales extends javax.swing.JPanel {
 
     public mostrarSucursales() {
         initComponents();
-          leyenda.setVisible(false);
-          ContRegistro = new DAOSucursalesImp().contRegistros();
-          ContRegistro = Math.ceil((ContRegistro/10));
+        leyenda.setVisible(false);
+        ContRegistro = new DAOSucursalesImp().contRegistros();
+        ContRegistro = Math.ceil((ContRegistro / 10));
     }
 
     private Main mainPrincipal;
     private double ContRegistro;
     private int cambioPagina = 1;
-    
-  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -148,7 +146,7 @@ public class mostrarSucursales extends javax.swing.JPanel {
         jLabel1.setBackground(new java.awt.Color(255, 0, 51));
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel1.setText("Cambio pagina \"cada página contiene 10 registros.");
+        jLabel1.setText("Cambio pagina cada página contiene 10 registros.");
 
         segmentacion.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
 
@@ -280,7 +278,7 @@ public class mostrarSucursales extends javax.swing.JPanel {
         nuevaSuc.setSize(mainPrincipal.getworkSpace().getSize());
         nuevaSuc.setVisible(true);
         nuevaSuc.setMain(mainPrincipal);
-        
+
         mainPrincipal.getworkSpace().add(nuevaSuc, BorderLayout.CENTER);
         mainPrincipal.getworkSpace().revalidate();
         mainPrincipal.getworkSpace().repaint();
@@ -325,31 +323,39 @@ public class mostrarSucursales extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Debes escribir algo para filtrar...",
                     "Mensaje", JOptionPane.WARNING_MESSAGE);
         } else {
-            LinkedList<Categorias> cat = new DAOCategoriasImp().consultaInd(buscartxtMS.getText());
-            Object listaDatos[][] = new Object[cat.size()][3];
-            for (int i = 0; i < cat.size(); i++) {
-                listaDatos[i][0] = cat.get(i).getId();
-                listaDatos[i][1] = cat.get(i).getNombre();
-                listaDatos[i][2] = cat.get(i).getEstatus();
+            LinkedList<Sucursales> suc = new DAOSucursalesImp().consultaInd(buscartxtMS.getText());
+            Object listaDatos[][] = new Object[suc.size()][3];
+            for (int i = 0; i < suc.size(); i++) {
+                listaDatos[i][0] = suc.get(i).getIdSucursal();
+                listaDatos[i][1] = suc.get(i).getNombre();
+                listaDatos[i][2] = suc.get(i).getTelefono();
+                listaDatos[i][3] = suc.get(i).getDireccion();
+                listaDatos[i][4] = suc.get(i).getColonia();
+                listaDatos[i][5] = suc.get(i).getCodPostal();
+                listaDatos[i][6] = suc.get(i).getPresupuesto();
+                listaDatos[i][7] = suc.get(i).getEstatus();
+                listaDatos[i][8] = suc.get(i).getCiudad();
             }
 
             DefaultTableModel modelTable = new DefaultTableModel(
                     listaDatos,
-                    new Object[]{"ID", "NOMBRE", "ESTATUS"}) {
+                    new Object[]{"ID", "NOMBRE", "TELÉFONO", "DIRECCIÓN", "COLONIA", "CP", "PRESUPUESTO", "ESTATUS", "CIUDAD"}) {
+                @Override
                 public boolean isCellEditable(int row, int column) {
                     return false;
                 }
             };
 
             this.jTableMS.setModel(modelTable);
-            this.jTableMS.getColumnModel().getColumn(0).setMinWidth(10);
-            this.jTableMS.getColumnModel().getColumn(0).setMaxWidth(50);
-
-            this.jTableMS.getColumnModel().getColumn(1).setMinWidth(50);
-            this.jTableMS.getColumnModel().getColumn(1).setMaxWidth(350);
-
-            this.jTableMS.getColumnModel().getColumn(2).setMinWidth(50);
-            this.jTableMS.getColumnModel().getColumn(2).setMaxWidth(350);
+            this.jTableMS.getColumnModel().getColumn(0).setMaxWidth(30);
+            this.jTableMS.getColumnModel().getColumn(1).setMaxWidth(300);
+            this.jTableMS.getColumnModel().getColumn(2).setMaxWidth(100);
+            this.jTableMS.getColumnModel().getColumn(3).setMaxWidth(400);
+            this.jTableMS.getColumnModel().getColumn(4).setMaxWidth(100);
+            this.jTableMS.getColumnModel().getColumn(5).setMaxWidth(70);
+            this.jTableMS.getColumnModel().getColumn(6).setMaxWidth(130);
+            this.jTableMS.getColumnModel().getColumn(7).setMaxWidth(100);
+            this.jTableMS.getColumnModel().getColumn(8).setMaxWidth(100);
 
         }
 
@@ -382,46 +388,46 @@ public class mostrarSucursales extends javax.swing.JPanel {
 
     public void MostrarDatosSucursal() {
         LinkedList<Sucursales> suc = new DAOSucursalesImp().show(cambioPagina);
-        if(ContRegistro <= 0){
+        if (ContRegistro <= 0) {
             next.setVisible(false);
             preview.setVisible(false);
-            return; 
-        }else{
+            return;
+        } else {
             next.setVisible(true);
             preview.setVisible(true);
-        this.segmentacion.setText("Página "+cambioPagina +" de "+ (int)ContRegistro+ " Páginas en total");
-        Object listaDatos[][] = new Object[suc.size()][9];
-        for (int i = 0; i < suc.size(); i++) {
-            listaDatos[i][0] = suc.get(i).getIdSucursal();
-            listaDatos[i][1] = suc.get(i).getNombre();
-            listaDatos[i][2] = suc.get(i).getTelefono();
-            listaDatos[i][3] = suc.get(i).getDireccion();
-            listaDatos[i][4] = suc.get(i).getColonia();
-            listaDatos[i][5] = suc.get(i).getCodPostal();
-            listaDatos[i][6] = suc.get(i).getPresupuesto();
-            listaDatos[i][7] = suc.get(i).getEstatus();
-            listaDatos[i][8] = suc.get(i).getCiudad();
-        }
-
-        DefaultTableModel modelTable = new DefaultTableModel(
-                listaDatos,
-                new Object[]{"ID", "NOMBRE", "TELÉFONO","DIRECCIÓN","COLONIA","CP","PRESUPUESTO","ESTATUS","CIUDAD"}) {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
+            this.segmentacion.setText("Página " + cambioPagina + " de " + (int) ContRegistro + " Páginas en total");
+            Object listaDatos[][] = new Object[suc.size()][9];
+            for (int i = 0; i < suc.size(); i++) {
+                listaDatos[i][0] = suc.get(i).getIdSucursal();
+                listaDatos[i][1] = suc.get(i).getNombre();
+                listaDatos[i][2] = suc.get(i).getTelefono();
+                listaDatos[i][3] = suc.get(i).getDireccion();
+                listaDatos[i][4] = suc.get(i).getColonia();
+                listaDatos[i][5] = suc.get(i).getCodPostal();
+                listaDatos[i][6] = suc.get(i).getPresupuesto();
+                listaDatos[i][7] = suc.get(i).getEstatus();
+                listaDatos[i][8] = suc.get(i).getCiudad();
             }
-        };
 
-        this.jTableMS.setModel(modelTable);
-        this.jTableMS.getColumnModel().getColumn(0).setMaxWidth(30);
-        this.jTableMS.getColumnModel().getColumn(1).setMaxWidth(300);
-        this.jTableMS.getColumnModel().getColumn(2).setMaxWidth(100);
-        this.jTableMS.getColumnModel().getColumn(3).setMaxWidth(400);
-        this.jTableMS.getColumnModel().getColumn(4).setMaxWidth(100);
-        this.jTableMS.getColumnModel().getColumn(5).setMaxWidth(70);
-        this.jTableMS.getColumnModel().getColumn(6).setMaxWidth(130);
-        this.jTableMS.getColumnModel().getColumn(7).setMaxWidth(100);
-        this.jTableMS.getColumnModel().getColumn(8).setMaxWidth(100);
+            DefaultTableModel modelTable = new DefaultTableModel(
+                    listaDatos,
+                    new Object[]{"ID", "NOMBRE", "TELÉFONO", "DIRECCIÓN", "COLONIA", "CP", "PRESUPUESTO", "ESTATUS", "CIUDAD"}) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+
+            this.jTableMS.setModel(modelTable);
+            this.jTableMS.getColumnModel().getColumn(0).setMaxWidth(30);
+            this.jTableMS.getColumnModel().getColumn(1).setMaxWidth(300);
+            this.jTableMS.getColumnModel().getColumn(2).setMaxWidth(100);
+            this.jTableMS.getColumnModel().getColumn(3).setMaxWidth(400);
+            this.jTableMS.getColumnModel().getColumn(4).setMaxWidth(100);
+            this.jTableMS.getColumnModel().getColumn(5).setMaxWidth(70);
+            this.jTableMS.getColumnModel().getColumn(6).setMaxWidth(130);
+            this.jTableMS.getColumnModel().getColumn(7).setMaxWidth(100);
+            this.jTableMS.getColumnModel().getColumn(8).setMaxWidth(100);
         }
 
     }
