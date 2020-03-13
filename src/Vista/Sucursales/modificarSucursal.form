@@ -37,54 +37,96 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="nombreSuc" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="idSuc" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="cpSuc" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="estaSuc" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="presupSuc" min="-2" max="-2" attributes="0"/>
+                  <Component id="cdSuc" min="-2" max="-2" attributes="0"/>
+                  <Component id="telefSuc" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="direcSuc" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="colinSuc" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="idtxtSuc" min="-2" pref="45" max="-2" attributes="0"/>
+                  <Component id="estatusBox" min="-2" pref="220" max="-2" attributes="0"/>
+                  <Component id="cpSucTxt" min="-2" pref="67" max="-2" attributes="0"/>
+                  <Component id="presupSucTxt" alignment="0" min="-2" pref="67" max="-2" attributes="0"/>
+                  <Component id="colonSucTxt" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
+                  <Component id="direcSucTxt" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                  <Component id="ciudadBox" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
+                  <Component id="telefSucTxt" alignment="0" min="-2" pref="89" max="-2" attributes="0"/>
+                  <Component id="nombreSucTxt" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
+          </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="idUL" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
-                      <Component id="idtxtUL" min="-2" pref="45" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="nombreUL" min="-2" max="-2" attributes="0"/>
-                          <Component id="estatusUL" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="nombretxtUL" min="-2" pref="314" max="-2" attributes="0"/>
-                          <Component id="estatusBox" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-              </Group>
-              <EmptySpace pref="225" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="idUL" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="idtxtUL" alignment="1" min="-2" pref="22" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="nombreUL" min="-2" max="-2" attributes="0"/>
-                  <Component id="nombretxtUL" min="-2" pref="22" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="estatusUL" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="idtxtSuc" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                  <Component id="idSuc" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="nombreSuc" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="nombreSucTxt" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="telefSucTxt" min="-2" pref="22" max="-2" attributes="0"/>
+                  <Component id="telefSuc" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="direcSuc" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="direcSucTxt" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="colinSuc" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="colonSucTxt" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="cpSuc" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cpSucTxt" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="presupSucTxt" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                  <Component id="presupSuc" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="estaSuc" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="estatusBox" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="104" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="cdSuc" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ciudadBox" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="30" max="32767" attributes="0"/>
               <Component id="jPanel1" min="-2" pref="46" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -92,14 +134,20 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="idtxtUL">
+    <Component class="javax.swing.JTextField" name="idtxtSuc">
       <Properties>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="idtxtSucActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="nombretxtUL">
+    <Component class="javax.swing.JTextField" name="nombreSucTxt">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nombreSucTxtActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="idUL">
+    <Component class="javax.swing.JLabel" name="idSuc">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="18" style="1"/>
@@ -107,7 +155,7 @@
         <Property name="text" type="java.lang.String" value="ID:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="nombreUL">
+    <Component class="javax.swing.JLabel" name="nombreSuc">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="18" style="1"/>
@@ -115,7 +163,7 @@
         <Property name="text" type="java.lang.String" value="NOMBRE:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="estatusUL">
+    <Component class="javax.swing.JLabel" name="estaSuc">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="18" style="1"/>
@@ -153,7 +201,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                   <Component id="modificarUL" min="-2" pref="143" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="347" max="32767" attributes="0"/>
                   <Component id="cancelarUL" min="-2" pref="143" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
               </Group>
@@ -235,5 +283,93 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="telefSuc">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="T&#xc9;LEFONO:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="direcSuc">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="DIRECCI&#xd3;N:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="colinSuc">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="COLONIA:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="cpSuc">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="CP:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="telefSucTxt">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="telefSucTxtActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="direcSucTxt">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="direcSucTxtActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="colonSucTxt">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="colonSucTxtActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="cpSucTxt">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cpSucTxtActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="presupSucTxt">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="presupSucTxtActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="presupSuc">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="PRESUPUESTO:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="cdSuc">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="CIUDAD:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="ciudadBox">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="14" style="1"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="1">
+            <StringItem index="0" value="SELECCIONE UNA CIUDAD"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
   </SubComponents>
 </Form>

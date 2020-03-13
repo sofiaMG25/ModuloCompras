@@ -41,20 +41,17 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="104" pref="104" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="nombreLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="nombretxt" min="-2" pref="314" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="origenLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="26" pref="26" max="-2" attributes="0"/>
-                      <Component id="capacidadtxt" min="-2" pref="314" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="nombreLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="origenLabel" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="262" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="capacidadtxt" alignment="0" min="-2" pref="314" max="-2" attributes="0"/>
+                  <Component id="nombretxt" alignment="0" min="-2" pref="314" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
@@ -123,7 +120,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
                   <Component id="guardar" min="-2" pref="143" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="283" max="32767" attributes="0"/>
                   <Component id="cancelar" min="-2" pref="143" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
               </Group>

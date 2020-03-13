@@ -5,6 +5,7 @@ import Vista.Sucursales.mostrarSucursales;
 import Vistas.Laboratorios.mostrarLaboratorios;
 import Vistas.Empaques.mostrarEmpaques;
 import Vistas.Categorias.mostrarCategorias;
+import Vistas.ExistenciaSucursal.MostrarExistenciaSucursal;
 import Vistas.UnidadMedida.mostrarUnidadMedida;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -283,6 +284,9 @@ public class Main extends javax.swing.JFrame implements Runnable {
             }
         });
         existenciaSuc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                existenciaSucMouseClicked(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 existenciaSucMouseExited(evt);
             }
@@ -900,6 +904,14 @@ public class Main extends javax.swing.JFrame implements Runnable {
 
 
     }//GEN-LAST:event_sucursalesMouseClicked
+
+    private void existenciaSucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_existenciaSucMouseClicked
+       workSpace.removeAll();
+       MostrarExistenciaSucursal mostrarES = new MostrarExistenciaSucursal();
+       mostrarES.setSize(workSpace.getSize());
+       mostrarES.setVisible(true);
+       
+    }//GEN-LAST:event_existenciaSucMouseClicked
 
     /**
      * @param args the command line arguments

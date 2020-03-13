@@ -6,8 +6,12 @@
 package Vista.Sucursales;
 
 
+import DAOs.DAOSucursalesImp;
 import DAOs.Sucursales;
 import MainPrincipal.Main;
+import java.awt.BorderLayout;
+import java.util.LinkedList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,6 +25,7 @@ public class modificarSucursal extends javax.swing.JPanel {
      */
     public modificarSucursal() {
         initComponents();
+
     }
 
     private Main mainPrincipal;
@@ -38,29 +43,52 @@ public class modificarSucursal extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        idtxtUL = new javax.swing.JTextField();
-        nombretxtUL = new javax.swing.JTextField();
-        idUL = new javax.swing.JLabel();
-        nombreUL = new javax.swing.JLabel();
-        estatusUL = new javax.swing.JLabel();
+        idtxtSuc = new javax.swing.JTextField();
+        nombreSucTxt = new javax.swing.JTextField();
+        idSuc = new javax.swing.JLabel();
+        nombreSuc = new javax.swing.JLabel();
+        estaSuc = new javax.swing.JLabel();
         estatusBox = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         modificarUL = new javax.swing.JLabel();
         cancelarUL = new javax.swing.JLabel();
+        telefSuc = new javax.swing.JLabel();
+        direcSuc = new javax.swing.JLabel();
+        colinSuc = new javax.swing.JLabel();
+        cpSuc = new javax.swing.JLabel();
+        telefSucTxt = new javax.swing.JTextField();
+        direcSucTxt = new javax.swing.JTextField();
+        colonSucTxt = new javax.swing.JTextField();
+        cpSucTxt = new javax.swing.JTextField();
+        presupSucTxt = new javax.swing.JTextField();
+        presupSuc = new javax.swing.JLabel();
+        cdSuc = new javax.swing.JLabel();
+        ciudadBox = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(228, 225, 225));
         setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Modicar categoria", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
 
-        idtxtUL.setEnabled(false);
+        idtxtSuc.setEnabled(false);
+        idtxtSuc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idtxtSucActionPerformed(evt);
+            }
+        });
 
-        idUL.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        idUL.setText("ID:");
+        nombreSucTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombreSucTxtActionPerformed(evt);
+            }
+        });
 
-        nombreUL.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        nombreUL.setText("NOMBRE:");
+        idSuc.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        idSuc.setText("ID:");
 
-        estatusUL.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        estatusUL.setText("ESTATUS:");
+        nombreSuc.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        nombreSuc.setText("NOMBRE:");
+
+        estaSuc.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        estaSuc.setText("ESTATUS:");
 
         estatusBox.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         estatusBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UNA OPCIÓN", "ACTIVO", "INACTIVO" }));
@@ -98,7 +126,7 @@ public class modificarSucursal extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addComponent(modificarUL, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 347, Short.MAX_VALUE)
                 .addComponent(cancelarUL, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(61, 61, 61))
         );
@@ -112,47 +140,134 @@ public class modificarSucursal extends javax.swing.JPanel {
                 .addGap(45, 45, 45))
         );
 
+        telefSuc.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        telefSuc.setText("TÉLEFONO:");
+
+        direcSuc.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        direcSuc.setText("DIRECCIÓN:");
+
+        colinSuc.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        colinSuc.setText("COLONIA:");
+
+        cpSuc.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        cpSuc.setText("CP:");
+
+        telefSucTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                telefSucTxtActionPerformed(evt);
+            }
+        });
+
+        direcSucTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                direcSucTxtActionPerformed(evt);
+            }
+        });
+
+        colonSucTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                colonSucTxtActionPerformed(evt);
+            }
+        });
+
+        cpSucTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cpSucTxtActionPerformed(evt);
+            }
+        });
+
+        presupSucTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                presupSucTxtActionPerformed(evt);
+            }
+        });
+
+        presupSuc.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        presupSuc.setText("PRESUPUESTO:");
+
+        cdSuc.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        cdSuc.setText("CIUDAD:");
+
+        ciudadBox.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        ciudadBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UNA CIUDAD" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nombreSuc)
+                    .addComponent(idSuc)
+                    .addComponent(cpSuc)
+                    .addComponent(estaSuc)
+                    .addComponent(presupSuc)
+                    .addComponent(cdSuc)
+                    .addComponent(telefSuc)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(direcSuc)
+                            .addGap(24, 24, 24))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(colinSuc)
+                            .addGap(42, 42, 42))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(idtxtSuc, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(estatusBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cpSucTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(presupSucTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(colonSucTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(direcSucTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ciudadBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(telefSucTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombreSucTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(102, 102, 102))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(126, 126, 126)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(idUL)
-                        .addGap(78, 78, 78)
-                        .addComponent(idtxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(nombreUL)
-                            .addComponent(estatusUL))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nombretxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(estatusBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(225, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(idUL)
-                    .addComponent(idtxtUL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(nombreUL)
-                    .addComponent(nombretxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(estatusUL)
+                    .addComponent(idtxtSuc, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idSuc))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nombreSuc)
+                    .addComponent(nombreSucTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(telefSucTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(telefSuc))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(direcSuc)
+                    .addComponent(direcSucTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(colinSuc)
+                    .addComponent(colonSucTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cpSuc)
+                    .addComponent(cpSucTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(presupSucTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(presupSuc))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(estaSuc)
                     .addComponent(estatusBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cdSuc)
+                    .addComponent(ciudadBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -161,53 +276,138 @@ public class modificarSucursal extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void modificarULMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarULMouseClicked
-        if (nombretxtUL.getText().equals("")) {
+        if (nombreSucTxt.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Ingrese un nombre valido", "Error", JOptionPane.ERROR_MESSAGE);
-            nombretxtUL.requestFocus();
+            nombreSucTxt.requestFocus();
         } else if (estatusBox.getSelectedIndex() <= 0) {
             JOptionPane.showMessageDialog(this, "Seleccione una opción valida", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             //DAOCategoriasImp guardarCat = new DAOCategoriasImp();
             //Datos obtenidos de los campos 
-            int id = Integer.parseInt(this.idtxtUL.getText());
-            String nombre = this.nombretxtUL.getText();
+            int id = Integer.parseInt(this.idtxtSuc.getText());
+            String nombre = this.nombreSucTxt.getText();
+            String telefono = this.telefSucTxt.getText();
+            String direccion = this.direcSucTxt.getText();
+            String colonia = this.colonSucTxt.getText();
+            String cp = this.cpSucTxt.getText();
+            float presupuesto = Float.parseFloat(this.presupSucTxt.getText());
             char estatus = String.valueOf(this.estatusBox.getSelectedItem()).charAt(0);
+            String ciudad = this.ciudadBox.getSelectedItem().toString();
             //Guardar los datos de laboratorio
-            //guardarCat.upadate(new Categorias(id, nombre, estatus));
+            new DAOSucursalesImp().upadate(new Sucursales(id, nombre, telefono, direccion, colonia, colonia, presupuesto, estatus, ciudad));
             limpiarVariables();
         }
     }//GEN-LAST:event_modificarULMouseClicked
 
     private void cancelarULMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarULMouseClicked
-        // TODO add your handling code here:
+        mainPrincipal.getworkSpace().removeAll();
+        mostrarSucursales mostrarSuc = new mostrarSucursales();
+        mostrarSuc.setSize(mainPrincipal.getworkSpace().getSize());
+        mostrarSuc.setVisible(true);
+        mostrarSuc.MostrarDatosSucursal();
+        mainPrincipal.getworkSpace().add(mostrarSuc, BorderLayout.CENTER);
+        mainPrincipal.getworkSpace().revalidate();
+        mainPrincipal.getworkSpace().repaint();
+        mostrarSuc.setMostrarSucursales(mainPrincipal);
     }//GEN-LAST:event_cancelarULMouseClicked
+
+    private void nombreSucTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreSucTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nombreSucTxtActionPerformed
+
+    private void telefSucTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefSucTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_telefSucTxtActionPerformed
+
+    private void direcSucTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_direcSucTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_direcSucTxtActionPerformed
+
+    private void colonSucTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colonSucTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_colonSucTxtActionPerformed
+
+    private void cpSucTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpSucTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cpSucTxtActionPerformed
+
+    private void presupSucTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_presupSucTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_presupSucTxtActionPerformed
+
+    private void idtxtSucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idtxtSucActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idtxtSucActionPerformed
     /**
      * Método que funciona para abstraer los datos de la categoria
+     * @param suc
      */
-    public void ObtenerLaboratoriModificar(Sucursales cat) {
-     //   this.idtxtUL.setText(String.valueOf(cat.getId()));
-        this.nombretxtUL.setText(cat.getNombre());
-        if (cat.getEstatus() == 'A') {
+    public void ObtenerLaboratoriModificar(Sucursales suc) {
+        this.idtxtSuc.setText(""+suc.getIdSucursal());
+        this.nombreSucTxt.setText(suc.getNombre());
+        this.telefSucTxt.setText(suc.getTelefono());
+        this.direcSucTxt.setText(suc.getDireccion());
+        this.colonSucTxt.setText(suc.getColonia());
+        this.cpSucTxt.setText(suc.getCodPostal());
+        this.presupSucTxt.setText(""+suc.getPresupuesto());
+        if (suc.getEstatus() == 'A') {
             this.estatusBox.setSelectedIndex(1);
         } else {
             this.estatusBox.setSelectedIndex(2);
         }
+        ConsultarCiudades();
+        for (int i = 0; i < ciudadBox.getModel().getSize(); i++) {
+           ciudadBox.setSelectedIndex(i);
+            if(suc.getCiudad().equals(ciudadBox.getSelectedItem().toString())){
+                break;
+            }
+        }
     }
     
     private void limpiarVariables(){
-        nombretxtUL.setText("");
+        nombreSucTxt.setText("");
+        idtxtSuc.setText("");
+        telefSucTxt.setText("");
+        direcSucTxt.setText("");
+        colonSucTxt.setText("");
+        cpSucTxt.setText("");
+        presupSucTxt.setText("");
         estatusBox.setSelectedIndex(0);
+        ciudadBox.setSelectedIndex(0);
+    }
+    
+     private void ConsultarCiudades(){
+         LinkedList<String> ciudades = new DAOSucursalesImp().obtenerCiudades();
+         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+         modelo.addElement("SELECCIONE UNA CIUDAD");
+         for (int i = 0; i < ciudades.size(); i++) {
+            modelo.addElement(ciudades.get(i));
+        }
+         ciudadBox.setModel(modelo);
+         
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel cancelarUL;
+    private javax.swing.JLabel cdSuc;
+    private javax.swing.JComboBox<String> ciudadBox;
+    private javax.swing.JLabel colinSuc;
+    private javax.swing.JTextField colonSucTxt;
+    private javax.swing.JLabel cpSuc;
+    private javax.swing.JTextField cpSucTxt;
+    private javax.swing.JLabel direcSuc;
+    private javax.swing.JTextField direcSucTxt;
+    private javax.swing.JLabel estaSuc;
     private javax.swing.JComboBox<String> estatusBox;
-    private javax.swing.JLabel estatusUL;
-    private javax.swing.JLabel idUL;
-    private javax.swing.JTextField idtxtUL;
+    private javax.swing.JLabel idSuc;
+    private javax.swing.JTextField idtxtSuc;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel modificarUL;
-    private javax.swing.JLabel nombreUL;
-    private javax.swing.JTextField nombretxtUL;
+    private javax.swing.JLabel nombreSuc;
+    private javax.swing.JTextField nombreSucTxt;
+    private javax.swing.JLabel presupSuc;
+    private javax.swing.JTextField presupSucTxt;
+    private javax.swing.JLabel telefSuc;
+    private javax.swing.JTextField telefSucTxt;
     // End of variables declaration//GEN-END:variables
 }

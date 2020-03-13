@@ -47,7 +47,7 @@ public class modificarLaboratorio extends javax.swing.JPanel {
         origenUL = new javax.swing.JLabel();
         estatusUL = new javax.swing.JLabel();
         origentxtUL = new javax.swing.JTextField();
-        estatusCBox = new javax.swing.JComboBox<String>();
+        estatusCBox = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         modificarUL = new javax.swing.JLabel();
         cancelarUL = new javax.swing.JLabel();
@@ -56,6 +56,11 @@ public class modificarLaboratorio extends javax.swing.JPanel {
         setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Modicar Laboratorio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
 
         idtxtUL.setEnabled(false);
+        idtxtUL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idtxtULActionPerformed(evt);
+            }
+        });
 
         idUL.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         idUL.setText("ID:");
@@ -70,7 +75,7 @@ public class modificarLaboratorio extends javax.swing.JPanel {
         estatusUL.setText("ESTATUS:");
 
         estatusCBox.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        estatusCBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONE UNA OPCIÓN", "ACTIVO", "INACTIVO" }));
+        estatusCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UNA OPCIÓN", "ACTIVO", "INACTIVO" }));
 
         jPanel1.setBackground(new java.awt.Color(48, 45, 45));
 
@@ -108,7 +113,7 @@ public class modificarLaboratorio extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(63, 63, 63)
                 .addComponent(modificarUL, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 360, Short.MAX_VALUE)
                 .addComponent(cancelarUL, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47))
         );
@@ -131,23 +136,19 @@ public class modificarLaboratorio extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(126, 126, 126)
+                .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(origenUL)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(idUL)
-                        .addGap(78, 78, 78)
-                        .addComponent(idtxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nombreUL)
-                            .addComponent(estatusUL))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(origentxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nombretxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(estatusCBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(233, Short.MAX_VALUE))
+                    .addComponent(idUL)
+                    .addComponent(nombreUL)
+                    .addComponent(estatusUL))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(idtxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(origentxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombretxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(estatusCBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,6 +225,10 @@ public class modificarLaboratorio extends javax.swing.JPanel {
     private void modificarULMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarULMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_modificarULMouseEntered
+
+    private void idtxtULActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idtxtULActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idtxtULActionPerformed
 
     /**
      * Método que funciona para abstraer los datos del laboratotio

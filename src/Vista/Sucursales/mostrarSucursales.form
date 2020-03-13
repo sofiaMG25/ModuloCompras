@@ -138,20 +138,22 @@
       </Layout>
       <SubComponents>
         <Container class="javax.swing.JScrollPane" name="tablaMostrarSuc">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tablaMostrarSucMouseClicked"/>
+          </Events>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
             <Component class="javax.swing.JTable" name="jTableMS">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="10" rowCount="4">
+                  <Table columnCount="9" rowCount="4">
                     <Column editable="true" title="ID" type="java.lang.Object"/>
                     <Column editable="true" title="NOMBRE" type="java.lang.Object"/>
                     <Column editable="true" title="TELEFONO" type="java.lang.Object"/>
                     <Column editable="true" title="DIRECCI&#xd3;N" type="java.lang.Object"/>
                     <Column editable="true" title="COLINIA" type="java.lang.Object"/>
                     <Column editable="true" title="CP" type="java.lang.Object"/>
-                    <Column editable="true" title="CODIGO POSTAL" type="java.lang.Object"/>
                     <Column editable="true" title="PRESUPUESTO" type="java.lang.Object"/>
                     <Column editable="true" title="ESTATUS" type="java.lang.Object"/>
                     <Column editable="true" title="CIUDAD" type="java.lang.Object"/>

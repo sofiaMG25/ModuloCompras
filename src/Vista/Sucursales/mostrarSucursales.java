@@ -64,15 +64,21 @@ public class mostrarSucursales extends javax.swing.JPanel {
 
         mainMostrarSuc.setBackground(new java.awt.Color(233, 231, 231));
 
+        tablaMostrarSuc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaMostrarSucMouseClicked(evt);
+            }
+        });
+
         jTableMS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "NOMBRE", "TELEFONO", "DIRECCIÓN", "COLINIA", "CP", "CODIGO POSTAL", "PRESUPUESTO", "ESTATUS", "CIUDAD"
+                "ID", "NOMBRE", "TELEFONO", "DIRECCIÓN", "COLINIA", "CP", "PRESUPUESTO", "ESTATUS", "CIUDAD"
             }
         ));
         jTableMS.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -294,37 +300,44 @@ public class mostrarSucursales extends javax.swing.JPanel {
 
     private void jTableMSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMSMouseClicked
         int row;
-//        row = jTableMS.getSelectedRow();
-//
-//        //Verificamos que el evento este en el rango de la tabla.
-//        if (row > -1 && row <= jTableMS.getSelectedRow()) {
-//            //creamos la ventana modificar
-//            modificarCategorias modificarCat = new modificarCategorias();
-//            this.mainPrincipal.getworkSpace().removeAll();
-//            modificarCat.setSize(mainPrincipal.getworkSpace().getSize());
-//            modificarCat.setVisible(true);
-//            modificarCat.setMainPrincipal(mainPrincipal);
-//            //Datos de la tabla, selecionar un row
-//            int id = Integer.parseInt(String.valueOf(this.jTableMS.getValueAt(row, 0)));
-//            String nombre = String.valueOf(this.jTableMS.getValueAt(row, 1));
-//            char estatus = String.valueOf(this.jTableMS.getValueAt(row, 2)).charAt(0);
-//            //Ingresan los datos de la tabla a la interfaz Modificar Laboratorio
-//            modificarCat.ObtenerLaboratoriModificar(
-//                    new Categorias(id, nombre, estatus));
-//
-//            this.mainPrincipal.getworkSpace().add(modificarCat, BorderLayout.CENTER);
-//            this.mainPrincipal.getworkSpace().revalidate();
-//            this.mainPrincipal.getworkSpace().repaint();
-//        }
+        row = jTableMS.getSelectedRow();
+
+        //Verificamos que el evento este en el rango de la tabla.
+        if (row > -1 && row <= jTableMS.getSelectedRow()) {
+            //creamos la ventana modificar
+            modificarSucursal modificarSuc = new modificarSucursal();
+            this.mainPrincipal.getworkSpace().removeAll();
+            modificarSuc.setSize(mainPrincipal.getworkSpace().getSize());
+            modificarSuc.setVisible(true);
+            modificarSuc.setMainPrincipal(mainPrincipal);
+            //Datos de la tabla, selecionar un row
+            int id = Integer.parseInt(String.valueOf(this.jTableMS.getValueAt(row, 0)));
+            String nombre = String.valueOf(this.jTableMS.getValueAt(row, 1));
+            String telefono = String.valueOf(this.jTableMS.getValueAt(row, 2));
+            String direccion = String.valueOf(this.jTableMS.getValueAt(row, 3));
+            String colonia = String.valueOf(this.jTableMS.getValueAt(row, 4));
+            String cp = String.valueOf(this.jTableMS.getValueAt(row, 5));
+            float presupuesto = Float.parseFloat(String.valueOf(this.jTableMS.getValueAt(row, 6)));
+            char estatus = String.valueOf(this.jTableMS.getValueAt(row, 7)).charAt(0);
+            String ciudad = String.valueOf(this.jTableMS.getValueAt(row, 8));
+            //Ingresan los datos de la tabla a la interfaz Modificar Laboratorio
+            modificarSuc.ObtenerLaboratoriModificar(new Sucursales
+        (id, nombre, telefono, direccion, colonia, colonia, presupuesto, estatus, ciudad));
+
+            this.mainPrincipal.getworkSpace().add(modificarSuc, BorderLayout.CENTER);
+            this.mainPrincipal.getworkSpace().revalidate();
+            this.mainPrincipal.getworkSpace().repaint();
+        }
     }//GEN-LAST:event_jTableMSMouseClicked
 
     private void buscarMSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscarMSMouseClicked
-        if (buscartxtMS.getText() == "" || buscartxtMS.getText() == null) {
+        if (buscartxtMS.getText().equals("")  || buscartxtMS.getText() == null) {
             JOptionPane.showMessageDialog(null, "Debes escribir algo para filtrar...",
                     "Mensaje", JOptionPane.WARNING_MESSAGE);
         } else {
             LinkedList<Sucursales> suc = new DAOSucursalesImp().consultaInd(buscartxtMS.getText());
-            Object listaDatos[][] = new Object[suc.size()][3];
+            if(suc != null){
+            Object listaDatos[][] = new Object[suc.size()][9];
             for (int i = 0; i < suc.size(); i++) {
                 listaDatos[i][0] = suc.get(i).getIdSucursal();
                 listaDatos[i][1] = suc.get(i).getNombre();
@@ -358,6 +371,7 @@ public class mostrarSucursales extends javax.swing.JPanel {
             this.jTableMS.getColumnModel().getColumn(8).setMaxWidth(100);
 
         }
+        }
 
     }//GEN-LAST:event_buscarMSMouseClicked
 
@@ -385,6 +399,10 @@ public class mostrarSucursales extends javax.swing.JPanel {
 
         }
     }//GEN-LAST:event_previewMouseClicked
+
+    private void tablaMostrarSucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMostrarSucMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tablaMostrarSucMouseClicked
 
     public void MostrarDatosSucursal() {
         LinkedList<Sucursales> suc = new DAOSucursalesImp().show(cambioPagina);

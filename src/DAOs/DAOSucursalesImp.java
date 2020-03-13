@@ -61,7 +61,27 @@ public class DAOSucursalesImp implements DAOSucursales {
 
     @Override
     public void upadate(Sucursales nuevo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql="{call EditarSucursales (?,?,?,?,?,?,?,?,?)}";
+
+        try {
+          cn.setPs(cn.getCn().prepareStatement(sql));
+          cn.getPs().setInt(1, nuevo.getIdSucursal());
+          cn.getPs().setString(2, nuevo.getNombre());
+          cn.getPs().setString(3, nuevo.getTelefono());
+          cn.getPs().setString(4, nuevo.getDireccion());
+          cn.getPs().setString(5, nuevo.getColonia());
+          cn.getPs().setString(6, nuevo.getCodPostal());
+          cn.getPs().setFloat(7, nuevo.getPresupuesto());
+          cn.getPs().setString(8, String.valueOf(nuevo.getEstatus()));
+          cn.getPs().setString(9, nuevo.getCiudad());
+
+          cn.getPs().execute();
+                System.out.println("Se actualizó con éxito.");
+            cn.getPs().close();
+            cn.getRs().close();
+        } catch (SQLException e) {
+            System.out.println("Error:"+e.getMessage());
+        }
     }
 
     @Override
@@ -112,7 +132,7 @@ public class DAOSucursalesImp implements DAOSucursales {
 
     @Override
     public LinkedList<Sucursales> consultaInd(String nombre) {
-        LinkedList<Sucursales> sucursales;
+        LinkedList<Sucursales> sucursales = null;
         try {
             String sql = "{call sp_busquedaPorNombreSucursal (?)}";
             cn.setPs(cn.getCn().prepareCall(sql));
@@ -121,7 +141,7 @@ public class DAOSucursalesImp implements DAOSucursales {
             sucursales = new LinkedList<Sucursales>();
             char estatus;
             while(cn.getRs().next()){
-                estatus = cn.getRs().getString("estatus").charAt(8);
+                estatus = cn.getRs().getString(8).charAt(0);
                 sucursales.add(new Sucursales(cn.getRs().getInt(1), 
                         cn.getRs().getString(2), cn.getRs().getString(3), cn.getRs().getString(4),
                         cn.getRs().getString(5),cn.getRs().getString(6), cn.getRs().getFloat(7), 

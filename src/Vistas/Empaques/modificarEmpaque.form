@@ -35,32 +35,25 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="165" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="origenUEmp" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="capacidadtxtEmp" min="-2" pref="314" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="origenUEmp" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="idUEmp" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="nombreUEmp" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="estatusEmp" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="estatusUEmp" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="39" pref="39" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="idtxtUEmp" min="-2" pref="45" max="-2" attributes="0"/>
-                          <Component id="nombretxtEmp" min="-2" pref="314" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                              <Component id="JCBoxunidadUEmp" min="-2" pref="220" max="-2" attributes="0"/>
-                              <Component id="jCBoxestatusUEmp" min="-2" pref="220" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                  <Component id="nombreUEmp" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="estatusEmp" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="estatusUEmp" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="capacidadtxtEmp" alignment="0" min="-2" pref="314" max="-2" attributes="0"/>
+                  <Component id="idtxtUEmp" min="-2" pref="45" max="-2" attributes="0"/>
+                  <Component id="nombretxtEmp" min="-2" pref="314" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                      <Component id="JCBoxunidadUEmp" min="-2" pref="220" max="-2" attributes="0"/>
+                      <Component id="jCBoxestatusUEmp" min="-2" pref="220" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="174" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
@@ -199,7 +192,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                   <Component id="modificarUEmp" min="-2" pref="143" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="375" max="32767" attributes="0"/>
                   <Component id="cancelarUEmp" min="-2" pref="143" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               </Group>
