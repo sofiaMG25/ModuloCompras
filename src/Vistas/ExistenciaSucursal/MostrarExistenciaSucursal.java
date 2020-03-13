@@ -1,36 +1,72 @@
-package Vistas.Laboratorios;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Vistas.ExistenciaSucursal;
 
-import java.awt.BorderLayout;
-import DAOs.DAOLaboratoriosImp;
-import DAOs.Laboratorios;
-import javax.swing.table.DefaultTableModel;
-import MainPrincipal.Main;
+import DAOs.DAOSucursalesImp;
+import DAOs.Sucursales;
 import java.util.LinkedList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
- * @author 52351
+ * @author Sammy Guergachi <sguergachi at gmail.com>
  */
-public class mostrarLaboratorios extends javax.swing.JPanel {
+public class MostrarExistenciaSucursal extends javax.swing.JFrame {
 
     /**
-     * Creates new form mostrarLaboratorios
+     * Creates new form MostrarExistenciaSucursal
      */
-    public void setMostrarLaboratorios(Main workspace) {
-        mainPrincipal = workspace;
-    }
-
-    public mostrarLaboratorios() {
+    public MostrarExistenciaSucursal() {
         initComponents();
-        ContRegistro = new DAOLaboratoriosImp().contarRegistros();
-        ContRegistro = Math.ceil((ContRegistro/10));
-        System.out.println(ContRegistro);
-        leyenda.setVisible(false);
-        
     }
-
-    private Main mainPrincipal;
-    private double ContRegistro;
-    private int cambioPagina = 1;
+    
+    public void MostrarDatosExistencia(){
+//               LinkedList<Sucursales> suc = new DAOSucursalesImp().show(cambioPagina);
+//        if (ContRegistro <= 0) {
+//            next.setVisible(false);
+//            preview.setVisible(false);
+//            return;
+//        } else {
+//            next.setVisible(true);
+//            preview.setVisible(true);
+//            this.segmentacion.setText("Página " + cambioPagina + " de " + (int) ContRegistro + " Páginas en total");
+//            Object listaDatos[][] = new Object[suc.size()][9];
+//            for (int i = 0; i < suc.size(); i++) {
+//                listaDatos[i][0] = suc.get(i).getIdSucursal();
+//                listaDatos[i][1] = suc.get(i).getNombre();
+//                listaDatos[i][2] = suc.get(i).getTelefono();
+//                listaDatos[i][3] = suc.get(i).getDireccion();
+//                listaDatos[i][4] = suc.get(i).getColonia();
+//                listaDatos[i][5] = suc.get(i).getCodPostal();
+//                listaDatos[i][6] = suc.get(i).getPresupuesto();
+//                listaDatos[i][7] = suc.get(i).getEstatus();
+//                listaDatos[i][8] = suc.get(i).getCiudad();
+//            }
+//
+//            DefaultTableModel modelTable = new DefaultTableModel(
+//                    listaDatos,
+//                    new Object[]{"ID", "NOMBRE", "TELÉFONO", "DIRECCIÓN", "COLONIA", "CP", "PRESUPUESTO", "ESTATUS", "CIUDAD"}) {
+//                @Override
+//                public boolean isCellEditable(int row, int column) {
+//                    return false;
+//                }
+//            };
+//
+////            this.jTableMS.setModel(modelTable);
+////            this.jTableMS.getColumnModel().getColumn(0).setMaxWidth(30);
+////            this.jTableMS.getColumnModel().getColumn(1).setMaxWidth(300);
+////            this.jTableMS.getColumnModel().getColumn(2).setMaxWidth(100);
+////            this.jTableMS.getColumnModel().getColumn(3).setMaxWidth(400);
+////            this.jTableMS.getColumnModel().getColumn(4).setMaxWidth(100);
+////            this.jTableMS.getColumnModel().getColumn(5).setMaxWidth(70);
+////            this.jTableMS.getColumnModel().getColumn(6).setMaxWidth(130);
+////            this.jTableMS.getColumnModel().getColumn(7).setMaxWidth(100);
+////            this.jTableMS.getColumnModel().getColumn(8).setMaxWidth(100);
+//        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,7 +77,7 @@ public class mostrarLaboratorios extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jPanel1 = new javax.swing.JPanel();
         mainMostrarLab = new javax.swing.JPanel();
         tablaMostrarLab = new javax.swing.JScrollPane();
         jTableML = new javax.swing.JTable();
@@ -57,22 +93,22 @@ public class mostrarLaboratorios extends javax.swing.JPanel {
         next = new javax.swing.JButton();
         leyenda = new javax.swing.JLabel();
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        setBackground(new java.awt.Color(228, 225, 225));
-        setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Mostrar laboratorios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(228, 225, 225));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Mostrar Existencia Sucursal\n", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
 
         mainMostrarLab.setBackground(new java.awt.Color(233, 231, 231));
 
         jTableML.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "ID", "NOMBRE", "ORIGEN", "ESTATUS"
+                "ID PRESENTACIÓN", "ID SUCURSAL", "CANTIDAD"
             }
         ));
         jTableML.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -132,7 +168,7 @@ public class mostrarLaboratorios extends javax.swing.JPanel {
         buscarML.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
         buscarML.setForeground(new java.awt.Color(102, 102, 102));
         buscarML.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/most.png"))); // NOI18N
-        buscarML.setText("BUSCAR LABORATORIO");
+        buscarML.setText("BUSCAR EXISTENCIA SUCURSAL");
         buscarML.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
         buscarML.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buscarML.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -192,13 +228,10 @@ public class mostrarLaboratorios extends javax.swing.JPanel {
                     .addComponent(next)
                     .addGroup(opcionesMostrarLab3Layout.createSequentialGroup()
                         .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(opcionesMostrarLab3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(opcionesMostrarLab3Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(segmentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(opcionesMostrarLab3Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(preview)))))
+                            .addComponent(segmentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(preview))))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -221,8 +254,8 @@ public class mostrarLaboratorios extends javax.swing.JPanel {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainMostrarLabLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(buscartxtML, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(buscarML, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(56, 56, 56)
+                                .addComponent(buscarML, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainMostrarLabLayout.createSequentialGroup()
                         .addGap(0, 98, Short.MAX_VALUE)
@@ -251,185 +284,113 @@ public class mostrarLaboratorios extends javax.swing.JPanel {
                 .addGap(16, 16, 16))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(mainMostrarLab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(mainMostrarLab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 823, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 492, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nuevolabMLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevolabMLMouseClicked
-        mainPrincipal.getworkSpace().removeAll();
-        agregarLaboratorio nuevolab = new agregarLaboratorio();
-        nuevolab.setSize(mainPrincipal.getworkSpace().getSize());
-        nuevolab.setVisible(true);
-        nuevolab.setMain(mainPrincipal);
-        //agregarLaboratorio.setMain(mainPrincipal);
-        //nuevolab.getEnableComponents();
-        mainPrincipal.getworkSpace().add(nuevolab, BorderLayout.CENTER);
-        mainPrincipal.getworkSpace().revalidate();
-        mainPrincipal.getworkSpace().repaint();
+    private void jTableMLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMLMouseClicked
 
+
+    }//GEN-LAST:event_jTableMLMouseClicked
+
+    private void nuevolabMLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevolabMLMouseClicked
+        
 
     }//GEN-LAST:event_nuevolabMLMouseClicked
 
     private void cancelarMLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarMLMouseClicked
-        mainPrincipal.getworkSpace().removeAll();
-        mainPrincipal.getworkSpace().revalidate();
-        mainPrincipal.getworkSpace().repaint();
+     
     }//GEN-LAST:event_cancelarMLMouseClicked
 
-    /**
-     * Método que funciona para detectar un evento de la tabla Laboratorios.
-     *
-     * @param evt evento al dar click a la tabla.
-     */
-    private void jTableMLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMLMouseClicked
-
-        int row; 
-        row = jTableML.getSelectedRow();
-
-        //Verificamos que el evento este en el rango de la tabla.
-        if (row > -1 && row <= jTableML.getSelectedRow()) {
-            //creamos la ventana modificar
-            modificarLaboratorio modificarLab = new modificarLaboratorio();
-            this.mainPrincipal.getworkSpace().removeAll();
-            modificarLab.setSize(mainPrincipal.getworkSpace().getSize());
-            modificarLab.setVisible(true);
-            modificarLab.setMainPrincipal(mainPrincipal);
-            //Datos de la tabla, selecionar un row
-            int id = Integer.parseInt(String.valueOf(this.jTableML.getValueAt(row, 0)));
-            String nombre = String.valueOf(this.jTableML.getValueAt(row, 1));
-            String origen = String.valueOf(this.jTableML.getValueAt(row, 2));
-            char estatus = String.valueOf(this.jTableML.getValueAt(row, 3)).charAt(0);
-            //Ingresan los datos de la tabla a la interfaz Modificar Laboratorio
-            modificarLab.ObtenerLaboratoriModificar(
-                    new Laboratorios(id, nombre, origen, estatus));
-
-            this.mainPrincipal.getworkSpace().add(modificarLab, BorderLayout.CENTER);
-            this.mainPrincipal.getworkSpace().revalidate();
-            this.mainPrincipal.getworkSpace().repaint();
-
-        }
-    }//GEN-LAST:event_jTableMLMouseClicked
-
     private void buscarMLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscarMLMouseClicked
-        LinkedList<Laboratorios> lab = new DAOLaboratoriosImp().busquedaPorNombre(buscartxtML.getText());
-        Object listaDatos[][] = new Object[lab.size()][4];
-        for (int i = 0; i < lab.size(); i++) {
-            listaDatos[i][0] = lab.get(i).getId();
-            listaDatos[i][1] = lab.get(i).getNombre();
-            listaDatos[i][2] = lab.get(i).getOrigen();
-            listaDatos[i][3] = lab.get(i).getEstatus();
-        }
-
-        DefaultTableModel modelTable = new DefaultTableModel(
-                listaDatos,
-                new Object[]{"ID", "NOMBRE", "ORIGEN", "ESTATUS"}) {
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
-
-        this.jTableML.setModel(modelTable);
-        this.jTableML.getColumnModel().getColumn(0).setMinWidth(10);
-        this.jTableML.getColumnModel().getColumn(0).setMaxWidth(50);
-
-        this.jTableML.getColumnModel().getColumn(1).setMinWidth(50);
-        this.jTableML.getColumnModel().getColumn(1).setMaxWidth(350);
-
-        this.jTableML.getColumnModel().getColumn(2).setMinWidth(50);
-        this.jTableML.getColumnModel().getColumn(2).setMaxWidth(350);
-
-        this.jTableML.getColumnModel().getColumn(3).setMinWidth(10);
-        this.jTableML.getColumnModel().getColumn(3).setMaxWidth(200);
+        
     }//GEN-LAST:event_buscarMLMouseClicked
 
-    private void nextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextMouseClicked
-        if (cambioPagina >= ContRegistro) {
-            next.setVisible(false);
-            preview.setVisible(true);
-            leyenda.setVisible(true);
-            MostrarDatosLaboratorio();
-        } else {
-            cambioPagina++;
-            preview.setVisible(true);
-            MostrarDatosLaboratorio();
-            leyenda.setVisible(false);
-        }
-    }//GEN-LAST:event_nextMouseClicked
-
     private void previewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_previewMouseClicked
-        if (cambioPagina == 1) {
-            preview.setVisible(false);
-            next.setVisible(true);
-            leyenda.setVisible(true);
-            MostrarDatosLaboratorio();
-        } else {
-            next.setVisible(true);
-            cambioPagina--;
-            MostrarDatosLaboratorio();
-            leyenda.setVisible(false);
-            
-        }
+        
     }//GEN-LAST:event_previewMouseClicked
 
-    private void MostrarDatosLaboratorio() {
-        //Obtiene los registros en paginas de 10 en 10
-        LinkedList<Laboratorios> lab = new DAOLaboratoriosImp().show(cambioPagina);
-        this.segmentacion.setText("Página "+cambioPagina +" de "+ (int)ContRegistro+ " Páginas en total");
-        Object listaDatos[][] = new Object[lab.size()][4];
-        for (int i = 0; i < lab.size(); i++) {
-            listaDatos[i][0] = lab.get(i).getId();
-            listaDatos[i][1] = lab.get(i).getNombre();
-            listaDatos[i][2] = lab.get(i).getOrigen();
-            listaDatos[i][3] = lab.get(i).getEstatus();
-        }
+    private void nextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextMouseClicked
+     
+    }//GEN-LAST:event_nextMouseClicked
 
-        DefaultTableModel modelTable = new DefaultTableModel(
-                listaDatos,
-                new Object[]{"ID", "NOMBRE", "ORIGEN", "ESTATUS"}) {
-            public boolean isCellEditable(int row, int column) {
-                return false;
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
             }
-        };
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(MostrarExistenciaSucursal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(MostrarExistenciaSucursal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(MostrarExistenciaSucursal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(MostrarExistenciaSucursal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
 
-        this.jTableML.setModel(modelTable);
-        this.jTableML.getColumnModel().getColumn(0).setMinWidth(10);
-        this.jTableML.getColumnModel().getColumn(0).setMaxWidth(50);
-
-        this.jTableML.getColumnModel().getColumn(1).setMinWidth(50);
-        this.jTableML.getColumnModel().getColumn(1).setMaxWidth(350);
-
-        this.jTableML.getColumnModel().getColumn(2).setMinWidth(50);
-        this.jTableML.getColumnModel().getColumn(2).setMaxWidth(350);
-
-        this.jTableML.getColumnModel().getColumn(3).setMinWidth(10);
-        this.jTableML.getColumnModel().getColumn(3).setMaxWidth(200);
-
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MostrarExistenciaSucursal().setVisible(true);
+            }
+        });
     }
-
-    public void activeEventListenerMostrarLab() {
-        MostrarDatosLaboratorio();
-    }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel buscarML;
     private javax.swing.JTextField buscartxtML;
     private javax.swing.JLabel cancelarML;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTable jTableML;
     private javax.swing.JLabel leyenda;
     private javax.swing.JPanel mainMostrarLab;

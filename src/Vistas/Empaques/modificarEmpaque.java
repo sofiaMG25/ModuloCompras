@@ -66,7 +66,7 @@ public class modificarEmpaque extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jCBoxestatusUEmp = new javax.swing.JComboBox<String>();
+        jCBoxestatusUEmp = new javax.swing.JComboBox<>();
         idtxtUEmp = new javax.swing.JTextField();
         nombretxtEmp = new javax.swing.JTextField();
         idUEmp = new javax.swing.JLabel();
@@ -75,7 +75,7 @@ public class modificarEmpaque extends javax.swing.JPanel {
         estatusEmp = new javax.swing.JLabel();
         capacidadtxtEmp = new javax.swing.JTextField();
         estatusUEmp = new javax.swing.JLabel();
-        JCBoxunidadUEmp = new javax.swing.JComboBox<String>();
+        JCBoxunidadUEmp = new javax.swing.JComboBox<>();
         opcionesUEmp = new javax.swing.JPanel();
         modificarUEmp = new javax.swing.JLabel();
         cancelarUEmp = new javax.swing.JLabel();
@@ -84,7 +84,7 @@ public class modificarEmpaque extends javax.swing.JPanel {
         setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Modificar empaque", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
 
         jCBoxestatusUEmp.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jCBoxestatusUEmp.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONE UNA OPCIÓN", "ACTIVO", "INACTIVO" }));
+        jCBoxestatusUEmp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UNA OPCIÓN", "ACTIVO", "INACTIVO" }));
 
         idtxtUEmp.setEnabled(false);
 
@@ -104,7 +104,7 @@ public class modificarEmpaque extends javax.swing.JPanel {
         estatusUEmp.setText("UNIDAD:");
 
         JCBoxunidadUEmp.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        JCBoxunidadUEmp.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONE UNA OPCIÓN" }));
+        JCBoxunidadUEmp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UNA OPCIÓN" }));
 
         opcionesUEmp.setBackground(new java.awt.Color(48, 45, 45));
 
@@ -139,7 +139,7 @@ public class modificarEmpaque extends javax.swing.JPanel {
             .addGroup(opcionesUEmpLayout.createSequentialGroup()
                 .addGap(69, 69, 69)
                 .addComponent(modificarUEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 375, Short.MAX_VALUE)
                 .addComponent(cancelarUEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
@@ -158,26 +158,22 @@ public class modificarEmpaque extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(165, 165, 165)
+                .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(origenUEmp)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(capacidadtxtEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(origenUEmp)
                     .addComponent(idUEmp)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nombreUEmp)
-                            .addComponent(estatusEmp)
-                            .addComponent(estatusUEmp))
-                        .addGap(39, 39, 39)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(idtxtUEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nombretxtEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(JCBoxunidadUEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jCBoxestatusUEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(174, Short.MAX_VALUE))
+                    .addComponent(nombreUEmp)
+                    .addComponent(estatusEmp)
+                    .addComponent(estatusUEmp))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(capacidadtxtEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idtxtUEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombretxtEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(JCBoxunidadUEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jCBoxestatusUEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(45, 45, 45))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(opcionesUEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

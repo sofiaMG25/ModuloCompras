@@ -8,6 +8,7 @@ package Vistas.UnidadMedida;
 import ClasesExtras.CRUDgenerico;
 import MainPrincipal.Main;
 import DAOs.*;
+import java.awt.BorderLayout;
 import javax.swing.JOptionPane;
 
 /**
@@ -50,7 +51,7 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
         cancelarUL = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(228, 225, 225));
-        setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Modicar Laboratorio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
+        setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Modicar Unidad de Medida", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
 
         idtxtUL.setEnabled(false);
 
@@ -89,6 +90,16 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
         cancelarUL.setText("CANCELAR");
         cancelarUL.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
         cancelarUL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cancelarUL.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelarULMouseClicked(evt);
+            }
+        });
+        cancelarUL.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cancelarULKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -97,7 +108,7 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(67, 67, 67)
                 .addComponent(modificarUL, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 333, Short.MAX_VALUE)
                 .addComponent(cancelarUL, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(60, 60, 60))
         );
@@ -119,25 +130,25 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(126, 126, 126)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(69, 69, 69)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nombreUL)
                     .addComponent(estatusUL)
                     .addComponent(siglas)
                     .addComponent(idUL))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(idtxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(siglastxt, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nombretxtUL, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(estatusBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(237, Short.MAX_VALUE))
+                .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addContainerGap(85, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(idUL)
                     .addComponent(idtxtUL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -153,7 +164,7 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(estatusUL)
                     .addComponent(estatusBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                .addGap(78, 78, 78)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -187,6 +198,33 @@ public class modificarUnidadMedida extends javax.swing.JPanel {
 
         }
     }//GEN-LAST:event_modificarULMouseClicked
+
+    private void cancelarULKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cancelarULKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancelarULKeyPressed
+
+    private void cancelarULMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarULMouseClicked
+        //Quitas el jpanel principal que esta en el centro
+        mainPrincipal.getworkSpace().removeAll();
+        //Instaciam os el nuevo jpanel a reemplazar
+        mostrarUnidadMedida mum = new mostrarUnidadMedida();
+        //Redimensionamos el jpanel nuevo
+        mum.setSize(mainPrincipal.getworkSpace().getSize());
+        //Hacemos visible
+        mum.setVisible(true);
+        //Seleccionamos la función para mostrar el jpanel
+        mum.setMostrarUnidadMedida(mainPrincipal);
+        //Cargamos el jpanel
+        mum.MostrarDatosUnidad();
+        //Agregamos el jpanel y centramos
+        mainPrincipal.getworkSpace().add(mum, BorderLayout.CENTER);
+        //Validamos el jpanel
+        mainPrincipal.getworkSpace().revalidate();
+        //Dibujamos el jpanel
+        mainPrincipal.getworkSpace().repaint();
+        
+        
+    }//GEN-LAST:event_cancelarULMouseClicked
     /**
      * Método que funciona para abstraer los datos del laboratotio
      */

@@ -7,7 +7,7 @@
     </Property>
     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-        <TitledBorder title="Agregar un nuevo laboratorio">
+        <TitledBorder title="Agregar una sucursal">
           <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
             <LineBorder roundedCorners="true" thickness="2">
               <Color PropertyName="color" blue="33" green="33" red="33" type="rgb"/>
@@ -23,7 +23,7 @@
     </Property>
   </Properties>
   <AccessibilityProperties>
-    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Agregar un nueva unidad"/>
+    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Agregar un nueva categoria"/>
   </AccessibilityProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -41,42 +41,74 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="nombreLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="origenLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="capacidadtxt" alignment="0" min="-2" pref="314" max="-2" attributes="0"/>
-                  <Component id="nombretxt" alignment="0" min="-2" pref="314" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="opciones" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="nombreLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="telef" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="direc" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="colon" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="cp" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="presup" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="cd" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="comboxCiudad" min="-2" max="-2" attributes="0"/>
+                  <Component id="telefTxt" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
+                  <Component id="nombretxt" alignment="0" min="-2" pref="187" max="-2" attributes="0"/>
+                  <Component id="direcTxt" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
+                  <Component id="colonTxt" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                  <Component id="cpTxt" alignment="0" min="-2" pref="81" max="-2" attributes="0"/>
+                  <Component id="presupTxt" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="93" pref="93" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="nombreLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="nombretxt" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="33" pref="33" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="origenLabel" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
-                      <Component id="capacidadtxt" min="-2" pref="22" max="-2" attributes="0"/>
-                  </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="telef" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="telefTxt" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="95" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="direc" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="direcTxt" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="colon" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="colonTxt" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="cp" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="cpTxt" alignment="1" min="-2" pref="22" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="presup" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="presupTxt" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="cd" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="comboxCiudad" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="86" max="32767" attributes="0"/>
               <Component id="opciones" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -92,20 +124,7 @@
         <Property name="text" type="java.lang.String" value="NOMBRE:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="origenLabel">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Times New Roman" size="18" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="SIGLAS:"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JTextField" name="nombretxt">
-    </Component>
-    <Component class="javax.swing.JTextField" name="capacidadtxt">
-      <Events>
-        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="capacidadtxtKeyTyped"/>
-      </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="opciones">
       <Properties>
@@ -118,23 +137,23 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
                   <Component id="guardar" min="-2" pref="143" max="-2" attributes="0"/>
-                  <EmptySpace pref="283" max="32767" attributes="0"/>
+                  <EmptySpace pref="256" max="32767" attributes="0"/>
                   <Component id="cancelar" min="-2" pref="143" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace pref="71" max="32767" attributes="0"/>
+                  <EmptySpace pref="24" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="cancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="guardar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -202,5 +221,85 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="telef">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="TEL&#xc9;FONO:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="direc">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="DIRECCI&#xd3;N:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="telefTxt">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="telefTxtKeyTyped"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="direcTxt">
+    </Component>
+    <Component class="javax.swing.JLabel" name="colon">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="COLONIA:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="colonTxt">
+    </Component>
+    <Component class="javax.swing.JLabel" name="cp">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="CP:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="cpTxt">
+      <Events>
+        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cpTxtMouseEntered"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="cpTxtKeyTyped"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="presup">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="PRESUPUESTO:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="presupTxt">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="presupTxtKeyTyped"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="cd">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="CIUDAD:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="comboxCiudad">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="14" style="1"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="1">
+            <StringItem index="0" value="SELECCIONA UNA CIUDAD"/>
+          </StringArray>
+        </Property>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>

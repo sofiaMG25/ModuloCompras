@@ -7,6 +7,7 @@ import DAOs.*;
 import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
 import MainPrincipal.Main;
+import Vista.Sucursales.mostrarSucursales;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
@@ -293,8 +294,8 @@ public class mostrarCategorias extends javax.swing.JPanel {
 
     private void cancelarMCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarMCMouseClicked
         mainPrincipal.getworkSpace().removeAll();
-        mainPrincipal.getworkSpace().revalidate();
         mainPrincipal.getworkSpace().repaint();
+        mainPrincipal.getworkSpace().revalidate();
     }//GEN-LAST:event_cancelarMCMouseClicked
 
     private void jTableMCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMCMouseClicked

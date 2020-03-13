@@ -67,6 +67,18 @@ public class agregarLaboratorio extends javax.swing.JPanel {
         origenLabel.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         origenLabel.setText("ORIGEN:");
 
+        nombretxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombretxtActionPerformed(evt);
+            }
+        });
+
+        origentxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                origentxtActionPerformed(evt);
+            }
+        });
+
         opciones.setBackground(new java.awt.Color(48, 45, 45));
 
         cancelar.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
@@ -119,17 +131,15 @@ public class agregarLaboratorio extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(104, 104, 104)
+                .addGap(72, 72, 72)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(nombreLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(nombretxt, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(origenLabel)
-                        .addGap(26, 26, 26)
-                        .addComponent(origentxt, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(256, Short.MAX_VALUE))
+                    .addComponent(nombreLabel)
+                    .addComponent(origenLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 240, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nombretxt, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(origentxt, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(66, 66, 66))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(opciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -180,6 +190,14 @@ public class agregarLaboratorio extends javax.swing.JPanel {
             LimpiarVariables();
         }
     }//GEN-LAST:event_guardarMouseClicked
+
+    private void nombretxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombretxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nombretxtActionPerformed
+
+    private void origentxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_origentxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_origentxtActionPerformed
 
     private void LimpiarVariables() {
         nombretxt.setText("");

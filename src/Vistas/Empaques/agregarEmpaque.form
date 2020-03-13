@@ -34,39 +34,34 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="opcionesAEmp" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="unidadEmp" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="comboxUnidadMed" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="nombreAEmp" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="capacidadEmp" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="capacidadtxtAEmp" min="-2" pref="314" max="-2" attributes="0"/>
-                          <Component id="nombretxtAEmp" min="-2" pref="314" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+                  <Component id="unidadEmp" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="nombreAEmp" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="capacidadEmp" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="comboxUnidadMed" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                      <Component id="capacidadtxtAEmp" min="-2" pref="314" max="-2" attributes="0"/>
+                      <Component id="nombretxtAEmp" min="-2" pref="314" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="nombreAEmp" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="nombretxtAEmp" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
@@ -81,7 +76,7 @@
                   <Component id="unidadEmp" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="comboxUnidadMed" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="120" max="32767" attributes="0"/>
+              <EmptySpace pref="87" max="32767" attributes="0"/>
               <Component id="opcionesAEmp" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
