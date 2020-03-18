@@ -6,6 +6,8 @@ import Vistas.Laboratorios.mostrarLaboratorios;
 import Vistas.Empaques.mostrarEmpaques;
 import Vistas.Categorias.mostrarCategorias;
 import Vistas.ExistenciaSucursal.MostrarExistenciaSucursal;
+import Vistas.Presentaciones.mostrarPresentaciones;
+import Vistas.Productos.mostrarProductos;
 import Vistas.UnidadMedida.mostrarUnidadMedida;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -238,6 +240,9 @@ public class Main extends javax.swing.JFrame implements Runnable {
             }
         });
         presentProductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                presentProductosMouseClicked(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 presentProductosMouseExited(evt);
             }
@@ -269,6 +274,9 @@ public class Main extends javax.swing.JFrame implements Runnable {
             }
         });
         productos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                productosMouseClicked(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 productosMouseExited(evt);
             }
@@ -912,6 +920,30 @@ public class Main extends javax.swing.JFrame implements Runnable {
        mostrarES.setVisible(true);
        
     }//GEN-LAST:event_existenciaSucMouseClicked
+
+    private void productosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productosMouseClicked
+       workSpace.removeAll();
+        mostrarProductos mostrarPro = new mostrarProductos();
+        mostrarPro.setSize(workSpace.getSize());
+        mostrarPro.setVisible(true);
+        mostrarPro.MostrarDatosProductos();
+        workSpace.add(mostrarPro, BorderLayout.CENTER);
+        workSpace.revalidate();
+        workSpace.repaint();
+        mostrarPro.setMostrarEmpaques(this);
+    }//GEN-LAST:event_productosMouseClicked
+
+    private void presentProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_presentProductosMouseClicked
+       workSpace.removeAll();
+        mostrarPresentaciones mostrarPre = new mostrarPresentaciones();
+        mostrarPre.setSize(workSpace.getSize());
+        mostrarPre.setVisible(true);
+        mostrarPre.MostrarDatosPresentaciones();
+        workSpace.add(mostrarPre, BorderLayout.CENTER);
+        workSpace.revalidate();
+        workSpace.repaint();
+        mostrarPre.setMostrarPresentaciones(this);
+    }//GEN-LAST:event_presentProductosMouseClicked
 
     /**
      * @param args the command line arguments
