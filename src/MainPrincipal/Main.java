@@ -914,15 +914,20 @@ public class Main extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_sucursalesMouseClicked
 
     private void existenciaSucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_existenciaSucMouseClicked
-       workSpace.removeAll();
-       MostrarExistenciaSucursal mostrarES = new MostrarExistenciaSucursal();
-       mostrarES.setSize(workSpace.getSize());
-       mostrarES.setVisible(true);
-       
+        workSpace.removeAll();
+        MostrarExistenciaSucursal mostrarExiSuc = new MostrarExistenciaSucursal();
+        mostrarExiSuc.setSize(workSpace.getSize());
+        mostrarExiSuc.setVisible(true);
+        mostrarExiSuc.MostrarDatosExistenciasSucursal();
+        workSpace.add(mostrarExiSuc, BorderLayout.CENTER);
+        workSpace.revalidate();
+        workSpace.repaint();
+        mostrarExiSuc.setMostrarPresentaciones(this);
+
     }//GEN-LAST:event_existenciaSucMouseClicked
 
     private void productosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productosMouseClicked
-       workSpace.removeAll();
+        workSpace.removeAll();
         mostrarProductos mostrarPro = new mostrarProductos();
         mostrarPro.setSize(workSpace.getSize());
         mostrarPro.setVisible(true);
@@ -930,11 +935,11 @@ public class Main extends javax.swing.JFrame implements Runnable {
         workSpace.add(mostrarPro, BorderLayout.CENTER);
         workSpace.revalidate();
         workSpace.repaint();
-        mostrarPro.setMostrarEmpaques(this);
+        mostrarPro.setMostrarProductos(this);
     }//GEN-LAST:event_productosMouseClicked
 
     private void presentProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_presentProductosMouseClicked
-       workSpace.removeAll();
+        workSpace.removeAll();
         mostrarPresentaciones mostrarPre = new mostrarPresentaciones();
         mostrarPre.setSize(workSpace.getSize());
         mostrarPre.setVisible(true);

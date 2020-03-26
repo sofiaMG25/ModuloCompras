@@ -1,6 +1,6 @@
 package Vista.Sucursales;
 
-import Vistas.Categorias.*;
+
 import java.awt.BorderLayout;
 import DAOs.*;
 import javax.swing.table.DefaultTableModel;
@@ -378,7 +378,9 @@ public class mostrarSucursales extends javax.swing.JPanel {
     private void nextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextMouseClicked
         if (cambioPagina >= ContRegistro) {
             next.setVisible(false);
+            preview.setVisible(true);
             leyenda.setVisible(true);
+            MostrarDatosSucursal();
         } else {
             cambioPagina++;
             preview.setVisible(true);
@@ -390,7 +392,9 @@ public class mostrarSucursales extends javax.swing.JPanel {
     private void previewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_previewMouseClicked
         if (cambioPagina == 1) {
             preview.setVisible(false);
+            next.setVisible(true);
             leyenda.setVisible(true);
+            MostrarDatosSucursal();
         } else {
             next.setVisible(true);
             cambioPagina--;

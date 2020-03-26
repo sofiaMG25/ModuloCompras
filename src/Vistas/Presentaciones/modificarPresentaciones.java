@@ -46,7 +46,7 @@ public class modificarPresentaciones extends javax.swing.JPanel {
         idPre = new javax.swing.JLabel();
         pCompra = new javax.swing.JLabel();
         estatusUL = new javax.swing.JLabel();
-        estatusBox = new javax.swing.JComboBox<String>();
+        estatusBox = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         modificarUL = new javax.swing.JLabel();
         cancelarUL = new javax.swing.JLabel();
@@ -56,8 +56,8 @@ public class modificarPresentaciones extends javax.swing.JPanel {
         txtpVenta = new javax.swing.JTextField();
         empaque = new javax.swing.JLabel();
         producto = new javax.swing.JLabel();
-        productoBox = new javax.swing.JComboBox<String>();
-        empaqueBox = new javax.swing.JComboBox<String>();
+        productoBox = new javax.swing.JComboBox<>();
+        empaqueBox = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(228, 225, 225));
         setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Modicar Presentacion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
@@ -74,7 +74,7 @@ public class modificarPresentaciones extends javax.swing.JPanel {
         estatusUL.setText("ESTATUS:");
 
         estatusBox.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        estatusBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONE EL ESTATUS", "ACTIVO", "INACTIVO" }));
+        estatusBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE EL ESTATUS", "ACTIVO", "INACTIVO" }));
 
         jPanel1.setBackground(new java.awt.Color(48, 45, 45));
 
@@ -136,10 +136,10 @@ public class modificarPresentaciones extends javax.swing.JPanel {
         producto.setText("PRODCUTO: ");
 
         productoBox.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        productoBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONE UN PRODUCTO" }));
+        productoBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UN PRODUCTO" }));
 
         empaqueBox.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        empaqueBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONE UN EMPAQUE" }));
+        empaqueBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UN EMPAQUE" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -150,7 +150,7 @@ public class modificarPresentaciones extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(191, 191, 191)
+                .addGap(75, 75, 75)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pCompra)
                     .addComponent(idPre)

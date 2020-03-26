@@ -280,8 +280,6 @@ public class mostrarPresentaciones extends javax.swing.JPanel {
         nuevaPres.setSize(mainPrincipal.getworkSpace().getSize());
         nuevaPres.setVisible(true);
         nuevaPres.setMainPrincipal(mainPrincipal);
-        //agregarLaboratorio.setMain(mainPrincipal);
-        //nuevolab.getEnableComponents();
         mainPrincipal.getworkSpace().add(nuevaPres, BorderLayout.CENTER);
         mainPrincipal.getworkSpace().revalidate();
         mainPrincipal.getworkSpace().repaint();
@@ -363,7 +361,9 @@ public class mostrarPresentaciones extends javax.swing.JPanel {
     private void nextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextMouseClicked
         if (cambioPagina >= ContRegistro) {
             next.setVisible(false);
+            preview.setVisible(true);
             leyenda.setVisible(true);
+            MostrarDatosPresentaciones();
         } else {
             cambioPagina++;
             preview.setVisible(true);
@@ -375,7 +375,9 @@ public class mostrarPresentaciones extends javax.swing.JPanel {
     private void previewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_previewMouseClicked
         if (cambioPagina == 1) {
             preview.setVisible(false);
+            next.setVisible(true);
             leyenda.setVisible(true);
+            MostrarDatosPresentaciones();
         } else {
             next.setVisible(true);
             cambioPagina--;

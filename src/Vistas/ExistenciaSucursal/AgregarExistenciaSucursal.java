@@ -5,18 +5,55 @@
  */
 package Vistas.ExistenciaSucursal;
 
+import DAOs.DAOExistenciaSucursalImp;
+import DAOs.ExistenciaSucursal;
+import DAOs.Presentaciones;
+import DAOs.Sucursales;
+import MainPrincipal.Main;
+import java.awt.BorderLayout;
+import java.util.LinkedList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
-public class AgregarExistenciaSucursal extends javax.swing.JFrame {
+public class AgregarExistenciaSucursal extends javax.swing.JPanel {
 
     /**
      * Creates new form AgregarExistenciaSucursal
      */
     public AgregarExistenciaSucursal() {
         initComponents();
+        exSuc = new DAOExistenciaSucursalImp().getsIDSU();
+        exPre = new DAOExistenciaSucursalImp().getsIDPR();
+        if ((exSuc == null || exSuc.size() < 0) && (exPre == null || exPre.size() < 0)) {
+
+            JOptionPane.showMessageDialog(this, "Sucursal o presentación, no esta registrado", "Error",
+                    JOptionPane.INFORMATION_MESSAGE);
+
+        } else {
+            DefaultComboBoxModel modelo1 = (DefaultComboBoxModel) idPresentacionBox.getModel();
+            DefaultComboBoxModel modelo2 = (DefaultComboBoxModel) idSucursalBox.getModel();
+            for (int i = 0; i < exSuc.size(); i++) {
+                modelo1.addElement(exSuc.get(i).getIdSucursal());
+            }
+
+            for (int i = 0; i < exPre.size(); i++) {
+                modelo2.addElement(exPre.get(i).getIdPP());
+            }
+
+            idSucursalBox.setModel(modelo1);
+            idPresentacionBox.setModel(modelo2);
+        }
+
     }
+
+    LinkedList<Sucursales> exSuc;
+    LinkedList<Presentaciones> exPre;
+    private Main mainPrincipal;
+    private int cambioPagina = 1;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,524 +65,216 @@ public class AgregarExistenciaSucursal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        idtxtSuc = new javax.swing.JTextField();
-        nombreSucTxt = new javax.swing.JTextField();
-        idSuc = new javax.swing.JLabel();
-        nombreSuc = new javax.swing.JLabel();
-        estaSuc = new javax.swing.JLabel();
-        estatusBox = new javax.swing.JComboBox<>();
+        opcionesMostrarSuc = new javax.swing.JPanel();
+        nuevaSuc = new javax.swing.JLabel();
+        cancelarMS = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        modificarUL = new javax.swing.JLabel();
-        cancelarUL = new javax.swing.JLabel();
-        telefSuc = new javax.swing.JLabel();
-        direcSuc = new javax.swing.JLabel();
-        colinSuc = new javax.swing.JLabel();
-        cpSuc = new javax.swing.JLabel();
-        telefSucTxt = new javax.swing.JTextField();
-        direcSucTxt = new javax.swing.JTextField();
-        colonSucTxt = new javax.swing.JTextField();
-        cpSucTxt = new javax.swing.JTextField();
-        presupSucTxt = new javax.swing.JTextField();
-        presupSuc = new javax.swing.JLabel();
-        cdSuc = new javax.swing.JLabel();
-        ciudadBox = new javax.swing.JComboBox<>();
-        jPanel3 = new javax.swing.JPanel();
-        idtxtSuc1 = new javax.swing.JTextField();
-        nombreSucTxt1 = new javax.swing.JTextField();
-        idSuc1 = new javax.swing.JLabel();
-        nombreSuc1 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        modificarUL1 = new javax.swing.JLabel();
-        cancelarUL1 = new javax.swing.JLabel();
-        telefSuc1 = new javax.swing.JLabel();
-        telefSucTxt1 = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        idPresentacion = new javax.swing.JLabel();
+        idSucursal = new javax.swing.JLabel();
+        cantidad = new javax.swing.JLabel();
+        cantidadTxt = new javax.swing.JTextField();
+        idPresentacionBox = new javax.swing.JComboBox<>();
+        idSucursalBox = new javax.swing.JComboBox<>();
 
-        jPanel1.setBackground(new java.awt.Color(228, 225, 225));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Modicar categoria", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(233, 231, 231));
 
-        idtxtSuc.setEnabled(false);
+        opcionesMostrarSuc.setBackground(new java.awt.Color(48, 45, 45));
 
-        nombreSucTxt.addActionListener(new java.awt.event.ActionListener() {
+        nuevaSuc.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        nuevaSuc.setForeground(new java.awt.Color(255, 255, 255));
+        nuevaSuc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/save.png"))); // NOI18N
+        nuevaSuc.setText("GURDAR ");
+        nuevaSuc.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        nuevaSuc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        nuevaSuc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nuevaSucMouseClicked(evt);
+            }
+        });
+
+        cancelarMS.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        cancelarMS.setForeground(new java.awt.Color(255, 255, 255));
+        cancelarMS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/save.png"))); // NOI18N
+        cancelarMS.setText("CANCELAR");
+        cancelarMS.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        cancelarMS.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cancelarMS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelarMSMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout opcionesMostrarSucLayout = new javax.swing.GroupLayout(opcionesMostrarSuc);
+        opcionesMostrarSuc.setLayout(opcionesMostrarSucLayout);
+        opcionesMostrarSucLayout.setHorizontalGroup(
+            opcionesMostrarSucLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionesMostrarSucLayout.createSequentialGroup()
+                .addGap(82, 82, 82)
+                .addComponent(nuevaSuc, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cancelarMS, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71))
+        );
+        opcionesMostrarSucLayout.setVerticalGroup(
+            opcionesMostrarSucLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(opcionesMostrarSucLayout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addGroup(opcionesMostrarSucLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelarMS)
+                    .addComponent(nuevaSuc))
+                .addGap(19, 19, 19))
+        );
+
+        jPanel2.setBackground(new java.awt.Color(233, 231, 231));
+
+        idPresentacion.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        idPresentacion.setText("ID PRESENTACIÓN:");
+
+        idSucursal.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        idSucursal.setText("ID SUCURSAL:");
+
+        cantidad.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        cantidad.setText("CANTIDAD:");
+
+        cantidadTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nombreSucTxtActionPerformed(evt);
+                cantidadTxtActionPerformed(evt);
             }
         });
 
-        idSuc.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        idSuc.setText("ID:");
+        idPresentacionBox.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        idPresentacionBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UNA OPCIÓN" }));
 
-        nombreSuc.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        nombreSuc.setText("NOMBRE:");
-
-        estaSuc.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        estaSuc.setText("ESTATUS:");
-
-        estatusBox.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        estatusBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UNA OPCIÓN", "ACTIVO", "INACTIVO" }));
-
-        jPanel2.setBackground(new java.awt.Color(48, 45, 45));
-
-        modificarUL.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        modificarUL.setForeground(new java.awt.Color(255, 255, 255));
-        modificarUL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/save.png"))); // NOI18N
-        modificarUL.setText("MODIFICAR");
-        modificarUL.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
-        modificarUL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        modificarUL.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                modificarULMouseClicked(evt);
-            }
-        });
-
-        cancelarUL.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        cancelarUL.setForeground(new java.awt.Color(255, 255, 255));
-        cancelarUL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar.png"))); // NOI18N
-        cancelarUL.setText("CANCELAR");
-        cancelarUL.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
-        cancelarUL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        cancelarUL.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cancelarULMouseClicked(evt);
-            }
-        });
+        idSucursalBox.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        idSucursalBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UNA OPCIÓN" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(modificarUL, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 347, Short.MAX_VALUE)
-                .addComponent(cancelarUL, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61))
+                .addGap(53, 53, 53)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(idSucursal)
+                    .addComponent(idPresentacion)
+                    .addComponent(cantidad))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 240, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(cantidadTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(idSucursalBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(idPresentacionBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(66, 66, 66))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(76, 76, 76)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelarUL)
-                    .addComponent(modificarUL))
-                .addGap(45, 45, 45))
+                    .addComponent(idPresentacion)
+                    .addComponent(idPresentacionBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(idSucursal)
+                    .addComponent(idSucursalBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cantidadTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cantidad))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
-
-        telefSuc.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        telefSuc.setText("TÉLEFONO:");
-
-        direcSuc.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        direcSuc.setText("DIRECCIÓN:");
-
-        colinSuc.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        colinSuc.setText("COLONIA:");
-
-        cpSuc.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        cpSuc.setText("CP:");
-
-        telefSucTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                telefSucTxtActionPerformed(evt);
-            }
-        });
-
-        direcSucTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                direcSucTxtActionPerformed(evt);
-            }
-        });
-
-        colonSucTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                colonSucTxtActionPerformed(evt);
-            }
-        });
-
-        cpSucTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cpSucTxtActionPerformed(evt);
-            }
-        });
-
-        presupSucTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                presupSucTxtActionPerformed(evt);
-            }
-        });
-
-        presupSuc.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        presupSuc.setText("PRESUPUESTO:");
-
-        cdSuc.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        cdSuc.setText("CIUDAD:");
-
-        ciudadBox.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        ciudadBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UNA CIUDAD" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nombreSuc)
-                    .addComponent(idSuc)
-                    .addComponent(cpSuc)
-                    .addComponent(estaSuc)
-                    .addComponent(presupSuc)
-                    .addComponent(cdSuc)
-                    .addComponent(telefSuc)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(direcSuc)
-                            .addGap(24, 24, 24))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(colinSuc)
-                            .addGap(42, 42, 42))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(idtxtSuc, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(estatusBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cpSucTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(presupSucTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(colonSucTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(direcSucTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ciudadBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(telefSucTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nombreSucTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(102, 102, 102))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(opcionesMostrarSuc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(idtxtSuc, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(idSuc))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nombreSuc)
-                    .addComponent(nombreSucTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(telefSucTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(telefSuc))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(direcSuc)
-                    .addComponent(direcSucTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(colinSuc)
-                    .addComponent(colonSucTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cpSuc)
-                    .addComponent(cpSucTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(presupSucTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(presupSuc))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(estaSuc)
-                    .addComponent(estatusBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cdSuc)
-                    .addComponent(ciudadBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(opcionesMostrarSuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel3.setBackground(new java.awt.Color(228, 225, 225));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Agregar Existencia Sucursal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
-
-        idtxtSuc1.setEnabled(false);
-
-        nombreSucTxt1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nombreSucTxt1ActionPerformed(evt);
-            }
-        });
-
-        idSuc1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        idSuc1.setText("ID PRESENTACIÓN:");
-
-        nombreSuc1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        nombreSuc1.setText("ID SUCURSAL:");
-
-        jPanel4.setBackground(new java.awt.Color(48, 45, 45));
-
-        modificarUL1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        modificarUL1.setForeground(new java.awt.Color(255, 255, 255));
-        modificarUL1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/save.png"))); // NOI18N
-        modificarUL1.setText("MODIFICAR");
-        modificarUL1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
-        modificarUL1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        modificarUL1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                modificarUL1MouseClicked(evt);
-            }
-        });
-
-        cancelarUL1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        cancelarUL1.setForeground(new java.awt.Color(255, 255, 255));
-        cancelarUL1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar.png"))); // NOI18N
-        cancelarUL1.setText("CANCELAR");
-        cancelarUL1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
-        cancelarUL1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        cancelarUL1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cancelarUL1MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(modificarUL1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cancelarUL1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelarUL1)
-                    .addComponent(modificarUL1))
-                .addGap(45, 45, 45))
-        );
-
-        telefSuc1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        telefSuc1.setText("CANTIDAD:");
-
-        telefSucTxt1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                telefSucTxt1ActionPerformed(evt);
-            }
-        });
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "ID PRESENTACION", "ID SUCURSAL"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(telefSuc1)
-                        .addGap(87, 87, 87)
-                        .addComponent(telefSucTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(nombreSuc1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(nombreSucTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(idSuc1)
-                            .addGap(18, 18, 18)
-                            .addComponent(idtxtSuc1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(130, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(idSuc1)
-                            .addComponent(idtxtSuc1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nombreSuc1)
-                            .addComponent(nombreSucTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(telefSuc1)
-                            .addComponent(telefSucTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(152, 152, 152)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 790, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 484, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
-
-        jPanel3.getAccessibleContext().setAccessibleName("Existencia Sucursal");
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nombreSucTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreSucTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nombreSucTxtActionPerformed
-
-    private void modificarULMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarULMouseClicked
-   
-        
-    }//GEN-LAST:event_modificarULMouseClicked
-
-    private void cancelarULMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarULMouseClicked
-    
-    }//GEN-LAST:event_cancelarULMouseClicked
-
-    private void telefSucTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefSucTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_telefSucTxtActionPerformed
-
-    private void direcSucTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_direcSucTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_direcSucTxtActionPerformed
-
-    private void colonSucTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colonSucTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_colonSucTxtActionPerformed
-
-    private void cpSucTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpSucTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cpSucTxtActionPerformed
-
-    private void presupSucTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_presupSucTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_presupSucTxtActionPerformed
-
-    private void nombreSucTxt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreSucTxt1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nombreSucTxt1ActionPerformed
-
-    private void modificarUL1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarUL1MouseClicked
-      
-    }//GEN-LAST:event_modificarUL1MouseClicked
-
-    private void cancelarUL1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarUL1MouseClicked
-     
-    }//GEN-LAST:event_cancelarUL1MouseClicked
-
-    private void telefSucTxt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefSucTxt1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_telefSucTxt1ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    private void nuevaSucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevaSucMouseClicked
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+            if (idPresentacionBox.getSelectedIndex() == 0) {
+                JOptionPane.showMessageDialog(this, "Selecciona una idPresentacion", "Error", JOptionPane.ERROR_MESSAGE);
+            } else if (idSucursalBox.getSelectedIndex() == 0) {
+                JOptionPane.showMessageDialog(this, "Selecciona una idSucursal", "Error", JOptionPane.ERROR_MESSAGE);
+            } else if (cantidadTxt.getText().equals("") || Integer.parseInt(cantidadTxt.getText()) <= 0) {
+                JOptionPane.showMessageDialog(this, "Número invalido", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                   new DAOExistenciaSucursalImp().Insert(new ExistenciaSucursal
+                                                (Integer.parseInt(idPresentacionBox.getSelectedItem().toString()), 
+                                                 Integer.parseInt(idSucursalBox.getSelectedItem().toString()), 
+                                                 Integer.parseInt(cantidadTxt.getText().toString())));
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AgregarExistenciaSucursal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AgregarExistenciaSucursal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AgregarExistenciaSucursal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AgregarExistenciaSucursal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Solo numeros enteros en catidad", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+    }//GEN-LAST:event_nuevaSucMouseClicked
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AgregarExistenciaSucursal().setVisible(true);
-            }
-        });
-    }
+    private void cancelarMSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarMSMouseClicked
+        mainPrincipal.getworkSpace().removeAll();
+        MostrarExistenciaSucursal mostrarExiSuc = new MostrarExistenciaSucursal();
+        mostrarExiSuc.setSize(mainPrincipal.getworkSpace().getSize());
+        mostrarExiSuc.setVisible(true);
+        mostrarExiSuc.MostrarDatosExistenciasSucursal();
+        mainPrincipal.getworkSpace().add(mostrarExiSuc, BorderLayout.CENTER);
+        mainPrincipal.getworkSpace().revalidate();
+        mainPrincipal.getworkSpace().repaint();
+        mostrarExiSuc.setMostrarPresentaciones(mainPrincipal);
+    }//GEN-LAST:event_cancelarMSMouseClicked
+
+    private void cantidadTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantidadTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cantidadTxtActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel cancelarUL;
-    private javax.swing.JLabel cancelarUL1;
-    private javax.swing.JLabel cdSuc;
-    private javax.swing.JComboBox<String> ciudadBox;
-    private javax.swing.JLabel colinSuc;
-    private javax.swing.JTextField colonSucTxt;
-    private javax.swing.JLabel cpSuc;
-    private javax.swing.JTextField cpSucTxt;
-    private javax.swing.JLabel direcSuc;
-    private javax.swing.JTextField direcSucTxt;
-    private javax.swing.JLabel estaSuc;
-    private javax.swing.JComboBox<String> estatusBox;
-    private javax.swing.JLabel idSuc;
-    private javax.swing.JLabel idSuc1;
-    private javax.swing.JTextField idtxtSuc;
-    private javax.swing.JTextField idtxtSuc1;
+    private javax.swing.JLabel cancelarMS;
+    private javax.swing.JLabel cantidad;
+    private javax.swing.JTextField cantidadTxt;
+    private javax.swing.JLabel idPresentacion;
+    private javax.swing.JComboBox<String> idPresentacionBox;
+    private javax.swing.JLabel idSucursal;
+    private javax.swing.JComboBox<String> idSucursalBox;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JLabel modificarUL;
-    private javax.swing.JLabel modificarUL1;
-    private javax.swing.JLabel nombreSuc;
-    private javax.swing.JLabel nombreSuc1;
-    private javax.swing.JTextField nombreSucTxt;
-    private javax.swing.JTextField nombreSucTxt1;
-    private javax.swing.JLabel presupSuc;
-    private javax.swing.JTextField presupSucTxt;
-    private javax.swing.JLabel telefSuc;
-    private javax.swing.JLabel telefSuc1;
-    private javax.swing.JTextField telefSucTxt;
-    private javax.swing.JTextField telefSucTxt1;
+    private javax.swing.JLabel nuevaSuc;
+    private javax.swing.JPanel opcionesMostrarSuc;
     // End of variables declaration//GEN-END:variables
+
+    void setMain(Main main) {
+
+        mainPrincipal = main;
+    }
 }

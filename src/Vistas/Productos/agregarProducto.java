@@ -29,6 +29,8 @@ public class agregarProducto extends javax.swing.JPanel {
         initComponents();
         mostrarLaboratorios();
         mostrarCategorias();
+        cajasDetexto();
+        
     }
 
     private void mostrarLaboratorios() {
@@ -66,28 +68,31 @@ public class agregarProducto extends javax.swing.JPanel {
         opcionesAEmp = new javax.swing.JPanel();
         cancelarAPro = new javax.swing.JLabel();
         guardarAPro = new javax.swing.JLabel();
-        PreComtxt = new javax.swing.JTextField();
-        PunReotxt = new javax.swing.JTextField();
         origenUEmp = new javax.swing.JLabel();
         origenUEmp7 = new javax.swing.JLabel();
         origenUEmp6 = new javax.swing.JLabel();
-        IngActtxt = new javax.swing.JTextField();
-        BanToxitxt = new javax.swing.JTextField();
         origenUEmp3 = new javax.swing.JLabel();
-        PreVentxt = new javax.swing.JTextField();
         origenUEmp2 = new javax.swing.JLabel();
-        Desctxt = new javax.swing.JTextField();
         JCBoxLaboUPro = new javax.swing.JComboBox<>();
-        Usotxt = new javax.swing.JTextField();
         JCBoxCateUPro = new javax.swing.JComboBox<>();
         estatusUEmp = new javax.swing.JLabel();
-        nombretxtPro = new javax.swing.JTextField();
+        preordenTxt = new javax.swing.JTextField();
         origenUEmp1 = new javax.swing.JLabel();
-        Aplictxt = new javax.swing.JTextField();
         origenUEmp4 = new javax.swing.JLabel();
         nombreUEmp = new javax.swing.JLabel();
         origenUEmp8 = new javax.swing.JLabel();
         origenUEmp5 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        descripTxt = new javax.swing.JTextArea();
+        nombretxt = new javax.swing.JTextField();
+        pCompTxt = new javax.swing.JTextField();
+        pVentaTxt = new javax.swing.JTextField();
+        iActivoTxt = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        usoTxt = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        aplicTxt = new javax.swing.JTextArea();
+        bToxicTxt = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(228, 225, 225));
         setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Agregar un nuevo empaque", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
@@ -126,20 +131,20 @@ public class agregarProducto extends javax.swing.JPanel {
         opcionesAEmpLayout.setHorizontalGroup(
             opcionesAEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(opcionesAEmpLayout.createSequentialGroup()
-                .addGap(115, 115, 115)
+                .addGap(99, 99, 99)
                 .addComponent(guardarAPro, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 345, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cancelarAPro, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(73, 73, 73))
         );
         opcionesAEmpLayout.setVerticalGroup(
             opcionesAEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(opcionesAEmpLayout.createSequentialGroup()
-                .addContainerGap(71, Short.MAX_VALUE)
+                .addContainerGap(24, Short.MAX_VALUE)
                 .addGroup(opcionesAEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelarAPro)
-                    .addComponent(guardarAPro))
-                .addGap(45, 45, 45))
+                    .addComponent(guardarAPro)
+                    .addComponent(cancelarAPro))
+                .addContainerGap())
         );
 
         origenUEmp.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -150,12 +155,6 @@ public class agregarProducto extends javax.swing.JPanel {
 
         origenUEmp6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         origenUEmp6.setText("APLICACIÓN:");
-
-        BanToxitxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BanToxitxtActionPerformed(evt);
-            }
-        });
 
         origenUEmp3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         origenUEmp3.setText("PRECIO COMPRA:");
@@ -187,6 +186,33 @@ public class agregarProducto extends javax.swing.JPanel {
         origenUEmp5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         origenUEmp5.setText("INGREDIENTE ACTIVO:");
 
+        descripTxt.setColumns(20);
+        descripTxt.setRows(5);
+        jScrollPane1.setViewportView(descripTxt);
+
+        nombretxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombretxtActionPerformed(evt);
+            }
+        });
+
+        iActivoTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                iActivoTxtActionPerformed(evt);
+            }
+        });
+
+        usoTxt.setColumns(20);
+        usoTxt.setRows(5);
+        jScrollPane2.setViewportView(usoTxt);
+
+        aplicTxt.setColumns(20);
+        aplicTxt.setRows(5);
+        jScrollPane3.setViewportView(aplicTxt);
+
+        bToxicTxt.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        bToxicTxt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UNA OPCIÓN", "l a - Producto Sumamente Peligro (Muy tóxico)", "l b - Producto Muy Peligroso (Tóxico)", "ll - Producto Moderadamente Peligroso (Nocivo)", "lll - Producto Poco Peligroso (Cuidado)", "lV - Producto que no Ofrece Peligro (Cuidado)" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -194,133 +220,132 @@ public class agregarProducto extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(opcionesAEmp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(origenUEmp2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(PreVentxt, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(origenUEmp5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(IngActtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(nombreUEmp)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nombretxtPro, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(origenUEmp6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Aplictxt, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(origenUEmp)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Desctxt, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(origenUEmp7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Usotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(origenUEmp6)
+                                    .addComponent(origenUEmp)
+                                    .addComponent(nombreUEmp))
+                                .addGap(106, 106, 106)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nombretxt, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(origenUEmp1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(PunReotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(origenUEmp3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(PreComtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(origenUEmp4)
+                                    .addComponent(origenUEmp7)
+                                    .addComponent(origenUEmp5)
+                                    .addComponent(origenUEmp2)
+                                    .addComponent(origenUEmp3)
+                                    .addComponent(origenUEmp1))
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(preordenTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(pCompTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(pVentaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(iActivoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(origenUEmp8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(JCBoxCateUPro, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(127, 127, 127)
                                         .addComponent(estatusUEmp)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(JCBoxLaboUPro, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(JCBoxLaboUPro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(bToxicTxt, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(origenUEmp4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(BanToxitxt, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(origenUEmp8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(JCBoxCateUPro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 33, Short.MAX_VALUE))
+                    .addComponent(opcionesAEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(origenUEmp)
+                        .addGap(18, 18, 18)
+                        .addComponent(origenUEmp1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(origenUEmp3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(origenUEmp2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(origenUEmp5)
+                            .addComponent(iActivoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(9, 9, 9)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(origenUEmp4)
+                            .addComponent(bToxicTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(origenUEmp6)
+                                .addGap(18, 18, 18)
+                                .addComponent(origenUEmp7))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nombreUEmp)
+                            .addComponent(nombretxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(preordenTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pCompTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pVentaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nombreUEmp)
-                    .addComponent(nombretxtPro, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(origenUEmp6)
-                    .addComponent(Aplictxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(origenUEmp)
-                    .addComponent(Desctxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(origenUEmp7)
-                    .addComponent(Usotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(origenUEmp1)
-                    .addComponent(PunReotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(origenUEmp8, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JCBoxCateUPro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(estatusUEmp)
                     .addComponent(JCBoxLaboUPro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(origenUEmp8)
-                    .addComponent(JCBoxCateUPro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(origenUEmp3)
-                    .addComponent(PreComtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(origenUEmp2)
-                    .addComponent(PreVentxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(origenUEmp5)
-                    .addComponent(IngActtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(origenUEmp4)
-                    .addComponent(BanToxitxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(opcionesAEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(6, 6, 6))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void guardarAProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarAProMouseClicked
-        if (nombretxtPro.getText().equals("")) {
+        if (preordenTxt.getText().equals("")) {
             JOptionPane.showMessageDialog(this,"Ingrese un nombre válido","Error",JOptionPane.ERROR_MESSAGE);
-            nombretxtPro.requestFocus();
-        }else if(Desctxt.getText().equals("")){
+            preordenTxt.requestFocus();
+        }else if(descripTxt.getText().equals("")){
             JOptionPane.showMessageDialog(this,"Ingrese una descripción válido","Error",JOptionPane.ERROR_MESSAGE);
-         Desctxt.requestFocus();
-        } else if (PunReotxt.getText().equals("") || Integer.parseInt(PunReotxt.getText()) <= 0) {
+         descripTxt.requestFocus();
+        } else if (preordenTxt.getText().equals("") || Integer.parseInt(preordenTxt.getText()) <= 0) {
             JOptionPane.showMessageDialog(this,"Ingrese un entero válido ","Error",JOptionPane.ERROR_MESSAGE);
-            PunReotxt.requestFocus();
-        } else if (PreComtxt.getText().equals("") || Integer.parseInt(PreComtxt.getText()) <= 0) {
+            preordenTxt.requestFocus();
+        } else if (pCompTxt.getText().equals("") || Float.parseFloat(pCompTxt.getText()) <= 0) {
             JOptionPane.showMessageDialog(this,"Ingrese un precio válido ","Error",JOptionPane.ERROR_MESSAGE);
-            PreComtxt.requestFocus();
-        } else if (PreVentxt.getText().equals("") || Integer.parseInt(PreVentxt.getText()) <= 0) {
+            pCompTxt.requestFocus();
+        } else if (pVentaTxt.getText().equals("") || Float.parseFloat(pVentaTxt.getText()) <= 0) {
             JOptionPane.showMessageDialog(this,"Ingrese un precio válido ","Error",JOptionPane.ERROR_MESSAGE);
-            PreVentxt.requestFocus();
-        }else if(IngActtxt.getText().equals("")){
+            pVentaTxt.requestFocus();
+        }else if(iActivoTxt.getText().equals("")){
             JOptionPane.showMessageDialog(this,"Ingrese un ingrediente válido ","Error",JOptionPane.ERROR_MESSAGE);
-         IngActtxt.requestFocus();
-        }else if(BanToxitxt.getText().equals("")){
+         iActivoTxt.requestFocus();
+        }else if(bToxicTxt.getSelectedIndex() <= 0){
             JOptionPane.showMessageDialog(this,"Ingrese una banda toxicológica válida ","Error",JOptionPane.ERROR_MESSAGE);
-         BanToxitxt.requestFocus();
-        }else if(Aplictxt.getText().equals("")){
+         bToxicTxt.requestFocus();
+        }else if(aplicTxt.getText().equals("")){
             JOptionPane.showMessageDialog(this,"Ingrese una aplicación válida ","Error",JOptionPane.ERROR_MESSAGE);
-         Aplictxt.requestFocus();
-        }else if(Usotxt.getText().equals("")){
+         aplicTxt.requestFocus();
+        }else if(usoTxt.getText().equals("")){
             JOptionPane.showMessageDialog(this,"Ingrese un uso válido ","Error",JOptionPane.ERROR_MESSAGE);
-         Usotxt.requestFocus();
+         usoTxt.requestFocus();
         } else if (JCBoxLaboUPro.getSelectedIndex() <= 0) {
             JOptionPane.showMessageDialog(this,"Elija un laboratorio válido ","Error",JOptionPane.ERROR_MESSAGE);
             JCBoxLaboUPro.requestFocus();
@@ -328,23 +353,16 @@ public class agregarProducto extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this,"Elija una categoria válido ","Error",JOptionPane.ERROR_MESSAGE);
             JCBoxCateUPro.requestFocus();
         } else {
-            try {
-                new DAOProductosImp().Insert(new Productos(0,nombretxtPro.getText(),
-        Desctxt.getText(),
-        Integer.parseInt(PunReotxt.getText()),
-        Float.parseFloat(PreComtxt.getText()),
-        Float.parseFloat(PreVentxt.getText()),
-        IngActtxt.getText(),
-        BanToxitxt.getText(),
-        Aplictxt.getText(),
-        Usotxt.getText(),
-        'A',                
-        JCBoxCateUPro.getSelectedItem().toString(),
-        JCBoxLaboUPro.getSelectedItem().toString()));
+            
+                new DAOProductosImp().Insert(new Productos(
+                nombretxt.getText(),descripTxt.getText(), Integer.parseInt(preordenTxt.getText()),
+                Float.parseFloat(pCompTxt.getText()),Float.parseFloat(pVentaTxt.getText()),
+                iActivoTxt.getText(),bToxicTxt.getSelectedItem().toString(),aplicTxt.getText(),
+                usoTxt.getText(),JCBoxLaboUPro.getSelectedItem().toString(),JCBoxCateUPro.getSelectedItem().toString()
+                ));
+                
                 limpiarVariables();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Capacidad solo numeros", "Error de tipo de dato", JOptionPane.ERROR_MESSAGE);
-            }
+            
         }
 
     }//GEN-LAST:event_guardarAProMouseClicked
@@ -354,7 +372,7 @@ public class agregarProducto extends javax.swing.JPanel {
         mostrarProductos mostrarPro = new mostrarProductos();
         mostrarPro.setSize(mainPrincipal.getworkSpace().getSize());
         mostrarPro.setVisible(true);
-        mostrarPro.setMostrarEmpaques(mainPrincipal);
+        mostrarPro.setMostrarProductos(mainPrincipal);
         mostrarPro.MostrarDatosProductos();
         mainPrincipal.getworkSpace().add(mostrarPro, BorderLayout.CENTER);
         mainPrincipal.getworkSpace().revalidate();
@@ -363,44 +381,56 @@ public class agregarProducto extends javax.swing.JPanel {
     }//GEN-LAST:event_cancelarAProMouseClicked
 
     private void limpiarVariables(){
-        nombretxtPro.setText("");
-        Desctxt.setText("");
-        PunReotxt.setText("");
-        PreComtxt.setText("");
-        PreVentxt.setText("");
-        IngActtxt.setText("");
-        BanToxitxt.setText("");
-        Aplictxt.setText("");
-        Usotxt.setText("");
+        preordenTxt.setText("");
+        descripTxt.setText("");
+        preordenTxt.setText("");
+        pCompTxt.setText("");
+        pVentaTxt.setText("");
+        iActivoTxt.setText("");
+        bToxicTxt.setSelectedIndex(0);
+        aplicTxt.setText("");
+        usoTxt.setText("");
         JCBoxCateUPro.setSelectedIndex(0);
-        JCBoxLaboUPro.setSelectedIndex(0);   
+        JCBoxLaboUPro.setSelectedIndex(0);      
+    }
+    
+    private void cajasDetexto(){
+        descripTxt.setLineWrap(true);
+        descripTxt.setWrapStyleWord(true);
+        aplicTxt.setLineWrap(true);
+        aplicTxt.setWrapStyleWord(true);
+        usoTxt.setLineWrap(true);
+        usoTxt.setWrapStyleWord(true);
     }
     
     private void guardarAProMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarAProMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_guardarAProMouseEntered
 
-    private void BanToxitxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BanToxitxtActionPerformed
+    private void nombretxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombretxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BanToxitxtActionPerformed
+    }//GEN-LAST:event_nombretxtActionPerformed
+
+    private void iActivoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iActivoTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_iActivoTxtActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Aplictxt;
-    private javax.swing.JTextField BanToxitxt;
-    private javax.swing.JTextField Desctxt;
-    private javax.swing.JTextField IngActtxt;
     private javax.swing.JComboBox<String> JCBoxCateUPro;
     private javax.swing.JComboBox<String> JCBoxLaboUPro;
-    private javax.swing.JTextField PreComtxt;
-    private javax.swing.JTextField PreVentxt;
-    private javax.swing.JTextField PunReotxt;
-    private javax.swing.JTextField Usotxt;
+    private javax.swing.JTextArea aplicTxt;
+    private javax.swing.JComboBox<String> bToxicTxt;
     private javax.swing.JLabel cancelarAPro;
+    private javax.swing.JTextArea descripTxt;
     private javax.swing.JLabel estatusUEmp;
     private javax.swing.JLabel guardarAPro;
+    private javax.swing.JTextField iActivoTxt;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel nombreUEmp;
-    private javax.swing.JTextField nombretxtPro;
+    private javax.swing.JTextField nombretxt;
     private javax.swing.JPanel opcionesAEmp;
     private javax.swing.JLabel origenUEmp;
     private javax.swing.JLabel origenUEmp1;
@@ -411,6 +441,10 @@ public class agregarProducto extends javax.swing.JPanel {
     private javax.swing.JLabel origenUEmp6;
     private javax.swing.JLabel origenUEmp7;
     private javax.swing.JLabel origenUEmp8;
+    private javax.swing.JTextField pCompTxt;
+    private javax.swing.JTextField pVentaTxt;
+    private javax.swing.JTextField preordenTxt;
+    private javax.swing.JTextArea usoTxt;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -5,12 +5,7 @@
  */
 package Vistas.Productos;
 
-import Vistas.Empaques.*;
-import ClasesExtras.CRUDgenerico;
-import DAOs.DAOEmpaques;
-import DAOs.DAOEmpaquesImp;
 import DAOs.DAOProductosImp;
-import DAOs.Empaques;
 import DAOs.Productos;
 import MainPrincipal.Main;
 import java.awt.BorderLayout;
@@ -29,8 +24,8 @@ public class mostrarProductos extends javax.swing.JPanel {
      */
     public mostrarProductos() {
         initComponents();
-        ContRegistro = new DAOEmpaquesImp().contRegistro();
-        ContRegistro = Math.ceil((ContRegistro/10));
+        ContRegistro = new DAOProductosImp().contRegistros();
+        ContRegistro = Math.ceil((ContRegistro / 10));
         leyenda.setVisible(false);
     }
 
@@ -41,81 +36,90 @@ public class mostrarProductos extends javax.swing.JPanel {
         MostrarDatosProductos();
     }
 
-    public void setMostrarEmpaques(Main worksapce) {
+    public void setMostrarProductos(Main worksapce) {
         mainPrincipal = worksapce;
     }
 
     public void MostrarDatosProductos() {
-        LinkedList<Productos> emp = new DAOProductosImp().show(1);
-        Object listaDatos[][] = new Object[emp.size()][13];
-         this.segmentacion.setText("Página "+cambioPagina +" de "+ (int)ContRegistro+ " Páginas en total");
-        for (int i = 0; i < emp.size(); i++) {
-            listaDatos[i][0] = emp.get(i).getId();
-            listaDatos[i][1] = emp.get(i).getNombre();
-            listaDatos[i][2] = emp.get(i).getDescripcion();
-            listaDatos[i][3] = emp.get(i).getPuntoReorden();
-            listaDatos[i][4] = emp.get(i).getPrecioCompra();
-            listaDatos[i][5] = emp.get(i).getPrecioVenta();
-            listaDatos[i][6] = emp.get(i).getIngredienteActivo();
-            listaDatos[i][7] = emp.get(i).getBandaToxicologica();
-            listaDatos[i][8] = emp.get(i).getAplicacion();
-            listaDatos[i][9] = emp.get(i).getUso();
-            listaDatos[i][10] = emp.get(i).getEstatus();
-            listaDatos[i][11] = emp.get(i).getIdLab();
-            listaDatos[i][12] = emp.get(i).getIdCat();
-        }
-
-        DefaultTableModel modelTable = new DefaultTableModel(
-                listaDatos,
-                new Object[]{"ID", "NOMBRE", "DESCRIPCI+ON",
-                    "PUNTOREORDEN","PRECIOCOMPRA","PRECIOVENTA",
-                    "INGREDIENTEACTIVO","BANDATOXICOLÓGICA",
-                    "APLICACIÓN","USO","ESTATUS", "LABORATORIOS","CATEGORIAS"}) {
-            public boolean isCellEditable(int row, int column) {
-                return false;
+        LinkedList<Productos> emp = new DAOProductosImp().show(cambioPagina);
+        if (ContRegistro <= 0) {
+            next.setVisible(false);
+            preview.setVisible(false);
+            return;
+        } else {
+            next.setVisible(true);
+            preview.setVisible(true);
+            this.segmentacion.setText("Página " + cambioPagina + " de " + (int) ContRegistro + " Páginas en total");
+            Object listaDatos[][] = new Object[emp.size()][13];
+            this.segmentacion.setText("Página " + cambioPagina + " de " + (int) ContRegistro + " Páginas en total");
+            for (int i = 0; i < emp.size(); i++) {
+                listaDatos[i][0] = emp.get(i).getId();
+                listaDatos[i][1] = emp.get(i).getNombre();
+                listaDatos[i][2] = emp.get(i).getDescripcion();
+                listaDatos[i][3] = emp.get(i).getPuntoReorden();
+                listaDatos[i][4] = emp.get(i).getPrecioCompra();
+                listaDatos[i][5] = emp.get(i).getPrecioVenta();
+                listaDatos[i][6] = emp.get(i).getIngredienteActivo();
+                listaDatos[i][7] = emp.get(i).getBandaToxicologica();
+                listaDatos[i][8] = emp.get(i).getAplicacion();
+                listaDatos[i][9] = emp.get(i).getUso();
+                listaDatos[i][10] = emp.get(i).getEstatus();
+                listaDatos[i][11] = emp.get(i).getIdLab();
+                listaDatos[i][12] = emp.get(i).getIdCat();
             }
-        };
 
-        this.jTableMPro.setModel(modelTable);
-        this.jTableMPro.getColumnModel().getColumn(0).setMinWidth(10);
-        this.jTableMPro.getColumnModel().getColumn(0).setMaxWidth(50);
+            DefaultTableModel modelTable = new DefaultTableModel(
+                    listaDatos,
+                    new Object[]{"ID", "NOMBRE", "DESCRIPCI+ON",
+                        "PUNTOREORDEN", "PRECIOCOMPRA", "PRECIOVENTA",
+                        "INGREDIENTEACTIVO", "BANDATOXICOLÓGICA",
+                        "APLICACIÓN", "USO", "ESTATUS", "LABORATORIOS", "CATEGORIAS"}) {
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
 
-        this.jTableMPro.getColumnModel().getColumn(1).setMinWidth(50);
-        this.jTableMPro.getColumnModel().getColumn(1).setMaxWidth(350);
+            this.jTableMPro.setModel(modelTable);
+            this.jTableMPro.getColumnModel().getColumn(0).setMinWidth(10);
+            this.jTableMPro.getColumnModel().getColumn(0).setMaxWidth(50);
 
-        this.jTableMPro.getColumnModel().getColumn(2).setMinWidth(50);
-        this.jTableMPro.getColumnModel().getColumn(2).setMaxWidth(350);
+            this.jTableMPro.getColumnModel().getColumn(1).setMinWidth(50);
+            this.jTableMPro.getColumnModel().getColumn(1).setMaxWidth(350);
 
-        this.jTableMPro.getColumnModel().getColumn(3).setMinWidth(10);
-        this.jTableMPro.getColumnModel().getColumn(3).setMaxWidth(200);
+            this.jTableMPro.getColumnModel().getColumn(2).setMinWidth(50);
+            this.jTableMPro.getColumnModel().getColumn(2).setMaxWidth(350);
 
-        this.jTableMPro.getColumnModel().getColumn(4).setMinWidth(10);
-        this.jTableMPro.getColumnModel().getColumn(4).setMaxWidth(200);
-        
-        this.jTableMPro.getColumnModel().getColumn(5).setMinWidth(10);
-        this.jTableMPro.getColumnModel().getColumn(5).setMaxWidth(200);
-        
-        this.jTableMPro.getColumnModel().getColumn(6).setMinWidth(10);
-        this.jTableMPro.getColumnModel().getColumn(6).setMaxWidth(200);
-        
-        this.jTableMPro.getColumnModel().getColumn(7).setMinWidth(10);
-        this.jTableMPro.getColumnModel().getColumn(7).setMaxWidth(200);
-        
-        this.jTableMPro.getColumnModel().getColumn(8).setMinWidth(10);
-        this.jTableMPro.getColumnModel().getColumn(8).setMaxWidth(200);
-        
-        this.jTableMPro.getColumnModel().getColumn(9).setMinWidth(10);
-        this.jTableMPro.getColumnModel().getColumn(9).setMaxWidth(200);
-        
-        this.jTableMPro.getColumnModel().getColumn(10).setMinWidth(10);
-        this.jTableMPro.getColumnModel().getColumn(10).setMaxWidth(200);
-        
-        this.jTableMPro.getColumnModel().getColumn(11).setMinWidth(10);
-        this.jTableMPro.getColumnModel().getColumn(11).setMaxWidth(200);
-        
-        this.jTableMPro.getColumnModel().getColumn(12).setMinWidth(10);
-        this.jTableMPro.getColumnModel().getColumn(12).setMaxWidth(200);
+            this.jTableMPro.getColumnModel().getColumn(3).setMinWidth(10);
+            this.jTableMPro.getColumnModel().getColumn(3).setMaxWidth(200);
 
+            this.jTableMPro.getColumnModel().getColumn(4).setMinWidth(10);
+            this.jTableMPro.getColumnModel().getColumn(4).setMaxWidth(200);
+
+            this.jTableMPro.getColumnModel().getColumn(5).setMinWidth(10);
+            this.jTableMPro.getColumnModel().getColumn(5).setMaxWidth(200);
+
+            this.jTableMPro.getColumnModel().getColumn(6).setMinWidth(10);
+            this.jTableMPro.getColumnModel().getColumn(6).setMaxWidth(200);
+
+            this.jTableMPro.getColumnModel().getColumn(7).setMinWidth(10);
+            this.jTableMPro.getColumnModel().getColumn(7).setMaxWidth(200);
+
+            this.jTableMPro.getColumnModel().getColumn(8).setMinWidth(10);
+            this.jTableMPro.getColumnModel().getColumn(8).setMaxWidth(200);
+
+            this.jTableMPro.getColumnModel().getColumn(9).setMinWidth(10);
+            this.jTableMPro.getColumnModel().getColumn(9).setMaxWidth(200);
+
+            this.jTableMPro.getColumnModel().getColumn(10).setMinWidth(10);
+            this.jTableMPro.getColumnModel().getColumn(10).setMaxWidth(200);
+
+            this.jTableMPro.getColumnModel().getColumn(11).setMinWidth(10);
+            this.jTableMPro.getColumnModel().getColumn(11).setMaxWidth(200);
+
+            this.jTableMPro.getColumnModel().getColumn(12).setMinWidth(10);
+            this.jTableMPro.getColumnModel().getColumn(12).setMaxWidth(200);
+
+        }
     }
 
     /**
@@ -345,7 +349,7 @@ public class mostrarProductos extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nuevoMProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevoMProMouseClicked
-        if (new DAOProductosImp().obternerIdLaboratorios()!= null && new DAOProductosImp().obternerIdCategorias()!= null) {
+        if (new DAOProductosImp().obternerIdLaboratorios() != null && new DAOProductosImp().obternerIdCategorias() != null) {
             mainPrincipal.getworkSpace().removeAll();
             agregarProducto nuevoEmp = new agregarProducto();
             nuevoEmp.setSize(mainPrincipal.getworkSpace().getSize());
@@ -354,7 +358,7 @@ public class mostrarProductos extends javax.swing.JPanel {
             mainPrincipal.getworkSpace().add(nuevoEmp, BorderLayout.CENTER);
             mainPrincipal.getworkSpace().revalidate();
             mainPrincipal.getworkSpace().repaint();
-        
+
         } else {
             JOptionPane.showMessageDialog(this, "Laboratorios  y categorias no disponibles, registre por lo menos una "
                     + "categoria y laboratorio en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
@@ -381,22 +385,22 @@ public class mostrarProductos extends javax.swing.JPanel {
             modificarEmpaque.setMainPrincipal(mainPrincipal);
             //Datos de la tabla, selecionar un row
             int id = Integer.parseInt(String.valueOf(this.jTableMPro.getValueAt(row, 0)));
-                String nombre = String.valueOf(this.jTableMPro.getValueAt(row, 1));
-                String descripcion = String.valueOf(this.jTableMPro.getValueAt(row, 2));
-                int puntoreorden = Integer.parseInt(String.valueOf(this.jTableMPro.getValueAt(row, 3)));
-                float precioventa= Float.parseFloat(String.valueOf(this.jTableMPro.getValueAt(row, 4)));
-                float preciocompra= Float.parseFloat(String.valueOf(this.jTableMPro.getValueAt(row, 5)));
-                String ingrediente= String.valueOf(this.jTableMPro.getValueAt(row, 6));
-                String banda= String.valueOf(this.jTableMPro.getValueAt(row, 7));
-                String aplicacion=String.valueOf(this.jTableMPro.getValueAt(row, 8));
-                String uso= String.valueOf(this.jTableMPro.getValueAt(row, 9));
-                char estatus = String.valueOf(this.jTableMPro.getValueAt(row, 10)).charAt(0);
-                String laboratorio = String.valueOf(this.jTableMPro.getValueAt(row, 11));
-                String categoria = String.valueOf(this.jTableMPro.getValueAt(row, 12));
+            String nombre = String.valueOf(this.jTableMPro.getValueAt(row, 1));
+            String descripcion = String.valueOf(this.jTableMPro.getValueAt(row, 2));
+            int puntoreorden = Integer.parseInt(String.valueOf(this.jTableMPro.getValueAt(row, 3)));
+            float precioventa = Float.parseFloat(String.valueOf(this.jTableMPro.getValueAt(row, 4)));
+            float preciocompra = Float.parseFloat(String.valueOf(this.jTableMPro.getValueAt(row, 5)));
+            String ingrediente = String.valueOf(this.jTableMPro.getValueAt(row, 6));
+            String banda = String.valueOf(this.jTableMPro.getValueAt(row, 7));
+            String aplicacion = String.valueOf(this.jTableMPro.getValueAt(row, 8));
+            String uso = String.valueOf(this.jTableMPro.getValueAt(row, 9));
+            char estatus = String.valueOf(this.jTableMPro.getValueAt(row, 10)).charAt(0);
+            String laboratorio = String.valueOf(this.jTableMPro.getValueAt(row, 11));
+            String categoria = String.valueOf(this.jTableMPro.getValueAt(row, 12));
             //Ingresan los datos de la tabla a la interfaz Modificar Laboratorio
-            modificarEmpaque.ObtenerLaboratoriModificar(new Productos(id, nombre, 
-                    descripcion,puntoreorden,preciocompra,precioventa,ingrediente,
-                    banda,aplicacion,uso,estatus,laboratorio,categoria));
+            modificarEmpaque.ObtenerLaboratoriModificar(new Productos(id, nombre,
+                    descripcion, puntoreorden, preciocompra, precioventa, ingrediente,
+                    banda, aplicacion, uso, estatus, laboratorio, categoria));
 
             this.mainPrincipal.getworkSpace().add(modificarEmpaque, BorderLayout.CENTER);
             this.mainPrincipal.getworkSpace().revalidate();
@@ -413,70 +417,70 @@ public class mostrarProductos extends javax.swing.JPanel {
             Object listaDatos[][] = new Object[cat.size()][13];
             for (int i = 0; i < cat.size(); i++) {
                 listaDatos[i][0] = cat.get(i).getId();
-            listaDatos[i][1] = cat.get(i).getNombre();
-            listaDatos[i][2] = cat.get(i).getDescripcion();
-            listaDatos[i][3] = cat.get(i).getPuntoReorden();
-            listaDatos[i][4] = cat.get(i).getPrecioCompra();
-            listaDatos[i][5] = cat.get(i).getPrecioVenta();
-            listaDatos[i][6] = cat.get(i).getIngredienteActivo();
-            listaDatos[i][7] = cat.get(i).getBandaToxicologica();
-            listaDatos[i][8] = cat.get(i).getAplicacion();
-            listaDatos[i][9] = cat.get(i).getUso();
-            listaDatos[i][10] = cat.get(i).getEstatus();
-            listaDatos[i][11] = cat.get(i).getIdLab();
-            listaDatos[i][12] = cat.get(i).getIdCat();
+                listaDatos[i][1] = cat.get(i).getNombre();
+                listaDatos[i][2] = cat.get(i).getDescripcion();
+                listaDatos[i][3] = cat.get(i).getPuntoReorden();
+                listaDatos[i][4] = cat.get(i).getPrecioCompra();
+                listaDatos[i][5] = cat.get(i).getPrecioVenta();
+                listaDatos[i][6] = cat.get(i).getIngredienteActivo();
+                listaDatos[i][7] = cat.get(i).getBandaToxicologica();
+                listaDatos[i][8] = cat.get(i).getAplicacion();
+                listaDatos[i][9] = cat.get(i).getUso();
+                listaDatos[i][10] = cat.get(i).getEstatus();
+                listaDatos[i][11] = cat.get(i).getIdLab();
+                listaDatos[i][12] = cat.get(i).getIdCat();
             }
 
             DefaultTableModel modelTable = new DefaultTableModel(
                     listaDatos,
                     new Object[]{"ID", "NOMBRE", "DESCRIPCI+ON",
-                    "PUNTOREORDEN","PRECIOCOMPRA","PRECIOVENTA",
-                    "INGREDIENTEACTIVO","BANDATOXICOLÓGICA",
-                    "APLICACIÓN","USO","ESTATUS", "LABORATORIOS","CATEGORIAS"}) {
+                        "PUNTOREORDEN", "PRECIOCOMPRA", "PRECIOVENTA",
+                        "INGREDIENTEACTIVO", "BANDATOXICOLÓGICA",
+                        "APLICACIÓN", "USO", "ESTATUS", "LABORATORIOS", "CATEGORIAS"}) {
                 public boolean isCellEditable(int row, int column) {
                     return false;
                 }
             };
 
             this.jTableMPro.setModel(modelTable);
-        this.jTableMPro.getColumnModel().getColumn(0).setMinWidth(10);
-        this.jTableMPro.getColumnModel().getColumn(0).setMaxWidth(50);
+            this.jTableMPro.getColumnModel().getColumn(0).setMinWidth(10);
+            this.jTableMPro.getColumnModel().getColumn(0).setMaxWidth(50);
 
-        this.jTableMPro.getColumnModel().getColumn(1).setMinWidth(50);
-        this.jTableMPro.getColumnModel().getColumn(1).setMaxWidth(350);
+            this.jTableMPro.getColumnModel().getColumn(1).setMinWidth(50);
+            this.jTableMPro.getColumnModel().getColumn(1).setMaxWidth(350);
 
-        this.jTableMPro.getColumnModel().getColumn(2).setMinWidth(50);
-        this.jTableMPro.getColumnModel().getColumn(2).setMaxWidth(350);
+            this.jTableMPro.getColumnModel().getColumn(2).setMinWidth(50);
+            this.jTableMPro.getColumnModel().getColumn(2).setMaxWidth(350);
 
-        this.jTableMPro.getColumnModel().getColumn(3).setMinWidth(10);
-        this.jTableMPro.getColumnModel().getColumn(3).setMaxWidth(200);
+            this.jTableMPro.getColumnModel().getColumn(3).setMinWidth(10);
+            this.jTableMPro.getColumnModel().getColumn(3).setMaxWidth(200);
 
-        this.jTableMPro.getColumnModel().getColumn(4).setMinWidth(10);
-        this.jTableMPro.getColumnModel().getColumn(4).setMaxWidth(200);
-        
-        this.jTableMPro.getColumnModel().getColumn(5).setMinWidth(10);
-        this.jTableMPro.getColumnModel().getColumn(5).setMaxWidth(200);
-        
-        this.jTableMPro.getColumnModel().getColumn(6).setMinWidth(10);
-        this.jTableMPro.getColumnModel().getColumn(6).setMaxWidth(200);
-        
-        this.jTableMPro.getColumnModel().getColumn(7).setMinWidth(10);
-        this.jTableMPro.getColumnModel().getColumn(7).setMaxWidth(200);
-        
-        this.jTableMPro.getColumnModel().getColumn(8).setMinWidth(10);
-        this.jTableMPro.getColumnModel().getColumn(8).setMaxWidth(200);
-        
-        this.jTableMPro.getColumnModel().getColumn(9).setMinWidth(10);
-        this.jTableMPro.getColumnModel().getColumn(9).setMaxWidth(200);
-        
-        this.jTableMPro.getColumnModel().getColumn(10).setMinWidth(10);
-        this.jTableMPro.getColumnModel().getColumn(10).setMaxWidth(200);
-        
-        this.jTableMPro.getColumnModel().getColumn(11).setMinWidth(10);
-        this.jTableMPro.getColumnModel().getColumn(11).setMaxWidth(200);
-        
-        this.jTableMPro.getColumnModel().getColumn(12).setMinWidth(10);
-        this.jTableMPro.getColumnModel().getColumn(12).setMaxWidth(200);
+            this.jTableMPro.getColumnModel().getColumn(4).setMinWidth(10);
+            this.jTableMPro.getColumnModel().getColumn(4).setMaxWidth(200);
+
+            this.jTableMPro.getColumnModel().getColumn(5).setMinWidth(10);
+            this.jTableMPro.getColumnModel().getColumn(5).setMaxWidth(200);
+
+            this.jTableMPro.getColumnModel().getColumn(6).setMinWidth(10);
+            this.jTableMPro.getColumnModel().getColumn(6).setMaxWidth(200);
+
+            this.jTableMPro.getColumnModel().getColumn(7).setMinWidth(10);
+            this.jTableMPro.getColumnModel().getColumn(7).setMaxWidth(200);
+
+            this.jTableMPro.getColumnModel().getColumn(8).setMinWidth(10);
+            this.jTableMPro.getColumnModel().getColumn(8).setMaxWidth(200);
+
+            this.jTableMPro.getColumnModel().getColumn(9).setMinWidth(10);
+            this.jTableMPro.getColumnModel().getColumn(9).setMaxWidth(200);
+
+            this.jTableMPro.getColumnModel().getColumn(10).setMinWidth(10);
+            this.jTableMPro.getColumnModel().getColumn(10).setMaxWidth(200);
+
+            this.jTableMPro.getColumnModel().getColumn(11).setMinWidth(10);
+            this.jTableMPro.getColumnModel().getColumn(11).setMaxWidth(200);
+
+            this.jTableMPro.getColumnModel().getColumn(12).setMinWidth(10);
+            this.jTableMPro.getColumnModel().getColumn(12).setMaxWidth(200);
 
         }
 

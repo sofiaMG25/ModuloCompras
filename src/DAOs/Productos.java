@@ -24,7 +24,7 @@ public class Productos {
     private String idLab;
     private String idCat;
 
-    public Productos(int id, String nombre, String descripcion, int puntoReorden, float precioCompra, float precioVenta, String ingredienteActivo, String bandaToxicologica, String aplicacion, String uso, char estatus, String idLab, String idCat) {
+    public Productos(int id, String nombre, String descripcion, int puntoReorden, float precioCompra, float precioVenta, String ingredienteActivo, String bandaToxicologica, String aplicacion, String uso,char estatus, String idLab, String idCat) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -40,13 +40,29 @@ public class Productos {
         this.idCat = idCat;
     }
 
-    public Productos(String idLab) {
+    public Productos(String nombre, String descripcion, int puntoReorden, float precioCompra, float precioVenta, String ingredienteActivo, String bandaToxicologica, String aplicacion, String uso,String idLab, String idCat) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.puntoReorden = puntoReorden;
+        this.precioCompra = precioCompra;
+        this.precioVenta = precioVenta;
+        this.ingredienteActivo = ingredienteActivo;
+        this.bandaToxicologica = bandaToxicologica;
+        this.aplicacion = aplicacion;
+        this.uso = uso;
+        this.estatus = estatus;
         this.idLab = idLab;
+        this.idCat = idCat;
+    }
+
+    public Productos(String nombre) {
+        this.nombre = nombre;
     }
     
-    public Productos(int num,String idCat){
-        this.idCat=idCat;
-    }
+    
+    
+
+    
     
 
     public int getId() {

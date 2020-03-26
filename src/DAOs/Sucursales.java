@@ -33,6 +33,11 @@ public class Sucursales {
         this.presupuesto = presupuesto;
         this.ciudad = ciudad;
     }
+
+    public Sucursales(int idSucursal) {
+        this.idSucursal = idSucursal;
+    }
+    
     
     
 

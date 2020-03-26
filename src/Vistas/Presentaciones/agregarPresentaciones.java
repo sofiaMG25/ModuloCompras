@@ -33,19 +33,24 @@ public class agregarPresentaciones extends javax.swing.JPanel {
 
     private void mostrarEmpaques() {
         LinkedList<Presentaciones> empaquesUnidad = new DAOPresentacionesImp().obtenerIdEmpaque();
-        DefaultComboBoxModel model = (DefaultComboBoxModel) comboxEmpaque.getModel();
-        for (int i = 0; i < empaquesUnidad.size(); i++) {
-            model.addElement(empaquesUnidad.get(i).getIdEmpaque());
+        if (empaquesUnidad != null) {
+            DefaultComboBoxModel model = (DefaultComboBoxModel) comboxEmpaque.getModel();
+            for (int i = 0; i < empaquesUnidad.size(); i++) {
+                model.addElement(empaquesUnidad.get(i).getIdEmpaque());
+            }
+            comboxEmpaque.setModel(model);
         }
-        comboxEmpaque.setModel(model);
     }
+
     private void mostrarProductos() {
         LinkedList<Presentaciones> productosUnidad = new DAOPresentacionesImp().obtenerIdProducto();
-        DefaultComboBoxModel model2 = (DefaultComboBoxModel) comboxProducto.getModel();
-        for (int i = 0; i < productosUnidad.size(); i++) {
-            model2.addElement(productosUnidad.get(i).getIdProducto());
+        if (productosUnidad != null) {
+            DefaultComboBoxModel model2 = (DefaultComboBoxModel) comboxProducto.getModel();
+            for (int i = 0; i < productosUnidad.size(); i++) {
+                model2.addElement(productosUnidad.get(i).getIdProducto());
+            }
+            comboxProducto.setModel(model2);
         }
-        comboxProducto.setModel(model2);
     }
 
     private Main mainPrincipal;
@@ -214,17 +219,22 @@ public class agregarPresentaciones extends javax.swing.JPanel {
     private void guardarAEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarAEmpMouseClicked
         if (pCompratxtPre.getText().equals("") || Float.parseFloat(pCompratxtPre.getText()) <= 0) {
             pCompratxtPre.requestFocus();
+            JOptionPane.showMessageDialog(this, "Ingrese un precio de compra","ERROR",JOptionPane.ERROR_MESSAGE);
         } else if (pVentatxtPre.getText().equals("") || Float.parseFloat(pVentatxtPre.getText()) <= 0) {
             pVentatxtPre.requestFocus();
+            JOptionPane.showMessageDialog(this, "Ingrese un precio de venta","ERROR",JOptionPane.ERROR_MESSAGE);
         } else if (pReordentxtPre.getText().equals("") || Float.parseFloat(pReordentxtPre.getText()) <= 0) {
             pReordentxtPre.requestFocus();
+            JOptionPane.showMessageDialog(this, "Ingrese un punto de reorden","ERROR",JOptionPane.ERROR_MESSAGE);
         } else if (comboxProducto.getSelectedIndex() <= 0) {
             comboxProducto.requestFocus();
+            JOptionPane.showMessageDialog(this, "Seleccione un producto\n, en caso de no tener uno, debe registrar un producto","ERROR",JOptionPane.ERROR_MESSAGE);
         } else if (comboxEmpaque.getSelectedIndex() <= 0) {
             comboxEmpaque.requestFocus();
+            JOptionPane.showMessageDialog(this, "Seleccione un empaque\n, en caso de no tener uno, debe registrar un empaque","ERROR",JOptionPane.ERROR_MESSAGE);
         } else {
             try {
-                new DAOPresentacionesImp().Insert(new Presentaciones( Float.parseFloat(pCompratxtPre.getText()),
+                new DAOPresentacionesImp().Insert(new Presentaciones(Float.parseFloat(pCompratxtPre.getText()),
                         Float.parseFloat(pVentatxtPre.getText()), Float.parseFloat(pReordentxtPre.getText()),
                         comboxProducto.getSelectedItem().toString(), comboxEmpaque.getSelectedItem().toString()));
                 limpiarVariables();
@@ -248,14 +258,14 @@ public class agregarPresentaciones extends javax.swing.JPanel {
 
     }//GEN-LAST:event_cancelarAEmpMouseClicked
 
-    private void limpiarVariables(){
+    private void limpiarVariables() {
         pCompratxtPre.setText("");
         pVentatxtPre.setText("");
         pReordentxtPre.setText("");
         comboxProducto.setSelectedIndex(0);
         comboxEmpaque.setSelectedIndex(0);
     }
-    
+
     private void guardarAEmpMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarAEmpMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_guardarAEmpMouseEntered

@@ -52,7 +52,7 @@ public class DAOPresentacionesImp implements DAOPresentaciones {
 
             cn.getPs().close();
             cn.getRs().close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
             return null;
         }
@@ -80,7 +80,7 @@ public class DAOPresentacionesImp implements DAOPresentaciones {
 
     @Override
     public void Insert(Presentaciones nuevo) {
-        String sql = "{call sp_1agregarPresentaciones(?,?,?,?,?)}"; //agregar en la bd 1sp_actualizarPresentacion
+        String sql = "{call sp_agregarPresentaciones(?,?,?,?,?)}"; //agregar en la bd 1sp_actualizarPresentacion
         try {
             cn.setPs(cn.getCn().prepareCall(sql));
             cn.getPs().setFloat(1, nuevo.getpCompra());
@@ -88,6 +88,7 @@ public class DAOPresentacionesImp implements DAOPresentaciones {
             cn.getPs().setFloat(3, nuevo.getpReorden());
             cn.getPs().setString(4, nuevo.getIdProducto());
             cn.getPs().setString(5, nuevo.getIdEmpaque());
+            cn.getPs().execute();
             JOptionPane.showMessageDialog(null, "El registro fué exitoso.", "Iniciando registro", JOptionPane.INFORMATION_MESSAGE);
 
             cn.getPs().close();
@@ -100,7 +101,7 @@ public class DAOPresentacionesImp implements DAOPresentaciones {
     @Override
     public void upadate(Presentaciones nuevo) {
         try {
-            cn.setPs(cn.getCn().prepareCall("{call sp_1actualizarPresentacion (?,?,?,?,?,?,?)}"));// aggregar en ka bd 1sp_actualizarPresentacion
+            cn.setPs(cn.getCn().prepareCall("{call sp_actualizarPresentacion (?,?,?,?,?,?,?)}"));// aggregar en ka bd 1sp_actualizarPresentacion
             cn.getPs().setInt(1, nuevo.getIdPP());
             cn.getPs().setFloat(2, nuevo.getpCompra());
             cn.getPs().setFloat(3, nuevo.getpVenta());
@@ -141,7 +142,7 @@ public class DAOPresentacionesImp implements DAOPresentaciones {
     public LinkedList<Presentaciones> show(int pagina) {
          LinkedList<Presentaciones> presentaciones;
         try {
-            String sql = "SELECT * FROM sf_paginarRegistrosePRE (?)";
+            String sql = "SELECT * FROM sf_paginarRegistrosePPRO (?)";
             cn.setPs(cn.getCn().prepareCall(sql));
             cn.getPs().setInt(1, pagina);
             cn.setRs(cn.getPs().executeQuery());

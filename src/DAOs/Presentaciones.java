@@ -26,6 +26,10 @@ public class Presentaciones {
         this.idProducto = idProducto;
         this.idEmpaque = idEmpaque;
     }
+
+    public Presentaciones(int idPP) {
+        this.idPP = idPP;
+    }
     
 
     public Presentaciones(String idProducto) {

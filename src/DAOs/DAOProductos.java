@@ -5,10 +5,14 @@
  */
 package DAOs;
 import ClasesExtras.CRUDgenerico;
+import java.util.LinkedList;
 /**
  *
  * @author Manuel
  */
 public interface DAOProductos extends CRUDgenerico<Productos>{
     int contRegistros();
+    LinkedList<Productos> consultaInd(String nombre);
+    LinkedList<Productos> obternerIdLaboratorios();
+    LinkedList<Productos> obternerIdCategorias();
 }
