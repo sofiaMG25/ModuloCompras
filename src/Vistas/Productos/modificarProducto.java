@@ -51,12 +51,12 @@ public class modificarProducto extends javax.swing.JPanel {
         LinkedList<Productos> listaPro = new DAOs.DAOProductosImp().obternerIdLaboratorios();
         DefaultComboBoxModel model = (DefaultComboBoxModel) laboratorio.getModel();
         for (int i = 0; i < listaPro.size(); i++) {
-            model.addElement(listaPro.get(i).getNombre());
+            model.addElement(listaPro.get(i).getIdLab());
         }
         laboratorio.setModel(model);
-        for (int i = 0; i < laboratorio.getModel().getSize(); i++) {
+        for (int i = 0; i < listaPro.size(); i++) {
             laboratorio.setSelectedIndex(i);
-            if (pro.getIdLab().equals(laboratorio.getSelectedItem().toString())) {
+            if (laboratorio.getSelectedItem().toString().equals(pro.getIdLab())) {
                 this.laboratorio.setSelectedIndex(i);
                 break;
             }
@@ -64,10 +64,10 @@ public class modificarProducto extends javax.swing.JPanel {
         LinkedList<Productos> listaPro2 = new DAOs.DAOProductosImp().obternerIdCategorias();
         DefaultComboBoxModel model2 = (DefaultComboBoxModel) categ.getModel();
         for (int i = 0; i < listaPro2.size(); i++) {
-            model2.addElement(listaPro2.get(i).getNombre());
+            model2.addElement(listaPro2.get(i).getIdCat());
         }
         categ.setModel(model2);
-        for (int i = 0; i < categ.getModel().getSize(); i++) {
+        for (int i = 0; i < listaPro2.size(); i++) {
             categ.setSelectedIndex(i);
             if (pro.getIdCat().equals(categ.getSelectedItem().toString())) {
                 break;
@@ -139,7 +139,7 @@ public class modificarProducto extends javax.swing.JPanel {
         usoTxt = new javax.swing.JTextArea();
 
         setBackground(new java.awt.Color(228, 225, 225));
-        setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Modificar empaque", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
+        setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Modificar producto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
 
         estus.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         estus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UNA OPCIÓN", "ACTIVO", "INACTIVO" }));
@@ -351,6 +351,7 @@ public class modificarProducto extends javax.swing.JPanel {
                         .addComponent(laboratorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(origenUEmp8)
+                        .addGap(0, 0, 0)
                         .addComponent(categ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -416,20 +417,17 @@ public class modificarProducto extends javax.swing.JPanel {
             nombretxtPro.requestFocus();
         }
         try {
-            if (pReordenTxt.getText().equals("")) {
-                JOptionPane.showMessageDialog(this, "Ingrese una descripción válido", "Error", JOptionPane.ERROR_MESSAGE);
+            if (pReordenTxt.getText().equals("")||Float.parseFloat(pCompreTxt.getText()) <= 0) {
+                JOptionPane.showMessageDialog(this, "Ingrese un numero valido", "Error", JOptionPane.ERROR_MESSAGE);
                 pReordenTxt.requestFocus();
-            } else if (pCompreTxt.getText().equals("") || Integer.parseInt(pCompreTxt.getText()) <= 0) {
-                JOptionPane.showMessageDialog(this, "Ingrese un entero válido ", "Error", JOptionPane.ERROR_MESSAGE);
+            } else if (pCompreTxt.getText().equals("") || Float.parseFloat(pCompreTxt.getText()) <= 0) {
+                JOptionPane.showMessageDialog(this, "Ingrese un precio válido ", "Error", JOptionPane.ERROR_MESSAGE);
                 pCompreTxt.requestFocus();
-            } else if (pVentaTxt.getText().equals("") || Integer.parseInt(pVentaTxt.getText()) <= 0) {
+            } else if (pVentaTxt.getText().equals("") || Float.parseFloat(pVentaTxt.getText()) <= 0) {
                 JOptionPane.showMessageDialog(this, "Ingrese un precio válido ", "Error", JOptionPane.ERROR_MESSAGE);
                 pVentaTxt.requestFocus();
-            } else if (iActivoTxt.getText().equals("") || Integer.parseInt(iActivoTxt.getText()) <= 0) {
-                JOptionPane.showMessageDialog(this, "Ingrese un precio válido ", "Error", JOptionPane.ERROR_MESSAGE);
-                iActivoTxt.requestFocus();
             } else if (iActivoTxt.getText().equals("")) {
-                JOptionPane.showMessageDialog(this, "Ingrese un ingrediente válido ", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Ingrese una ingrediente activo ", "Error", JOptionPane.ERROR_MESSAGE);
                 iActivoTxt.requestFocus();
             } else if (bToxic.getSelectedIndex() <= 0) {
                 JOptionPane.showMessageDialog(this, "Ingrese una banda toxicológica válida ", "Error", JOptionPane.ERROR_MESSAGE);
@@ -447,14 +445,14 @@ public class modificarProducto extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Elija una categoria válido ", "Error", JOptionPane.ERROR_MESSAGE);
                 categ.requestFocus();
             } else {
-                CRUDgenerico guardarPro = new DAOProductosImp();
+                DAOProductosImp guardarPro = new DAOProductosImp();
                 //Datos obtenidos de los campos 
                 int id = Integer.parseInt(this.idtxtUPro.getText());
                 String nombre = this.nombretxtPro.getText();
-                String descripcion = this.pReordenTxt.getText();
-                int puntoreorden = Integer.parseInt(this.pCompreTxt.getText());
-                float precioventa = Float.parseFloat(this.iActivoTxt.getText());
-                float preciocompra = Float.parseFloat(this.pVentaTxt.getText());
+                String descripcion = this.descripTxt.getText();
+                int puntoreorden = Integer.parseInt(this.pReordenTxt.getText());
+                float precioventa = Float.parseFloat(this.pVentaTxt.getText());
+                float preciocompra = Float.parseFloat(this.pCompreTxt.getText());
                 String ingrediente = this.iActivoTxt.getText();
                 String banda = this.bToxic.getSelectedItem().toString();
                 String aplicacion = this.aplicaTxt.getText();

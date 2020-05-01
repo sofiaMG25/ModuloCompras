@@ -78,6 +78,8 @@ public class ModificarExistenciasSucursal extends javax.swing.JPanel {
         modificarUL = new javax.swing.JLabel();
         cancelarUL = new javax.swing.JLabel();
 
+        setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "Modificar Sucursal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
+
         idUL.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         idUL.setText("ID PRESENTACIÓN:");
 
@@ -110,7 +112,7 @@ public class ModificarExistenciasSucursal extends javax.swing.JPanel {
                     .addComponent(idUL1)
                     .addComponent(idUL2)
                     .addComponent(idUL3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 268, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 256, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(estatusBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(idSucursalBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -187,7 +189,7 @@ public class ModificarExistenciasSucursal extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(modificarUL)
                     .addComponent(cancelarUL))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

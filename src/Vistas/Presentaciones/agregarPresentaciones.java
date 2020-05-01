@@ -217,6 +217,7 @@ public class agregarPresentaciones extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void guardarAEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarAEmpMouseClicked
+        try {
         if (pCompratxtPre.getText().equals("") || Float.parseFloat(pCompratxtPre.getText()) <= 0) {
             pCompratxtPre.requestFocus();
             JOptionPane.showMessageDialog(this, "Ingrese un precio de compra","ERROR",JOptionPane.ERROR_MESSAGE);
@@ -239,10 +240,12 @@ public class agregarPresentaciones extends javax.swing.JPanel {
                         comboxProducto.getSelectedItem().toString(), comboxEmpaque.getSelectedItem().toString()));
                 limpiarVariables();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Capacidad solo numeros", "Error de tipo de dato", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, " solo numeros", "Error de tipo de dato", JOptionPane.ERROR_MESSAGE);
             }
         }
-
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Capacidad solo numeros", "Error de tipo de dato", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_guardarAEmpMouseClicked
 
     private void cancelarAEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarAEmpMouseClicked

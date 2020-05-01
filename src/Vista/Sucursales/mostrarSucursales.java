@@ -322,7 +322,7 @@ public class mostrarSucursales extends javax.swing.JPanel {
             String ciudad = String.valueOf(this.jTableMS.getValueAt(row, 8));
             //Ingresan los datos de la tabla a la interfaz Modificar Laboratorio
             modificarSuc.ObtenerLaboratoriModificar(new Sucursales
-        (id, nombre, telefono, direccion, colonia, colonia, presupuesto, estatus, ciudad));
+        (id, nombre, telefono, direccion, colonia, cp, presupuesto, estatus, ciudad));
 
             this.mainPrincipal.getworkSpace().add(modificarSuc, BorderLayout.CENTER);
             this.mainPrincipal.getworkSpace().revalidate();

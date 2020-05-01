@@ -1,6 +1,7 @@
 package MainPrincipal;
 
 import ConexionSQLServer.ConexionSQL;
+import Vista.Pedidos.mostrarPedidos;
 import Vista.Sucursales.mostrarSucursales;
 import Vistas.Laboratorios.mostrarLaboratorios;
 import Vistas.Empaques.mostrarEmpaques;
@@ -311,6 +312,9 @@ public class Main extends javax.swing.JFrame implements Runnable {
             }
         });
         pedidos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pedidosMouseClicked(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 pedidosMouseExited(evt);
             }
@@ -949,6 +953,19 @@ public class Main extends javax.swing.JFrame implements Runnable {
         workSpace.repaint();
         mostrarPre.setMostrarPresentaciones(this);
     }//GEN-LAST:event_presentProductosMouseClicked
+
+    private void pedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pedidosMouseClicked
+        workSpace.removeAll();
+        mostrarPedidos mostrarPedi = new mostrarPedidos();
+        mostrarPedi.setSize(workSpace.getSize());
+        mostrarPedi.setVisible(true);
+        mostrarPedi.MostrarDatosPedidos();
+        workSpace.add(mostrarPedi, BorderLayout.CENTER);
+        workSpace.revalidate();
+        workSpace.repaint();
+        mostrarPedi.setMostrarPedidos(this);
+
+    }//GEN-LAST:event_pedidosMouseClicked
 
     /**
      * @param args the command line arguments

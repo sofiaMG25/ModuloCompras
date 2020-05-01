@@ -66,23 +66,22 @@ public class DAOProductosImp implements DAOProductos{
 
     @Override
     public void upadate(Productos nuevo) {
-        String sql="{call EditarProducto (?,?,?,?,?,?,?,?,?,?,?,?,?)}";
+        String sql="{call EditarProducto (?,?,?,?,?,?,?,?,?,?,?,?)}";
 
         try {
           cn.setPs(cn.getCn().prepareStatement(sql));
-          cn.getPs().setString(1, String.valueOf(nuevo.getId()));
-          cn.getPs().setString(2, nuevo.getNombre());
-          cn.getPs().setString(3, nuevo.getDescripcion());
-          cn.getPs().setString(4, String.valueOf(nuevo.getPuntoReorden()));
-          cn.getPs().setString(5, String.valueOf(nuevo.getPrecioCompra()));
-          cn.getPs().setString(6, String.valueOf(nuevo.getPrecioVenta()));
-          cn.getPs().setString(7, nuevo.getIngredienteActivo());
-          cn.getPs().setString(8, nuevo.getBandaToxicologica());
-          cn.getPs().setString(9, nuevo.getAplicacion());
-          cn.getPs().setString(10, nuevo.getUso());
-          cn.getPs().setString(11, String.valueOf(nuevo.getEstatus()));
-          cn.getPs().setString(12, String.valueOf(nuevo.getIdLab()));
-          cn.getPs().setString(13, String.valueOf(nuevo.getIdCat()));
+          cn.getPs().setString(1, nuevo.getNombre());
+          cn.getPs().setString(2, nuevo.getDescripcion());
+          cn.getPs().setString(3, String.valueOf(nuevo.getPuntoReorden()));
+          cn.getPs().setString(4, String.valueOf(nuevo.getPrecioCompra()));
+          cn.getPs().setString(5, String.valueOf(nuevo.getPrecioVenta()));
+          cn.getPs().setString(6, nuevo.getIngredienteActivo());
+          cn.getPs().setString(7, nuevo.getBandaToxicologica());
+          cn.getPs().setString(8, nuevo.getAplicacion());
+          cn.getPs().setString(9, nuevo.getUso());
+          cn.getPs().setString(10, String.valueOf(nuevo.getEstatus()));
+          cn.getPs().setString(11, String.valueOf(nuevo.getIdLab()));
+          cn.getPs().setString(12, String.valueOf(nuevo.getIdCat()));
           if(cn.getPs().execute())
                 System.out.println("Se actualizó con éxito.");
             cn.getPs().close();
@@ -141,21 +140,19 @@ public class DAOProductosImp implements DAOProductos{
     public LinkedList<Productos> consultaInd(String nombre){
         LinkedList<Productos> productos;
         try {
-            String sql = "select e.idProducto,e.nombre,e.descripcion,e.puntoReorden,e.precioCompra,\n" +
-"	e.precioVenta,e.ingredienteActivo,e.bandaToxicologica,e.aplicacion,e.uso,\n" +
-"	l.nombre as labororatorio,c.nombre as categoria,e.estatus   \n" +
-"	from Productos as e\n" +
-"		join Laboratorios as l on e.idLaboratorio = l.idLaboratorio \n" +
-"		join Categorias as c on e.idCategorias = c.idCategorias Where e.nombre like "+"'%"+nombre+"%'";
+            String sql = "{call sp_busquedaPorNombreProducto(?)}";
             cn.setPs(cn.getCn().prepareCall(sql));
+            cn.getPs().setString(1, nombre);
             cn.setRs(cn.getPs().executeQuery());
             productos = new LinkedList<>();
             char estatus;
             while(cn.getRs().next()){
                 estatus = cn.getRs().getString(13).charAt(0);
                 productos.add(new Productos(cn.getRs().getInt(1)
-                        ,cn.getRs().getString(2),cn.getRs().getString(3)
-                        ,cn.getRs().getInt(4),cn.getRs().getFloat(5)
+                        ,cn.getRs().getString(2)
+                        ,cn.getRs().getString(3)
+                        ,cn.getRs().getInt(4)
+                        ,cn.getRs().getFloat(5)
                         ,cn.getRs().getFloat(6),cn.getRs().getString(7)
                         ,cn.getRs().getString(8),cn.getRs().getString(9)
                         ,cn.getRs().getString(10),estatus,cn.getRs().getString(11)
@@ -204,7 +201,7 @@ public class DAOProductosImp implements DAOProductos{
             productos = new LinkedList<>();
             
             while (cn.getRs().next()) {
-                productos.add(new Productos(cn.getRs().getString(1)));
+                productos.add(new Productos(cn.getRs().getString(1),0));
             }
             
             cn.getPs().close();

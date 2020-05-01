@@ -56,8 +56,14 @@ public class Productos {
     }
 
     public Productos(String nombre) {
-        this.nombre = nombre;
+        this.idLab = nombre;
     }
+
+    public Productos(String nombre,int a) {
+        this.idCat = nombre;
+    }
+    
+    
     
     
     

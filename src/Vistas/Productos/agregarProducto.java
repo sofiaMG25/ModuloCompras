@@ -38,6 +38,7 @@ public class agregarProducto extends javax.swing.JPanel {
         DefaultComboBoxModel model = (DefaultComboBoxModel) JCBoxLaboUPro.getModel();
         for (int i = 0; i < productosLab.size(); i++) {
             model.addElement(productosLab.get(i).getIdLab());
+            System.out.println(productosLab.get(i).getIdLab());
         }
         JCBoxLaboUPro.setModel(model);
     }

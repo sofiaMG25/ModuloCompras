@@ -294,7 +294,7 @@ public class modificarSucursal extends javax.swing.JPanel {
             char estatus = String.valueOf(this.estatusBox.getSelectedItem()).charAt(0);
             String ciudad = this.ciudadBox.getSelectedItem().toString();
             //Guardar los datos de laboratorio
-            new DAOSucursalesImp().upadate(new Sucursales(id, nombre, telefono, direccion, colonia, colonia, presupuesto, estatus, ciudad));
+            new DAOSucursalesImp().upadate(new Sucursales(id, nombre, telefono, direccion, colonia, cp, presupuesto, estatus, ciudad));
             limpiarVariables();
         }
     }//GEN-LAST:event_modificarULMouseClicked

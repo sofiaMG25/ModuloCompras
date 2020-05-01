@@ -39,48 +39,48 @@ public class DAOSucursalesImp implements DAOSucursales {
 
     @Override
     public void Insert(Sucursales nuevo) {
-        String sql="{call sp_agregarSucucusal (?,?,?,?,?,?,?)}";
+        String sql = "{call sp_agregarSucucusal (?,?,?,?,?,?,?)}";
         try {
-          cn.setPs(cn.getCn().prepareStatement(sql));
-          cn.getPs().setString(1, nuevo.getNombre());
-          cn.getPs().setString(2, nuevo.getTelefono());
-          cn.getPs().setString(3, nuevo.getDireccion());
-          cn.getPs().setString(4, nuevo.getColonia());
-          cn.getPs().setString(5, nuevo.getCodPostal());
-          cn.getPs().setFloat(6, nuevo.getPresupuesto());
-          cn.getPs().setString(7, nuevo.getCiudad());
-          cn.getPs().execute();
-                JOptionPane.showMessageDialog(null,"El registro fué exitoso","Registrando sucursal",JOptionPane.QUESTION_MESSAGE);
+            cn.setPs(cn.getCn().prepareStatement(sql));
+            cn.getPs().setString(1, nuevo.getNombre());
+            cn.getPs().setString(2, nuevo.getTelefono());
+            cn.getPs().setString(3, nuevo.getDireccion());
+            cn.getPs().setString(4, nuevo.getColonia());
+            cn.getPs().setString(5, nuevo.getCodPostal());
+            cn.getPs().setFloat(6, nuevo.getPresupuesto());
+            cn.getPs().setString(7, nuevo.getCiudad());
+            cn.getPs().execute();
+            JOptionPane.showMessageDialog(null, "El registro fué exitoso", "Registrando sucursal", JOptionPane.QUESTION_MESSAGE);
             cn.getPs().close();
             cn.getRs().close();
-          
+
         } catch (SQLException e) {
-            System.out.println("Error:"+e.getMessage());
+            System.out.println("Error:" + e.getMessage());
         }
     }
 
     @Override
     public void upadate(Sucursales nuevo) {
-        String sql="{call EditarSucursales (?,?,?,?,?,?,?,?,?)}";
+        String sql = "{call dbo.EditarSucursales (?,?,?,?,?,?,?,?,?)}";
 
         try {
-          cn.setPs(cn.getCn().prepareStatement(sql));
-          cn.getPs().setInt(1, nuevo.getIdSucursal());
-          cn.getPs().setString(2, nuevo.getNombre());
-          cn.getPs().setString(3, nuevo.getTelefono());
-          cn.getPs().setString(4, nuevo.getDireccion());
-          cn.getPs().setString(5, nuevo.getColonia());
-          cn.getPs().setString(6, nuevo.getCodPostal());
-          cn.getPs().setFloat(7, nuevo.getPresupuesto());
-          cn.getPs().setString(8, String.valueOf(nuevo.getEstatus()));
-          cn.getPs().setString(9, nuevo.getCiudad());
+            cn.setPs(cn.getCn().prepareStatement(sql));
+            cn.getPs().setInt(1, nuevo.getIdSucursal());
+            cn.getPs().setString(2, nuevo.getNombre());
+            cn.getPs().setString(3, nuevo.getTelefono());
+            cn.getPs().setString(4, nuevo.getDireccion());
+            cn.getPs().setString(5, nuevo.getColonia());
+            cn.getPs().setString(6, nuevo.getCodPostal());
+            cn.getPs().setFloat(7, nuevo.getPresupuesto());
+            cn.getPs().setString(8, String.valueOf(nuevo.getEstatus()));
+            cn.getPs().setString(9, nuevo.getCiudad());
 
-          cn.getPs().execute();
-                System.out.println("Se actualizó con éxito.");
+            cn.getPs().execute();
+            System.out.println("Se actualizó con éxito.");
             cn.getPs().close();
             cn.getRs().close();
         } catch (SQLException e) {
-            System.out.println("Error:"+e.getMessage());
+            System.out.println("Error:" + e.getMessage());
         }
     }
 
@@ -116,18 +116,18 @@ public class DAOSucursalesImp implements DAOSucursales {
 
     @Override
     public LinkedList<String> obtenerCiudades() {
-        LinkedList<String> ciudades = null; 
+        LinkedList<String> ciudades = null;
         try {
             cn.setPs(cn.getCn().prepareCall("{ call sp_obtenerCiudades }"));
             cn.setRs(cn.getPs().executeQuery());
             ciudades = new LinkedList<>();
-            while(cn.getRs().next()){
+            while (cn.getRs().next()) {
                 ciudades.add(cn.getRs().getString(1));
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-       return ciudades;
+        return ciudades;
     }
 
     @Override
@@ -140,11 +140,11 @@ public class DAOSucursalesImp implements DAOSucursales {
             cn.setRs(cn.getPs().executeQuery());
             sucursales = new LinkedList<Sucursales>();
             char estatus;
-            while(cn.getRs().next()){
+            while (cn.getRs().next()) {
                 estatus = cn.getRs().getString(8).charAt(0);
-                sucursales.add(new Sucursales(cn.getRs().getInt(1), 
+                sucursales.add(new Sucursales(cn.getRs().getInt(1),
                         cn.getRs().getString(2), cn.getRs().getString(3), cn.getRs().getString(4),
-                        cn.getRs().getString(5),cn.getRs().getString(6), cn.getRs().getFloat(7), 
+                        cn.getRs().getString(5), cn.getRs().getString(6), cn.getRs().getFloat(7),
                         estatus, cn.getRs().getString(9)));
             }
             cn.getPs().close();
