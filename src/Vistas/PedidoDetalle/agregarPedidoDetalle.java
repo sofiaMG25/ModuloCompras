@@ -260,7 +260,7 @@ public class agregarPedidoDetalle extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void guardarAPediDetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarAPediDetMouseClicked
-        if (txtCantPedido.getText().equals("") || Float.parseFloat(txtCantPedido.getText()) <=0) {
+        if (txtCantPedido.getText().equals("") || Float.parseFloat(txtCantPedido.getText()) <1000) {
             JOptionPane.showMessageDialog(this, "Ingrese una cantidad valida", "Error", JOptionPane.ERROR_MESSAGE);
             txtCantPedido.requestFocus();
         }

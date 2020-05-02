@@ -132,7 +132,7 @@ public class DAOPedidoDetalleImp implements DAOPedidoDetalle{
         try {
             String sql = "{call sp_busquedaPorNombrePedioDetalle(?)}";
             cn.setPs(cn.getCn().prepareCall(sql));
-            cn.getPs().setString(1, nombre);
+            cn.getPs().setInt(1, Integer.parseInt(nombre));
             cn.setRs(cn.getPs().executeQuery());
             pedidoDet = new LinkedList<>();
             char estatus;

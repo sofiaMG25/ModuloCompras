@@ -322,7 +322,7 @@ public class modificarPedidoDetalle extends javax.swing.JPanel {
     }//GEN-LAST:event_cancelarUPedDetMouseClicked
 
     private void modificarUPedDetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarUPedDetMouseClicked
-        if (txtCantPedido.getText().equals("") || Float.parseFloat(txtCantPedido.getText()) <=0) {
+        if (txtCantPedido.getText().equals("") || Float.parseFloat(txtCantPedido.getText()) <1000) {
             JOptionPane.showMessageDialog(this, "Ingrese una cantidad valida", "Error", JOptionPane.ERROR_MESSAGE);
             txtCantPedido.requestFocus();
         }
