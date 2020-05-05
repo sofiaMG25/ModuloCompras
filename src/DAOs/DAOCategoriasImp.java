@@ -33,7 +33,7 @@ public class DAOCategoriasImp implements DAOCategorias{
 
     @Override
     public void upadate(Categorias nuevo) {
-       String sql="{call EditarCategoria (?,?,?)}";
+       String sql="{call EditarPedido (?,?,?)}";
 
         try {
           cn.setPs(cn.getCn().prepareStatement(sql));

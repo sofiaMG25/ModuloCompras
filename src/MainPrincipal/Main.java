@@ -966,7 +966,17 @@ public class Main extends javax.swing.JFrame implements Runnable {
         mostrarPedi.setMostrarPedidos(this);
 
     }//GEN-LAST:event_pedidosMouseClicked
-
+    public void activarPedidos(){
+        workSpace.removeAll();
+        mostrarPedidos mostrarPedi = new mostrarPedidos();
+        mostrarPedi.setSize(workSpace.getSize());
+        mostrarPedi.setVisible(true);
+        mostrarPedi.MostrarDatosPedidos();
+        workSpace.add(mostrarPedi, BorderLayout.CENTER);
+        workSpace.revalidate();
+        workSpace.repaint();
+        mostrarPedi.setMostrarPedidos(this);
+    }
     /**
      * @param args the command line arguments
      */

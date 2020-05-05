@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package DAOs;
 
@@ -10,7 +5,7 @@ package DAOs;
  * 
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
-public class Provedores {
+public class Proveedores {
     private int idProvedor;
     private String nombre;
     private String email;
@@ -33,7 +28,7 @@ public class Provedores {
      * @param codPostall
      * @param ciudad 
      */
-    public Provedores(int idProvedor, String nombre, String email, String direccion, String colonia, String codPostall, String ciudad) {
+    public Proveedores(int idProvedor, String nombre, String email, String direccion, String colonia, String codPostall, String ciudad) {
         this.idProvedor = idProvedor;
         this.nombre = nombre;
         this.email = email;
@@ -43,28 +38,16 @@ public class Provedores {
         this.ciudad = ciudad;
     }
 
-    /** 
-     * Este método se utiliza para obtener los datos y colocarlos en la tabla
-     * NOTA: no debe usarse para agregar un nuevo proveedor.
-     * @param idProvedor
-     * @param nombre
-     * @param email
-     * @param direccion
-     * @param colonia
-     * @param codPostall
-     * @param ciudad
-     * @param status 
+    /**
+     * Metodo usado para obtener el nombre del proveedor
+     * NOTA: Es implementado para la interfaz agregar pedido
+     * @param nombre 
      */
-    public Provedores(int idProvedor, String nombre, String email, String direccion, String colonia, String codPostall, String ciudad, char status) {
-        this.idProvedor = idProvedor;
+    public Proveedores(String nombre) {
         this.nombre = nombre;
-        this.email = email;
-        this.direccion = direccion;
-        this.colonia = colonia;
-        this.codPostall = codPostall;
-        this.ciudad = ciudad;
-        this.status = status;
     }
+
+    
 
     public int getIdProvedor() {
         return idProvedor;

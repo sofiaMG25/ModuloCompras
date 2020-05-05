@@ -37,6 +37,16 @@ public class Pedidos {
         this.idEmpleado = idEmpleado;
     }
 
+    public Pedidos(int idpedido, Date fecharegistro, Date fechaRecepcion, float totalpagar, float cantidadpagada) {
+        this.idpedido = idpedido;
+        this.fecharegistro = fecharegistro;
+        this.fechaRecepcion = fechaRecepcion;
+        this.totalpagar = totalpagar;
+        this.cantidadpagada = cantidadpagada;
+    }
+
+    
+    
     public int getIdpedido() {
         return idpedido;
     }

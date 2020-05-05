@@ -1,13 +1,20 @@
 package Vista.Pedidos;
 
 import java.awt.BorderLayout;
-import DAOs.DAOLaboratoriosImp;
 import DAOs.DAOPedidosImp;
 import DAOs.Laboratorios;
 import DAOs.Pedidos;
 import javax.swing.table.DefaultTableModel;
 import MainPrincipal.Main;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,8 +31,10 @@ public class mostrarPedidos extends javax.swing.JPanel {
 
     public mostrarPedidos() {
         initComponents();
-        ContRegistro = new DAOLaboratoriosImp().contarRegistros();
+        ContRegistro = new DAOPedidosImp().contarRegistros();
         ContRegistro = Math.ceil((ContRegistro / 10));
+        contRegistroPagado = new DAOPedidosImp().contarRegistroPagados();
+        contRegistroPagado = Math.ceil(contRegistroPagado / 10);
         System.out.println(ContRegistro);
         leyenda.setVisible(false);
 
@@ -33,7 +42,9 @@ public class mostrarPedidos extends javax.swing.JPanel {
 
     private Main mainPrincipal;
     private double ContRegistro;
+    private double contRegistroPagado;
     private int cambioPagina = 1;
+    private int cambioPagina2 = 1;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,6 +70,8 @@ public class mostrarPedidos extends javax.swing.JPanel {
         preview = new javax.swing.JButton();
         next = new javax.swing.JButton();
         leyenda = new javax.swing.JLabel();
+        PedidosPagados = new javax.swing.JLabel();
+        PedidosPag = new javax.swing.JCheckBox();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -119,7 +132,7 @@ public class mostrarPedidos extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionesMostrarLabLayout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addComponent(nuevolabML, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 363, Short.MAX_VALUE)
                 .addComponent(cancelarML, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
         );
@@ -208,6 +221,24 @@ public class mostrarPedidos extends javax.swing.JPanel {
         leyenda.setForeground(new java.awt.Color(255, 51, 51));
         leyenda.setText("No se encuentran mas registros en paginas.");
 
+        PedidosPagados.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        PedidosPagados.setForeground(new java.awt.Color(255, 255, 255));
+        PedidosPagados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/orden.png"))); // NOI18N
+        PedidosPagados.setText("PEDIDOS PAGADOS");
+        PedidosPagados.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        PedidosPagados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PedidosPagados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PedidosPagadosMouseClicked(evt);
+            }
+        });
+
+        PedidosPag.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PedidosPagMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout mainMostrarLabLayout = new javax.swing.GroupLayout(mainMostrarLab);
         mainMostrarLab.setLayout(mainMostrarLabLayout);
         mainMostrarLabLayout.setHorizontalGroup(
@@ -220,7 +251,10 @@ public class mostrarPedidos extends javax.swing.JPanel {
                             .addComponent(tablaMostrarLab)
                             .addComponent(opcionesMostrarLab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainMostrarLabLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(PedidosPagados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(PedidosPag)
+                                .addGap(30, 30, 30)
                                 .addComponent(buscartxtML, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(buscarML, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -240,7 +274,9 @@ public class mostrarPedidos extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(mainMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buscarML)
-                    .addComponent(buscartxtML, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buscartxtML, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PedidosPagados)
+                    .addComponent(PedidosPag))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(tablaMostrarLab, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -294,32 +330,75 @@ public class mostrarPedidos extends javax.swing.JPanel {
      * @param evt evento al dar click a la tabla.
      */
     private void jTableMLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMLMouseClicked
-//
-//        int row;
-//        row = jTableML.getSelectedRow();
-//
-//        //Verificamos que el evento este en el rango de la tabla.
-//        if (row > -1 && row <= jTableML.getSelectedRow()) {
-//            //creamos la ventana modificar
-//            modificarPedido modificarLab = new modificarPedido();
-//            this.mainPrincipal.getworkSpace().removeAll();
-//            modificarLab.setSize(mainPrincipal.getworkSpace().getSize());
-//            modificarLab.setVisible(true);
-//            modificarLab.setMainPrincipal(mainPrincipal);
-//            //Datos de la tabla, selecionar un row
-//            int id = Integer.parseInt(String.valueOf(this.jTableML.getValueAt(row, 0)));
-//            String nombre = String.valueOf(this.jTableML.getValueAt(row, 1));
-//            String origen = String.valueOf(this.jTableML.getValueAt(row, 2));
-//            char estatus = String.valueOf(this.jTableML.getValueAt(row, 3)).charAt(0);
-//            //Ingresan los datos de la tabla a la interfaz Modificar Laboratorio
-//            modificarLab.ObtenerLaboratoriModificar(
-//                    new Laboratorios(id, nombre, origen, estatus));
-//
-//            this.mainPrincipal.getworkSpace().add(modificarLab, BorderLayout.CENTER);
-//            this.mainPrincipal.getworkSpace().revalidate();
-//            this.mainPrincipal.getworkSpace().repaint();
+        if (JOptionPane.showConfirmDialog(this, "Seleccione SI Para realizar un pago\n "
+                + " Seleccione NO para modicar", "Procesando...", JOptionPane.INFORMATION_MESSAGE)
+                == JOptionPane.YES_OPTION) {
+            int row;
+            row = jTableML.getSelectedRow();
+            if (Float.parseFloat(String.valueOf(this.jTableML.getValueAt(row, 3)))
+                    != Float.parseFloat(String.valueOf(this.jTableML.getValueAt(row, 4)))) {
 
-//        }
+                //Verificamos que el evento este en el rango de la tabla.
+                if (row > -1 && row <= jTableML.getSelectedRow()) {
+                    try {
+                        RealizarPago pago = new RealizarPago(null, true);
+                        //Datos de la tabla del renglón seleccionado
+                        DateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+
+                        int id = Integer.parseInt(String.valueOf(this.jTableML.getValueAt(row, 0)));
+                        Date fechaReg = formato.parse(String.valueOf(this.jTableML.getValueAt(row, 1)));
+                        Date fechaRecp = formato.parse(String.valueOf(this.jTableML.getValueAt(row, 2)));;
+                        float totalPag = Float.parseFloat(String.valueOf(this.jTableML.getValueAt(row, 3)));
+                        float cantPag = Float.parseFloat(String.valueOf(this.jTableML.getValueAt(row, 4)));;
+
+                        pago.resibirDatosPedido(new Pedidos(id, fechaReg, fechaRecp, totalPag, cantPag));
+                        pago.setMain(mainPrincipal);
+                        pago.setVisible(true);
+                    } catch (ParseException ex) {
+                        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+
+        } else {
+            int row;
+            row = jTableML.getSelectedRow();
+
+            //Verificamos que el evento este en el rango de la tabla.
+            if (row > -1 && row <= jTableML.getSelectedRow()) {
+                try {
+                    //creamos la ventana modificar
+                    modificarPedido modificarLab = new modificarPedido();
+                    this.mainPrincipal.getworkSpace().removeAll();
+                    modificarLab.setSize(mainPrincipal.getworkSpace().getSize());
+                    modificarLab.setVisible(true);
+                    modificarLab.setMainPrincipal(mainPrincipal);
+                    //Datos de la tabla, selecionar un row
+                    DateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+                    
+                    int id = Integer.parseInt(String.valueOf(this.jTableML.getValueAt(row, 0)));
+                    Date fechaReg = formato.parse(String.valueOf(this.jTableML.getValueAt(row, 1)));
+                    Date fechaRecp = formato.parse(String.valueOf(this.jTableML.getValueAt(row, 2)));
+                    float totalPag = Float.parseFloat(String.valueOf(this.jTableML.getValueAt(row, 3)));
+                    float cantPag = Float.parseFloat(String.valueOf(this.jTableML.getValueAt(row, 4)));
+                    char estatus = String.valueOf(this.jTableML.getValueAt(row, 5)).charAt(0);
+                    String proveedor = String.valueOf(this.jTableML.getValueAt(row, 6));
+                    String sucursal = String.valueOf(this.jTableML.getValueAt(row, 7));
+                    String empleado = String.valueOf(this.jTableML.getValueAt(row, 8));
+                    //Ingresan los datos de la tabla a la interfaz Modificar Laboratorio
+                    modificarLab.ObtenerDatosPedido
+                    (new Pedidos(id,fechaReg, fechaRecp, totalPag, cantPag, estatus, proveedor,
+                            sucursal, empleado));
+                    
+                    this.mainPrincipal.getworkSpace().add(modificarLab, BorderLayout.CENTER);
+                    this.mainPrincipal.getworkSpace().revalidate();
+                    this.mainPrincipal.getworkSpace().repaint();
+                } catch (ParseException ex) {
+                    Logger.getLogger(mostrarPedidos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+        }
     }//GEN-LAST:event_jTableMLMouseClicked
 
     private void buscarMLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscarMLMouseClicked
@@ -340,15 +419,15 @@ public class mostrarPedidos extends javax.swing.JPanel {
             }
 
             DefaultTableModel modelTable = new DefaultTableModel(
-                listaDatos,
-                new Object[]{"ID", "FECHAREG", "FECHARECP", "TOTAL PAGAR",
-                    "CANT.PAGADA", "ESTATUS", "PROVEEDOR", "SUCURSAL", "EMPLEADO"}) {
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
+                    listaDatos,
+                    new Object[]{"ID", "FECHAREG", "FECHARECP", "TOTAL PAGAR",
+                        "CANT.PAGADA", "ESTATUS", "PROVEEDOR", "SUCURSAL", "EMPLEADO"}) {
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
 
-//            this.jTableML.setModel(modelTable);
+            this.jTableML.setModel(modelTable);
 //            this.jTableML.getColumnModel().getColumn(0).setMinWidth(10);
 //            this.jTableML.getColumnModel().getColumn(0).setMaxWidth(50);
 //
@@ -364,43 +443,80 @@ public class mostrarPedidos extends javax.swing.JPanel {
     }//GEN-LAST:event_buscarMLMouseClicked
 
     private void nextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextMouseClicked
-        if (cambioPagina >= ContRegistro) {
-            next.setVisible(false);
-            preview.setVisible(true);
-            leyenda.setVisible(true);
-            MostrarDatosPedidos();
+        if (!PedidosPag.isSelected()) {
+            if (cambioPagina >= ContRegistro) {
+                next.setVisible(false);
+                preview.setVisible(true);
+                leyenda.setVisible(true);
+                MostrarDatosPedidos();
+            } else {
+                cambioPagina++;
+                preview.setVisible(true);
+                MostrarDatosPedidos();
+                leyenda.setVisible(false);
+            }
         } else {
-            cambioPagina++;
-            preview.setVisible(true);
-            MostrarDatosPedidos();
-            leyenda.setVisible(false);
+            if (cambioPagina2 >= contRegistroPagado) {
+                next.setVisible(false);
+                preview.setVisible(true);
+                leyenda.setVisible(true);
+                MostrarPedidosPagados();
+            } else {
+                cambioPagina++;
+                preview.setVisible(true);
+                MostrarPedidosPagados();
+                leyenda.setVisible(false);
+            }
         }
     }//GEN-LAST:event_nextMouseClicked
 
     private void previewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_previewMouseClicked
-        if (cambioPagina == 1) {
-            preview.setVisible(false);
-            next.setVisible(true);
-            leyenda.setVisible(true);
-            MostrarDatosPedidos();
-        } else {
-            next.setVisible(true);
-            cambioPagina--;
-            MostrarDatosPedidos();
-            leyenda.setVisible(false);
+        if (!PedidosPag.isSelected()) {
+            if (cambioPagina == 1) {
+                preview.setVisible(false);
+                next.setVisible(true);
+                leyenda.setVisible(true);
+                MostrarDatosPedidos();
+            } else {
+                next.setVisible(true);
+                cambioPagina--;
+                MostrarDatosPedidos();
+                leyenda.setVisible(false);
 
+            }
+        } else {
+            if (cambioPagina2 == 1) {
+                preview.setVisible(false);
+                next.setVisible(true);
+                leyenda.setVisible(true);
+                MostrarPedidosPagados();
+            } else {
+                next.setVisible(true);
+                cambioPagina2--;
+                MostrarPedidosPagados();
+                leyenda.setVisible(false);
+            }
         }
     }//GEN-LAST:event_previewMouseClicked
 
-    public void MostrarDatosPedidos() {
+    private void PedidosPagadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PedidosPagadosMouseClicked
+
+    }//GEN-LAST:event_PedidosPagadosMouseClicked
+
+    private void PedidosPagMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PedidosPagMouseClicked
+        MostrarPedidosPagados();
+
+    }//GEN-LAST:event_PedidosPagMouseClicked
+
+    private void MostrarPedidosPagados() {
         //Obtiene los registros en paginas de 10 en 10
-        LinkedList<Pedidos> ped = new DAOPedidosImp().show(cambioPagina);
-        this.segmentacion.setText("Página " + cambioPagina + " de " + (int) ContRegistro + " Páginas en total");
+        LinkedList<Pedidos> ped = new DAOPedidosImp().pedidosPagados(cambioPagina2);
+        this.segmentacion.setText("Página " + cambioPagina2 + " de " + (int) contRegistroPagado + " Páginas en total");
         Object listaDatos[][] = new Object[ped.size()][9];
         for (int i = 0; i < ped.size(); i++) {
             listaDatos[i][0] = ped.get(i).getIdpedido();
-            listaDatos[i][1] = ped.get(i).getFecharegistro();
-            listaDatos[i][2] = ped.get(i).getFechaRecepcion();
+            listaDatos[i][1] = ped.get(i).getFecharegistro().toString();
+            listaDatos[i][2] = ped.get(i).getFechaRecepcion().toString();
             listaDatos[i][3] = ped.get(i).getTotalpagar();
             listaDatos[i][4] = ped.get(i).getCantidadpagada();
             listaDatos[i][5] = ped.get(i).getEstatus();
@@ -418,7 +534,36 @@ public class mostrarPedidos extends javax.swing.JPanel {
             }
         };
 
-//        this.jTableML.setModel(modelTable);
+        this.jTableML.setModel(modelTable);
+    }
+
+    public void MostrarDatosPedidos() {
+        //Obtiene los registros en paginas de 10 en 10
+        LinkedList<Pedidos> ped = new DAOPedidosImp().show(cambioPagina);
+        this.segmentacion.setText("Página " + cambioPagina + " de " + (int) ContRegistro + " Páginas en total");
+        Object listaDatos[][] = new Object[ped.size()][9];
+        for (int i = 0; i < ped.size(); i++) {
+            listaDatos[i][0] = ped.get(i).getIdpedido();
+            listaDatos[i][1] = ped.get(i).getFecharegistro().toString();
+            listaDatos[i][2] = ped.get(i).getFechaRecepcion().toString();
+            listaDatos[i][3] = ped.get(i).getTotalpagar();
+            listaDatos[i][4] = ped.get(i).getCantidadpagada();
+            listaDatos[i][5] = ped.get(i).getEstatus();
+            listaDatos[i][6] = ped.get(i).getIdproveedor();
+            listaDatos[i][7] = ped.get(i).getIdSucursal();
+            listaDatos[i][8] = ped.get(i).getIdEmpleado();
+        }
+
+        DefaultTableModel modelTable = new DefaultTableModel(
+                listaDatos,
+                new Object[]{"ID", "FECHAREG", "FECHARECP", "TOTAL PAGAR",
+                    "CANT.PAGADA", "ESTATUS", "PROVEEDOR", "SUCURSAL", "EMPLEADO"}) {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        this.jTableML.setModel(modelTable);
 //        this.jTableML.getColumnModel().getColumn(0).setMinWidth(10);
 //        this.jTableML.getColumnModel().getColumn(0).setMaxWidth(50);
 //
@@ -434,6 +579,8 @@ public class mostrarPedidos extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox PedidosPag;
+    private javax.swing.JLabel PedidosPagados;
     private javax.swing.JLabel buscarML;
     private javax.swing.JTextField buscartxtML;
     private javax.swing.JLabel cancelarML;

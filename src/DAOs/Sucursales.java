@@ -37,6 +37,10 @@ public class Sucursales {
     public Sucursales(int idSucursal) {
         this.idSucursal = idSucursal;
     }
+
+    public Sucursales(String nombre) {
+        this.nombre = nombre;
+    }
     
     
     

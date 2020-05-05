@@ -156,4 +156,25 @@ public class DAOSucursalesImp implements DAOSucursales {
         return sucursales;
     }
 
+    @Override
+    public LinkedList<Sucursales> obtenerSucursales() {
+        LinkedList<Sucursales> sucursales;
+        try {
+            String sql = "select nombre from dbo.Sucursales";
+            cn.setPs(cn.getCn().prepareCall(sql));
+            cn.setRs(cn.getPs().executeQuery());
+            sucursales = new LinkedList<Sucursales>();
+            
+            while (cn.getRs().next()) {
+               sucursales.add(new Sucursales(cn.getRs().getString(1)));
+            }
+            cn.getPs().close();
+            cn.getRs().close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+        return sucursales;
+    }
+
 }

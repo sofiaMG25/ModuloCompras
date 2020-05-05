@@ -5,13 +5,20 @@
  */
 package Vista.Pedidos;
 
-
 import DAOs.DAOPedidosImp;
+import DAOs.DAOProveedoresImp;
+import DAOs.DAOSucursalesImp;
 import DAOs.Pedidos;
+import DAOs.Proveedores;
+import DAOs.Sucursales;
 import MainPrincipal.Main;
 import java.awt.BorderLayout;
+import java.sql.Date;
 import java.util.LinkedList;
+import java.util.StringTokenizer;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import jdk.internal.dynalink.DefaultBootstrapper;
 
 /**
  *
@@ -24,12 +31,34 @@ public class agregarPedido extends javax.swing.JPanel {
      */
     public agregarPedido() {
         initComponents();
-
+        activarComboxs();
     }
     //private LinkedList<Prove>
-    
-    public void activarComboxs(){
-        
+
+    private void activarComboxs() {
+        // carga de datos 
+        LinkedList<Proveedores> proveedor = new DAOProveedoresImp().obtenerProveedores();
+        LinkedList<Sucursales> sucursal = new DAOSucursalesImp().obtenerSucursales();
+        LinkedList<String> Empleados = new DAOPedidosImp().obtenerEmpleados();
+        //Implementar en los JBOX
+        DefaultComboBoxModel modelProveedor = (DefaultComboBoxModel) this.proveedor.getModel();
+        for (Proveedores proveedores : proveedor) {
+            modelProveedor.addElement(proveedores.getNombre());
+        }
+
+        DefaultComboBoxModel modelSucursal = (DefaultComboBoxModel) this.sucursal.getModel();
+        for (Sucursales sucursales : sucursal) {
+            modelSucursal.addElement(sucursales.getNombre());
+        }
+
+        DefaultComboBoxModel modelEmpleado = (DefaultComboBoxModel) this.empleado.getModel();
+        for (String empleados : Empleados) {
+            modelEmpleado.addElement(empleados);
+        }
+
+        this.proveedor.setModel(modelProveedor);
+        this.sucursal.setModel(modelSucursal);
+        this.empleado.setModel(modelEmpleado);
     }
 
     public void setMain(Main main) {
@@ -37,7 +66,6 @@ public class agregarPedido extends javax.swing.JPanel {
     }
 
     private Main mainPrincipal;
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -228,7 +256,7 @@ public class agregarPedido extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(EMPLEADO)
                     .addComponent(empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addComponent(opciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -293,25 +321,41 @@ public class agregarPedido extends javax.swing.JPanel {
                     "ERROR", JOptionPane.ERROR_MESSAGE);
             cantPag.requestFocus();
         }
-        
-        if(proveedor.getSelectedIndex() == 0){
+
+        if (proveedor.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(this, "Seleccione un proveedor",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
             proveedor.requestFocus();
-        }else if(sucursal.getSelectedIndex() == 0){
+        } else if (sucursal.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(this, "Seleccione una sucursal",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
             sucursal.requestFocus();
-        }else if(empleado.getSelectedIndex() == 0){
+        } else if (empleado.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(this, "Seleccione un empleado",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
             empleado.requestFocus();
-        }else{
-            new DAOPedidosImp().Insert(new Pedidos
-                (fechaRegistro.getDate(), fechaRecepcion.getDate(), 
-                 Float.parseFloat(totalPag.getText()),Float.parseFloat(cantPag.getText()),
-                 proveedor.getSelectedItem().toString(),sucursal.getSelectedItem().toString(),
-                 empleado.getSelectedItem().toString()));
+        } else {
+            StringTokenizer token = new StringTokenizer(empleado.getSelectedItem().toString(), " ");
+            String nombreEmpleado = "";
+            int i = 0;
+            if (token.countTokens() == 4) {
+                while (token.hasMoreTokens()) {
+                    if (i == 2) {
+                        break;
+                    }
+                    nombreEmpleado += token.nextToken();
+                    i++;
+                }
+            }else{
+                 while (token.hasMoreTokens()) {
+                    nombreEmpleado += token.nextToken();
+                    break;
+                }
+            }
+            new DAOPedidosImp().Insert(new Pedidos(fechaRegistro.getDate(), fechaRecepcion.getDate(),
+                    Float.parseFloat(totalPag.getText()), Float.parseFloat(cantPag.getText()),
+                    proveedor.getSelectedItem().toString(), sucursal.getSelectedItem().toString(),
+                    nombreEmpleado));
             LimpiarVariables();
         }
     }//GEN-LAST:event_guardarMouseClicked
