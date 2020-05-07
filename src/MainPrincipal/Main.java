@@ -9,6 +9,7 @@ import Vistas.Categorias.mostrarCategorias;
 import Vistas.ExistenciaSucursal.MostrarExistenciaSucursal;
 import Vistas.Presentaciones.mostrarPresentaciones;
 import Vistas.Productos.mostrarProductos;
+import Vistas.ProductosProveedor.mostrarProductosProveedor;
 import Vistas.UnidadMedida.mostrarUnidadMedida;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -391,6 +392,9 @@ public class Main extends javax.swing.JFrame implements Runnable {
             }
         });
         productosProv.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                productosProvMouseClicked(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 productosProvMouseExited(evt);
             }
@@ -966,6 +970,19 @@ public class Main extends javax.swing.JFrame implements Runnable {
         mostrarPedi.setMostrarPedidos(this);
 
     }//GEN-LAST:event_pedidosMouseClicked
+
+    private void productosProvMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productosProvMouseClicked
+       workSpace.removeAll();
+        mostrarProductosProveedor mostrarProdProveedor = new mostrarProductosProveedor();
+        mostrarProdProveedor.setSize(workSpace.getSize());
+        mostrarProdProveedor.setVisible(true);
+        mostrarProdProveedor.MostrarDatosProdProveedor();
+        workSpace.add(mostrarProdProveedor, BorderLayout.CENTER);
+        workSpace.revalidate();
+        workSpace.repaint();
+        mostrarProdProveedor.setMostrarProductosProveedores(this);
+        
+    }//GEN-LAST:event_productosProvMouseClicked
     public void activarPedidos(){
         workSpace.removeAll();
         mostrarPedidos mostrarPedi = new mostrarPedidos();
