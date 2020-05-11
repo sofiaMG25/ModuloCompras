@@ -140,25 +140,26 @@ public class DAOPresentacionesImp implements DAOPresentaciones {
 
     @Override
     public LinkedList<Presentaciones> show(int pagina) {
-         LinkedList<Presentaciones> presentaciones;
-        try {
-            String sql = "SELECT * FROM sf_paginarRegistrosePPRO (?)";
-            cn.setPs(cn.getCn().prepareCall(sql));
-            cn.getPs().setInt(1, pagina);
-            cn.setRs(cn.getPs().executeQuery());
-            presentaciones = new LinkedList<Presentaciones>();
-            char estatus;
-            while (cn.getRs().next()) {
-                estatus = cn.getRs().getString(7).charAt(0);
-                presentaciones.add(new Presentaciones(cn.getRs().getInt(1),cn.getRs().getFloat(2), cn.getRs().getFloat(3), 
-                        cn.getRs().getFloat(4), cn.getRs().getString(5), cn.getRs().getString(6), estatus));
-            }
-            cn.getPs().close();
-            cn.getRs().close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
-        return presentaciones;
+//         LinkedList<Presentaciones> presentaciones;
+//        try {
+//            String sql = "SELECT * FROM sf_paginarRegistrosePPRO (?)";
+//            cn.setPs(cn.getCn().prepareCall(sql));
+//            cn.getPs().setInt(1, pagina);
+//            cn.setRs(cn.getPs().executeQuery());
+//            presentaciones = new LinkedList<Presentaciones>();
+//            char estatus;
+//            while (cn.getRs().next()) {
+//                estatus = cn.getRs().getString(7).charAt(0);
+//                presentaciones.add(new Presentaciones(cn.getRs().getInt(1),cn.getRs().getFloat(2), cn.getRs().getFloat(3), 
+//                        cn.getRs().getFloat(4), cn.getRs().getString(5), cn.getRs().getString(6), estatus));
+//            }
+//            cn.getPs().close();
+//            cn.getRs().close();
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//            return null;
+//        }
+//      return presentaciones;
+        return null;
     }
 }

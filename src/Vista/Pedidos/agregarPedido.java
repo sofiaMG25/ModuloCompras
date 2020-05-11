@@ -88,9 +88,9 @@ public class agregarPedido extends javax.swing.JPanel {
         nombreLabel7 = new javax.swing.JLabel();
         fechaRegistro = new com.toedter.calendar.JDateChooser();
         fechaRecepcion = new com.toedter.calendar.JDateChooser();
-        empleado = new javax.swing.JComboBox<>();
-        sucursal = new javax.swing.JComboBox<>();
-        proveedor = new javax.swing.JComboBox<>();
+        empleado = new javax.swing.JComboBox<String>();
+        sucursal = new javax.swing.JComboBox<String>();
+        proveedor = new javax.swing.JComboBox<String>();
         totalPag = new javax.swing.JTextField();
         cantPag = new javax.swing.JTextField();
 
@@ -167,10 +167,10 @@ public class agregarPedido extends javax.swing.JPanel {
         nombreLabel7.setText("SUCURSAL:");
 
         empleado.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        empleado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UN EMPLEADO" }));
+        empleado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONE UN EMPLEADO" }));
 
         sucursal.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        sucursal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UNA SUCURSAL" }));
+        sucursal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONE UNA SUCURSAL" }));
         sucursal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sucursalActionPerformed(evt);
@@ -178,7 +178,7 @@ public class agregarPedido extends javax.swing.JPanel {
         });
 
         proveedor.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        proveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UN PROVEEDOR" }));
+        proveedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONE UN PROVEEDOR" }));
         proveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 proveedorActionPerformed(evt);
