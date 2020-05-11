@@ -5,6 +5,14 @@
  */
 package Vistas.Proveedores;
 
+import DAOs.DAOProveedoresImp;
+import DAOs.Proveedores;
+import MainPrincipal.Main;
+import java.awt.BorderLayout;
+import java.util.LinkedList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author USERID
@@ -16,6 +24,76 @@ public class mostrarProveedor extends javax.swing.JFrame {
      */
     public mostrarProveedor() {
         initComponents();
+    }
+
+    private double ContRegistros;
+    private int CambioPagina = 1;
+
+    public void setMostrarProveedor(Main worksapce) {
+        mainPrincipal = worksapce;
+    }
+
+    public void MostrarDatosProveedor() {
+        LinkedList<Proveedores> prov = new DAOProveedoresImp().show(CambioPagina);
+        if (ContRegistros <= 0) {
+            next.setVisible(false);
+            preview.setVisible(false);
+            return;
+        } else {
+            next.setVisible(true);
+            preview.setVisible(true);
+            this.segmentacion.setText("Página" + CambioPagina + " de " + (int) ContRegistros + " Paginas en total");
+            Object listaDatos[][] = new Object[prov.size()][9];
+            this.segmentacion.setText("Página" + CambioPagina + " de " + (int) ContRegistros + " Paginas en total");
+            for (int i = 0; i < prov.size(); i++) {
+                listaDatos[i][0] = prov.get(i).getIdProvedor();
+                listaDatos[i][1] = prov.get(i).getNombre();
+                listaDatos[i][2] = prov.get(i).getEmail();
+                listaDatos[i][3] = prov.get(i).getTelefono();
+                listaDatos[i][4] = prov.get(i).getColonia();
+                listaDatos[i][5] = prov.get(i).getDireccion();
+                listaDatos[i][6] = prov.get(i).getCodPostall();
+                listaDatos[i][7] = prov.get(i).getStatus();
+                listaDatos[i][8] = prov.get(i).getIdCiudad();
+            }
+            DefaultTableModel modelTable = new DefaultTableModel(
+                    listaDatos,
+                    new Object[]{"IDPROVEEDOR", "NOMBRE", "EMAIL", "COLONIA",
+                        "TELEFONO", "DIRECCIÓN", "CODIGO POSTAL", "ESTATUS", "IDCIUDAD"}) {
+                        public boolean isCellEditable(int row, int colum) {
+                            return false;
+                        }
+                    };
+            this.TablaProveedor.setModel(modelTable);
+            this.TablaProveedor.getColumnModel().getColumn(0).setMinWidth(10);
+            this.TablaProveedor.getColumnModel().getColumn(0).setMinWidth(50);
+
+            this.TablaProveedor.getColumnModel().getColumn(1).setMinWidth(50);
+            this.TablaProveedor.getColumnModel().getColumn(1).setMinWidth(350);
+
+            this.TablaProveedor.getColumnModel().getColumn(2).setMinWidth(50);
+            this.TablaProveedor.getColumnModel().getColumn(2).setMinWidth(350);
+
+            this.TablaProveedor.getColumnModel().getColumn(3).setMinWidth(10);
+            this.TablaProveedor.getColumnModel().getColumn(3).setMinWidth(200);
+
+            this.TablaProveedor.getColumnModel().getColumn(4).setMinWidth(10);
+            this.TablaProveedor.getColumnModel().getColumn(4).setMinWidth(200);
+
+            this.TablaProveedor.getColumnModel().getColumn(5).setMinWidth(10);
+            this.TablaProveedor.getColumnModel().getColumn(5).setMinWidth(200);
+
+            this.TablaProveedor.getColumnModel().getColumn(6).setMinWidth(10);
+            this.TablaProveedor.getColumnModel().getColumn(6).setMinWidth(200);
+
+            this.TablaProveedor.getColumnModel().getColumn(7).setMinWidth(10);
+            this.TablaProveedor.getColumnModel().getColumn(7).setMinWidth(200);
+
+            this.TablaProveedor.getColumnModel().getColumn(8).setMinWidth(10);
+            this.TablaProveedor.getColumnModel().getColumn(8).setMinWidth(200);
+
+        }
+
     }
 
     /**
@@ -30,12 +108,12 @@ public class mostrarProveedor extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         mainMostrarPro = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableMPro = new javax.swing.JTable();
+        TablaProveedor = new javax.swing.JTable();
         buscartxtMPro = new javax.swing.JTextField();
-        buscarMPro = new javax.swing.JLabel();
+        BuscarProveedor = new javax.swing.JLabel();
         opcionesMostrarEmp = new javax.swing.JPanel();
-        nuevoMPro = new javax.swing.JLabel();
-        cancelarMPro = new javax.swing.JLabel();
+        NuevoProveedor = new javax.swing.JLabel();
+        CancelarProveedor = new javax.swing.JLabel();
         opcionesMostrarLab3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         segmentacion = new javax.swing.JLabel();
@@ -50,7 +128,13 @@ public class mostrarProveedor extends javax.swing.JFrame {
 
         mainMostrarPro.setBackground(new java.awt.Color(233, 231, 231));
 
-        jTableMPro.setModel(new javax.swing.table.DefaultTableModel(
+        jScrollPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jScrollPane1MouseClicked(evt);
+            }
+        });
+
+        TablaProveedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -61,48 +145,48 @@ public class mostrarProveedor extends javax.swing.JFrame {
                 "ID", "NOMBRE", "EMAIL", "TELEFONO", "DIIRECCIÓN", "COLONIA", "CODIGO POSTAL", "ESTATUS", "IDCIUDAD"
             }
         ));
-        jTableMPro.addMouseListener(new java.awt.event.MouseAdapter() {
+        TablaProveedor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableMProMouseClicked(evt);
+                TablaProveedorMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTableMPro);
+        jScrollPane1.setViewportView(TablaProveedor);
 
-        buscarMPro.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        buscarMPro.setForeground(new java.awt.Color(102, 102, 102));
-        buscarMPro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/most.png"))); // NOI18N
-        buscarMPro.setText("BUSCAR PROVEEDOR");
-        buscarMPro.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
-        buscarMPro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        buscarMPro.addMouseListener(new java.awt.event.MouseAdapter() {
+        BuscarProveedor.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        BuscarProveedor.setForeground(new java.awt.Color(102, 102, 102));
+        BuscarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/most.png"))); // NOI18N
+        BuscarProveedor.setText("BUSCAR PROVEEDOR");
+        BuscarProveedor.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        BuscarProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        BuscarProveedor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buscarMProMouseClicked(evt);
+                BuscarProveedorMouseClicked(evt);
             }
         });
 
         opcionesMostrarEmp.setBackground(new java.awt.Color(48, 45, 45));
 
-        nuevoMPro.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        nuevoMPro.setForeground(new java.awt.Color(255, 255, 255));
-        nuevoMPro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/save.png"))); // NOI18N
-        nuevoMPro.setText("NUEVO PROVEEDOR");
-        nuevoMPro.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
-        nuevoMPro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        nuevoMPro.addMouseListener(new java.awt.event.MouseAdapter() {
+        NuevoProveedor.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        NuevoProveedor.setForeground(new java.awt.Color(255, 255, 255));
+        NuevoProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/save.png"))); // NOI18N
+        NuevoProveedor.setText("NUEVO PROVEEDOR");
+        NuevoProveedor.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        NuevoProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        NuevoProveedor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                nuevoMProMouseClicked(evt);
+                NuevoProveedorMouseClicked(evt);
             }
         });
 
-        cancelarMPro.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        cancelarMPro.setForeground(new java.awt.Color(255, 255, 255));
-        cancelarMPro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/save.png"))); // NOI18N
-        cancelarMPro.setText("CANCELAR");
-        cancelarMPro.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
-        cancelarMPro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        cancelarMPro.addMouseListener(new java.awt.event.MouseAdapter() {
+        CancelarProveedor.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        CancelarProveedor.setForeground(new java.awt.Color(255, 255, 255));
+        CancelarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/save.png"))); // NOI18N
+        CancelarProveedor.setText("CANCELAR");
+        CancelarProveedor.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        CancelarProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        CancelarProveedor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cancelarMProMouseClicked(evt);
+                CancelarProveedorMouseClicked(evt);
             }
         });
 
@@ -112,9 +196,9 @@ public class mostrarProveedor extends javax.swing.JFrame {
             opcionesMostrarEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionesMostrarEmpLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addComponent(nuevoMPro, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(NuevoProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cancelarMPro, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CancelarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41))
         );
         opcionesMostrarEmpLayout.setVerticalGroup(
@@ -122,8 +206,8 @@ public class mostrarProveedor extends javax.swing.JFrame {
             .addGroup(opcionesMostrarEmpLayout.createSequentialGroup()
                 .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(opcionesMostrarEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nuevoMPro)
-                    .addComponent(cancelarMPro))
+                    .addComponent(NuevoProveedor)
+                    .addComponent(CancelarProveedor))
                 .addGap(21, 21, 21))
         );
 
@@ -200,7 +284,7 @@ public class mostrarProveedor extends javax.swing.JFrame {
                         .addGap(0, 232, Short.MAX_VALUE)
                         .addComponent(buscartxtMPro, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(buscarMPro, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(BuscarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(opcionesMostrarEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -217,7 +301,7 @@ public class mostrarProveedor extends javax.swing.JFrame {
             mainMostrarProLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainMostrarProLayout.createSequentialGroup()
                 .addGroup(mainMostrarProLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buscarMPro)
+                    .addComponent(BuscarProveedor)
                     .addComponent(buscartxtMPro, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -268,171 +352,161 @@ public class mostrarProveedor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTableMProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMProMouseClicked
+    private void TablaProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaProveedorMouseClicked
         int row;
-        row = jTableMPro.getSelectedRow();
+        row = TablaProveedor.getSelectedRow();
         //Verificamos que el evento este en el rango de la tabla.
-        if (row > -1 && row <= jTableMPro.getSelectedRow()) {
+        if (row > -1 && row <= TablaProveedor.getSelectedRow()) {
             //creamos la ventana modificar
-            modificarProducto modificarEmpaque = new modificarProducto();
+            modificarProveedor modificarProve = new modificarProveedor();
             this.mainPrincipal.getworkSpace().removeAll();
-            modificarEmpaque.setSize(mainPrincipal.getworkSpace().getSize());
-            modificarEmpaque.setVisible(true);
-            modificarEmpaque.setMainPrincipal(mainPrincipal);
+            modificarProve.setSize(mainPrincipal.getworkSpace().getSize());
+            modificarProve.setVisible(true);
+            modificarProve.setMainPrincipal(mainPrincipal);
             //Datos de la tabla, selecionar un row
-            int id = Integer.parseInt(String.valueOf(this.jTableMPro.getValueAt(row, 0)));
-            String nombre = String.valueOf(this.jTableMPro.getValueAt(row, 1));
-            String descripcion = String.valueOf(this.jTableMPro.getValueAt(row, 2));
-            int puntoreorden = Integer.parseInt(String.valueOf(this.jTableMPro.getValueAt(row, 3)));
-            float precioventa = Float.parseFloat(String.valueOf(this.jTableMPro.getValueAt(row, 4)));
-            float preciocompra = Float.parseFloat(String.valueOf(this.jTableMPro.getValueAt(row, 5)));
-            String ingrediente = String.valueOf(this.jTableMPro.getValueAt(row, 6));
-            String banda = String.valueOf(this.jTableMPro.getValueAt(row, 7));
-            String aplicacion = String.valueOf(this.jTableMPro.getValueAt(row, 8));
-            String uso = String.valueOf(this.jTableMPro.getValueAt(row, 9));
-            char estatus = String.valueOf(this.jTableMPro.getValueAt(row, 10)).charAt(0);
-            String laboratorio = String.valueOf(this.jTableMPro.getValueAt(row, 11));
-            String categoria = String.valueOf(this.jTableMPro.getValueAt(row, 12));
+            int IdProveedor = Integer.parseInt(String.valueOf(this.TablaProveedor.getValueAt(row, 0)));
+            String Nombre = String.valueOf(this.TablaProveedor.getValueAt(row, 1));
+            String Email = String.valueOf(this.TablaProveedor.getValueAt(row, 2));
+            int Telefono = Integer.parseInt(String.valueOf(this.TablaProveedor.getValueAt(row, 3)));
+            String Colonia = String.valueOf(this.TablaProveedor.getValueAt(row, 4));
+            String Direccion = String.valueOf(this.TablaProveedor.getValueAt(row, 5));
+            String CodigoPostal = String.valueOf(this.TablaProveedor.getValueAt(row, 6));
+            char estatus = String.valueOf(this.TablaProveedor.getValueAt(row, 7)).charAt(0);
+            String Ciudad = String.valueOf(this.TablaProveedor.getValueAt(row, 8));
+
             //Ingresan los datos de la tabla a la interfaz Modificar Laboratorio
-            modificarEmpaque.ObtenerLaboratoriModificar(new Productos(id, nombre,
-                descripcion, puntoreorden, preciocompra, precioventa, ingrediente,
-                banda, aplicacion, uso, estatus, laboratorio, categoria));
-
-        this.mainPrincipal.getworkSpace().add(modificarEmpaque, BorderLayout.CENTER);
-        this.mainPrincipal.getworkSpace().revalidate();
-        this.mainPrincipal.getworkSpace().repaint();
+            modificarProve.ObtenerProveedorModificar(new Proveedores(IdProveedor, Nombre, Email, Telefono,
+                                                        Direccion, Colonia, CodigoPostal, Ciudad, estatus));
+            
+            this.mainPrincipal.getworkSpace().add(modificarProve, BorderLayout.CENTER);
+            this.mainPrincipal.getworkSpace().revalidate();
+            this.mainPrincipal.getworkSpace().repaint();
         }
-    }//GEN-LAST:event_jTableMProMouseClicked
+    }//GEN-LAST:event_TablaProveedorMouseClicked
 
-    private void buscarMProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscarMProMouseClicked
-        if (buscartxtMPro.getText() == "" || buscartxtMPro.getText() == null) {
+    private void BuscarProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BuscarProveedorMouseClicked
+        if (BuscarProveedor.getText() == "" || BuscarProveedor.getText() == null) {
             JOptionPane.showMessageDialog(null, "Debes escribir algo para filtrar...",
-                "Mensaje", JOptionPane.WARNING_MESSAGE);
+                    "Mensaje", JOptionPane.WARNING_MESSAGE);
         } else {
-            LinkedList<Productos> cat = new DAOProductosImp().consultaInd(buscartxtMPro.getText());
-            Object listaDatos[][] = new Object[cat.size()][13];
+            LinkedList<Proveedores> cat = new DAOProveedoresImp().consultaInd(BuscarProveedor.getText());
+            Object listaDatos[][] = new Object[cat.size()][9];
             for (int i = 0; i < cat.size(); i++) {
-                listaDatos[i][0] = cat.get(i).getId();
+                listaDatos[i][0] = cat.get(i).getIdProvedor();
                 listaDatos[i][1] = cat.get(i).getNombre();
-                listaDatos[i][2] = cat.get(i).getDescripcion();
-                listaDatos[i][3] = cat.get(i).getPuntoReorden();
-                listaDatos[i][4] = cat.get(i).getPrecioCompra();
-                listaDatos[i][5] = cat.get(i).getPrecioVenta();
-                listaDatos[i][6] = cat.get(i).getIngredienteActivo();
-                listaDatos[i][7] = cat.get(i).getBandaToxicologica();
-                listaDatos[i][8] = cat.get(i).getAplicacion();
-                listaDatos[i][9] = cat.get(i).getUso();
-                listaDatos[i][10] = cat.get(i).getEstatus();
-                listaDatos[i][11] = cat.get(i).getIdLab();
-                listaDatos[i][12] = cat.get(i).getIdCat();
+                listaDatos[i][2] = cat.get(i).getEmail();
+                listaDatos[i][3] = cat.get(i).getTelefono();
+                listaDatos[i][4] = cat.get(i).getColonia();
+                listaDatos[i][5] = cat.get(i).getDireccion();
+                listaDatos[i][6] = cat.get(i).getCodPostall();
+                listaDatos[i][7] = cat.get(i).getStatus();
+                listaDatos[i][8] = cat.get(i).getIdCiudad();
+               
             }
 
             DefaultTableModel modelTable = new DefaultTableModel(
-                listaDatos,
-                new Object[]{"ID", "NOMBRE", "DESCRIPCI+ON",
-                    "PUNTOREORDEN", "PRECIOCOMPRA", "PRECIOVENTA",
-                    "INGREDIENTEACTIVO", "BANDATOXICOLÓGICA",
-                    "APLICACIÓN", "USO", "ESTATUS", "LABORATORIOS", "CATEGORIAS"}) {
-                public boolean isCellEditable(int row, int column) {
-                    return false;
-                }
-            };
+                    listaDatos,
+                    new Object[]{"IDPROVEEDOR", "NOMBRE", "EMAIL",
+                        "TELEFONO", "COLONIA", "DIRECCION",
+                        "CODIGO POSTAL", "ESTATUS",
+                        "CIUDAD"}) {
+                        public boolean isCellEditable(int row, int column) {
+                            return false;
+                        }
+                    };
 
-            this.jTableMPro.setModel(modelTable);
-            this.jTableMPro.getColumnModel().getColumn(0).setMinWidth(10);
-            this.jTableMPro.getColumnModel().getColumn(0).setMaxWidth(50);
+            this.TablaProveedor.setModel(modelTable);
+            this.TablaProveedor.getColumnModel().getColumn(0).setMinWidth(10);
+            this.TablaProveedor.getColumnModel().getColumn(0).setMaxWidth(50);
 
-            this.jTableMPro.getColumnModel().getColumn(1).setMinWidth(50);
-            this.jTableMPro.getColumnModel().getColumn(1).setMaxWidth(350);
+            this.TablaProveedor.getColumnModel().getColumn(1).setMinWidth(50);
+            this.TablaProveedor.getColumnModel().getColumn(1).setMaxWidth(350);
 
-            this.jTableMPro.getColumnModel().getColumn(2).setMinWidth(50);
-            this.jTableMPro.getColumnModel().getColumn(2).setMaxWidth(350);
+            this.TablaProveedor.getColumnModel().getColumn(2).setMinWidth(50);
+            this.TablaProveedor.getColumnModel().getColumn(2).setMaxWidth(350);
 
-            this.jTableMPro.getColumnModel().getColumn(3).setMinWidth(10);
-            this.jTableMPro.getColumnModel().getColumn(3).setMaxWidth(200);
+            this.TablaProveedor.getColumnModel().getColumn(3).setMinWidth(10);
+            this.TablaProveedor.getColumnModel().getColumn(3).setMaxWidth(200);
 
-            this.jTableMPro.getColumnModel().getColumn(4).setMinWidth(10);
-            this.jTableMPro.getColumnModel().getColumn(4).setMaxWidth(200);
+            this.TablaProveedor.getColumnModel().getColumn(4).setMinWidth(10);
+            this.TablaProveedor.getColumnModel().getColumn(4).setMaxWidth(200);
 
-            this.jTableMPro.getColumnModel().getColumn(5).setMinWidth(10);
-            this.jTableMPro.getColumnModel().getColumn(5).setMaxWidth(200);
+            this.TablaProveedor.getColumnModel().getColumn(5).setMinWidth(10);
+            this.TablaProveedor.getColumnModel().getColumn(5).setMaxWidth(200);
 
-            this.jTableMPro.getColumnModel().getColumn(6).setMinWidth(10);
-            this.jTableMPro.getColumnModel().getColumn(6).setMaxWidth(200);
+            this.TablaProveedor.getColumnModel().getColumn(6).setMinWidth(10);
+            this.TablaProveedor.getColumnModel().getColumn(6).setMaxWidth(200);
 
-            this.jTableMPro.getColumnModel().getColumn(7).setMinWidth(10);
-            this.jTableMPro.getColumnModel().getColumn(7).setMaxWidth(200);
+            this.TablaProveedor.getColumnModel().getColumn(7).setMinWidth(10);
+            this.TablaProveedor.getColumnModel().getColumn(7).setMaxWidth(200);
 
-            this.jTableMPro.getColumnModel().getColumn(8).setMinWidth(10);
-            this.jTableMPro.getColumnModel().getColumn(8).setMaxWidth(200);
+            this.TablaProveedor.getColumnModel().getColumn(8).setMinWidth(10);
+            this.TablaProveedor.getColumnModel().getColumn(8).setMaxWidth(200);
 
-            this.jTableMPro.getColumnModel().getColumn(9).setMinWidth(10);
-            this.jTableMPro.getColumnModel().getColumn(9).setMaxWidth(200);
+            this.TablaProveedor.getColumnModel().getColumn(9).setMinWidth(10);
+            this.TablaProveedor.getColumnModel().getColumn(9).setMaxWidth(200);
 
-            this.jTableMPro.getColumnModel().getColumn(10).setMinWidth(10);
-            this.jTableMPro.getColumnModel().getColumn(10).setMaxWidth(200);
-
-            this.jTableMPro.getColumnModel().getColumn(11).setMinWidth(10);
-            this.jTableMPro.getColumnModel().getColumn(11).setMaxWidth(200);
-
-            this.jTableMPro.getColumnModel().getColumn(12).setMinWidth(10);
-            this.jTableMPro.getColumnModel().getColumn(12).setMaxWidth(200);
+       
 
         }
-    }//GEN-LAST:event_buscarMProMouseClicked
+    }//GEN-LAST:event_BuscarProveedorMouseClicked
 
-    private void nuevoMProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevoMProMouseClicked
-        if (new DAOProductosImp().obternerIdLaboratorios() != null && new DAOProductosImp().obternerIdCategorias() != null) {
+    private void NuevoProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NuevoProveedorMouseClicked
+        if (new DAOProveedoresImp().obtenerIdCiudad()!= null) {
             mainPrincipal.getworkSpace().removeAll();
-            agregarProducto nuevoEmp = new agregarProducto();
-            nuevoEmp.setSize(mainPrincipal.getworkSpace().getSize());
-            nuevoEmp.setVisible(true);
-            nuevoEmp.setMainPrincipal(mainPrincipal);
-            mainPrincipal.getworkSpace().add(nuevoEmp, BorderLayout.CENTER);
+            agregarProveedor nuevoProveedor = new agregarProveedor();
+            nuevoProveedor.setSize(mainPrincipal.getworkSpace().getSize());
+            nuevoProveedor.setVisible(true);
+            nuevoProveedor.setMainPrincipal(mainPrincipal);
+            mainPrincipal.getworkSpace().add(nuevoProveedor, BorderLayout.CENTER);
             mainPrincipal.getworkSpace().revalidate();
             mainPrincipal.getworkSpace().repaint();
 
         } else {
-            JOptionPane.showMessageDialog(this, "Laboratorios  y categorias no disponibles, registre por lo menos una "
-                + "categoria y laboratorio en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Ciudades no disponibles, registre por lo menos una "
+                    + "ciudad en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
 
         }
-    }//GEN-LAST:event_nuevoMProMouseClicked
+    }//GEN-LAST:event_NuevoProveedorMouseClicked
 
-    private void cancelarMProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarMProMouseClicked
+    private void CancelarProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelarProveedorMouseClicked
         mainPrincipal.getworkSpace().removeAll();
         mainPrincipal.getworkSpace().revalidate();
         mainPrincipal.getworkSpace().repaint();
-    }//GEN-LAST:event_cancelarMProMouseClicked
+    }//GEN-LAST:event_CancelarProveedorMouseClicked
 
     private void previewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_previewMouseClicked
-        if (cambioPagina == 1) {
+        if (CambioPagina == 1) {
             preview.setVisible(false);
             next.setVisible(true);
             leyenda.setVisible(true);
-            MostrarDatosProductos();
+            MostrarDatosProveedor();
         } else {
             next.setVisible(true);
-            cambioPagina--;
-            MostrarDatosProductos();
+            CambioPagina--;
+            MostrarDatosProveedor();
             leyenda.setVisible(false);
 
         }
     }//GEN-LAST:event_previewMouseClicked
 
     private void nextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextMouseClicked
-        if (cambioPagina >= ContRegistro) {
+        if (CambioPagina >= ContRegistros) {
             next.setVisible(false);
             preview.setVisible(true);
             leyenda.setVisible(true);
-            MostrarDatosProductos();
+            MostrarDatosProveedor();
         } else {
-            cambioPagina++;
+            CambioPagina++;
             preview.setVisible(true);
-            MostrarDatosProductos();
+            MostrarDatosProveedor();
             leyenda.setVisible(false);
         }
     }//GEN-LAST:event_nextMouseClicked
+
+    private void jScrollPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jScrollPane1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -470,20 +544,21 @@ public class mostrarProveedor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel buscarMPro;
+    private javax.swing.JLabel BuscarProveedor;
+    private javax.swing.JLabel CancelarProveedor;
+    private javax.swing.JLabel NuevoProveedor;
+    private javax.swing.JTable TablaProveedor;
     private javax.swing.JTextField buscartxtMPro;
-    private javax.swing.JLabel cancelarMPro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableMPro;
     private javax.swing.JLabel leyenda;
     private javax.swing.JPanel mainMostrarPro;
     private javax.swing.JButton next;
-    private javax.swing.JLabel nuevoMPro;
     private javax.swing.JPanel opcionesMostrarEmp;
     private javax.swing.JPanel opcionesMostrarLab3;
     private javax.swing.JButton preview;
     private javax.swing.JLabel segmentacion;
     // End of variables declaration//GEN-END:variables
+    private Main mainPrincipal;
 }

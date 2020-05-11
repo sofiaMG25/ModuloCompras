@@ -80,7 +80,7 @@
                                   <EmptySpace min="-2" pref="206" max="-2" attributes="0"/>
                                   <Component id="origenUEmp8" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="JCBoxCateUPro" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JCBoxCiudadPro" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
@@ -155,7 +155,7 @@
                   <EmptySpace pref="101" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="origenUEmp8" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                      <Component id="JCBoxCateUPro" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="JCBoxCiudadPro" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="opcionesAEmp" min="-2" max="-2" attributes="0"/>
@@ -177,7 +177,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
-                      <Component id="guardarAPro" min="-2" pref="143" max="-2" attributes="0"/>
+                      <Component id="guardarAProveedor" min="-2" pref="143" max="-2" attributes="0"/>
                       <EmptySpace pref="320" max="32767" attributes="0"/>
                       <Component id="cancelarAPro" min="-2" pref="143" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
@@ -189,7 +189,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace pref="24" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="guardarAPro" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="guardarAProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cancelarAPro" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -228,7 +228,7 @@
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cancelarAProMouseClicked"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="guardarAPro">
+            <Component class="javax.swing.JLabel" name="guardarAProveedor">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tw Cen MT Condensed Extra Bold" size="18" style="2"/>
@@ -255,8 +255,8 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="guardarAProMouseClicked"/>
-                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="guardarAProMouseEntered"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="guardarAProveedorMouseClicked"/>
+                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="guardarAProveedorMouseEntered"/>
               </Events>
             </Component>
           </SubComponents>
@@ -285,7 +285,7 @@
             <Property name="text" type="java.lang.String" value="COLONIA:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="JCBoxCateUPro">
+        <Component class="javax.swing.JComboBox" name="JCBoxCiudadPro">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="1"/>

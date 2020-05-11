@@ -1,5 +1,13 @@
 package Vistas.Proveedores;
 
+import DAOs.DAOProveedoresImp;
+import DAOs.Proveedores;
+import MainPrincipal.Main;
+import java.awt.BorderLayout;
+import java.util.LinkedList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -18,6 +26,22 @@ public class agregarProveedor extends javax.swing.JFrame {
         initComponents();
     }
 
+    
+    private void mostrarCiudad(){
+        LinkedList<Proveedores> proveedor = new DAOProveedoresImp().obtenerIdCiudad();
+        DefaultComboBoxModel model =(DefaultComboBoxModel) JCBoxCiudadPro.getModel();
+        for (int i = 0; i < proveedor.size(); i++) {
+            model.addElement(proveedor.get(i).getIdCiudad());
+            System.out.println(proveedor.get(i).getIdCiudad());
+            
+        }
+        JCBoxCiudadPro.setModel(model);
+    }
+    private Main mainPrincipal;
+    
+      public void setMainPrincipal(Main main){
+          mainPrincipal = main;
+      }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,11 +54,11 @@ public class agregarProveedor extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         opcionesAEmp = new javax.swing.JPanel();
         cancelarAPro = new javax.swing.JLabel();
-        guardarAPro = new javax.swing.JLabel();
+        guardarAProveedor = new javax.swing.JLabel();
         origenUEmp = new javax.swing.JLabel();
         origenUEmp3 = new javax.swing.JLabel();
         origenUEmp2 = new javax.swing.JLabel();
-        JCBoxCateUPro = new javax.swing.JComboBox<String>();
+        JCBoxCiudadPro = new javax.swing.JComboBox<String>();
         Emailtxt = new javax.swing.JTextField();
         origenUEmp1 = new javax.swing.JLabel();
         nombreUEmp = new javax.swing.JLabel();
@@ -65,18 +89,18 @@ public class agregarProveedor extends javax.swing.JFrame {
             }
         });
 
-        guardarAPro.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        guardarAPro.setForeground(new java.awt.Color(255, 255, 255));
-        guardarAPro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/save.png"))); // NOI18N
-        guardarAPro.setText("GUARDAR ");
-        guardarAPro.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
-        guardarAPro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        guardarAPro.addMouseListener(new java.awt.event.MouseAdapter() {
+        guardarAProveedor.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        guardarAProveedor.setForeground(new java.awt.Color(255, 255, 255));
+        guardarAProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/save.png"))); // NOI18N
+        guardarAProveedor.setText("GUARDAR ");
+        guardarAProveedor.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        guardarAProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        guardarAProveedor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                guardarAProMouseClicked(evt);
+                guardarAProveedorMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                guardarAProMouseEntered(evt);
+                guardarAProveedorMouseEntered(evt);
             }
         });
 
@@ -86,7 +110,7 @@ public class agregarProveedor extends javax.swing.JFrame {
             opcionesAEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(opcionesAEmpLayout.createSequentialGroup()
                 .addGap(99, 99, 99)
-                .addComponent(guardarAPro, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(guardarAProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 320, Short.MAX_VALUE)
                 .addComponent(cancelarAPro, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(73, 73, 73))
@@ -96,7 +120,7 @@ public class agregarProveedor extends javax.swing.JFrame {
             .addGroup(opcionesAEmpLayout.createSequentialGroup()
                 .addContainerGap(24, Short.MAX_VALUE)
                 .addGroup(opcionesAEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(guardarAPro)
+                    .addComponent(guardarAProveedor)
                     .addComponent(cancelarAPro))
                 .addContainerGap())
         );
@@ -110,8 +134,8 @@ public class agregarProveedor extends javax.swing.JFrame {
         origenUEmp2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         origenUEmp2.setText("COLONIA:");
 
-        JCBoxCateUPro.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        JCBoxCateUPro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONE UNA OPCIÓN" }));
+        JCBoxCiudadPro.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        JCBoxCiudadPro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONE UNA OPCIÓN" }));
 
         origenUEmp1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         origenUEmp1.setText("EMAIL:");
@@ -157,7 +181,7 @@ public class agregarProveedor extends javax.swing.JFrame {
                                 .addGap(206, 206, 206)
                                 .addComponent(origenUEmp8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(JCBoxCateUPro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(JCBoxCiudadPro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(65, 65, 65)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,7 +238,7 @@ public class agregarProveedor extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(origenUEmp8, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JCBoxCateUPro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JCBoxCiudadPro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(opcionesAEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6))
@@ -246,67 +270,72 @@ public class agregarProveedor extends javax.swing.JFrame {
 
     private void cancelarAProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarAProMouseClicked
         mainPrincipal.getworkSpace().removeAll();
-        mostrarProductos mostrarPro = new mostrarProductos();
-        mostrarPro.setSize(mainPrincipal.getworkSpace().getSize());
-        mostrarPro.setVisible(true);
-        mostrarPro.setMostrarProductos(mainPrincipal);
-        mostrarPro.MostrarDatosProductos();
-        mainPrincipal.getworkSpace().add(mostrarPro, BorderLayout.CENTER);
+        mostrarProveedor mostrarProv = new mostrarProveedor();
+        mostrarProv.setSize(mainPrincipal.getworkSpace().getSize());
+        mostrarProv.setVisible(true);
+        mostrarProv.setMostrarProveedor(mainPrincipal);
+        mostrarProv.MostrarDatosProveedor();
+        mainPrincipal.getworkSpace().add(mostrarProv,BorderLayout.CENTER);
         mainPrincipal.getworkSpace().revalidate();
         mainPrincipal.getworkSpace().repaint();
     }//GEN-LAST:event_cancelarAProMouseClicked
 
-    private void guardarAProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarAProMouseClicked
-        if (Emailtxt.getText().equals("")) {
+    private void guardarAProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarAProveedorMouseClicked
+        if (nombretxt1.getText().equals("")) {
             JOptionPane.showMessageDialog(this,"Ingrese un nombre válido","Error",JOptionPane.ERROR_MESSAGE);
+            nombretxt1.requestFocus();
+            
+        } else if(Emailtxt.getText().equals("")){
+            JOptionPane.showMessageDialog(this,"Ingrese un email válido","Error",JOptionPane.ERROR_MESSAGE);
             Emailtxt.requestFocus();
-        }else if(descripTxt.getText().equals("")){
-            JOptionPane.showMessageDialog(this,"Ingrese una descripción válido","Error",JOptionPane.ERROR_MESSAGE);
-            descripTxt.requestFocus();
-        } else if (Emailtxt.getText().equals("") || Integer.parseInt(Emailtxt.getText()) <= 0) {
-            JOptionPane.showMessageDialog(this,"Ingrese un entero válido ","Error",JOptionPane.ERROR_MESSAGE);
-            Emailtxt.requestFocus();
-        } else if (Direcciontxt.getText().equals("") || Float.parseFloat(Direcciontxt.getText()) <= 0) {
-            JOptionPane.showMessageDialog(this,"Ingrese un precio válido ","Error",JOptionPane.ERROR_MESSAGE);
-            Direcciontxt.requestFocus();
-        } else if (Coloniatxt.getText().equals("") || Float.parseFloat(Coloniatxt.getText()) <= 0) {
-            JOptionPane.showMessageDialog(this,"Ingrese un precio válido ","Error",JOptionPane.ERROR_MESSAGE);
+        }else if(Coloniatxt.getText().equals("")){
+            JOptionPane.showMessageDialog(this,"Ingrese una Colonia válida","Error",JOptionPane.ERROR_MESSAGE);
             Coloniatxt.requestFocus();
+        }else if(Telefonotxt.getText().equals("")){
+            JOptionPane.showMessageDialog(this,"Ingrese un Telefono válido","Error",JOptionPane.ERROR_MESSAGE);
+            Telefonotxt.requestFocus();
+        }else if(Direcciontxt.getText().equals("")){
+            JOptionPane.showMessageDialog(this,"Ingrese una Dirección válida","Error",JOptionPane.ERROR_MESSAGE);
+            Direcciontxt.requestFocus();
         }else if(CodigoPostxt.getText().equals("")){
-            JOptionPane.showMessageDialog(this,"Ingrese un ingrediente válido ","Error",JOptionPane.ERROR_MESSAGE);
-            CodigoPostxt.requestFocus();
-        }else if(bToxicTxt.getSelectedIndex() <= 0){
-            JOptionPane.showMessageDialog(this,"Ingrese una banda toxicológica válida ","Error",JOptionPane.ERROR_MESSAGE);
-            bToxicTxt.requestFocus();
-        }else if(aplicTxt.getText().equals("")){
-            JOptionPane.showMessageDialog(this,"Ingrese una aplicación válida ","Error",JOptionPane.ERROR_MESSAGE);
-            aplicTxt.requestFocus();
-        }else if(usoTxt.getText().equals("")){
-            JOptionPane.showMessageDialog(this,"Ingrese un uso válido ","Error",JOptionPane.ERROR_MESSAGE);
-            usoTxt.requestFocus();
-        } else if (JCBoxLaboUPro.getSelectedIndex() <= 0) {
-            JOptionPane.showMessageDialog(this,"Elija un laboratorio válido ","Error",JOptionPane.ERROR_MESSAGE);
-            JCBoxLaboUPro.requestFocus();
-        } else if (JCBoxCateUPro.getSelectedIndex() <= 0) {
-            JOptionPane.showMessageDialog(this,"Elija una categoria válido ","Error",JOptionPane.ERROR_MESSAGE);
-            JCBoxCateUPro.requestFocus();
-        } else {
-
-            new DAOProductosImp().Insert(new Productos(
-                Telefonotxt.getText(),descripTxt.getText(), Integer.parseInt(Emailtxt.getText()),
-                Float.parseFloat(Direcciontxt.getText()),Float.parseFloat(Coloniatxt.getText()),
-                CodigoPostxt.getText(),bToxicTxt.getSelectedItem().toString(),aplicTxt.getText(),
-                usoTxt.getText(),JCBoxLaboUPro.getSelectedItem().toString(),JCBoxCateUPro.getSelectedItem().toString()
-            ));
-
+            JOptionPane.showMessageDialog(this,"Ingrese un Codigo Postal válido","Error",JOptionPane.ERROR_MESSAGE);
+           CodigoPostxt.requestFocus();
+        }else if(JCBoxCiudadPro.getSelectedIndex()<= 0){
+            JOptionPane.showMessageDialog(this,"Ingrese una Ciudad válida","Error",JOptionPane.ERROR_MESSAGE);
+            JCBoxCiudadPro.requestFocus();
+        }else{
+            
+            new DAOProveedoresImp().Insert(new Proveedores(nombretxt1.getText(), 
+                    Emailtxt.getText(), Integer.parseInt(Telefonotxt.getText()), 
+                    Direcciontxt.getText(),Coloniatxt.getText(),CodigoPostxt.getText(),JCBoxCiudadPro.getSelectedItem().toString()));
             limpiarVariables();
-
         }
-    }//GEN-LAST:event_guardarAProMouseClicked
+    }//GEN-LAST:event_guardarAProveedorMouseClicked
 
-    private void guardarAProMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarAProMouseEntered
+    
+    
+    
+    
+    
+    
+    
+    private void limpiarVariables(){
+        nombretxt1.setText("");
+        Emailtxt.setText("");
+        Coloniatxt.setText("");
+        Telefonotxt.setText("");
+        Direcciontxt.setText("");
+        CodigoPostxt.setText("");
+        JCBoxCiudadPro.setSelectedIndex(0);
+    }
+    
+    
+    
+    
+    
+    private void guardarAProveedorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarAProveedorMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_guardarAProMouseEntered
+    }//GEN-LAST:event_guardarAProveedorMouseEntered
 
     private void TelefonotxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TelefonotxtActionPerformed
         // TODO add your handling code here:
@@ -360,10 +389,10 @@ public class agregarProveedor extends javax.swing.JFrame {
     private javax.swing.JTextField Coloniatxt;
     private javax.swing.JTextField Direcciontxt;
     private javax.swing.JTextField Emailtxt;
-    private javax.swing.JComboBox<String> JCBoxCateUPro;
+    private javax.swing.JComboBox<String> JCBoxCiudadPro;
     private javax.swing.JTextField Telefonotxt;
     private javax.swing.JLabel cancelarAPro;
-    private javax.swing.JLabel guardarAPro;
+    private javax.swing.JLabel guardarAProveedor;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel nombreUEmp;
     private javax.swing.JTextField nombretxt1;

@@ -74,8 +74,8 @@ public class agregarProducto extends javax.swing.JPanel {
         origenUEmp6 = new javax.swing.JLabel();
         origenUEmp3 = new javax.swing.JLabel();
         origenUEmp2 = new javax.swing.JLabel();
-        JCBoxLaboUPro = new javax.swing.JComboBox<>();
-        JCBoxCateUPro = new javax.swing.JComboBox<>();
+        JCBoxLaboUPro = new javax.swing.JComboBox<String>();
+        JCBoxCateUPro = new javax.swing.JComboBox<String>();
         estatusUEmp = new javax.swing.JLabel();
         preordenTxt = new javax.swing.JTextField();
         origenUEmp1 = new javax.swing.JLabel();
@@ -93,7 +93,7 @@ public class agregarProducto extends javax.swing.JPanel {
         usoTxt = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
         aplicTxt = new javax.swing.JTextArea();
-        bToxicTxt = new javax.swing.JComboBox<>();
+        bToxicTxt = new javax.swing.JComboBox<String>();
 
         setBackground(new java.awt.Color(228, 225, 225));
         setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Agregar un nuevo empaque", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
@@ -105,7 +105,7 @@ public class agregarProducto extends javax.swing.JPanel {
         cancelarAPro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar.png"))); // NOI18N
         cancelarAPro.setText("CANCELAR");
         cancelarAPro.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
-        cancelarAPro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cancelarAPro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         cancelarAPro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cancelarAProMouseClicked(evt);
@@ -117,7 +117,7 @@ public class agregarProducto extends javax.swing.JPanel {
         guardarAPro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/save.png"))); // NOI18N
         guardarAPro.setText("GUARDAR ");
         guardarAPro.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
-        guardarAPro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        guardarAPro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         guardarAPro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 guardarAProMouseClicked(evt);
@@ -164,10 +164,15 @@ public class agregarProducto extends javax.swing.JPanel {
         origenUEmp2.setText("PRECIO VENTA:");
 
         JCBoxLaboUPro.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        JCBoxLaboUPro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UNA OPCIÓN" }));
+        JCBoxLaboUPro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONE UNA OPCIÓN" }));
 
         JCBoxCateUPro.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        JCBoxCateUPro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UNA OPCIÓN" }));
+        JCBoxCateUPro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONE UNA OPCIÓN" }));
+        JCBoxCateUPro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JCBoxCateUProActionPerformed(evt);
+            }
+        });
 
         estatusUEmp.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         estatusUEmp.setText("ID LABORATORIO:");
@@ -212,7 +217,7 @@ public class agregarProducto extends javax.swing.JPanel {
         jScrollPane3.setViewportView(aplicTxt);
 
         bToxicTxt.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        bToxicTxt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UNA OPCIÓN", "l a - Producto Sumamente Peligro (Muy tóxico)", "l b - Producto Muy Peligroso (Tóxico)", "ll - Producto Moderadamente Peligroso (Nocivo)", "lll - Producto Poco Peligroso (Cuidado)", "lV - Producto que no Ofrece Peligro (Cuidado)" }));
+        bToxicTxt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONE UNA OPCIÓN", "l a - Producto Sumamente Peligro (Muy tóxico)", "l b - Producto Muy Peligroso (Tóxico)", "ll - Producto Moderadamente Peligroso (Nocivo)", "lll - Producto Poco Peligroso (Cuidado)", "lV - Producto que no Ofrece Peligro (Cuidado)" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -257,7 +262,7 @@ public class agregarProducto extends javax.swing.JPanel {
                                         .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(origenUEmp8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(JCBoxCateUPro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 33, Short.MAX_VALUE))
                     .addComponent(opcionesAEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -415,6 +420,10 @@ public class agregarProducto extends javax.swing.JPanel {
     private void iActivoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iActivoTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_iActivoTxtActionPerformed
+
+    private void JCBoxCateUProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBoxCateUProActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JCBoxCateUProActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
