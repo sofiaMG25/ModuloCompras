@@ -10,15 +10,18 @@ import DAOs.Proveedores;
 import MainPrincipal.Main;
 import java.awt.BorderLayout;
 import java.util.LinkedList;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import DAOs.DAOProveedoresImp;
+import DAOs.Proveedores;
+import MainPrincipal.Main;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author USERID
+ * @author 
  */
-public class mostrarProveedor extends javax.swing.JFrame {
-
+public class mostrarProveedor extends javax.swing.JPanel {
+private Main mainPrincipal;
     /**
      * Creates new form mostrarProveedor
      */
@@ -95,7 +98,6 @@ public class mostrarProveedor extends javax.swing.JFrame {
         }
 
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -105,7 +107,6 @@ public class mostrarProveedor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         mainMostrarPro = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaProveedor = new javax.swing.JTable();
@@ -120,11 +121,6 @@ public class mostrarProveedor extends javax.swing.JFrame {
         preview = new javax.swing.JButton();
         next = new javax.swing.JButton();
         leyenda = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel1.setBackground(new java.awt.Color(233, 231, 231));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Mostrar Proveedor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
 
         mainMostrarPro.setBackground(new java.awt.Color(233, 231, 231));
 
@@ -281,7 +277,7 @@ public class mostrarProveedor extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(mainMostrarProLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(mainMostrarProLayout.createSequentialGroup()
-                        .addGap(0, 232, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(buscartxtMPro, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(BuscarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -309,47 +305,24 @@ public class mostrarProveedor extends javax.swing.JFrame {
                 .addComponent(opcionesMostrarLab3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
                 .addComponent(leyenda)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(opcionesMostrarEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(mainMostrarPro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainMostrarPro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 795, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addComponent(mainMostrarPro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void TablaProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaProveedorMouseClicked
@@ -384,10 +357,14 @@ public class mostrarProveedor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_TablaProveedorMouseClicked
 
+    private void jScrollPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jScrollPane1MouseClicked
+
     private void BuscarProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BuscarProveedorMouseClicked
         if (BuscarProveedor.getText() == "" || BuscarProveedor.getText() == null) {
             JOptionPane.showMessageDialog(null, "Debes escribir algo para filtrar...",
-                    "Mensaje", JOptionPane.WARNING_MESSAGE);
+                "Mensaje", JOptionPane.WARNING_MESSAGE);
         } else {
             LinkedList<Proveedores> cat = new DAOProveedoresImp().consultaInd(BuscarProveedor.getText());
             Object listaDatos[][] = new Object[cat.size()][9];
@@ -401,19 +378,19 @@ public class mostrarProveedor extends javax.swing.JFrame {
                 listaDatos[i][6] = cat.get(i).getCodPostall();
                 listaDatos[i][7] = cat.get(i).getStatus();
                 listaDatos[i][8] = cat.get(i).getIdCiudad();
-               
+
             }
 
             DefaultTableModel modelTable = new DefaultTableModel(
-                    listaDatos,
-                    new Object[]{"IDPROVEEDOR", "NOMBRE", "EMAIL",
-                        "TELEFONO", "COLONIA", "DIRECCION",
-                        "CODIGO POSTAL", "ESTATUS",
-                        "CIUDAD"}) {
-                        public boolean isCellEditable(int row, int column) {
-                            return false;
-                        }
-                    };
+                listaDatos,
+                new Object[]{"IDPROVEEDOR", "NOMBRE", "EMAIL",
+                    "TELEFONO", "COLONIA", "DIRECCION",
+                    "CODIGO POSTAL", "ESTATUS",
+                    "CIUDAD"}) {
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
 
             this.TablaProveedor.setModel(modelTable);
             this.TablaProveedor.getColumnModel().getColumn(0).setMinWidth(10);
@@ -446,8 +423,6 @@ public class mostrarProveedor extends javax.swing.JFrame {
             this.TablaProveedor.getColumnModel().getColumn(9).setMinWidth(10);
             this.TablaProveedor.getColumnModel().getColumn(9).setMaxWidth(200);
 
-       
-
         }
     }//GEN-LAST:event_BuscarProveedorMouseClicked
 
@@ -464,7 +439,7 @@ public class mostrarProveedor extends javax.swing.JFrame {
 
         } else {
             JOptionPane.showMessageDialog(this, "Ciudades no disponibles, registre por lo menos una "
-                    + "ciudad en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
+                + "ciudad en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
 
         }
     }//GEN-LAST:event_NuevoProveedorMouseClicked
@@ -504,44 +479,6 @@ public class mostrarProveedor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_nextMouseClicked
 
-    private void jScrollPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jScrollPane1MouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(mostrarProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(mostrarProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(mostrarProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(mostrarProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new mostrarProveedor().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BuscarProveedor;
@@ -550,7 +487,6 @@ public class mostrarProveedor extends javax.swing.JFrame {
     private javax.swing.JTable TablaProveedor;
     private javax.swing.JTextField buscartxtMPro;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel leyenda;
     private javax.swing.JPanel mainMostrarPro;
@@ -560,5 +496,4 @@ public class mostrarProveedor extends javax.swing.JFrame {
     private javax.swing.JButton preview;
     private javax.swing.JLabel segmentacion;
     // End of variables declaration//GEN-END:variables
-    private Main mainPrincipal;
 }
