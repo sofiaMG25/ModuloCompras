@@ -20,13 +20,14 @@ public class DAOPedidoDetalleImp implements DAOPedidoDetalle{
         String res="";
         try {
           cn.setPs(cn.getCn().prepareStatement(sql));
-          cn.getPs().setString(1, String.valueOf(nuevo.getCantPedida()));
-          cn.getPs().setString(2, String.valueOf(nuevo.getPrecioCompra()));
-          cn.getPs().setString(3, String.valueOf(nuevo.getSubtotal()));
-          cn.getPs().setString(4, String.valueOf(nuevo.getCantRecibida()));
-          cn.getPs().setString(5, String.valueOf(nuevo.getCantRechazada()));
-          cn.getPs().setString(7, nuevo.getIdPedido());
-          cn.getPs().setString(8, nuevo.getIdPresentacion());
+          cn.getPs().setInt(1, nuevo.getCantPedida());
+          cn.getPs().setFloat(2, nuevo.getPrecioCompra());
+          cn.getPs().setFloat(3, nuevo.getSubtotal());
+          cn.getPs().setInt(4, nuevo.getCantRecibida());
+          cn.getPs().setInt(5, nuevo.getCantRechazada());
+          cn.getPs().setFloat(6, nuevo.getCantAceptada());
+          cn.getPs().setInt(7, nuevo.getIdPedido());
+          cn.getPs().setInt(8, nuevo.getIdPresentacion());
           
           cn.getPs().execute();
                 System.out.println("El registro fué exitoso.");
@@ -44,14 +45,16 @@ public class DAOPedidoDetalleImp implements DAOPedidoDetalle{
         String res="";
         try {
           cn.setPs(cn.getCn().prepareStatement(sql));
-          cn.getPs().setString(1, String.valueOf(nuevo.getCantPedida()));
-          cn.getPs().setString(2, String.valueOf(nuevo.getPrecioCompra()));
-          cn.getPs().setString(3, String.valueOf(nuevo.getSubtotal()));
-          cn.getPs().setString(4, String.valueOf(nuevo.getCantRecibida()));
-          cn.getPs().setString(5, String.valueOf(nuevo.getCantRechazada()));
-          cn.getPs().setString(6, String.valueOf(nuevo.getEstatus()));
-          cn.getPs().setString(7, nuevo.getIdPedido());
-          cn.getPs().setString(8, nuevo.getIdPresentacion());
+          cn.getPs().setInt(1, nuevo.getIdPedidoDetalle());
+          cn.getPs().setInt(2, nuevo.getCantPedida());
+          cn.getPs().setFloat(3, nuevo.getPrecioCompra());
+          cn.getPs().setFloat(4, nuevo.getSubtotal());
+          cn.getPs().setInt(5,nuevo.getCantRecibida());
+          cn.getPs().setInt(6, nuevo.getCantRechazada());
+          cn.getPs().setFloat(7,nuevo.getCantAceptada());
+          cn.getPs().setInt(8, nuevo.getEstatus());
+          cn.getPs().setInt(9, nuevo.getIdPedido());
+          cn.getPs().setInt(10, nuevo.getIdPresentacion());
           
           cn.getPs().execute();
                 System.out.println("Se actualizó con éxito.");
@@ -91,12 +94,18 @@ public class DAOPedidoDetalleImp implements DAOPedidoDetalle{
             pedidoDet = new LinkedList<>();
             char estatus;
             while(cn.getRs().next()){
-                estatus = cn.getRs().getString(7).charAt(0);
-                pedidoDet.add(new PedidoDetalle(cn.getRs().getInt(0),
-                        cn.getRs().getInt(1), cn.getRs().getFloat(2), 
-                        cn.getRs().getFloat(3), cn.getRs().getInt(4),
-                        cn.getRs().getInt(5), cn.getRs().getFloat(6),
-                        estatus, cn.getRs().getString(8), cn.getRs().getString(9)));
+                estatus = cn.getRs().getString(8).charAt(0);
+                pedidoDet.add(new PedidoDetalle
+                (cn.getRs().getInt(1),
+                 cn.getRs().getInt(2), 
+                 cn.getRs().getFloat(3), 
+                 cn.getRs().getFloat(4), 
+                 cn.getRs().getInt(5), 
+                 cn.getRs().getInt(6), 
+                 cn.getRs().getFloat(7), 
+                 estatus, 
+                 cn.getRs().getInt(9), 
+                 cn.getRs().getInt(10)));
             }
             cn.getPs().close();
             cn.getRs().close();
@@ -142,7 +151,7 @@ public class DAOPedidoDetalleImp implements DAOPedidoDetalle{
                         cn.getRs().getInt(1), cn.getRs().getFloat(2), 
                         cn.getRs().getFloat(3), cn.getRs().getInt(4),
                         cn.getRs().getInt(5), cn.getRs().getFloat(6),
-                        estatus, cn.getRs().getString(8), cn.getRs().getString(9)));
+                        estatus, cn.getRs().getInt(8), cn.getRs().getInt(9)));
             }
             cn.getPs().close();
             cn.getRs().close();
@@ -157,12 +166,12 @@ public class DAOPedidoDetalleImp implements DAOPedidoDetalle{
     public LinkedList<PedidoDetalle> obternerIdPedido() {
         LinkedList<PedidoDetalle> pedidoDet;
         try {
-            cn.setPs(cn.getCn().prepareStatement("select nombre from Pedidos"));
+            cn.setPs(cn.getCn().prepareStatement("select idPedido from Pedidos"));
             cn.setRs(cn.getPs().executeQuery());
             pedidoDet = new LinkedList<>();
             
             while (cn.getRs().next()) {
-                pedidoDet.add(new PedidoDetalle(cn.getRs().getString(1)));
+                pedidoDet.add(new PedidoDetalle(cn.getRs().getInt(1)));
             }
             
             if(pedidoDet.size() <= 0){
@@ -182,12 +191,12 @@ public class DAOPedidoDetalleImp implements DAOPedidoDetalle{
     public LinkedList<PedidoDetalle> obternerIdPresentacion() {
         LinkedList<PedidoDetalle> pedidoDet;
         try {
-            cn.setPs(cn.getCn().prepareStatement("select nombre from PresentacionesProducto"));
+            cn.setPs(cn.getCn().prepareStatement("select idPresentacion from dbo.PresentacionesProductos"));
             cn.setRs(cn.getPs().executeQuery());
             pedidoDet = new LinkedList<>();
             
             while (cn.getRs().next()) {
-                pedidoDet.add(new PedidoDetalle(cn.getRs().getString(1),0));
+                pedidoDet.add(new PedidoDetalle(cn.getRs().getInt(1),0));
             }
             
             if(pedidoDet.size() <= 0){

@@ -53,12 +53,12 @@
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="diaRetardo" alignment="0" max="32767" attributes="0"/>
-                  <Component id="comboxProducto" alignment="0" max="32767" attributes="0"/>
+                  <Component id="comboxPresentacion" alignment="0" max="32767" attributes="0"/>
                   <Component id="comboxProveedor" alignment="0" max="32767" attributes="0"/>
-                  <Component id="pUltCompratxt" alignment="0" max="32767" attributes="0"/>
-                  <Component id="cantMaxPedirtxt1" alignment="0" max="32767" attributes="0"/>
-                  <Component id="cantMinPedirtxt" alignment="0" max="32767" attributes="0"/>
-                  <Component id="pEstandartxtPre1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="precioUltimaCompra" alignment="0" max="32767" attributes="0"/>
+                  <Component id="cantidadMaxPedir" alignment="0" max="32767" attributes="0"/>
+                  <Component id="cantidadMinimaPedir" alignment="0" max="32767" attributes="0"/>
+                  <Component id="precioEstandar" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
           </Group>
@@ -75,7 +75,7 @@
               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="prodcutos" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="comboxProducto" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="comboxPresentacion" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -85,22 +85,22 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="puntoReordenn" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="pEstandartxtPre1" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                  <Component id="precioEstandar" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="pCompras" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="pUltCompratxt" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                  <Component id="precioUltimaCompra" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="pCompras2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cantMinPedirtxt" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                  <Component id="cantidadMinimaPedir" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="pCompras1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cantMaxPedirtxt1" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                  <Component id="cantidadMaxPedir" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="41" max="32767" attributes="0"/>
               <Component id="opcionesAEmp" min="-2" max="-2" attributes="0"/>
@@ -126,9 +126,9 @@
         <Property name="text" type="java.lang.String" value="D&#xcd;A RETARDO: "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="pUltCompratxt">
+    <Component class="javax.swing.JTextField" name="precioUltimaCompra">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pUltCompratxtActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="precioUltimaCompraActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="opcionesAEmp">
@@ -232,10 +232,10 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="PRODUCTO:"/>
+        <Property name="text" type="java.lang.String" value="PRESENTACI&#xd3;N:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="comboxProducto">
+    <Component class="javax.swing.JComboBox" name="comboxPresentacion">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="14" style="1"/>
@@ -293,19 +293,19 @@
         <Property name="text" type="java.lang.String" value="CANTIDAD MINIMA PEDIR:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="cantMaxPedirtxt1">
+    <Component class="javax.swing.JTextField" name="cantidadMaxPedir">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cantMaxPedirtxt1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cantidadMaxPedirActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="cantMinPedirtxt">
+    <Component class="javax.swing.JTextField" name="cantidadMinimaPedir">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cantMinPedirtxtActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cantidadMinimaPedirActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="pEstandartxtPre1">
+    <Component class="javax.swing.JTextField" name="precioEstandar">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pEstandartxtPre1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="precioEstandarActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

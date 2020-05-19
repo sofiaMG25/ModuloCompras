@@ -14,7 +14,7 @@ public class DAOPedidosImp implements DAOPedidos {
     @Override
     public void Insert(Pedidos nuevo) {
 //        if (nuevo.getCantidadpagada() == 0) //{
-        String sql = "{call sp_AgregarPedido (?,?,?,?,?,?,?)}";
+        String sql = "{call dbo.sp_AgregarPedido (?,?,?,?,?,?,?)}";
         try {
             Date fecharReg = new Date(nuevo.getFecharegistro().getTime());
             Date fecharRecp = new Date(nuevo.getFechaRecepcion().getTime());

@@ -27,6 +27,9 @@ private Main mainPrincipal;
      */
     public mostrarProveedor() {
         initComponents();
+        ContRegistros = new DAOProveedoresImp().contRegistros();
+        ContRegistros = Math.ceil((ContRegistros / 10));
+        leyenda.setVisible(false);
     }
 
     private double ContRegistros;
@@ -47,7 +50,6 @@ private Main mainPrincipal;
             preview.setVisible(true);
             this.segmentacion.setText("Página" + CambioPagina + " de " + (int) ContRegistros + " Paginas en total");
             Object listaDatos[][] = new Object[prov.size()][9];
-            this.segmentacion.setText("Página" + CambioPagina + " de " + (int) ContRegistros + " Paginas en total");
             for (int i = 0; i < prov.size(); i++) {
                 listaDatos[i][0] = prov.get(i).getIdProvedor();
                 listaDatos[i][1] = prov.get(i).getNombre();
@@ -61,40 +63,13 @@ private Main mainPrincipal;
             }
             DefaultTableModel modelTable = new DefaultTableModel(
                     listaDatos,
-                    new Object[]{"IDPROVEEDOR", "NOMBRE", "EMAIL", "COLONIA",
-                        "TELEFONO", "DIRECCIÓN", "CODIGO POSTAL", "ESTATUS", "IDCIUDAD"}) {
+                    new Object[]{"IDPROVEEDOR", "NOMBRE", "EMAIL", "TELEFONO",
+                        "COLONIA", "DIRECCIÓN", "CODIGO POSTAL", "ESTATUS", "IDCIUDAD"}) {
                         public boolean isCellEditable(int row, int colum) {
                             return false;
                         }
                     };
             this.TablaProveedor.setModel(modelTable);
-            this.TablaProveedor.getColumnModel().getColumn(0).setMinWidth(10);
-            this.TablaProveedor.getColumnModel().getColumn(0).setMinWidth(50);
-
-            this.TablaProveedor.getColumnModel().getColumn(1).setMinWidth(50);
-            this.TablaProveedor.getColumnModel().getColumn(1).setMinWidth(350);
-
-            this.TablaProveedor.getColumnModel().getColumn(2).setMinWidth(50);
-            this.TablaProveedor.getColumnModel().getColumn(2).setMinWidth(350);
-
-            this.TablaProveedor.getColumnModel().getColumn(3).setMinWidth(10);
-            this.TablaProveedor.getColumnModel().getColumn(3).setMinWidth(200);
-
-            this.TablaProveedor.getColumnModel().getColumn(4).setMinWidth(10);
-            this.TablaProveedor.getColumnModel().getColumn(4).setMinWidth(200);
-
-            this.TablaProveedor.getColumnModel().getColumn(5).setMinWidth(10);
-            this.TablaProveedor.getColumnModel().getColumn(5).setMinWidth(200);
-
-            this.TablaProveedor.getColumnModel().getColumn(6).setMinWidth(10);
-            this.TablaProveedor.getColumnModel().getColumn(6).setMinWidth(200);
-
-            this.TablaProveedor.getColumnModel().getColumn(7).setMinWidth(10);
-            this.TablaProveedor.getColumnModel().getColumn(7).setMinWidth(200);
-
-            this.TablaProveedor.getColumnModel().getColumn(8).setMinWidth(10);
-            this.TablaProveedor.getColumnModel().getColumn(8).setMinWidth(200);
-
         }
 
     }
@@ -273,25 +248,28 @@ private Main mainPrincipal;
         mainMostrarPro.setLayout(mainMostrarProLayout);
         mainMostrarProLayout.setHorizontalGroup(
             mainMostrarProLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(opcionesMostrarEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainMostrarProLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(leyenda)
+                .addGap(222, 222, 222))
             .addGroup(mainMostrarProLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(mainMostrarProLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(mainMostrarProLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 777, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(14, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainMostrarProLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(buscartxtMPro, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BuscarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(opcionesMostrarEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(mainMostrarProLayout.createSequentialGroup()
-                .addGap(200, 200, 200)
-                .addComponent(leyenda)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainMostrarProLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(opcionesMostrarLab3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(98, 98, 98))
+                        .addGroup(mainMostrarProLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainMostrarProLayout.createSequentialGroup()
+                                .addComponent(buscartxtMPro, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(BuscarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainMostrarProLayout.createSequentialGroup()
+                                .addComponent(opcionesMostrarLab3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(124, 124, 124))))))
         );
         mainMostrarProLayout.setVerticalGroup(
             mainMostrarProLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,11 +281,11 @@ private Main mainPrincipal;
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(opcionesMostrarLab3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(leyenda)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(7, 7, 7)
                 .addComponent(opcionesMostrarEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -321,7 +299,10 @@ private Main mainPrincipal;
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainMostrarPro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(mainMostrarPro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -339,8 +320,8 @@ private Main mainPrincipal;
             //Datos de la tabla, selecionar un row
             int IdProveedor = Integer.parseInt(String.valueOf(this.TablaProveedor.getValueAt(row, 0)));
             String Nombre = String.valueOf(this.TablaProveedor.getValueAt(row, 1));
-            String Email = String.valueOf(this.TablaProveedor.getValueAt(row, 2));
-            int Telefono = Integer.parseInt(String.valueOf(this.TablaProveedor.getValueAt(row, 3)));
+            String Telefono = String.valueOf(this.TablaProveedor.getValueAt(row, 2));
+            String Email = String.valueOf(this.TablaProveedor.getValueAt(row, 3)).toString();
             String Colonia = String.valueOf(this.TablaProveedor.getValueAt(row, 4));
             String Direccion = String.valueOf(this.TablaProveedor.getValueAt(row, 5));
             String CodigoPostal = String.valueOf(this.TablaProveedor.getValueAt(row, 6));
@@ -393,36 +374,6 @@ private Main mainPrincipal;
             };
 
             this.TablaProveedor.setModel(modelTable);
-            this.TablaProveedor.getColumnModel().getColumn(0).setMinWidth(10);
-            this.TablaProveedor.getColumnModel().getColumn(0).setMaxWidth(50);
-
-            this.TablaProveedor.getColumnModel().getColumn(1).setMinWidth(50);
-            this.TablaProveedor.getColumnModel().getColumn(1).setMaxWidth(350);
-
-            this.TablaProveedor.getColumnModel().getColumn(2).setMinWidth(50);
-            this.TablaProveedor.getColumnModel().getColumn(2).setMaxWidth(350);
-
-            this.TablaProveedor.getColumnModel().getColumn(3).setMinWidth(10);
-            this.TablaProveedor.getColumnModel().getColumn(3).setMaxWidth(200);
-
-            this.TablaProveedor.getColumnModel().getColumn(4).setMinWidth(10);
-            this.TablaProveedor.getColumnModel().getColumn(4).setMaxWidth(200);
-
-            this.TablaProveedor.getColumnModel().getColumn(5).setMinWidth(10);
-            this.TablaProveedor.getColumnModel().getColumn(5).setMaxWidth(200);
-
-            this.TablaProveedor.getColumnModel().getColumn(6).setMinWidth(10);
-            this.TablaProveedor.getColumnModel().getColumn(6).setMaxWidth(200);
-
-            this.TablaProveedor.getColumnModel().getColumn(7).setMinWidth(10);
-            this.TablaProveedor.getColumnModel().getColumn(7).setMaxWidth(200);
-
-            this.TablaProveedor.getColumnModel().getColumn(8).setMinWidth(10);
-            this.TablaProveedor.getColumnModel().getColumn(8).setMaxWidth(200);
-
-            this.TablaProveedor.getColumnModel().getColumn(9).setMinWidth(10);
-            this.TablaProveedor.getColumnModel().getColumn(9).setMaxWidth(200);
-
         }
     }//GEN-LAST:event_BuscarProveedorMouseClicked
 

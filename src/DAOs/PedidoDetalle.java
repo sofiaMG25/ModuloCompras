@@ -18,10 +18,10 @@ public class PedidoDetalle {
     int cantRechazada;
     float cantAceptada;
     char estatus;
-    String idPedido;
-    String idPresentacion;
+    int idPedido;
+    int idPresentacion;
 
-    public PedidoDetalle(int idPedidoDetalle, int CantPedida, float precioCompra, float subtotal, int cantRecibida, int cantRechazada, float cantAceptada, char estatus, String idPedido, String idPresentacion) {
+    public PedidoDetalle(int idPedidoDetalle, int CantPedida, float precioCompra, float subtotal, int cantRecibida, int cantRechazada, float cantAceptada, char estatus, int idPedido, int idPresentacion) {
         this.idPedidoDetalle = idPedidoDetalle;
         this.CantPedida = CantPedida;
         this.precioCompra = precioCompra;
@@ -34,7 +34,7 @@ public class PedidoDetalle {
         this.idPresentacion = idPresentacion;
     }
 
-    public PedidoDetalle(int CantPedida, float precioCompra, float subtotal, int cantRecibida, int cantRechazada, float cantAceptada, String idPedido, String idPresentacion) {
+    public PedidoDetalle(int CantPedida, float precioCompra, float subtotal, int cantRecibida, int cantRechazada, float cantAceptada, int idPedido, int idPresentacion) {
         this.CantPedida = CantPedida;
         this.precioCompra = precioCompra;
         this.subtotal = subtotal;
@@ -44,98 +44,59 @@ public class PedidoDetalle {
         this.idPedido = idPedido;
         this.idPresentacion = idPresentacion;
     }
-
-    public PedidoDetalle(String idPedido) {
-        this.idPedido = idPedido;
-    }
     
-    public PedidoDetalle(String idPresentacion, int a) {
-        this.idPresentacion = idPresentacion;
-    }
+   public PedidoDetalle(int idPedido){
+       this.idPedido = idPedido;
+   }
+   
+   public PedidoDetalle(int idPresentacion,int nothing){
+       this.idPresentacion = idPresentacion;
+   }
     
-    public String getIdPedido() {
-        return idPedido;
-    }
-
-    public void setIdPedido(String idPedido) {
-        this.idPedido = idPedido;
-    }
-
-    public String getIdPresentacion() {
-        return idPresentacion;
-    }
-
-    public void setIdPresentacion(String idPresentacion) {
-        this.idPresentacion = idPresentacion;
-    }
-
     
-
-    public char getEstatus() {
-        return estatus;
-    }
-
-    public void setEstatus(char estatus) {
-        this.estatus = estatus;
-    }
-
     
-
+    
     public int getIdPedidoDetalle() {
         return idPedidoDetalle;
-    }
-
-    public void setIdPedidoDetalle(int idPedidoDetalle) {
-        this.idPedidoDetalle = idPedidoDetalle;
     }
 
     public int getCantPedida() {
         return CantPedida;
     }
 
-    public void setCantPedida(int CantPedida) {
-        this.CantPedida = CantPedida;
-    }
-
     public float getPrecioCompra() {
         return precioCompra;
-    }
-
-    public void setPrecioCompra(float precioCompra) {
-        this.precioCompra = precioCompra;
     }
 
     public float getSubtotal() {
         return subtotal;
     }
 
-    public void setSubtotal(float subtotal) {
-        this.subtotal = subtotal;
-    }
-
     public int getCantRecibida() {
         return cantRecibida;
-    }
-
-    public void setCantRecibida(int cantRecibida) {
-        this.cantRecibida = cantRecibida;
     }
 
     public int getCantRechazada() {
         return cantRechazada;
     }
 
-    public void setCantRechazada(int cantRechazada) {
-        this.cantRechazada = cantRechazada;
-    }
-
     public float getCantAceptada() {
         return cantAceptada;
     }
 
-    public void setCantAceptada(float cantAceptada) {
-        this.cantAceptada = cantAceptada;
+    public char getEstatus() {
+        return estatus;
     }
+
+    public int getIdPedido() {
+        return idPedido;
+    }
+
+    public int getIdPresentacion() {
+        return idPresentacion;
+    }
+
+  
 
    
     

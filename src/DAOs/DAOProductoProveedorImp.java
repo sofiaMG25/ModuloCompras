@@ -15,7 +15,7 @@ public class DAOProductoProveedorImp implements DAOProductoProveedor {
     public LinkedList<ProductoProveedor> obtenerIdProveedor() {
          LinkedList<ProductoProveedor> proveedor;
         try {
-            cn.setPs(cn.getCn().prepareStatement("call sp_obtenerProveedores(?)"));
+            cn.setPs(cn.getCn().prepareStatement("select nombre from dbo.Proveedores"));
             cn.setRs(cn.getPs().executeQuery());
             proveedor = new LinkedList<>();
 
@@ -41,7 +41,7 @@ public class DAOProductoProveedorImp implements DAOProductoProveedor {
     public LinkedList<ProductoProveedor> obtenerIdProducto() {
         LinkedList<ProductoProveedor> producto;
         try {
-            cn.setPs(cn.getCn().prepareStatement("call sp_obtenerProductos"));
+            cn.setPs(cn.getCn().prepareStatement("select * from dbo.PresentacionesProductos"));
             cn.setRs(cn.getPs().executeQuery());
             producto = new LinkedList<ProductoProveedor>();
 
@@ -84,12 +84,12 @@ public class DAOProductoProveedorImp implements DAOProductoProveedor {
 
     @Override
     public void Insert(ProductoProveedor nuevo) {
-        String sql = "{call sp_agregarProdProveedor(?, ?, ?, ?, ?, ?, ? )}";
+        String sql = "insert into dbo.ProductosProveedor values (?,?,?,?,?,?,?,'A')";
         try {
             
             cn.setPs(cn.getCn().prepareStatement(sql));
             cn.getPs().setString(1, nuevo.getIdProveedor());
-            cn.getPs().setString(2, nuevo.getIdProductos());
+            cn.getPs().setInt(2, Integer.parseInt(nuevo.getIdProductos()));
             cn.getPs().setInt(3, nuevo.getDiasRetardo());
             cn.getPs().setFloat(4, nuevo.getPrecioEstandar());
             cn.getPs().setFloat(5, nuevo.getPrecioUltCompra());
@@ -151,35 +151,34 @@ public class DAOProductoProveedorImp implements DAOProductoProveedor {
 
     @Override
     public LinkedList<ProductoProveedor> show(int pagina) {
-//        LinkedList<ProductoProveedor> prodProveedor = null;
-//        try {
-//            String sql = "select * from sf_paginarProdProveedor(?)";
-//            cn.setPs(cn.getCn().prepareCall(sql));
-//            cn.getPs().setInt(1, pagina);
-//            cn.setRs(cn.getPs().executeQuery());
-//            prodProveedor = new LinkedList<ProductoProveedor>();
-//            char estatus;
-//            while (cn.getRs().next()) {
-//                estatus = cn.getRs().getString(8).charAt(0);
-//                prodProveedor.add(new ProductoProveedor(cn.getRs().getString(1), cn.getRs().getString(2),
-//                                                        cn.getRs().getDate(3), cn.getRs().getFloat(4), 
-//                                                        cn.getRs().getFloat(5), cn.getRs().getInt(6),
-//                                                        cn.getRs().getInt(7), estatus));
-//         
-//            }
-//            cn.getPs().close();
-//            cn.getRs().close();
-//        } catch (Exception e) {
-//            System.out.println(e.getMessage());
-//            return null;
-//        }
-//        return prodProveedor;
-        return null;
+        LinkedList<ProductoProveedor> prodProveedor = null;
+        try {
+            String sql = "select * from sf_paginarProdProveedor(?)";
+            cn.setPs(cn.getCn().prepareCall(sql));
+            cn.getPs().setInt(1, pagina);
+            cn.setRs(cn.getPs().executeQuery());
+            prodProveedor = new LinkedList<ProductoProveedor>();
+            char estatus;
+            while (cn.getRs().next()) {
+                estatus = cn.getRs().getString(8).charAt(0);
+                prodProveedor.add(new ProductoProveedor
+                    (cn.getRs().getString(1),
+                     cn.getRs().getString(2), 
+                     cn.getRs().getInt(3),
+                     cn.getRs().getInt(4),
+                     cn.getRs().getInt(5), 
+                     cn.getRs().getInt(6), 
+                     cn.getRs().getInt(7), 
+                     estatus));
+         
+            }
+            cn.getPs().close();
+            cn.getRs().close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+        return prodProveedor;
     }
 
 }
-/*1 diaretardo
-2 Precio estandar
-3 Precio ultima compra
-4 cantMinPedir
-5 cantMaxPedir*/

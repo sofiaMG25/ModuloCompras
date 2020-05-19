@@ -251,7 +251,7 @@ public class modificarProveedor extends javax.swing.JPanel {
                                 .addComponent(origenUEmp5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(estatus, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 85, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -285,9 +285,9 @@ public class modificarProveedor extends javax.swing.JPanel {
                     .addComponent(idCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(origenUEmp5)
                     .addComponent(estatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addComponent(opcionesAEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -312,7 +312,7 @@ public class modificarProveedor extends javax.swing.JPanel {
             if (Emailtxt.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Ingrese un email valido", "Error", JOptionPane.ERROR_MESSAGE);
                 Emailtxt.requestFocus();
-            } else if (Telefonotxt.getText().equals("") || Float.parseFloat(Telefonotxt.getText()) <= 0) {
+            } else if (Telefonotxt.getText().equals("") || Telefonotxt.getText().length() < 12) {
                 JOptionPane.showMessageDialog(this, "Ingrese un numero de Telefono válido ", "Error", JOptionPane.ERROR_MESSAGE);
                 Telefonotxt.requestFocus();
             } else if (Coloniatxt.getText().equals("")) {
@@ -334,14 +334,14 @@ public class modificarProveedor extends javax.swing.JPanel {
                 int IdProveedor = Integer.parseInt(this.IdProv.getText());
                 String nombre = this.nombreProveedor.getText();
                 String Email = this.Emailtxt.getText();
-                int Telefono = Integer.parseInt(this.Telefonotxt.getText());
+                String Telefono = this.Telefonotxt.getText();
                 String Colonia = this.Coloniatxt.getText();
                 String Direccion = this.Direcciontxt.getText();
                 String CodigoPostal = this.CodigoPostxt.getText();
-                char estatus = String.valueOf(this.estatus.getSelectedItem()).charAt(0);
+                char estatus = this.estatus.getSelectedItem().toString().charAt(0);
                 String Ciudad = this.idCiudad.getSelectedItem().toString();
                 //Guardar los datos de laboratorio
-                guardarProve.upadate(new Proveedores(IdProveedor, nombre, Email, Telefono, Direccion, Colonia, CodigoPostal, Ciudad, estatus));
+            guardarProve.upadate(new Proveedores(IdProveedor, nombre, Telefono, Email, Direccion, Colonia, CodigoPostal, Ciudad, estatus));
                 limpiarVariables();
             }
 

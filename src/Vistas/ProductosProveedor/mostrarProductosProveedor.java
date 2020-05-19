@@ -418,29 +418,6 @@ public class mostrarProductosProveedor extends javax.swing.JPanel {
         };
 
         this.jTableMC.setModel(modelTable);
-        this.jTableMC.getColumnModel().getColumn(0).setMinWidth(10);
-        this.jTableMC.getColumnModel().getColumn(0).setMaxWidth(50);
-
-        this.jTableMC.getColumnModel().getColumn(1).setMinWidth(50);
-        this.jTableMC.getColumnModel().getColumn(1).setMaxWidth(350);
-
-        this.jTableMC.getColumnModel().getColumn(2).setMinWidth(50);
-        this.jTableMC.getColumnModel().getColumn(2).setMaxWidth(350);
-
-        this.jTableMC.getColumnModel().getColumn(3).setMinWidth(50);
-        this.jTableMC.getColumnModel().getColumn(3).setMaxWidth(350);
-
-        this.jTableMC.getColumnModel().getColumn(4).setMinWidth(50);
-        this.jTableMC.getColumnModel().getColumn(4).setMaxWidth(350);
-
-        this.jTableMC.getColumnModel().getColumn(5).setMinWidth(50);
-        this.jTableMC.getColumnModel().getColumn(5).setMaxWidth(350);
-
-        this.jTableMC.getColumnModel().getColumn(6).setMinWidth(50);
-        this.jTableMC.getColumnModel().getColumn(6).setMaxWidth(350);
-        
-        this.jTableMC.getColumnModel().getColumn(7).setMinWidth(50);
-        this.jTableMC.getColumnModel().getColumn(7).setMaxWidth(350);
 
     }
 

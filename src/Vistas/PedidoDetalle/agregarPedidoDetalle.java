@@ -260,17 +260,17 @@ public class agregarPedidoDetalle extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void guardarAPediDetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarAPediDetMouseClicked
-        if (txtCantPedido.getText().equals("") || Float.parseFloat(txtCantPedido.getText()) <1000) {
+        if (txtCantPedido.getText().equals("") || Float.parseFloat(txtCantPedido.getText()) > 1000) {
             JOptionPane.showMessageDialog(this, "Ingrese una cantidad valida", "Error", JOptionPane.ERROR_MESSAGE);
             txtCantPedido.requestFocus();
         }
-            if (txtSubtotal.getText().equals("")||Float.parseFloat(txtCantRech.getText()) <= 0) {
+            if (txtSubtotal.getText().equals("")||Float.parseFloat(txtSubtotal.getText()) < 0) {
                 JOptionPane.showMessageDialog(this, "Ingrese una cantidad valida", "Error", JOptionPane.ERROR_MESSAGE);
                 txtSubtotal.requestFocus();
             } else if (txtCantRech.getText().equals("") || Float.parseFloat(txtCantRech.getText()) < 0) {
                 JOptionPane.showMessageDialog(this, "Ingrese una cantidad valida", "Error", JOptionPane.ERROR_MESSAGE);
                 txtCantRech.requestFocus();
-            } else if (txtCantReci.getText().equals("") || Float.parseFloat(txtCantReci.getText()) <= 0) {
+            } else if (txtCantReci.getText().equals("") || Float.parseFloat(txtCantReci.getText()) < 0) {
                 JOptionPane.showMessageDialog(this, "Ingrese una cantidad valida", "Error", JOptionPane.ERROR_MESSAGE);
                 txtCantReci.requestFocus();
             } else if (txtCantAcep.getText().equals("") || Float.parseFloat(txtCantAcep.getText())< 0) {
@@ -279,7 +279,7 @@ public class agregarPedidoDetalle extends javax.swing.JPanel {
             } else if (txtPedido.getSelectedIndex() <= 0) {
                 JOptionPane.showMessageDialog(this, "Elija un pedido válido ", "Error", JOptionPane.ERROR_MESSAGE);
                 txtPedido.requestFocus();
-            } else if (txtPresentacion.getSelectedIndex() <= 0) {
+            } else if (txtPresentacion.getSelectedIndex() < 0) {
                 JOptionPane.showMessageDialog(this, "Elija una presentación valida ", "Error", JOptionPane.ERROR_MESSAGE);
                 txtPresentacion.requestFocus();
             } else {
@@ -288,7 +288,8 @@ public class agregarPedidoDetalle extends javax.swing.JPanel {
                 Integer.parseInt(txtCantPedido.getText()),Float.parseFloat(txtPrecioCompra.getText()),
                 Float.parseFloat(txtSubtotal.getText()),Integer.parseInt(txtCantReci.getText()),
                 Integer.parseInt(txtCantRech.getText()),Float.parseFloat(txtCantAcep.getText()),
-                txtPedido.getSelectedItem().toString(),txtPresentacion.getSelectedItem().toString()
+                Integer.parseInt(txtPedido.getSelectedItem().toString()),
+                Integer.parseInt(txtPresentacion.getSelectedItem().toString())
                 ));
                 
                 limpiarVariables();

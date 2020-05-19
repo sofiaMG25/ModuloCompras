@@ -7,9 +7,11 @@ import Vistas.Laboratorios.mostrarLaboratorios;
 import Vistas.Empaques.mostrarEmpaques;
 import Vistas.Categorias.mostrarCategorias;
 import Vistas.ExistenciaSucursal.MostrarExistenciaSucursal;
+import Vistas.PedidoDetalle.mostrarPedidoDetalle;
 import Vistas.Presentaciones.mostrarPresentaciones;
 import Vistas.Productos.mostrarProductos;
 import Vistas.ProductosProveedor.mostrarProductosProveedor;
+import Vistas.Proveedores.mostrarProveedor;
 import Vistas.UnidadMedida.mostrarUnidadMedida;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -119,7 +121,7 @@ public class Main extends javax.swing.JFrame implements Runnable {
         menu.add(Separador1, java.awt.BorderLayout.PAGE_START);
 
         listaMenu.setBackground(new java.awt.Color(0, 102, 102));
-        listaMenu.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 51), 2, true), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 51))); // NOI18N
+        listaMenu.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 51), 2, true), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 51))); // NOI18N
 
         laboratorios.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
         laboratorios.setForeground(new java.awt.Color(255, 255, 255));
@@ -331,6 +333,9 @@ public class Main extends javax.swing.JFrame implements Runnable {
             }
         });
         pedidoDetalles.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pedidoDetallesMouseClicked(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 pedidoDetallesMouseExited(evt);
             }
@@ -362,6 +367,9 @@ public class Main extends javax.swing.JFrame implements Runnable {
             }
         });
         provedores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                provedoresMouseClicked(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 provedoresMouseExited(evt);
             }
@@ -972,7 +980,7 @@ public class Main extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_pedidosMouseClicked
 
     private void productosProvMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productosProvMouseClicked
-       workSpace.removeAll();
+        workSpace.removeAll();
         mostrarProductosProveedor mostrarProdProveedor = new mostrarProductosProveedor();
         mostrarProdProveedor.setSize(workSpace.getSize());
         mostrarProdProveedor.setVisible(true);
@@ -981,9 +989,34 @@ public class Main extends javax.swing.JFrame implements Runnable {
         workSpace.revalidate();
         workSpace.repaint();
         mostrarProdProveedor.setMostrarProductosProveedores(this);
-        
+
     }//GEN-LAST:event_productosProvMouseClicked
-    public void activarPedidos(){
+
+    private void pedidoDetallesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pedidoDetallesMouseClicked
+        workSpace.removeAll();
+        mostrarPedidoDetalle mostrarPedidosDetalle = new mostrarPedidoDetalle();
+        mostrarPedidosDetalle.setSize(workSpace.getSize());
+        mostrarPedidosDetalle.setVisible(true);
+        mostrarPedidosDetalle.MostrarDatosPedidoDetalle();
+        workSpace.add(mostrarPedidosDetalle, BorderLayout.CENTER);
+        workSpace.revalidate();
+        workSpace.repaint();
+        mostrarPedidosDetalle.setMostrarPedidoDetalle(this);
+
+    }//GEN-LAST:event_pedidoDetallesMouseClicked
+
+    private void provedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_provedoresMouseClicked
+        workSpace.removeAll();
+        mostrarProveedor mostrarProvedores = new mostrarProveedor();
+        mostrarProvedores.setSize(workSpace.getSize());
+        mostrarProvedores.setVisible(true);
+        mostrarProvedores.MostrarDatosProveedor();
+        workSpace.add(mostrarProvedores, BorderLayout.CENTER);
+        workSpace.revalidate();
+        workSpace.repaint();
+        mostrarProvedores.setMostrarProveedor(this);
+    }//GEN-LAST:event_provedoresMouseClicked
+    public void activarPedidos() {
         workSpace.removeAll();
         mostrarPedidos mostrarPedi = new mostrarPedidos();
         mostrarPedi.setSize(workSpace.getSize());
@@ -994,6 +1027,7 @@ public class Main extends javax.swing.JFrame implements Runnable {
         workSpace.repaint();
         mostrarPedi.setMostrarPedidos(this);
     }
+
     /**
      * @param args the command line arguments
      */

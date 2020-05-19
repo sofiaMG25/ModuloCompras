@@ -20,17 +20,18 @@ public class DAOProveedoresImp implements DAOProveedores {
 
     @Override
     public void Insert(Proveedores nuevo) {
-        String sql = "{call AgregarProveedor(?,?,?,?,?,?,?)}";
+        String sql = "{call sp_AgregarProveedor(?,?,?,?,?,?,?)}";
         String res = "";
         try {
             cn.setPs(cn.getCn().prepareStatement(sql));
             cn.getPs().setString(1,nuevo.getNombre());
-            cn.getPs().setString(2,nuevo.getEmail());
-            cn.getPs().setString(3,nuevo.getColonia());
-            cn.getPs().setString(4,String.valueOf(nuevo.getTelefono()));
-            cn.getPs().setString(5,nuevo.getDireccion());
+            cn.getPs().setString(2,nuevo.getTelefono());
+            cn.getPs().setString(3,nuevo.getEmail());
+            cn.getPs().setString(4,nuevo.getDireccion());
+            cn.getPs().setString(5,nuevo.getColonia());
             cn.getPs().setString(6,nuevo.getCodPostall());
-            cn.getPs().setString(7,String.valueOf(nuevo.getIdCiudad()));
+            cn.getPs().setString(7,nuevo.getIdCiudad());
+            cn.getPs().setString(8,String.valueOf(nuevo.getStatus()));
             
             cn.getPs().execute();
                 System.out.println("El regisstro fue existoso.");
@@ -46,17 +47,19 @@ public class DAOProveedoresImp implements DAOProveedores {
 
     @Override
     public void upadate(Proveedores nuevo) {
-        String sql = "{call EditarProveedor  (?,?,?,?,?,?)}";
+        String sql = "{call sp_EditarProveedor  (?,?,?,?,?,?,?,?,?)}";
         
         try {
              cn.setPs(cn.getCn().prepareStatement(sql));
-            cn.getPs().setString(1,nuevo.getNombre());
-            cn.getPs().setString(2,nuevo.getEmail());
-            cn.getPs().setString(3,nuevo.getColonia());
-            cn.getPs().setString(4,String.valueOf(nuevo.getTelefono()));
+            cn.getPs().setInt(1, nuevo.getIdProvedor());
+            cn.getPs().setString(2,nuevo.getNombre());
+            cn.getPs().setString(3,nuevo.getTelefono());
+            cn.getPs().setString(4,nuevo.getEmail());
             cn.getPs().setString(5,nuevo.getDireccion());
-            cn.getPs().setString(6,nuevo.getCodPostall());
-            cn.getPs().setString(7,String.valueOf(nuevo.getIdCiudad()));
+            cn.getPs().setString(6,nuevo.getColonia());
+            cn.getPs().setString(7,nuevo.getCodPostall());
+            cn.getPs().setString(8,nuevo.getIdCiudad());
+            cn.getPs().setString(9,String.valueOf(nuevo.getStatus()));
             if(cn.getPs().execute()){
                 System.out.println("Se actualizo con exito");
               cn.getPs().close();
@@ -96,11 +99,10 @@ public class DAOProveedoresImp implements DAOProveedores {
             proveedores = new LinkedList<>();
             char estatus;
             while (cn.getRs().next()) {                
-                estatus = cn.getRs().getString(8).charAt(0);
-              proveedores.add(new Proveedores(cn.getRs().getInt(1)
-                        ,cn.getRs().getString(2),cn.getRs().getString(3)
-                        ,cn.getRs().getInt(4),cn.getRs().getString(5)
-                        ,cn.getRs().getString(6),cn.getRs().getString(7),cn.getRs().getString(8),estatus));
+                estatus = cn.getRs().getString(9).charAt(0);
+                proveedores.add(new 
+                Proveedores(cn.getRs().getInt(1),cn.getRs().getString(2),cn.getRs().getString(3),cn.getRs().getString(4),
+                            cn.getRs().getString(5),cn.getRs().getString(6),cn.getRs().getString(7),cn.getRs().getString(8), estatus));
             }
             cn.getPs().close();
             cn.getRs().close();
@@ -123,10 +125,10 @@ public class DAOProveedoresImp implements DAOProveedores {
             proveedor = new LinkedList<>();
             char estatus;
             while(cn.getRs().next()){
-                estatus = cn.getRs().getString(13).charAt(0);
+                estatus = cn.getRs().getString(9).charAt(0);
                 proveedor.add(new Proveedores(cn.getRs().getInt(1)
                         ,cn.getRs().getString(2), cn.getRs().getString(3)
-                        ,cn.getRs().getInt(4),cn.getRs().getString(5),cn.getRs().getString(6)
+                        ,cn.getRs().getString(4),cn.getRs().getString(5),cn.getRs().getString(6)
                         ,cn.getRs().getString(7),cn.getRs().getString(8), estatus));
             }
             cn.getPs().close();
@@ -169,10 +171,11 @@ public class DAOProveedoresImp implements DAOProveedores {
         return proveedores;
     }
     
+    @Override
     public int contRegistros(){
         int cantRegistros = 0;
         try {
-            String sql = "select count(idProveedor) as registros from dbo.Proveedor";
+            String sql = "select count(idProveedor) as registros from dbo.Proveedores";
             cn.setPs(cn.getCn().prepareCall(sql));
             cn.setRs(cn.getPs().executeQuery());
             while(cn.getRs().next()){
@@ -188,14 +191,6 @@ public class DAOProveedoresImp implements DAOProveedores {
     }
     
    
-    
-   
-    
-   
-    
-   
-    
-    
     public LinkedList<Proveedores> obtenerIdCiudad(){
         LinkedList<Proveedores> proveedor;
         try{
@@ -205,7 +200,7 @@ public class DAOProveedoresImp implements DAOProveedores {
             
             
             while(cn.getRs().next()){
-                proveedor.add(new Proveedores(cn.getRs().getString(1)));
+                proveedor.add(new Proveedores(cn.getRs().getString(1), 0));
             }
             
             if(proveedor.size()<= 0){

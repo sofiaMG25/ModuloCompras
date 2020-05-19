@@ -14,4 +14,6 @@ import java.util.LinkedList;
  */
 public interface DAOProveedores extends CRUDgenerico<Proveedores>{
     LinkedList<Proveedores> obtenerProveedores();
+    int contRegistros();
+    
 }

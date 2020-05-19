@@ -66,7 +66,7 @@ public class modificarPedidoDetalle extends javax.swing.JPanel {
         txtPresentacion.setModel(model2);
         for (int i = 0; i < listaPro2.size(); i++) {
             txtPresentacion.setSelectedIndex(i);
-            if (pro.getIdPresentacion().equals(txtPresentacion.getSelectedItem().toString())) {
+            if (String.valueOf(pro.getIdPresentacion()).equals(txtPresentacion.getSelectedItem().toString())){
                 break;
             }
         }
@@ -322,30 +322,30 @@ public class modificarPedidoDetalle extends javax.swing.JPanel {
     }//GEN-LAST:event_cancelarUPedDetMouseClicked
 
     private void modificarUPedDetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarUPedDetMouseClicked
-        if (txtCantPedido.getText().equals("") || Float.parseFloat(txtCantPedido.getText()) <1000) {
+        if (txtCantPedido.getText().equals("") || Float.parseFloat(txtCantPedido.getText()) >1000) {
             JOptionPane.showMessageDialog(this, "Ingrese una cantidad valida", "Error", JOptionPane.ERROR_MESSAGE);
             txtCantPedido.requestFocus();
         }
         try {
-            if (txtSubtotal.getText().equals("")||Float.parseFloat(txtCantRech.getText()) <= 0) {
+            if (txtSubtotal.getText().equals("")||Float.parseFloat(txtCantRech.getText()) < 0) {
                 JOptionPane.showMessageDialog(this, "Ingrese una cantidad valida", "Error", JOptionPane.ERROR_MESSAGE);
                 txtSubtotal.requestFocus();
             } else if (txtCantRech.getText().equals("") || Float.parseFloat(txtCantRech.getText()) < 0) {
                 JOptionPane.showMessageDialog(this, "Ingrese una cantidad valida", "Error", JOptionPane.ERROR_MESSAGE);
                 txtCantRech.requestFocus();
-            } else if (txtCantReci.getText().equals("") || Float.parseFloat(txtCantReci.getText()) <= 0) {
+            } else if (txtCantReci.getText().equals("") || Float.parseFloat(txtCantReci.getText()) < 0) {
                 JOptionPane.showMessageDialog(this, "Ingrese una cantidad valida", "Error", JOptionPane.ERROR_MESSAGE);
                 txtCantReci.requestFocus();
             } else if (txtCantAcep.getText().equals("") || Float.parseFloat(txtCantAcep.getText())< 0) {
                 JOptionPane.showMessageDialog(this, "Ingrese una cantidad valida", "Error", JOptionPane.ERROR_MESSAGE);
                 txtCantAcep.requestFocus();
-            } else if (txtEstatus.getSelectedIndex() <= 0) {
+            } else if (txtEstatus.getSelectedIndex() < 0) {
                 JOptionPane.showMessageDialog(this, "Elija un estatus válido ", "Error", JOptionPane.ERROR_MESSAGE);
                 txtPedido.requestFocus();
-            } else if (txtPedido.getSelectedIndex() <= 0) {
+            } else if (txtPedido.getSelectedIndex() < 0) {
                 JOptionPane.showMessageDialog(this, "Elija un pedido válido ", "Error", JOptionPane.ERROR_MESSAGE);
                 txtPedido.requestFocus();
-            } else if (txtPresentacion.getSelectedIndex() <= 0) {
+            } else if (txtPresentacion.getSelectedIndex() < 0) {
                 JOptionPane.showMessageDialog(this, "Elija una presentación valida ", "Error", JOptionPane.ERROR_MESSAGE);
                 txtPresentacion.requestFocus();
             } else {
@@ -359,8 +359,8 @@ public class modificarPedidoDetalle extends javax.swing.JPanel {
                 int cantRecha= Integer.parseInt(this.txtCantRech.getText());
                 float cantAcep= Float.parseFloat(this.txtCantAcep.getText());
                 char estatus = String.valueOf(this.txtEstatus.getSelectedItem()).charAt(0);
-                String pedido = this.txtPedido.getSelectedItem().toString();
-                String presentacion = this.txtPresentacion.getSelectedItem().toString();
+                int pedido = Integer.parseInt(this.txtPedido.getSelectedItem().toString());
+                int presentacion = Integer.parseInt(this.txtPresentacion.getSelectedItem().toString());
                 //Guardar los datos de laboratorio
                 guardarPro.upadate(new PedidoDetalle(id, cantPed, 
                         precioCom, subtotal, cantReci, cantRecha, 

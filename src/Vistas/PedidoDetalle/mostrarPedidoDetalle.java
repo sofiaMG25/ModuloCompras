@@ -51,8 +51,7 @@ public class mostrarPedidoDetalle extends javax.swing.JPanel {
             next.setVisible(true);
             preview.setVisible(true);
             this.segmentacion.setText("Página " + cambioPagina + " de " + (int) ContRegistro + " Páginas en total");
-            Object listaDatos[][] = new Object[emp.size()][13];
-            this.segmentacion.setText("Página " + cambioPagina + " de " + (int) ContRegistro + " Páginas en total");
+            Object listaDatos[][] = new Object[emp.size()][10];
             for (int i = 0; i < emp.size(); i++) {
                 listaDatos[i][0] = emp.get(i).getIdPedidoDetalle();
                 listaDatos[i][1] = emp.get(i).getCantPedida();
@@ -338,7 +337,7 @@ public class mostrarPedidoDetalle extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nuevoMPedDetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevoMPedDetMouseClicked
-        if (new DAOPedidoDetalleImp().obternerIdPedido() != null && new DAOPedidoDetalleImp().obternerIdPresentacion() != null) {
+        if (new DAOPedidoDetalleImp().obternerIdPedido() != null || new DAOPedidoDetalleImp().obternerIdPresentacion() != null) {
             mainPrincipal.getworkSpace().removeAll();
             agregarPedidoDetalle nuevoEmp = new agregarPedidoDetalle();
             nuevoEmp.setSize(mainPrincipal.getworkSpace().getSize());
@@ -382,8 +381,8 @@ public class mostrarPedidoDetalle extends javax.swing.JPanel {
             int cantRecha = Integer.parseInt(String.valueOf(this.jTableMPro.getValueAt(row, 5)));
             float cantAcep = Float.parseFloat(String.valueOf(this.jTableMPro.getValueAt(row, 6)));
             char estatus = String.valueOf(this.jTableMPro.getValueAt(row, 7)).charAt(0);
-            String pedido = String.valueOf(this.jTableMPro.getValueAt(row, 8));
-            String presentacion = String.valueOf(this.jTableMPro.getValueAt(row, 9));
+            int pedido = Integer.parseInt(String.valueOf(this.jTableMPro.getValueAt(row, 8)));
+            int presentacion = Integer.parseInt(String.valueOf(this.jTableMPro.getValueAt(row, 9)));
             //Ingresan los datos de la tabla a la interfaz Modificar Laboratorio
             modificarEmpaque.ObtenerLaboratoriModificar(new PedidoDetalle(id, cantPed, 
                         precioCom, subtotal, cantReci, cantRecha, 
