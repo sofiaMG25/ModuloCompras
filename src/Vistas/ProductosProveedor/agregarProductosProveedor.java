@@ -274,11 +274,11 @@ public class agregarProductosProveedor extends javax.swing.JPanel {
                 precioUltimaCompra.requestFocus();
                 JOptionPane.showMessageDialog(this, "Ingrese un precio de compra", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else if ((cantidadMinimaPedir.getText().equals("") || Float.parseFloat(cantidadMinimaPedir.getText()) <= 0)
-                    &&(Integer.parseInt(cantidadMinimaPedir.getText())<Integer.parseInt(cantidadMaxPedir.getText())) ) {
+                    &&(Integer.parseInt(cantidadMinimaPedir.getText())>Integer.parseInt(cantidadMaxPedir.getText())) ) {
                 cantidadMinimaPedir.requestFocus();
                 JOptionPane.showMessageDialog(this, "Seleccione la cantidad de producto, debe ser mayor a 0", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else if ((cantidadMaxPedir.getText().equals("") || Float.parseFloat(cantidadMaxPedir.getText())<= 0 )
-                    &&(Integer.parseInt(cantidadMaxPedir.getText())>Integer.parseInt(cantidadMinimaPedir.getText()))) {
+                    &&(Integer.parseInt(cantidadMaxPedir.getText())<Integer.parseInt(cantidadMinimaPedir.getText()))) {
                 cantidadMaxPedir.requestFocus();
                 JOptionPane.showMessageDialog(this, "Seleccione la cantidad de producto, debe ser no mayor a la existencia", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else {
