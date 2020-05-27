@@ -329,37 +329,59 @@ public class mostrarProductosProveedor extends javax.swing.JPanel {
     }//GEN-LAST:event_jTableMCMouseClicked
 
     private void buscarPreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscarPreMouseClicked
-//        if (buscartxtPre.getText() == "" || buscartxtPre.getText() == null) {
-//            JOptionPane.showMessageDialog(null, "Debes escribir algo para filtrar...",
-//                    "Mensaje", JOptionPane.WARNING_MESSAGE);
-//        } else {
-//            LinkedList<Presentaciones> pre = new DAOPresentacionesImp().consultaInd(buscartxtPre.getText());
-//            Object listaDatos[][] = new Object[pre.size()][3];
-//            for (int i = 0; i < pre.size(); i++) {
-//                listaDatos[i][0] = pre.get(i).getId();
-//                listaDatos[i][1] = pre.get(i).getNombre();
-//                listaDatos[i][2] = pre.get(i).getEstatus();
-//            }
-//
-//            DefaultTableModel modelTable = new DefaultTableModel(
-//                    listaDatos,
-//                    new Object[]{"ID", "NOMBRE", "ESTATUS"}) {
-//                public boolean isCellEditable(int row, int column) {
-//                    return false;
-//                }
-//            };
-//
-//            this.jTableMC.setModel(modelTable);
-//            this.jTableMC.getColumnModel().getColumn(0).setMinWidth(10);
-//            this.jTableMC.getColumnModel().getColumn(0).setMaxWidth(50);
-//
-//            this.jTableMC.getColumnModel().getColumn(1).setMinWidth(50);
-//            this.jTableMC.getColumnModel().getColumn(1).setMaxWidth(350);
-//
-//            this.jTableMC.getColumnModel().getColumn(2).setMinWidth(50);
-//            this.jTableMC.getColumnModel().getColumn(2).setMaxWidth(350);
-//
-//        }
+        if (buscartxtPre.getText() == "" || buscartxtPre.getText() == null) {
+            JOptionPane.showMessageDialog(null, "Debes escribir algo para filtrar...",
+                    "Mensaje", JOptionPane.WARNING_MESSAGE);
+        } else {
+            LinkedList<ProductoProveedor> pre = new DAOProductoProveedorImp().busquedaPorNombre(buscartxtPre.getText() );
+            Object listaDatos[][] = new Object[pre.size()][8];
+            for (int i = 0; i < pre.size(); i++) {
+                listaDatos[i][0] = pre.get(i).getIdProveedor();
+                listaDatos[i][1] = pre.get(i).getIdPresentaciones();
+                listaDatos[i][2] = pre.get(i).getDiasRetardo();
+                listaDatos[i][3] = pre.get(i).getPrecioEstandar();
+                listaDatos[i][4] = pre.get(i).getPrecioUltCompra();
+                listaDatos[i][5] = pre.get(i).getCantMinPedir();
+                listaDatos[i][6] = pre.get(i).getCantMaxPedir();
+                listaDatos[i][7] = pre.get(i).getEstatus();
+            }
+
+            DefaultTableModel modelTable = new DefaultTableModel(
+                    listaDatos,
+                    new Object[]{"PROVEEDORES", "PRESENTACION", "DIAS RETRASO",
+                        "PRECIO ESTANDAR", "PRECIO ULTIMA COMPRA", "CANT. MIN. PEDIR",
+                        "CANT. MIN. PEDIR", "ESTATUS"}) {
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+
+            this.jTableMC.setModel(modelTable);
+            this.jTableMC.getColumnModel().getColumn(0).setMinWidth(10);
+            this.jTableMC.getColumnModel().getColumn(0).setMaxWidth(50);
+
+            this.jTableMC.getColumnModel().getColumn(1).setMinWidth(50);
+            this.jTableMC.getColumnModel().getColumn(1).setMaxWidth(350);
+
+            this.jTableMC.getColumnModel().getColumn(2).setMinWidth(50);
+            this.jTableMC.getColumnModel().getColumn(2).setMaxWidth(350);
+          
+            this.jTableMC.getColumnModel().getColumn(3).setMinWidth(50);
+            this.jTableMC.getColumnModel().getColumn(3).setMaxWidth(350);
+            
+            this.jTableMC.getColumnModel().getColumn(4).setMinWidth(50);
+            this.jTableMC.getColumnModel().getColumn(4).setMaxWidth(350);
+            
+            this.jTableMC.getColumnModel().getColumn(5).setMinWidth(50);
+            this.jTableMC.getColumnModel().getColumn(5).setMaxWidth(350);
+            
+            this.jTableMC.getColumnModel().getColumn(6).setMinWidth(50);
+            this.jTableMC.getColumnModel().getColumn(6).setMaxWidth(350);
+            
+            this.jTableMC.getColumnModel().getColumn(7).setMinWidth(50);
+            this.jTableMC.getColumnModel().getColumn(7).setMaxWidth(350);
+
+        }
 
     }//GEN-LAST:event_buscarPreMouseClicked
 
@@ -398,7 +420,7 @@ public class mostrarProductosProveedor extends javax.swing.JPanel {
         this.segmentacion.setText("Página "+cambioPagina +" de "+ (int)ContRegistro+ " Páginas en total");
         for (int i = 0; i < pre.size(); i++) {
             listaDatos[i][0] = pre.get(i).getIdProveedor();
-            listaDatos[i][1] = pre.get(i).getIdProductos();
+            listaDatos[i][1] = pre.get(i).getIdPresentaciones();
             listaDatos[i][2] = pre.get(i).getDiasRetardo();
             listaDatos[i][3] = pre.get(i).getPrecioEstandar();
             listaDatos[i][4] = pre.get(i).getPrecioUltCompra();

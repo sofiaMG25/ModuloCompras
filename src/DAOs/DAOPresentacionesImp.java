@@ -80,7 +80,7 @@ public class DAOPresentacionesImp implements DAOPresentaciones {
 
     @Override
     public void Insert(Presentaciones nuevo) {
-        String sql = "{call sp_agregarPresentaciones(?,?,?,?,?)}"; //agregar en la bd 1sp_actualizarPresentacion
+        String sql = "{call sp_1agregarPresentaciones(?,?,?,?,?)}"; //agregar en la bd 1sp_actualizarPresentacion
         try {
             cn.setPs(cn.getCn().prepareCall(sql));
             cn.getPs().setFloat(1, nuevo.getpCompra());
@@ -101,7 +101,7 @@ public class DAOPresentacionesImp implements DAOPresentaciones {
     @Override
     public void upadate(Presentaciones nuevo) {
         try {
-            cn.setPs(cn.getCn().prepareCall("{call sp_actualizarPresentacion (?,?,?,?,?,?,?)}"));// aggregar en ka bd 1sp_actualizarPresentacion
+            cn.setPs(cn.getCn().prepareCall("{call sp_1actualizarPresentacion (?,?,?,?,?,?,?)}"));// aggregar en ka bd 1sp_actualizarPresentacion
             cn.getPs().setInt(1, nuevo.getIdPP());
             cn.getPs().setFloat(2, nuevo.getpCompra());
             cn.getPs().setFloat(3, nuevo.getpVenta());

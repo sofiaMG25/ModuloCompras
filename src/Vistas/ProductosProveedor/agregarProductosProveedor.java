@@ -43,11 +43,11 @@ public class agregarProductosProveedor extends javax.swing.JPanel {
     }
 
     private void mostrarPresentacion() {
-        LinkedList<ProductoProveedor> productos = new DAOProductoProveedorImp().obtenerIdProducto();
-        if (productos != null) {
+        LinkedList<ProductoProveedor> presentaciones = new DAOProductoProveedorImp().obtenerIdPresentaciones();
+        if (presentaciones != null) {
             DefaultComboBoxModel model2 = (DefaultComboBoxModel) comboxPresentacion.getModel();
-            for (int i = 0; i < productos.size(); i++) {
-                model2.addElement(productos.get(i).getIdProductos());
+            for (int i = 0; i < presentaciones.size(); i++) {
+                model2.addElement(presentaciones.get(i).getIdPresentaciones());
             }
             comboxPresentacion.setModel(model2);
         }
@@ -281,16 +281,20 @@ public class agregarProductosProveedor extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Seleccione la cantidad de producto, debe ser no mayor a la existencia", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else {
                 try {
-                    String idProveedor = comboxProveedor.getSelectedItem().toString();
-                    String presentacion = comboxPresentacion.getSelectedItem().toString();
-                    int diasRetardo = Integer.parseInt(diaRetardo.getText());
-                    float precioEstandar = Float.parseFloat(this.precioEstandar.getText());
-                    float ultimoPrecio = Float.parseFloat(this.precioUltimaCompra.getText());
-                    int cantMinPedir = Integer.parseInt(cantidadMinimaPedir.getText());
-                    int cantMaxPedir = Integer.parseInt(this.cantidadMaxPedir.getText());
-                   // new DAOProductoProveedorImp().Insert(new ProductoProveedor(TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY, null, TOP_ALIGNMENT, TOP_ALIGNMENT, SOMEBITS, SOMEBITS, estatus));
-                    new DAOProductoProveedorImp().Insert(new ProductoProveedor
-                    (idProveedor,presentacion,diasRetardo,precioEstandar,ultimoPrecio,cantMinPedir,cantMaxPedir));
+//                    String idProveedor = comboxProveedor.getSelectedItem().toString();
+//                    String presentacion = comboxPresentacion.getSelectedItem().toString();
+//                    int diasRetardo = Integer.parseInt(diaRetardo.getText());
+//                    float precioEst = Float.parseFloat(this.precioEstandar.getText());
+//                    float ultimoPrecio = Float.parseFloat(this.precioUltimaCompra.getText());
+//                    int cantMinPedir = Integer.parseInt(cantidadMinimaPedir.getText());
+//                    int cantMaxPedir = Integer.parseInt(this.cantidadMaxPedir.getText());
+//                   // new DAOProductoProveedorImp().Insert(new ProductoProveedor(TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY, null, TOP_ALIGNMENT, TOP_ALIGNMENT, SOMEBITS, SOMEBITS, estatus));
+//                    new DAOProductoProveedorImp().Insert(new ProductoProveedor
+//                    (idProveedor,presentacion,diasRetardo,precioEst,ultimoPrecio,cantMinPedir,cantMaxPedir));
+                    new DAOProductoProveedorImp().Insert(new ProductoProveedor(comboxProveedor.getSelectedItem().toString(),
+                            comboxPresentacion.getSelectedItem().toString(), Integer.parseInt(diaRetardo.getText()), 
+                            Float.parseFloat(precioEstandar.getText()), Float.parseFloat(precioUltimaCompra.getText()), 
+                            Integer.parseInt(cantidadMinimaPedir.getText()), Integer.parseInt(cantidadMaxPedir.getText())));
                     limpiarVariables();
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(this, " solo numeros", "Error de tipo de dato", JOptionPane.ERROR_MESSAGE);
@@ -318,8 +322,8 @@ public class agregarProductosProveedor extends javax.swing.JPanel {
         comboxProveedor.setSelectedIndex(0);
         comboxPresentacion.setSelectedIndex(0);
         diaRetardo.setText("");
+        precioEstandar.setText("");
         precioUltimaCompra.setText("");
-        diaRetardo.setText("");
         cantidadMinimaPedir.setText("");
         cantidadMaxPedir.setText("");
 

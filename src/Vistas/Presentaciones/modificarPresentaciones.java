@@ -271,7 +271,7 @@ public class modificarPresentaciones extends javax.swing.JPanel {
        this.txtpCompra.setText(String.valueOf(pres.getpCompra()));
        this.txtpVenta.setText(String.valueOf(pres.getpVenta()));
        this.txtpReorden.setText(String.valueOf(pres.getpReorden()));
-       
+     
         LinkedList<Presentaciones> listaPre = new DAOs.DAOPresentacionesImp().obtenerIdProducto();
         DefaultComboBoxModel model = (DefaultComboBoxModel) productoBox.getModel();
         for (int i = 0; i < listaPre.size(); i++) {

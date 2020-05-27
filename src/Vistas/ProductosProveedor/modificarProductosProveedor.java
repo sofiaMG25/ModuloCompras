@@ -230,13 +230,13 @@ public class modificarProductosProveedor extends javax.swing.JPanel {
 
     private void modificarULMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarULMouseClicked
         if (proveedorBox.getSelectedIndex() <= 0) {
-            JOptionPane.showMessageDialog(this, "Seleccione un empaque", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Seleccione un proveedor", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (productoBox.getSelectedIndex() <= 0) {
-            JOptionPane.showMessageDialog(this, "Seleccione una producto", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Seleccione una presentación", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (diaretardo.getText().equals("") || Integer.parseInt(cantMinPedirtxt.getText()) <= 0) {
             JOptionPane.showMessageDialog(this, "Ingresa una fecha estimada", "ERROR", JOptionPane.ERROR_MESSAGE);
             diaretardo.requestFocus();
-            return;
+            //return;
         } else if (pEstandartxt.getText().equals("") || Float.parseFloat(pEstandartxt.getText()) <= 0) {
             JOptionPane.showMessageDialog(this, "Ingrese el precio compra, cantidad debe ser mayorar a 0", "Error", JOptionPane.ERROR_MESSAGE);
             pEstandartxt.requestFocus();
@@ -255,7 +255,7 @@ public class modificarProductosProveedor extends javax.swing.JPanel {
             DAOProductoProveedorImp guardarProdProvee = new DAOProductoProveedorImp();
             //Datos obtenidos de los campos 
             String proveedores = this.proveedorBox.getSelectedItem().toString();
-            String productos = this.productoBox.getSelectedItem().toString();
+            String presentacion = this.productoBox.getSelectedItem().toString();
             int diaRetardo = Integer.parseInt(this.diaretardo.getText());
             float pEstandar = Float.parseFloat(this.pEstandartxt.getText());
             float pUltCompra = Float.parseFloat(this.pUltCompratxt.getText());
@@ -263,7 +263,7 @@ public class modificarProductosProveedor extends javax.swing.JPanel {
             int cantMaxP = Integer.parseInt(this.cantMinPedirtxt.getText());
             char estatus = String.valueOf(this.estatusBox.getSelectedItem()).charAt(0);
             //Guardar los datos de laboratorio
-            guardarProdProvee.upadate(new ProductoProveedor(proveedores, productos, diaRetardo, pEstandar, pUltCompra, cantMinP, cantMaxP, estatus));
+            guardarProdProvee.upadate(new ProductoProveedor(proveedores, presentacion, diaRetardo, pEstandar, pUltCompra, cantMinP, cantMaxP, estatus));
             limpiarVariables();
         }
     }//GEN-LAST:event_modificarULMouseClicked
@@ -295,28 +295,39 @@ public class modificarProductosProveedor extends javax.swing.JPanel {
      * @param pres
      */
     public void ObtenerProdProveedorModificar(ProductoProveedor prodProvee) {
-         LinkedList<ProductoProveedor> listaProd = new DAOs.DAOProductoProveedorImp().obtenerIdProducto();
-        DefaultComboBoxModel model = (DefaultComboBoxModel) productoBox.getModel();
+         LinkedList<ProductoProveedor> listaProd = new DAOs.DAOProductoProveedorImp().obtenerIdProveedor();
+        DefaultComboBoxModel model = (DefaultComboBoxModel) proveedorBox.getModel();
         for (int i = 0; i < listaProd.size(); i++) {
-            model.addElement(listaProd.get(i).getIdProductos());
+            model.addElement(listaProd.get(i).getIdProveedor());
         }
-        productoBox.setModel(model);
-        for (int i = 0; i < productoBox.getItemCount(); i++) {
-            if (productoBox.getItemAt(i).equals(prodProvee.getIdProductos())) {
-                this.productoBox.setSelectedIndex(i);
-                break;
-            }
-        }
-
-        LinkedList<ProductoProveedor> listaProvee = new DAOs.DAOProductoProveedorImp().obtenerIdProveedor();
-        DefaultComboBoxModel model2 = (DefaultComboBoxModel) proveedorBox.getModel();
-        for (int i = 0; i < listaProvee.size(); i++) {
-            model2.addElement(listaProvee.get(i).getIdProveedor());
-        }
-        proveedorBox.setModel(model2);
+        proveedorBox.setModel(model);
         for (int i = 0; i < proveedorBox.getItemCount(); i++) {
             if (proveedorBox.getItemAt(i).equals(prodProvee.getIdProveedor())) {
                 this.proveedorBox.setSelectedIndex(i);
+                break;
+            }
+        }
+        
+        /* private void mostrarProveedor() {
+        LinkedList<ProductoProveedor> proveedor = new DAOProductoProveedorImp().obtenerIdProveedor();
+        if (proveedor != null) {
+            DefaultComboBoxModel model = (DefaultComboBoxModel) comboxProveedor.getModel();
+            for (int i = 0; i < proveedor.size(); i++) {
+                model.addElement(proveedor.get(i).getIdProveedor());
+            }
+            comboxProveedor.setModel(model);
+        }
+    }*/
+
+        LinkedList<ProductoProveedor> listaProvee = new DAOs.DAOProductoProveedorImp().obtenerIdPresentaciones();
+        DefaultComboBoxModel model2 = (DefaultComboBoxModel) productoBox.getModel();
+        for (int i = 0; i < listaProvee.size(); i++) {
+            model2.addElement(listaProvee.get(i).getIdPresentaciones());
+        }
+        productoBox.setModel(model2);
+        for (int i = 0; i < productoBox.getItemCount(); i++) {
+            if (productoBox.getItemAt(i).equals(prodProvee.getIdPresentaciones())) {
+                this.productoBox.setSelectedIndex(i);
                 break;
             }
         }

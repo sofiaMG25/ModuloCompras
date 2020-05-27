@@ -1,10 +1,9 @@
 package DAOs;
 
-import java.util.Date;
 
 public class ProductoProveedor {
   private String idProveedor; 
-  private String idProductos;
+  private String idPresentaciones;
   private int diasRetardo;
   private float precioEstandar;
   private float precioUltCompra;
@@ -12,12 +11,9 @@ public class ProductoProveedor {
   private int cantMaxPedir;
   private char estatus;
 
-    public ProductoProveedor() {
-    }
-
-    public ProductoProveedor(String idProveedor, String idProductos, int diasRetardo, float precioEstandar, float precioUltCompra, int cantMinPedir, int cantMaxPedir, char estatus) {
+    public ProductoProveedor(String idProveedor, String idPresentaciones, int diasRetardo, float precioEstandar, float precioUltCompra, int cantMinPedir, int cantMaxPedir, char estatus) {
         this.idProveedor = idProveedor;
-        this.idProductos = idProductos;
+        this.idPresentaciones = idPresentaciones;
         this.diasRetardo = diasRetardo;
         this.precioEstandar = precioEstandar;
         this.precioUltCompra = precioUltCompra;
@@ -26,9 +22,9 @@ public class ProductoProveedor {
         this.estatus = estatus;
     }
 
-    public ProductoProveedor(String idProveedor, String idProductos, int diasRetardo, float precioEstandar, float precioUltCompra, int cantMinPedir, int cantMaxPedir) {
+    public ProductoProveedor(String idProveedor, String idPresentaciones, int diasRetardo, float precioEstandar, float precioUltCompra, int cantMinPedir, int cantMaxPedir) {
         this.idProveedor = idProveedor;
-        this.idProductos = idProductos;
+        this.idPresentaciones = idPresentaciones;
         this.diasRetardo = diasRetardo;
         this.precioEstandar = precioEstandar;
         this.precioUltCompra = precioUltCompra;
@@ -41,8 +37,8 @@ public class ProductoProveedor {
         this.idProveedor = idProveedor;
     }
 
-    public ProductoProveedor(int p, String idProductos) {
-        this.idProductos = idProductos;
+    public ProductoProveedor(int p, String idPresentaciones) {
+        this.idPresentaciones = idPresentaciones;
     }
 
     public String getIdProveedor() {
@@ -53,12 +49,12 @@ public class ProductoProveedor {
         this.idProveedor = idProveedor;
     }
 
-    public String getIdProductos() {
-        return idProductos;
+    public String getIdPresentaciones() {
+        return idPresentaciones;
     }
 
-    public void setIdProductos(String idProductos) {
-        this.idProductos = idProductos;
+    public void setIdPresentaciones(String idPresentaciones) {
+        this.idPresentaciones = idPresentaciones;
     }
 
     public int getDiasRetardo() {

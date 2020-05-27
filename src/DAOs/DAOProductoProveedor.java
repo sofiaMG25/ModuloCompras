@@ -5,6 +5,7 @@ import java.util.LinkedList;
 
 public interface DAOProductoProveedor extends CRUDgenerico<ProductoProveedor>{
     LinkedList<ProductoProveedor> obtenerIdProveedor();
-    LinkedList<ProductoProveedor> obtenerIdProducto();
+    LinkedList<ProductoProveedor> obtenerIdPresentaciones();
+    LinkedList<ProductoProveedor> busquedaPorNombre(String nombre);
     int contRegistro();
 }
