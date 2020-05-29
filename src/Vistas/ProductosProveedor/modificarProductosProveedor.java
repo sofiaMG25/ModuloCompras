@@ -5,15 +5,13 @@
  */
 package Vistas.ProductosProveedor;
 
-import Vistas.Presentaciones.*;
-import DAOs.Presentaciones;
-import DAOs.DAOPresentacionesImp;
+import Vistas.ProductosProveedor.*;
+import ClasesExtras.CRUDgenerico;
 import DAOs.DAOProductoProveedorImp;
+import DAOs.DAOProductoProveedor;
 import DAOs.ProductoProveedor;
 import MainPrincipal.Main;
 import java.awt.BorderLayout;
-import java.time.Instant;
-import java.util.Date;
 import java.util.LinkedList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -25,16 +23,54 @@ import javax.swing.JOptionPane;
 public class modificarProductosProveedor extends javax.swing.JPanel {
 
     /**
-     * Creates new form modificarLaboratorio
+     * Creates new form modificarEmpaque
      */
+    private Main mainPrincipal;
+
     public modificarProductosProveedor() {
         initComponents();
     }
 
-    private Main mainPrincipal;
-
     public void setMainPrincipal(Main main) {
         mainPrincipal = main;
+    }
+
+    public void ObtenerProdProvModificar(ProductoProveedor prodProv) {
+        LinkedList<ProductoProveedor> prov = new DAOs.DAOProductoProveedorImp().obtenerIdProveedor();
+        DefaultComboBoxModel model = (DefaultComboBoxModel) proveedorCBox.getModel();
+        for (int i = 0; i < prov.size(); i++) {
+            model.addElement(prov.get(i).getIdProveedor());
+        }
+        proveedorCBox.setModel(model);
+        for (int i = 0; i < proveedorCBox.getItemCount(); i++) {
+            if (proveedorCBox.getItemAt(i).equals(prodProv.getIdProveedor())) {
+                this.proveedorCBox.setSelectedIndex(i);
+                break;
+            }
+        }
+        LinkedList<ProductoProveedor> pres = new DAOs.DAOProductoProveedorImp().obtenerIdPresentaciones();
+        DefaultComboBoxModel model2 = (DefaultComboBoxModel) presentacionCBox.getModel();
+        for (int i = 0; i < pres.size(); i++) {
+            model2.addElement(pres.get(i).getIdPresentaciones());
+        }
+        presentacionCBox.setModel(model2);
+        for (int i = 0; i < presentacionCBox.getItemCount(); i++) {
+            if (presentacionCBox.getItemAt(i).equals(prodProv.getIdPresentaciones())) {
+                this.presentacionCBox.setSelectedIndex(i);
+                break;
+            }
+        }
+        this.dRetardotxt.setText(String.valueOf(prodProv.getDiasRetardo()));
+        this.pEstandartxt.setText(String.valueOf(prodProv.getPrecioEstandar()));
+        this.pUltimaCompratxt.setText(String.valueOf(prodProv.getPrecioUltCompra()));
+        this.cMinPedirtxt.setText(String.valueOf(prodProv.getCantMinPedir()));
+        this.cMaxPedirtxt.setText(String.valueOf(prodProv.getCantMaxPedir()));
+        if (prodProv.getEstatus() == 'A') {
+            this.estatusBox.setSelectedIndex(1);
+        } else {
+            this.estatusBox.setSelectedIndex(2);
+        }
+
     }
 
     /**
@@ -46,339 +82,301 @@ public class modificarProductosProveedor extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pEstandartxt = new javax.swing.JTextField();
-        pCompra = new javax.swing.JLabel();
-        estatusUL = new javax.swing.JLabel();
         estatusBox = new javax.swing.JComboBox<String>();
-        jPanel1 = new javax.swing.JPanel();
-        modificarUL = new javax.swing.JLabel();
-        cancelarUL = new javax.swing.JLabel();
-        pVenta = new javax.swing.JLabel();
-        pReorden = new javax.swing.JLabel();
-        cantMinPedirtxt = new javax.swing.JTextField();
-        pUltCompratxt = new javax.swing.JTextField();
-        empaque = new javax.swing.JLabel();
-        producto = new javax.swing.JLabel();
-        productoBox = new javax.swing.JComboBox<String>();
-        proveedorBox = new javax.swing.JComboBox<String>();
-        producto1 = new javax.swing.JLabel();
-        pReorden1 = new javax.swing.JLabel();
-        cantMaxPedirtxt = new javax.swing.JTextField();
-        diaretardo = new javax.swing.JTextField();
+        dRetardotxt = new javax.swing.JTextField();
+        dRetraso = new javax.swing.JLabel();
+        cMinPedir = new javax.swing.JLabel();
+        estatus = new javax.swing.JLabel();
+        cMinPedirtxt = new javax.swing.JTextField();
+        proveedor = new javax.swing.JLabel();
+        proveedorCBox = new javax.swing.JComboBox<String>();
+        opcionesUEmp = new javax.swing.JPanel();
+        modificarUEmp = new javax.swing.JLabel();
+        cancelarUEmp = new javax.swing.JLabel();
+        presentacion = new javax.swing.JLabel();
+        presentacionCBox = new javax.swing.JComboBox<String>();
+        pEstandar = new javax.swing.JLabel();
+        pUltCompra = new javax.swing.JLabel();
+        pEstandartxt = new javax.swing.JTextField();
+        pUltimaCompratxt = new javax.swing.JTextField();
+        cMaxPedir = new javax.swing.JLabel();
+        cMaxPedirtxt = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(228, 225, 225));
-        setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Modicar Presentacion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
-
-        pCompra.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        pCompra.setText("PRECIO ESTANDAR: ");
-
-        estatusUL.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        estatusUL.setText("ESTATUS:");
+        setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Modificar empaque", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
 
         estatusBox.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        estatusBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONE EL ESTATUS", "ACTIVO", "INACTIVO" }));
+        estatusBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONE UNA OPCIÓN", "ACTIVO", "INACTIVO" }));
 
-        jPanel1.setBackground(new java.awt.Color(48, 45, 45));
+        dRetraso.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        dRetraso.setText("DÍAS RETARDO:");
 
-        modificarUL.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        modificarUL.setForeground(new java.awt.Color(255, 255, 255));
-        modificarUL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/save.png"))); // NOI18N
-        modificarUL.setText("MODIFICAR");
-        modificarUL.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
-        modificarUL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        modificarUL.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                modificarULMouseClicked(evt);
+        cMinPedir.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        cMinPedir.setText("CANT. MINIMA PEDIR: ");
+
+        estatus.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        estatus.setText("ESTATUS:");
+
+        cMinPedirtxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cMinPedirtxtActionPerformed(evt);
             }
         });
 
-        cancelarUL.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        cancelarUL.setForeground(new java.awt.Color(255, 255, 255));
-        cancelarUL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar.png"))); // NOI18N
-        cancelarUL.setText("CANCELAR");
-        cancelarUL.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
-        cancelarUL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        cancelarUL.addMouseListener(new java.awt.event.MouseAdapter() {
+        proveedor.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        proveedor.setText("PROVEEDOR: ");
+
+        proveedorCBox.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        proveedorCBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONE UN PROVEEDOR" }));
+
+        opcionesUEmp.setBackground(new java.awt.Color(48, 45, 45));
+
+        modificarUEmp.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        modificarUEmp.setForeground(new java.awt.Color(255, 255, 255));
+        modificarUEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/save.png"))); // NOI18N
+        modificarUEmp.setText("MODIFICAR");
+        modificarUEmp.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        modificarUEmp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        modificarUEmp.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cancelarULMouseClicked(evt);
+                modificarUEmpMouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(modificarUL, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 347, Short.MAX_VALUE)
-                .addComponent(cancelarUL, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61))
+        cancelarUEmp.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        cancelarUEmp.setForeground(new java.awt.Color(255, 255, 255));
+        cancelarUEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar.png"))); // NOI18N
+        cancelarUEmp.setText("CANCELAR");
+        cancelarUEmp.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        cancelarUEmp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cancelarUEmp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelarUEmpMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout opcionesUEmpLayout = new javax.swing.GroupLayout(opcionesUEmp);
+        opcionesUEmp.setLayout(opcionesUEmpLayout);
+        opcionesUEmpLayout.setHorizontalGroup(
+            opcionesUEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(opcionesUEmpLayout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addComponent(modificarUEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 375, Short.MAX_VALUE)
+                .addComponent(cancelarUEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        opcionesUEmpLayout.setVerticalGroup(
+            opcionesUEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(opcionesUEmpLayout.createSequentialGroup()
                 .addContainerGap(71, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelarUL)
-                    .addComponent(modificarUL))
+                .addGroup(opcionesUEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelarUEmp)
+                    .addComponent(modificarUEmp))
                 .addGap(45, 45, 45))
         );
 
-        pVenta.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        pVenta.setText("PRECIO ULTIMA COMPRA: ");
+        presentacion.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        presentacion.setText("PRESENTACIÓN: ");
 
-        pReorden.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        pReorden.setText("CANT. MINIMA PEDIR: ");
+        presentacionCBox.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        presentacionCBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONE UNA PRESENTACIÓN" }));
 
-        empaque.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        empaque.setText("PROVEEDOR: ");
+        pEstandar.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        pEstandar.setText("PRECIO ESTANDAR:");
 
-        producto.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        producto.setText("PRODCUTO: ");
+        pUltCompra.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        pUltCompra.setText("PRECIO ULTIMA COMPRA:");
 
-        productoBox.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        productoBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONE UN PRODUCTO" }));
+        cMaxPedir.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        cMaxPedir.setText("CANT. MIXIMA PEDIR: ");
 
-        proveedorBox.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        proveedorBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONE UN PROVEEDOR" }));
-
-        producto1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        producto1.setText("DÍA RETARDO: ");
-
-        pReorden1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        pReorden1.setText("CANT. MIXIMA PEDIR: ");
+        cMaxPedirtxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cMaxPedirtxtActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(74, 74, 74)
+                .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pVenta)
-                            .addComponent(empaque)
-                            .addComponent(producto)
-                            .addComponent(producto1)
-                            .addComponent(pCompra))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(pReorden)
-                            .addGap(40, 40, 40)))
-                    .addComponent(estatusUL)
-                    .addComponent(pReorden1))
+                            .addComponent(dRetraso)
+                            .addComponent(presentacion)
+                            .addComponent(proveedor)
+                            .addComponent(pEstandar)))
+                    .addComponent(estatus)
+                    .addComponent(cMaxPedir)
+                    .addComponent(pUltCompra)
+                    .addComponent(cMinPedir))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pEstandartxt, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(productoBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(proveedorBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pUltCompratxt, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cantMinPedirtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cantMaxPedirtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cMinPedirtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dRetardotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(proveedorCBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(estatusBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(diaretardo, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57))
+                    .addComponent(presentacionCBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pEstandartxt, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pUltimaCompratxt, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cMaxPedirtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(45, 45, 45))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(opcionesUEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(proveedorBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(empaque, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(productoBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(producto))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(diaretardo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(producto1, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(proveedor)
+                    .addComponent(proveedorCBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(presentacion)
+                    .addComponent(presentacionCBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dRetardotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dRetraso))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(pEstandartxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pCompra))
-                .addGap(4, 4, 4)
+                    .addComponent(pEstandar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pVenta)
-                    .addComponent(pUltCompratxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(pUltimaCompratxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pUltCompra))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cMinPedirtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cMinPedir))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cMaxPedir)
+                            .addComponent(cMaxPedirtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pReorden)
-                    .addComponent(cantMinPedirtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pReorden1)
-                    .addComponent(cantMaxPedirtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(estatusUL)
+                    .addComponent(estatus)
                     .addComponent(estatusBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(opcionesUEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-
-        getAccessibleContext().setAccessibleName("Modificar Categoria ");
     }// </editor-fold>//GEN-END:initComponents
 
-    private void modificarULMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarULMouseClicked
-        if (proveedorBox.getSelectedIndex() <= 0) {
-            JOptionPane.showMessageDialog(this, "Seleccione un proveedor", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (productoBox.getSelectedIndex() <= 0) {
-            JOptionPane.showMessageDialog(this, "Seleccione una presentación", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (diaretardo.getText().equals("") || Integer.parseInt(cantMinPedirtxt.getText()) <= 0) {
-            JOptionPane.showMessageDialog(this, "Ingresa una fecha estimada", "ERROR", JOptionPane.ERROR_MESSAGE);
-            diaretardo.requestFocus();
-            //return;
-        } else if (pEstandartxt.getText().equals("") || Float.parseFloat(pEstandartxt.getText()) <= 0) {
-            JOptionPane.showMessageDialog(this, "Ingrese el precio compra, cantidad debe ser mayorar a 0", "Error", JOptionPane.ERROR_MESSAGE);
-            pEstandartxt.requestFocus();
-        } else if (pUltCompratxt.getText().equals("") || Float.parseFloat(pUltCompratxt.getText()) <= 0) {
-            JOptionPane.showMessageDialog(this, "Ingrese el precio venta, cantidad debe ser mayorar a 0", "Error", JOptionPane.ERROR_MESSAGE);
-            pUltCompratxt.requestFocus();
-        } else if (cantMinPedirtxt.getText().equals("") || Integer.parseInt(cantMinPedirtxt.getText()) <= 0) {
-            JOptionPane.showMessageDialog(this, "Ingrese el precio de reorden, cantidad debe ser mayorar a 0", "Error", JOptionPane.ERROR_MESSAGE);
-            cantMinPedirtxt.requestFocus();
-        } else if (cantMaxPedirtxt.getText().equals("") || Integer.parseInt(cantMinPedirtxt.getText()) <= 0) {
-            JOptionPane.showMessageDialog(this, "Ingrese el precio de reorden, cantidad debe ser mayorar a 0", "Error", JOptionPane.ERROR_MESSAGE);
-            cantMaxPedirtxt.requestFocus();
-        } else if (estatusBox.getSelectedIndex() <= 0) {
-            JOptionPane.showMessageDialog(this, "Seleccione una opción valida", "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-            DAOProductoProveedorImp guardarProdProvee = new DAOProductoProveedorImp();
-            //Datos obtenidos de los campos 
-            String proveedores = this.proveedorBox.getSelectedItem().toString();
-            String presentacion = this.productoBox.getSelectedItem().toString();
-            int diaRetardo = Integer.parseInt(this.diaretardo.getText());
-            float pEstandar = Float.parseFloat(this.pEstandartxt.getText());
-            float pUltCompra = Float.parseFloat(this.pUltCompratxt.getText());
-            int cantMinP = Integer.parseInt(this.cantMinPedirtxt.getText());
-            int cantMaxP = Integer.parseInt(this.cantMinPedirtxt.getText());
-            char estatus = String.valueOf(this.estatusBox.getSelectedItem()).charAt(0);
-            //Guardar los datos de laboratorio
-            guardarProdProvee.upadate(new ProductoProveedor(proveedores, presentacion, diaRetardo, pEstandar, pUltCompra, cantMinP, cantMaxP, estatus));
-            limpiarVariables();
-        }
-    }//GEN-LAST:event_modificarULMouseClicked
-
-    private void cancelarULMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarULMouseClicked
-
-        //Quitas el jpanel principal que esta en el centro
+    private void cancelarUEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarUEmpMouseClicked
         mainPrincipal.getworkSpace().removeAll();
-        //Instaciamos el nuevo jpanel a reemplazar
-        mostrarProductosProveedor mProdProvee = new mostrarProductosProveedor();
-        //Redimensionamos el jpanel nuevo
-        mProdProvee.setSize(mainPrincipal.getworkSpace().getSize());
-        //Hacemos visible
-        mProdProvee.setVisible(true);
-        //Seleccionamos la función para mostrar el jpanel
-        mProdProvee.setMostrarProductosProveedores(mainPrincipal);
-        //Cargamos el jpanel
-        mProdProvee.MostrarDatosProdProveedor();
-        //Agregamos el jpanel y centramos
-        mainPrincipal.getworkSpace().add(mProdProvee, BorderLayout.CENTER);
-        //Validamos el jpanel
+        mostrarProductosProveedor mostrarProdProv = new mostrarProductosProveedor();
+        mostrarProdProv.setSize(mainPrincipal.getworkSpace().getSize());
+        mostrarProdProv.setVisible(true);
+        mostrarProdProv.activeEventListenerMostrarPresProv();
+        mainPrincipal.getworkSpace().add(mostrarProdProv, BorderLayout.CENTER);
         mainPrincipal.getworkSpace().revalidate();
-        //Dibujamos el jpanel
         mainPrincipal.getworkSpace().repaint();
-    }//GEN-LAST:event_cancelarULMouseClicked
-    /**
-     * Método que funciona para abstraer los datos de la categoria
-     *
-     * @param pres
-     */
-    public void ObtenerProdProveedorModificar(ProductoProveedor prodProvee) {
-         LinkedList<ProductoProveedor> listaProd = new DAOs.DAOProductoProveedorImp().obtenerIdProveedor();
-        DefaultComboBoxModel model = (DefaultComboBoxModel) proveedorBox.getModel();
-        for (int i = 0; i < listaProd.size(); i++) {
-            model.addElement(listaProd.get(i).getIdProveedor());
-        }
-        proveedorBox.setModel(model);
-        for (int i = 0; i < proveedorBox.getItemCount(); i++) {
-            if (proveedorBox.getItemAt(i).equals(prodProvee.getIdProveedor())) {
-                this.proveedorBox.setSelectedIndex(i);
-                break;
-            }
-        }
-        
-        /* private void mostrarProveedor() {
-        LinkedList<ProductoProveedor> proveedor = new DAOProductoProveedorImp().obtenerIdProveedor();
-        if (proveedor != null) {
-            DefaultComboBoxModel model = (DefaultComboBoxModel) comboxProveedor.getModel();
-            for (int i = 0; i < proveedor.size(); i++) {
-                model.addElement(proveedor.get(i).getIdProveedor());
-            }
-            comboxProveedor.setModel(model);
-        }
-    }*/
+        mostrarProdProv.setMostrarProdProv(mainPrincipal);
 
-        LinkedList<ProductoProveedor> listaProvee = new DAOs.DAOProductoProveedorImp().obtenerIdPresentaciones();
-        DefaultComboBoxModel model2 = (DefaultComboBoxModel) productoBox.getModel();
-        for (int i = 0; i < listaProvee.size(); i++) {
-            model2.addElement(listaProvee.get(i).getIdPresentaciones());
-        }
-        productoBox.setModel(model2);
-        for (int i = 0; i < productoBox.getItemCount(); i++) {
-            if (productoBox.getItemAt(i).equals(prodProvee.getIdPresentaciones())) {
-                this.productoBox.setSelectedIndex(i);
-                break;
+
+    }//GEN-LAST:event_cancelarUEmpMouseClicked
+
+    private void modificarUEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarUEmpMouseClicked
+
+        try {
+            if (proveedorCBox.getSelectedIndex() <= 0) {
+                JOptionPane.showMessageDialog(this, "Seleccione un Proveedor", "Error", JOptionPane.ERROR_MESSAGE);
+            } else if (presentacionCBox.getSelectedIndex() <= 0) {
+                JOptionPane.showMessageDialog(this, "Seleccione una presentación", "Error", JOptionPane.ERROR_MESSAGE);
+            }else if(dRetardotxt.getText().equals("") || Integer.parseInt(dRetardotxt.getText())<=0){
+                JOptionPane.showMessageDialog(this, "Ingresa los dias de retardo", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }else if(pEstandartxt.getText().equals("") || Float.parseFloat(pEstandartxt.getText())<=0){
+                JOptionPane.showMessageDialog(this, "Ingresa el precio estandar", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }else if(pUltimaCompratxt.getText().equals("") || Float.parseFloat(pUltimaCompratxt.getText())<=0){
+                JOptionPane.showMessageDialog(this, "Ingresa el precio de ultima compra", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }else if(cMinPedirtxt.getText().equals("") || Integer.parseInt(cMinPedirtxt.getText())<=0){
+                JOptionPane.showMessageDialog(this, "Ingresa la cantidad minima a pedir", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }else if(Integer.parseInt(cMinPedirtxt.getText())>Integer.parseInt(cMaxPedirtxt.getText())){
+                JOptionPane.showMessageDialog(this, "Cantidad minima debe ser menor a cantidad maxima", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }else if(cMaxPedirtxt.getText().equals("") || Integer.parseInt(cMaxPedirtxt.getText())<=0){
+                JOptionPane.showMessageDialog(this, "Ingresa la cantidad maxima a pedir", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }else if(Integer.parseInt(cMaxPedirtxt.getText())< Integer.parseInt(cMinPedirtxt.getText())){
+                JOptionPane.showMessageDialog(this, "Cantidad maxima debe ser mayor a cantidad minima", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }else if(estatusBox.getSelectedIndex()<=0){
+                JOptionPane.showMessageDialog(this, "Ingresa el estatus", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }else{
+                CRUDgenerico guardarprodProv = new DAOProductoProveedorImp();
+                //Datos obtenidos de los campos 
+                String prove = this.proveedorCBox.getSelectedItem().toString();
+                String prese = this.presentacionCBox.getSelectedItem().toString();
+                int dRetardo = Integer.parseInt(this.dRetardotxt.getText());
+                float pEst = Float.parseFloat(this.pEstandartxt.getText());
+                float pUltC = Float.parseFloat(this.pUltimaCompratxt.getText());
+                int cMinPed = Integer.parseInt(this.cMinPedirtxt.getText());
+                int cMaxPed = Integer.parseInt(this.cMaxPedirtxt.getText());
+                char est = String.valueOf(this.estatusBox.getSelectedItem()).charAt(0);
+                //Guardar los datos de laboratorio
+                guardarprodProv.upadate(new ProductoProveedor(prove,
+                        prese, dRetardo, pEst, pUltC,
+                        cMinPed, cMaxPed,est));
+                limpiarVariables();
             }
-        }
-        
-        this.diaretardo.setText(String.valueOf(prodProvee.getDiasRetardo()));
-        this.pEstandartxt.setText(String.valueOf(prodProvee.getPrecioEstandar()));
-        this.pUltCompratxt.setText(String.valueOf(prodProvee.getPrecioUltCompra()));
-        this.cantMinPedirtxt.setText(String.valueOf(prodProvee.getCantMinPedir()));
-        this.cantMaxPedirtxt.setText(String.valueOf(prodProvee.getCantMaxPedir()));
 
-       
-
-        if (prodProvee.getEstatus() == 'A') {
-            this.estatusBox.setSelectedIndex(1);
-        } else {
-            this.estatusBox.setSelectedIndex(2);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-    }
+
+    }//GEN-LAST:event_modificarUEmpMouseClicked
+
+    private void cMinPedirtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cMinPedirtxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cMinPedirtxtActionPerformed
+
+    private void cMaxPedirtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cMaxPedirtxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cMaxPedirtxtActionPerformed
 
     private void limpiarVariables() {
 
-        proveedorBox.setSelectedIndex(0);
-        productoBox.setSelectedIndex(0);
-        diaretardo.setText("");
+        proveedorCBox.setSelectedIndex(0);
+        presentacionCBox.setSelectedIndex(0);
+        dRetardotxt.setText("");
         pEstandartxt.setText("");
-        pUltCompratxt.setText("");
-        cantMinPedirtxt.setText("");
-        cantMaxPedirtxt.setText("");
-        estatusBox.setSelectedIndex(0);
-
+        pUltimaCompratxt.setText("");
+        cMinPedirtxt.setText("");
+        cMaxPedirtxt.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel cancelarUL;
-    private javax.swing.JTextField cantMaxPedirtxt;
-    private javax.swing.JTextField cantMinPedirtxt;
-    private javax.swing.JTextField diaretardo;
-    private javax.swing.JLabel empaque;
+    private javax.swing.JLabel cMaxPedir;
+    private javax.swing.JTextField cMaxPedirtxt;
+    private javax.swing.JLabel cMinPedir;
+    private javax.swing.JTextField cMinPedirtxt;
+    private javax.swing.JLabel cancelarUEmp;
+    private javax.swing.JTextField dRetardotxt;
+    private javax.swing.JLabel dRetraso;
+    private javax.swing.JLabel estatus;
     private javax.swing.JComboBox<String> estatusBox;
-    private javax.swing.JLabel estatusUL;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel modificarUL;
-    private javax.swing.JLabel pCompra;
+    private javax.swing.JLabel modificarUEmp;
+    private javax.swing.JPanel opcionesUEmp;
+    private javax.swing.JLabel pEstandar;
     private javax.swing.JTextField pEstandartxt;
-    private javax.swing.JLabel pReorden;
-    private javax.swing.JLabel pReorden1;
-    private javax.swing.JTextField pUltCompratxt;
-    private javax.swing.JLabel pVenta;
-    private javax.swing.JLabel producto;
-    private javax.swing.JLabel producto1;
-    private javax.swing.JComboBox<String> productoBox;
-    private javax.swing.JComboBox<String> proveedorBox;
+    private javax.swing.JLabel pUltCompra;
+    private javax.swing.JTextField pUltimaCompratxt;
+    private javax.swing.JLabel presentacion;
+    private javax.swing.JComboBox<String> presentacionCBox;
+    private javax.swing.JLabel proveedor;
+    private javax.swing.JComboBox<String> proveedorCBox;
     // End of variables declaration//GEN-END:variables
 }

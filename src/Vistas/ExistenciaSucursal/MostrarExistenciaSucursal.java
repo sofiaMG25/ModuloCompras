@@ -406,7 +406,7 @@ public class MostrarExistenciaSucursal extends javax.swing.JPanel {
     private javax.swing.JScrollPane tablaMostrarESU;
     // End of variables declaration//GEN-END:variables
 
-    public void setMostrarPresentaciones(Main main) {
+    public void setMostrarCuentasProv(Main main) {
         mainPrincipal = main;
     }
     

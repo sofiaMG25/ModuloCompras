@@ -1,20 +1,21 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Vistas.ProductosProveedor;
 
 import Vistas.ProductosProveedor.*;
-import java.awt.BorderLayout;
-import DAOs.*;
-import javax.swing.table.DefaultTableModel;
+import ClasesExtras.CRUDgenerico;
+import DAOs.DAOProductoProveedor;
+import DAOs.DAOProductoProveedorImp;
+import DAOs.ProductoProveedor;
 import MainPrincipal.Main;
-//import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.awt.BorderLayout;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
-import java.util.Date;
-import java.text.ParseException;
-import java.time.Instant;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author 52351
@@ -22,24 +23,77 @@ import java.util.logging.Logger;
 public class mostrarProductosProveedor extends javax.swing.JPanel {
 
     /**
-     * Creates new form mostrarLaboratorios
+     * Creates new form mostrarEmpaques
      */
-    public void setMostrarProductosProveedores(Main workspace) {
-        mainPrincipal = workspace;
-    }
-
     public mostrarProductosProveedor() {
         initComponents();
-          leyenda.setVisible(false);
-          ContRegistro = new DAOProductoProveedorImp().contRegistro();
-          ContRegistro = Math.ceil((ContRegistro/10));
+        ContRegistro = new DAOProductoProveedorImp().contRegistro();
+        ContRegistro = Math.ceil((ContRegistro/10));
+        leyenda.setVisible(false);
     }
 
-    private Main mainPrincipal;
     private double ContRegistro;
     private int cambioPagina = 1;
-    
-  
+
+    public void activeEventListenerMostrarPresProv() {
+        MostrarDatosProdProv();
+    }
+
+    public void setMostrarProdProv(Main worksapce) {
+        mainPrincipal = worksapce;
+    }
+
+    public void MostrarDatosProdProv() {
+        LinkedList<ProductoProveedor> pProv = new DAOProductoProveedorImp().show(1);
+        Object listaDatos[][] = new Object[pProv.size()][8];
+         this.segmentacion.setText("Página "+cambioPagina +" de "+ (int)ContRegistro+ " Páginas en total");
+        for (int i = 0; i < pProv.size(); i++) {
+            listaDatos[i][0] = pProv.get(i).getIdProveedor();
+            listaDatos[i][1] = pProv.get(i).getIdPresentaciones();
+            listaDatos[i][2] = pProv.get(i).getDiasRetardo();
+            listaDatos[i][3] = pProv.get(i).getPrecioEstandar();
+            listaDatos[i][4] = pProv.get(i).getPrecioUltCompra();
+            listaDatos[i][5] = pProv.get(i).getCantMinPedir();
+            listaDatos[i][6] = pProv.get(i).getCantMaxPedir();
+            listaDatos[i][7] = pProv.get(i).getEstatus();
+        }
+
+        DefaultTableModel modelTable = new DefaultTableModel(
+                listaDatos,
+                new Object[]{"PROVEEDORES", "PRESENTACION", "DIAS RETRASO",
+                        "PRECIO ESTANDAR", "PRECIO ULTIMA COMPRA", "CANT. MIN. PEDIR",
+                        "CANT. MIN. PEDIR", "ESTATUS"}) {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        this.jTableMEmp.setModel(modelTable);
+        this.jTableMEmp.getColumnModel().getColumn(0).setMinWidth(10);
+        this.jTableMEmp.getColumnModel().getColumn(0).setMaxWidth(50);
+
+        this.jTableMEmp.getColumnModel().getColumn(1).setMinWidth(50);
+        this.jTableMEmp.getColumnModel().getColumn(1).setMaxWidth(350);
+
+        this.jTableMEmp.getColumnModel().getColumn(2).setMinWidth(50);
+        this.jTableMEmp.getColumnModel().getColumn(2).setMaxWidth(350);
+
+        this.jTableMEmp.getColumnModel().getColumn(3).setMinWidth(10);
+        this.jTableMEmp.getColumnModel().getColumn(3).setMaxWidth(200);
+
+        this.jTableMEmp.getColumnModel().getColumn(4).setMinWidth(10);
+        this.jTableMEmp.getColumnModel().getColumn(4).setMaxWidth(200);
+
+        this.jTableMEmp.getColumnModel().getColumn(5).setMinWidth(10);
+        this.jTableMEmp.getColumnModel().getColumn(5).setMaxWidth(200);
+
+        this.jTableMEmp.getColumnModel().getColumn(6).setMinWidth(10);
+        this.jTableMEmp.getColumnModel().getColumn(6).setMaxWidth(200);
+
+        this.jTableMEmp.getColumnModel().getColumn(7).setMinWidth(10);
+        this.jTableMEmp.getColumnModel().getColumn(7).setMaxWidth(200);
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,30 +104,27 @@ public class mostrarProductosProveedor extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<String>();
-        mainMostrarLab = new javax.swing.JPanel();
-        tablaMostrarCat = new javax.swing.JScrollPane();
-        jTableMC = new javax.swing.JTable();
-        opcionesMostrarLab = new javax.swing.JPanel();
-        nuevaPre = new javax.swing.JLabel();
-        cancelarMC = new javax.swing.JLabel();
-        buscartxtPre = new javax.swing.JTextField();
-        buscarPre = new javax.swing.JLabel();
+        mainMostrarEmp = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableMEmp = new javax.swing.JTable();
+        buscartxtMEmp = new javax.swing.JTextField();
+        buscarMEmp = new javax.swing.JLabel();
         opcionesMostrarEmp = new javax.swing.JPanel();
+        nuevoMEmp = new javax.swing.JLabel();
+        cancelarMEmp = new javax.swing.JLabel();
+        opcionesMostrarLab3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         segmentacion = new javax.swing.JLabel();
         preview = new javax.swing.JButton();
         next = new javax.swing.JButton();
         leyenda = new javax.swing.JLabel();
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        setBackground(new java.awt.Color(233, 231, 231));
+        setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Mostrar Productos Proveedor ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
 
-        setBackground(new java.awt.Color(228, 225, 225));
-        setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Mostrar Productos-Proveedores", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
+        mainMostrarEmp.setBackground(new java.awt.Color(233, 231, 231));
 
-        mainMostrarLab.setBackground(new java.awt.Color(233, 231, 231));
-
-        jTableMC.setModel(new javax.swing.table.DefaultTableModel(
+        jTableMEmp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -81,76 +132,76 @@ public class mostrarProductosProveedor extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "PROVEEDOR", "PRODUCTO", "DIA RETARDO", "PRECIO ESTANDAR", "PRECIO ULTIMA COMPRA", "CANT. MINIMA PEDIR", "CANT. MIXIMA PEDIR", "ESTATUS"
+                "PROVEEDOR", "PRESENTACIÓN", "DIAS RETRASO", "PRECIO ESTANDAR", "PRECIO ULTIMA COMPRA", "CANT. MIN. PEDIR", "CANT. MAX. PEDIR", "ESTATUS"
             }
         ));
-        jTableMC.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTableMEmp.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableMCMouseClicked(evt);
+                jTableMEmpMouseClicked(evt);
             }
         });
-        tablaMostrarCat.setViewportView(jTableMC);
+        jScrollPane1.setViewportView(jTableMEmp);
 
-        opcionesMostrarLab.setBackground(new java.awt.Color(48, 45, 45));
-
-        nuevaPre.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        nuevaPre.setForeground(new java.awt.Color(255, 255, 255));
-        nuevaPre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/save.png"))); // NOI18N
-        nuevaPre.setText("NUEVO PRODUCTO-PROVEEDOR");
-        nuevaPre.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
-        nuevaPre.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        nuevaPre.addMouseListener(new java.awt.event.MouseAdapter() {
+        buscarMEmp.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        buscarMEmp.setForeground(new java.awt.Color(102, 102, 102));
+        buscarMEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/most.png"))); // NOI18N
+        buscarMEmp.setText("BUSCAR PRODUCTO PROVEEDOR");
+        buscarMEmp.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        buscarMEmp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buscarMEmp.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                nuevaPreMouseClicked(evt);
-            }
-        });
-
-        cancelarMC.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        cancelarMC.setForeground(new java.awt.Color(255, 255, 255));
-        cancelarMC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/save.png"))); // NOI18N
-        cancelarMC.setText("CANCELAR");
-        cancelarMC.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
-        cancelarMC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        cancelarMC.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cancelarMCMouseClicked(evt);
+                buscarMEmpMouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout opcionesMostrarLabLayout = new javax.swing.GroupLayout(opcionesMostrarLab);
-        opcionesMostrarLab.setLayout(opcionesMostrarLabLayout);
-        opcionesMostrarLabLayout.setHorizontalGroup(
-            opcionesMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionesMostrarLabLayout.createSequentialGroup()
+        opcionesMostrarEmp.setBackground(new java.awt.Color(48, 45, 45));
+
+        nuevoMEmp.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        nuevoMEmp.setForeground(new java.awt.Color(255, 255, 255));
+        nuevoMEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/save.png"))); // NOI18N
+        nuevoMEmp.setText("NUEVO PRODUCTO PROVEEDPOR");
+        nuevoMEmp.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        nuevoMEmp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        nuevoMEmp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nuevoMEmpMouseClicked(evt);
+            }
+        });
+
+        cancelarMEmp.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
+        cancelarMEmp.setForeground(new java.awt.Color(255, 255, 255));
+        cancelarMEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/save.png"))); // NOI18N
+        cancelarMEmp.setText("CANCELAR");
+        cancelarMEmp.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        cancelarMEmp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cancelarMEmp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelarMEmpMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout opcionesMostrarEmpLayout = new javax.swing.GroupLayout(opcionesMostrarEmp);
+        opcionesMostrarEmp.setLayout(opcionesMostrarEmpLayout);
+        opcionesMostrarEmpLayout.setHorizontalGroup(
+            opcionesMostrarEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionesMostrarEmpLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addComponent(nuevaPre, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nuevoMEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cancelarMC, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71))
+                .addComponent(cancelarMEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41))
         );
-        opcionesMostrarLabLayout.setVerticalGroup(
-            opcionesMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(opcionesMostrarLabLayout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
-                .addGroup(opcionesMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelarMC)
-                    .addComponent(nuevaPre))
-                .addGap(19, 19, 19))
+        opcionesMostrarEmpLayout.setVerticalGroup(
+            opcionesMostrarEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(opcionesMostrarEmpLayout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addGroup(opcionesMostrarEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nuevoMEmp)
+                    .addComponent(cancelarMEmp))
+                .addGap(21, 21, 21))
         );
 
-        buscarPre.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 18)); // NOI18N
-        buscarPre.setForeground(new java.awt.Color(102, 102, 102));
-        buscarPre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/most.png"))); // NOI18N
-        buscarPre.setText("BUSCAR PRODUCTOPROVEEDOR");
-        buscarPre.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
-        buscarPre.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        buscarPre.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buscarPreMouseClicked(evt);
-            }
-        });
-
-        opcionesMostrarEmp.setBackground(java.awt.Color.lightGray);
+        opcionesMostrarLab3.setBackground(java.awt.Color.lightGray);
 
         jLabel1.setBackground(new java.awt.Color(255, 0, 51));
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -177,38 +228,34 @@ public class mostrarProductosProveedor extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout opcionesMostrarEmpLayout = new javax.swing.GroupLayout(opcionesMostrarEmp);
-        opcionesMostrarEmp.setLayout(opcionesMostrarEmpLayout);
-        opcionesMostrarEmpLayout.setHorizontalGroup(
-            opcionesMostrarEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(opcionesMostrarEmpLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(preview)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(segmentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(next)
-                .addGap(187, 187, 187))
-            .addGroup(opcionesMostrarEmpLayout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(jLabel1)
+        javax.swing.GroupLayout opcionesMostrarLab3Layout = new javax.swing.GroupLayout(opcionesMostrarLab3);
+        opcionesMostrarLab3.setLayout(opcionesMostrarLab3Layout);
+        opcionesMostrarLab3Layout.setHorizontalGroup(
+            opcionesMostrarLab3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(opcionesMostrarLab3Layout.createSequentialGroup()
+                .addGroup(opcionesMostrarLab3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(opcionesMostrarLab3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(preview)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(segmentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(next))
+                    .addGroup(opcionesMostrarLab3Layout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(jLabel1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        opcionesMostrarEmpLayout.setVerticalGroup(
-            opcionesMostrarEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(opcionesMostrarEmpLayout.createSequentialGroup()
-                .addGroup(opcionesMostrarEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(next)
-                    .addGroup(opcionesMostrarEmpLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGroup(opcionesMostrarEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(opcionesMostrarEmpLayout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addComponent(preview))
-                            .addGroup(opcionesMostrarEmpLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(segmentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        opcionesMostrarLab3Layout.setVerticalGroup(
+            opcionesMostrarLab3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(opcionesMostrarLab3Layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(opcionesMostrarLab3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(preview)
+                    .addComponent(segmentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(next))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         leyenda.setBackground(new java.awt.Color(255, 0, 51));
@@ -216,48 +263,44 @@ public class mostrarProductosProveedor extends javax.swing.JPanel {
         leyenda.setForeground(new java.awt.Color(255, 51, 51));
         leyenda.setText("No se encuentran mas registros en paginas.");
 
-        javax.swing.GroupLayout mainMostrarLabLayout = new javax.swing.GroupLayout(mainMostrarLab);
-        mainMostrarLab.setLayout(mainMostrarLabLayout);
-        mainMostrarLabLayout.setHorizontalGroup(
-            mainMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainMostrarLabLayout.createSequentialGroup()
-                .addGroup(mainMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(mainMostrarLabLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(mainMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tablaMostrarCat)
-                            .addComponent(opcionesMostrarLab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainMostrarLabLayout.createSequentialGroup()
-                                .addGap(0, 192, Short.MAX_VALUE)
-                                .addComponent(buscartxtPre, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(buscarPre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(mainMostrarLabLayout.createSequentialGroup()
-                        .addGroup(mainMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(mainMostrarLabLayout.createSequentialGroup()
-                                .addGap(204, 204, 204)
-                                .addComponent(leyenda))
-                            .addGroup(mainMostrarLabLayout.createSequentialGroup()
-                                .addGap(84, 84, 84)
-                                .addComponent(opcionesMostrarEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        mainMostrarLabLayout.setVerticalGroup(
-            mainMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainMostrarLabLayout.createSequentialGroup()
+        javax.swing.GroupLayout mainMostrarEmpLayout = new javax.swing.GroupLayout(mainMostrarEmp);
+        mainMostrarEmp.setLayout(mainMostrarEmpLayout);
+        mainMostrarEmpLayout.setHorizontalGroup(
+            mainMostrarEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mainMostrarEmpLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(mainMostrarLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buscarPre)
-                    .addComponent(buscartxtPre, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tablaMostrarCat, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(opcionesMostrarEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(mainMostrarEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mainMostrarEmpLayout.createSequentialGroup()
+                        .addGap(0, 232, Short.MAX_VALUE)
+                        .addComponent(buscartxtMEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(buscarMEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(opcionesMostrarEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(mainMostrarEmpLayout.createSequentialGroup()
+                .addGap(200, 200, 200)
                 .addComponent(leyenda)
-                .addGap(18, 18, 18)
-                .addComponent(opcionesMostrarLab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainMostrarEmpLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(opcionesMostrarLab3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(98, 98, 98))
+        );
+        mainMostrarEmpLayout.setVerticalGroup(
+            mainMostrarEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mainMostrarEmpLayout.createSequentialGroup()
+                .addGroup(mainMostrarEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buscarMEmp)
+                    .addComponent(buscartxtMEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(opcionesMostrarLab3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
+                .addComponent(leyenda)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(opcionesMostrarEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -266,203 +309,160 @@ public class mostrarProductosProveedor extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(mainMostrarLab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(mainMostrarEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(mainMostrarLab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(mainMostrarEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        getAccessibleContext().setAccessibleName("Mostrar Categorias");
-        getAccessibleContext().setAccessibleDescription("");
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nuevaPreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevaPreMouseClicked
+    private void nuevoMEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevoMEmpMouseClicked
+            mainPrincipal.getworkSpace().removeAll();
+            agregarProductosProveedor nuevoProdProv = new agregarProductosProveedor();
+            nuevoProdProv.setSize(mainPrincipal.getworkSpace().getSize());
+            nuevoProdProv.setVisible(true);
+            nuevoProdProv.setMainPrincipal(mainPrincipal);
+            mainPrincipal.getworkSpace().add(nuevoProdProv, BorderLayout.CENTER);
+            mainPrincipal.getworkSpace().revalidate();
+            mainPrincipal.getworkSpace().repaint();
+      
+    }//GEN-LAST:event_nuevoMEmpMouseClicked
+
+    private void cancelarMEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarMEmpMouseClicked
         mainPrincipal.getworkSpace().removeAll();
-        agregarProductosProveedor nuevoProdProvee = new agregarProductosProveedor();
-        nuevoProdProvee.setSize(mainPrincipal.getworkSpace().getSize());
-        nuevoProdProvee.setVisible(true);
-        nuevoProdProvee.setMainPrincipal(mainPrincipal);
-        mainPrincipal.getworkSpace().add(nuevoProdProvee, BorderLayout.CENTER);
         mainPrincipal.getworkSpace().revalidate();
         mainPrincipal.getworkSpace().repaint();
+    }//GEN-LAST:event_cancelarMEmpMouseClicked
 
-
-    }//GEN-LAST:event_nuevaPreMouseClicked
-
-    private void cancelarMCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarMCMouseClicked
-        mainPrincipal.getworkSpace().removeAll();
-        mainPrincipal.getworkSpace().repaint();
-        mainPrincipal.getworkSpace().revalidate();
-    }//GEN-LAST:event_cancelarMCMouseClicked
-
-    private void jTableMCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMCMouseClicked
+    private void jTableMEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMEmpMouseClicked
         int row;
-        row = jTableMC.getSelectedRow();
-
+        row = jTableMEmp.getSelectedRow();
         //Verificamos que el evento este en el rango de la tabla.
-        if (row > -1 && row <= jTableMC.getSelectedRow()) {
-            modificarProductosProveedor modificarProdProvee = new modificarProductosProveedor();
+        if (row > -1 && row <= jTableMEmp.getSelectedRow()) {
+            //creamos la ventana modificar
+            modificarProductosProveedor modificarProdProv = new modificarProductosProveedor();
             this.mainPrincipal.getworkSpace().removeAll();
-            modificarProdProvee.setSize(mainPrincipal.getworkSpace().getSize());
-            modificarProdProvee.setVisible(true);
-            modificarProdProvee.setMainPrincipal(mainPrincipal);
-            String proveedor = String.valueOf(this.jTableMC.getValueAt(row, 0));
-            String producto = String.valueOf(this.jTableMC.getValueAt(row, 1));
-            int diaRetardo =Integer.parseInt(String.valueOf(this.jTableMC.getValueAt(row, 2)));
-            float pEstandar =Float.parseFloat(String.valueOf(this.jTableMC.getValueAt(row, 3)));
-            float pUltCompra =Float.parseFloat(String.valueOf(this.jTableMC.getValueAt(row, 4)));
-            int cantMinPedir =Integer.parseInt(String.valueOf(this.jTableMC.getValueAt(row, 5)));
-            int cantMaxPedir =Integer.parseInt(String.valueOf(this.jTableMC.getValueAt(row, 6)));
-            char estatus = String.valueOf(this.jTableMC.getValueAt(row, 7)).charAt(0);
-            modificarProdProvee.ObtenerProdProveedorModificar(new ProductoProveedor(proveedor, producto, 
-                    diaRetardo, pEstandar, pUltCompra, cantMinPedir, cantMaxPedir, estatus));
-           
-            this.mainPrincipal.getworkSpace().add(modificarProdProvee, BorderLayout.CENTER);
+            modificarProdProv.setSize(mainPrincipal.getworkSpace().getSize());
+            modificarProdProv.setVisible(true);
+            modificarProdProv.setMainPrincipal(mainPrincipal);
+            //Datos de la tabla, selecionar un row
+            String prov = String.valueOf(this.jTableMEmp.getValueAt(row, 0));
+            String pres = String.valueOf(this.jTableMEmp.getValueAt(row, 1));
+            int dRetardo = Integer.parseInt(String.valueOf(this.jTableMEmp.getValueAt(row, 2)));
+            float pEstandar = Float.parseFloat(String.valueOf(this.jTableMEmp.getValueAt(row, 3)));
+            float pUltCompra = Float.parseFloat(String.valueOf(this.jTableMEmp.getValueAt(row, 4)));
+            int cMinPedir = Integer.parseInt(String.valueOf(this.jTableMEmp.getValueAt(row, 5)));
+            int cMaxPedir = Integer.parseInt(String.valueOf(this.jTableMEmp.getValueAt(row, 6)));
+            char estatus = String.valueOf(this.jTableMEmp.getValueAt(row, 7)).charAt(0);
+            //Ingresan los datos de la tabla a la interfaz Modificar Laboratorio
+            modificarProdProv.ObtenerProdProvModificar(new ProductoProveedor(prov, pres, dRetardo, pEstandar, pUltCompra, cMinPedir, cMaxPedir,estatus));
+
+            this.mainPrincipal.getworkSpace().add(modificarProdProv, BorderLayout.CENTER);
             this.mainPrincipal.getworkSpace().revalidate();
             this.mainPrincipal.getworkSpace().repaint();
         }
-    }//GEN-LAST:event_jTableMCMouseClicked
+    }//GEN-LAST:event_jTableMEmpMouseClicked
 
-    private void buscarPreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscarPreMouseClicked
-        if (buscartxtPre.getText() == "" || buscartxtPre.getText() == null) {
-            JOptionPane.showMessageDialog(null, "Debes escribir algo para filtrar...",
-                    "Mensaje", JOptionPane.WARNING_MESSAGE);
-        } else {
-            LinkedList<ProductoProveedor> pre = new DAOProductoProveedorImp().busquedaPorNombre(buscartxtPre.getText() );
-            Object listaDatos[][] = new Object[pre.size()][8];
-            for (int i = 0; i < pre.size(); i++) {
-                listaDatos[i][0] = pre.get(i).getIdProveedor();
-                listaDatos[i][1] = pre.get(i).getIdPresentaciones();
-                listaDatos[i][2] = pre.get(i).getDiasRetardo();
-                listaDatos[i][3] = pre.get(i).getPrecioEstandar();
-                listaDatos[i][4] = pre.get(i).getPrecioUltCompra();
-                listaDatos[i][5] = pre.get(i).getCantMinPedir();
-                listaDatos[i][6] = pre.get(i).getCantMaxPedir();
-                listaDatos[i][7] = pre.get(i).getEstatus();
+    private void buscarMEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscarMEmpMouseClicked
+        LinkedList<ProductoProveedor> pProv = new DAOProductoProveedorImp().busquedaPorNombre(Integer.parseInt(buscartxtMEmp.getText()));
+        this.segmentacion.setText("Página "+cambioPagina +" de "+ (int)ContRegistro+ " Páginas en total");
+        Object listaDatos[][] = new Object[pProv.size()][8];
+        for (int i = 0; i < pProv.size(); i++) {
+            listaDatos[i][0] = pProv.get(i).getIdProveedor();
+            listaDatos[i][1] = pProv.get(i).getIdPresentaciones();
+            listaDatos[i][2] = pProv.get(i).getDiasRetardo();
+            listaDatos[i][3] = pProv.get(i).getPrecioEstandar();
+            listaDatos[i][4] = pProv.get(i).getPrecioUltCompra();
+            listaDatos[i][5] = pProv.get(i).getCantMinPedir();
+            listaDatos[i][6] = pProv.get(i).getCantMaxPedir();
+            listaDatos[i][7] = pProv.get(i).getEstatus();
+        }
+
+        DefaultTableModel modelTable = new DefaultTableModel(
+                listaDatos,
+                new Object[]{"PROVEEDOR", "PRESENTACION", "DIAS RETRASO",
+                    "PRECIO ESTANDAR","PRECIO ULT. COMPRA",
+                    "CANT. MIN. PEDIR","CANT. MAX. PEDIR","ESTATUS"}) {
+            public boolean isCellEditable(int row, int column) {
+                return false;
             }
+        };
 
-            DefaultTableModel modelTable = new DefaultTableModel(
-                    listaDatos,
-                    new Object[]{"PROVEEDORES", "PRESENTACION", "DIAS RETRASO",
-                        "PRECIO ESTANDAR", "PRECIO ULTIMA COMPRA", "CANT. MIN. PEDIR",
-                        "CANT. MIN. PEDIR", "ESTATUS"}) {
-                public boolean isCellEditable(int row, int column) {
-                    return false;
-                }
-            };
+        this.jTableMEmp.setModel(modelTable);
+        this.jTableMEmp.getColumnModel().getColumn(0).setMinWidth(10);
+        this.jTableMEmp.getColumnModel().getColumn(0).setMaxWidth(50);
 
-            this.jTableMC.setModel(modelTable);
-            this.jTableMC.getColumnModel().getColumn(0).setMinWidth(10);
-            this.jTableMC.getColumnModel().getColumn(0).setMaxWidth(50);
+        this.jTableMEmp.getColumnModel().getColumn(1).setMinWidth(50);
+        this.jTableMEmp.getColumnModel().getColumn(1).setMaxWidth(350);
 
-            this.jTableMC.getColumnModel().getColumn(1).setMinWidth(50);
-            this.jTableMC.getColumnModel().getColumn(1).setMaxWidth(350);
+        this.jTableMEmp.getColumnModel().getColumn(2).setMinWidth(50);
+        this.jTableMEmp.getColumnModel().getColumn(2).setMaxWidth(350);
 
-            this.jTableMC.getColumnModel().getColumn(2).setMinWidth(50);
-            this.jTableMC.getColumnModel().getColumn(2).setMaxWidth(350);
-          
-            this.jTableMC.getColumnModel().getColumn(3).setMinWidth(50);
-            this.jTableMC.getColumnModel().getColumn(3).setMaxWidth(350);
-            
-            this.jTableMC.getColumnModel().getColumn(4).setMinWidth(50);
-            this.jTableMC.getColumnModel().getColumn(4).setMaxWidth(350);
-            
-            this.jTableMC.getColumnModel().getColumn(5).setMinWidth(50);
-            this.jTableMC.getColumnModel().getColumn(5).setMaxWidth(350);
-            
-            this.jTableMC.getColumnModel().getColumn(6).setMinWidth(50);
-            this.jTableMC.getColumnModel().getColumn(6).setMaxWidth(350);
-            
-            this.jTableMC.getColumnModel().getColumn(7).setMinWidth(50);
-            this.jTableMC.getColumnModel().getColumn(7).setMaxWidth(350);
+        this.jTableMEmp.getColumnModel().getColumn(3).setMinWidth(10);
+        this.jTableMEmp.getColumnModel().getColumn(3).setMaxWidth(200);
 
-        }
+        this.jTableMEmp.getColumnModel().getColumn(4).setMinWidth(10);
+        this.jTableMEmp.getColumnModel().getColumn(4).setMaxWidth(200);
 
-    }//GEN-LAST:event_buscarPreMouseClicked
+        this.jTableMEmp.getColumnModel().getColumn(5).setMinWidth(10);
+        this.jTableMEmp.getColumnModel().getColumn(5).setMaxWidth(200);
 
-    private void nextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextMouseClicked
-        if (cambioPagina >= ContRegistro) {
-            next.setVisible(false);
-            preview.setVisible(true);
-            leyenda.setVisible(true);
-            MostrarDatosProdProveedor();
-        } else {
-            cambioPagina++;
-            preview.setVisible(true);
-            MostrarDatosProdProveedor();
-            leyenda.setVisible(false);
-        }
-    }//GEN-LAST:event_nextMouseClicked
+        this.jTableMEmp.getColumnModel().getColumn(6).setMinWidth(10);
+        this.jTableMEmp.getColumnModel().getColumn(6).setMaxWidth(200);
+
+        this.jTableMEmp.getColumnModel().getColumn(7).setMinWidth(10);
+        this.jTableMEmp.getColumnModel().getColumn(7).setMaxWidth(200);
+
+    }//GEN-LAST:event_buscarMEmpMouseClicked
 
     private void previewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_previewMouseClicked
         if (cambioPagina == 1) {
             preview.setVisible(false);
             next.setVisible(true);
             leyenda.setVisible(true);
-            MostrarDatosProdProveedor();
+            MostrarDatosProdProv();
         } else {
             next.setVisible(true);
             cambioPagina--;
-            MostrarDatosProdProveedor();
+            MostrarDatosProdProv();
             leyenda.setVisible(false);
 
         }
     }//GEN-LAST:event_previewMouseClicked
 
-    public void MostrarDatosProdProveedor() {
-        LinkedList<ProductoProveedor> pre = new DAOProductoProveedorImp().show(cambioPagina);
-        Object listaDatos[][] = new Object[pre.size()][8];
-        this.segmentacion.setText("Página "+cambioPagina +" de "+ (int)ContRegistro+ " Páginas en total");
-        for (int i = 0; i < pre.size(); i++) {
-            listaDatos[i][0] = pre.get(i).getIdProveedor();
-            listaDatos[i][1] = pre.get(i).getIdPresentaciones();
-            listaDatos[i][2] = pre.get(i).getDiasRetardo();
-            listaDatos[i][3] = pre.get(i).getPrecioEstandar();
-            listaDatos[i][4] = pre.get(i).getPrecioUltCompra();
-            listaDatos[i][5] = pre.get(i).getCantMinPedir();
-            listaDatos[i][6] = pre.get(i).getCantMaxPedir();
-            listaDatos[i][7] = pre.get(i).getEstatus();
+    private void nextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextMouseClicked
+        if (cambioPagina >= ContRegistro) {
+            next.setVisible(false);
+            preview.setVisible(true);
+            leyenda.setVisible(true);
+        } else {
+            cambioPagina++;
+            preview.setVisible(true);
+            MostrarDatosProdProv();
+            leyenda.setVisible(false);
         }
-
-        DefaultTableModel modelTable = new DefaultTableModel(
-                listaDatos,
-                new Object[]{"PROVEEDORES", "PRODUCTOS", "DIAS RETARDO",
-                    "PRECIO ESTANDAR", "PRECIO ULTIMA COMPRA", "CANT. MINIMA PEDIR", "CANT. MIXIMA PEDIR","ESTATUS"}) {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
-
-        this.jTableMC.setModel(modelTable);
-
-    }
-
-    public void activeEventListenerMostrarPre() {
-        MostrarDatosProdProveedor();
-    }
+    }//GEN-LAST:event_nextMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel buscarPre;
-    private javax.swing.JTextField buscartxtPre;
-    private javax.swing.JLabel cancelarMC;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel buscarMEmp;
+    private javax.swing.JTextField buscartxtMEmp;
+    private javax.swing.JLabel cancelarMEmp;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTable jTableMC;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableMEmp;
     private javax.swing.JLabel leyenda;
-    private javax.swing.JPanel mainMostrarLab;
+    private javax.swing.JPanel mainMostrarEmp;
     private javax.swing.JButton next;
-    private javax.swing.JLabel nuevaPre;
+    private javax.swing.JLabel nuevoMEmp;
     private javax.swing.JPanel opcionesMostrarEmp;
-    private javax.swing.JPanel opcionesMostrarLab;
+    private javax.swing.JPanel opcionesMostrarLab3;
     private javax.swing.JButton preview;
     private javax.swing.JLabel segmentacion;
-    private javax.swing.JScrollPane tablaMostrarCat;
     // End of variables declaration//GEN-END:variables
+    private Main mainPrincipal;
+
 }

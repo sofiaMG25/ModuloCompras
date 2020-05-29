@@ -7,7 +7,6 @@ package Vistas.ProductosProveedor;
 
 import Vistas.ProductosProveedor.*;
 import DAOs.DAOProductoProveedorImp;
-import DAOs.DAOProductoProveedor;
 import DAOs.Presentaciones;
 import DAOs.ProductoProveedor;
 import java.awt.BorderLayout;
@@ -27,29 +26,29 @@ public class agregarProductosProveedor extends javax.swing.JPanel {
      */
     public agregarProductosProveedor() {
         initComponents();
-        mostrarProveedor();
-        mostrarPresentacion();
+        mostrarProvedores();
+        mostrarPresentaciones();
     }
 
-    private void mostrarProveedor() {
-        LinkedList<ProductoProveedor> proveedor = new DAOProductoProveedorImp().obtenerIdProveedor();
-        if (proveedor != null) {
-            DefaultComboBoxModel model = (DefaultComboBoxModel) comboxProveedor.getModel();
-            for (int i = 0; i < proveedor.size(); i++) {
-                model.addElement(proveedor.get(i).getIdProveedor());
+    private void mostrarProvedores() {
+        LinkedList<ProductoProveedor> prov = new DAOProductoProveedorImp().obtenerIdProveedor();
+        if (prov != null) {
+            DefaultComboBoxModel model = (DefaultComboBoxModel) proveedorCbx.getModel();
+            for (int i = 0; i < prov.size(); i++) {
+                model.addElement(prov.get(i).getIdProveedor());
             }
-            comboxProveedor.setModel(model);
+            proveedorCbx.setModel(model);
         }
     }
 
-    private void mostrarPresentacion() {
-        LinkedList<ProductoProveedor> presentaciones = new DAOProductoProveedorImp().obtenerIdPresentaciones();
-        if (presentaciones != null) {
-            DefaultComboBoxModel model2 = (DefaultComboBoxModel) comboxPresentacion.getModel();
-            for (int i = 0; i < presentaciones.size(); i++) {
-                model2.addElement(presentaciones.get(i).getIdPresentaciones());
+    private void mostrarPresentaciones() {
+        LinkedList<ProductoProveedor> pres = new DAOProductoProveedorImp().obtenerIdPresentaciones();
+        if (pres != null) {
+            DefaultComboBoxModel model2 = (DefaultComboBoxModel) presentacionCbx.getModel();
+            for (int i = 0; i < pres.size(); i++) {
+                model2.addElement(pres.get(i).getIdPresentaciones());
             }
-            comboxPresentacion.setModel(model2);
+            presentacionCbx.setModel(model2);
         }
     }
 
@@ -68,38 +67,32 @@ public class agregarProductosProveedor extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pCompras = new javax.swing.JLabel();
-        precioVentas = new javax.swing.JLabel();
-        precioUltimaCompra = new javax.swing.JTextField();
+        nombreAEmp = new javax.swing.JLabel();
+        capacidadEmp = new javax.swing.JLabel();
+        dRetrasotxt = new javax.swing.JTextField();
+        pEstandartxt = new javax.swing.JTextField();
         opcionesAEmp = new javax.swing.JPanel();
         cancelarAEmp = new javax.swing.JLabel();
         guardarAEmp = new javax.swing.JLabel();
-        prodcutos = new javax.swing.JLabel();
-        comboxPresentacion = new javax.swing.JComboBox();
-        puntoReordenn = new javax.swing.JLabel();
-        diaRetardo = new javax.swing.JTextField();
-        empaques = new javax.swing.JLabel();
-        comboxProveedor = new javax.swing.JComboBox();
-        pCompras1 = new javax.swing.JLabel();
-        pCompras2 = new javax.swing.JLabel();
-        cantidadMaxPedir = new javax.swing.JTextField();
-        cantidadMinimaPedir = new javax.swing.JTextField();
-        precioEstandar = new javax.swing.JTextField();
+        unidadEmp = new javax.swing.JLabel();
+        proveedorCbx = new javax.swing.JComboBox();
+        unidadEmp1 = new javax.swing.JLabel();
+        capacidadEmp1 = new javax.swing.JLabel();
+        capacidadEmp2 = new javax.swing.JLabel();
+        capacidadEmp3 = new javax.swing.JLabel();
+        presentacionCbx = new javax.swing.JComboBox();
+        pUltCompratxt = new javax.swing.JTextField();
+        cMinPedirtxt = new javax.swing.JTextField();
+        cMaxPedirtxt = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(228, 225, 225));
-        setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Agregar nueva Presentacion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
+        setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Agregar un nuevo prodcuto proveedor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
 
-        pCompras.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        pCompras.setText("PRECIO ULTIMA COMPRA: ");
+        nombreAEmp.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        nombreAEmp.setText("DÍA RETRASO:");
 
-        precioVentas.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        precioVentas.setText("DÍA RETARDO: ");
-
-        precioUltimaCompra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                precioUltimaCompraActionPerformed(evt);
-            }
-        });
+        capacidadEmp.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        capacidadEmp.setText("PRECIO ESTANDAR:");
 
         opcionesAEmp.setBackground(new java.awt.Color(48, 45, 45));
 
@@ -137,7 +130,7 @@ public class agregarProductosProveedor extends javax.swing.JPanel {
             .addGroup(opcionesAEmpLayout.createSequentialGroup()
                 .addGap(115, 115, 115)
                 .addComponent(guardarAEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 283, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cancelarAEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(73, 73, 73))
         );
@@ -151,42 +144,34 @@ public class agregarProductosProveedor extends javax.swing.JPanel {
                 .addGap(45, 45, 45))
         );
 
-        prodcutos.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        prodcutos.setText("PRESENTACIÓN:");
+        unidadEmp.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        unidadEmp.setText("PROVEEDOR:");
 
-        comboxPresentacion.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        comboxPresentacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONA UN PRODUCTO" }));
-
-        puntoReordenn.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        puntoReordenn.setText("PRECIO ESTANDAR: ");
-
-        empaques.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        empaques.setText("PROVEEDOR: ");
-
-        comboxProveedor.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        comboxProveedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONA UN PROVEEDOR" }));
-
-        pCompras1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        pCompras1.setText("CANTIDAD MIXIMA PEDIR:");
-
-        pCompras2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        pCompras2.setText("CANTIDAD MINIMA PEDIR:");
-
-        cantidadMaxPedir.addActionListener(new java.awt.event.ActionListener() {
+        proveedorCbx.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        proveedorCbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONA UN PROVEEDOR" }));
+        proveedorCbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cantidadMaxPedirActionPerformed(evt);
+                proveedorCbxActionPerformed(evt);
             }
         });
 
-        cantidadMinimaPedir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cantidadMinimaPedirActionPerformed(evt);
-            }
-        });
+        unidadEmp1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        unidadEmp1.setText("PRESENATCIÓN: ");
 
-        precioEstandar.addActionListener(new java.awt.event.ActionListener() {
+        capacidadEmp1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        capacidadEmp1.setText("PRECIO ULTIMA COMPRA:");
+
+        capacidadEmp2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        capacidadEmp2.setText("CANTIDAD MIXIMA PEDIR:");
+
+        capacidadEmp3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        capacidadEmp3.setText("CANTIDAD MINIMA PEDIR:");
+
+        presentacionCbx.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        presentacionCbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONA UNA PRESENTACION" }));
+        presentacionCbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                precioEstandarActionPerformed(evt);
+                presentacionCbxActionPerformed(evt);
             }
         });
 
@@ -199,58 +184,58 @@ public class agregarProductosProveedor extends javax.swing.JPanel {
                 .addComponent(opcionesAEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(72, 72, 72)
+                .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(prodcutos)
-                    .addComponent(pCompras)
-                    .addComponent(precioVentas)
-                    .addComponent(puntoReordenn)
-                    .addComponent(empaques)
-                    .addComponent(pCompras2)
-                    .addComponent(pCompras1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(diaRetardo)
-                    .addComponent(comboxPresentacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(comboxProveedor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(precioUltimaCompra)
-                    .addComponent(cantidadMaxPedir)
-                    .addComponent(cantidadMinimaPedir)
-                    .addComponent(precioEstandar))
-                .addGap(134, 134, 134))
+                    .addComponent(nombreAEmp)
+                    .addComponent(capacidadEmp)
+                    .addComponent(capacidadEmp3)
+                    .addComponent(capacidadEmp2)
+                    .addComponent(capacidadEmp1)
+                    .addComponent(unidadEmp1)
+                    .addComponent(unidadEmp))
+                .addGap(141, 141, 141)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(proveedorCbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dRetrasotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(presentacionCbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pEstandartxt, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pUltCompratxt, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cMinPedirtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cMaxPedirtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(empaques)
-                    .addComponent(comboxProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(1, 1, 1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(prodcutos)
-                    .addComponent(comboxPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(precioVentas)
-                    .addComponent(diaRetardo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(puntoReordenn)
-                    .addComponent(precioEstandar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(unidadEmp)
+                    .addComponent(proveedorCbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pCompras)
-                    .addComponent(precioUltimaCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(2, 2, 2)
+                    .addComponent(unidadEmp1)
+                    .addComponent(presentacionCbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pCompras2)
-                    .addComponent(cantidadMinimaPedir, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(nombreAEmp)
+                    .addComponent(dRetrasotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pCompras1)
-                    .addComponent(cantidadMaxPedir, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                    .addComponent(capacidadEmp)
+                    .addComponent(pEstandartxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(capacidadEmp1)
+                    .addComponent(pUltCompratxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(capacidadEmp3)
+                    .addComponent(cMinPedirtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(capacidadEmp2)
+                    .addComponent(cMaxPedirtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
                 .addComponent(opcionesAEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -258,43 +243,39 @@ public class agregarProductosProveedor extends javax.swing.JPanel {
 
     private void guardarAEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarAEmpMouseClicked
         try {
-            if (comboxProveedor.getSelectedIndex() <= 0) {
-                comboxProveedor.requestFocus();
+            if (proveedorCbx.getSelectedIndex() <= 0) {
+                proveedorCbx.requestFocus();
                 JOptionPane.showMessageDialog(this, "Seleccione algun proveedor\n, en caso de no tener uno, debe registrar un proveedor", "ERROR", JOptionPane.ERROR_MESSAGE);
-            } else if (comboxPresentacion.getSelectedIndex() <= 0) {
-                comboxPresentacion.requestFocus();
+            } else if (presentacionCbx.getSelectedIndex() <= 0) {
+                presentacionCbx.requestFocus();
                 JOptionPane.showMessageDialog(this, "Seleccione un producto\n, en caso de no tener uno, debe registrar un producto", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }  else if (diaRetardo.getText().equals("") || Integer.parseInt(diaRetardo.getText()) <= 0) {
-                diaRetardo.requestFocus();
+            } else if (dRetrasotxt.getText().equals("") || Integer.parseInt(dRetrasotxt.getText()) <= 0) {
+                dRetrasotxt.requestFocus();
                 JOptionPane.showMessageDialog(this, "Ingrese un punto de reorden", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }  else if (precioEstandar.getText().equals("") || Float.parseFloat(precioEstandar.getText()) <= 0) {
-                precioEstandar.requestFocus();
+            } else if (pEstandartxt.getText().equals("") || Float.parseFloat(pEstandartxt.getText()) <= 0) {
+                pEstandartxt.requestFocus();
                 JOptionPane.showMessageDialog(this, "Ingrese un precio de compra", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }else if (precioUltimaCompra.getText().equals("") || Float.parseFloat(precioUltimaCompra.getText()) <= 0) {
-                precioUltimaCompra.requestFocus();
+            } else if (pUltCompratxt.getText().equals("") || Float.parseFloat(pUltCompratxt.getText()) <= 0) {
+                pUltCompratxt.requestFocus();
                 JOptionPane.showMessageDialog(this, "Ingrese un precio de compra", "ERROR", JOptionPane.ERROR_MESSAGE);
-            } else if (cantidadMinimaPedir.getText().equals("") || Float.parseFloat(cantidadMinimaPedir.getText()) <= 0) {
-                cantidadMinimaPedir.requestFocus();
+            } else if (cMinPedirtxt.getText().equals("") || Integer.parseInt(cMinPedirtxt.getText()) <= 0) {
+                cMinPedirtxt.requestFocus();
                 JOptionPane.showMessageDialog(this, "Seleccione la cantidad de producto, debe ser mayor a 0", "ERROR", JOptionPane.ERROR_MESSAGE);
-            } else if (cantidadMaxPedir.getText().equals("") || Float.parseFloat(cantidadMaxPedir.getText()) <= 0) {
-                cantidadMaxPedir.requestFocus();
+            } else if (Integer.parseInt(cMinPedirtxt.getText()) >Integer.parseInt(cMaxPedirtxt.getText())) {
+                cMinPedirtxt.requestFocus();
+                JOptionPane.showMessageDialog(this, "Cantidad minima debe ser menor a cantidad maxima", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } else if (cMaxPedirtxt.getText().equals("") || Integer.parseInt(cMaxPedirtxt.getText()) <= 0) {
+                cMaxPedirtxt.requestFocus();
                 JOptionPane.showMessageDialog(this, "Seleccione la cantidad de producto, debe ser no mayor a la existencia", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } else if ( Integer.parseInt(cMaxPedirtxt.getText()) < Integer.parseInt(cMinPedirtxt.getText()) ) {
+                cMaxPedirtxt.requestFocus();
+                JOptionPane.showMessageDialog(this, "Cantidad maxima debe ser mayor a cantidad minima", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else {
                 try {
-//                    String idProveedor = comboxProveedor.getSelectedItem().toString();
-//                    String presentacion = comboxPresentacion.getSelectedItem().toString();
-//                    int diasRetardo = Integer.parseInt(diaRetardo.getText());
-//                    float precioEst = Float.parseFloat(this.precioEstandar.getText());
-//                    float ultimoPrecio = Float.parseFloat(this.precioUltimaCompra.getText());
-//                    int cantMinPedir = Integer.parseInt(cantidadMinimaPedir.getText());
-//                    int cantMaxPedir = Integer.parseInt(this.cantidadMaxPedir.getText());
-//                   // new DAOProductoProveedorImp().Insert(new ProductoProveedor(TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY, null, TOP_ALIGNMENT, TOP_ALIGNMENT, SOMEBITS, SOMEBITS, estatus));
-//                    new DAOProductoProveedorImp().Insert(new ProductoProveedor
-//                    (idProveedor,presentacion,diasRetardo,precioEst,ultimoPrecio,cantMinPedir,cantMaxPedir));
-                    new DAOProductoProveedorImp().Insert(new ProductoProveedor(comboxProveedor.getSelectedItem().toString(),
-                            comboxPresentacion.getSelectedItem().toString(), Integer.parseInt(diaRetardo.getText()), 
-                            Float.parseFloat(precioEstandar.getText()), Float.parseFloat(precioUltimaCompra.getText()), 
-                            Integer.parseInt(cantidadMinimaPedir.getText()), Integer.parseInt(cantidadMaxPedir.getText())));
+                    new DAOProductoProveedorImp().Insert(new ProductoProveedor(proveedorCbx.getSelectedItem().toString(),
+                            presentacionCbx.getSelectedItem().toString(), Integer.parseInt(dRetrasotxt.getText()),
+                            Float.parseFloat(pEstandartxt.getText()), Float.parseFloat(pUltCompratxt.getText()),
+                            Integer.parseInt(cMinPedirtxt.getText()), Integer.parseInt(cMaxPedirtxt.getText())));
                     limpiarVariables();
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(this, " solo numeros", "Error de tipo de dato", JOptionPane.ERROR_MESSAGE);
@@ -307,25 +288,25 @@ public class agregarProductosProveedor extends javax.swing.JPanel {
 
     private void cancelarAEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarAEmpMouseClicked
         mainPrincipal.getworkSpace().removeAll();
-        mostrarProductosProveedor mostrarProdProvee = new mostrarProductosProveedor();
-        mostrarProdProvee.setSize(mainPrincipal.getworkSpace().getSize());
-        mostrarProdProvee.setVisible(true);
-        mostrarProdProvee.setMostrarProductosProveedores(mainPrincipal);
-        mostrarProdProvee.MostrarDatosProdProveedor();
-        mainPrincipal.getworkSpace().add(mostrarProdProvee, BorderLayout.CENTER);
+        mostrarProductosProveedor mostrarProdProv = new mostrarProductosProveedor();
+        mostrarProdProv.setSize(mainPrincipal.getworkSpace().getSize());
+        mostrarProdProv.setVisible(true);
+        mostrarProdProv.setMostrarProdProv(mainPrincipal);
+        mostrarProdProv.MostrarDatosProdProv();
+        mainPrincipal.getworkSpace().add(mostrarProdProv, BorderLayout.CENTER);
         mainPrincipal.getworkSpace().revalidate();
         mainPrincipal.getworkSpace().repaint();
 
     }//GEN-LAST:event_cancelarAEmpMouseClicked
 
     private void limpiarVariables() {
-        comboxProveedor.setSelectedIndex(0);
-        comboxPresentacion.setSelectedIndex(0);
-        diaRetardo.setText("");
-        precioEstandar.setText("");
-        precioUltimaCompra.setText("");
-        cantidadMinimaPedir.setText("");
-        cantidadMaxPedir.setText("");
+        proveedorCbx.setSelectedIndex(0);
+        presentacionCbx.setSelectedIndex(0);
+        dRetrasotxt.setText("");
+        pEstandartxt.setText("");
+        pUltCompratxt.setText("");
+        cMinPedirtxt.setText("");
+        cMaxPedirtxt.setText("");
 
     }
 
@@ -333,41 +314,33 @@ public class agregarProductosProveedor extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_guardarAEmpMouseEntered
 
-    private void precioUltimaCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precioUltimaCompraActionPerformed
+    private void proveedorCbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_proveedorCbxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_precioUltimaCompraActionPerformed
+    }//GEN-LAST:event_proveedorCbxActionPerformed
 
-    private void cantidadMaxPedirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantidadMaxPedirActionPerformed
+    private void presentacionCbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_presentacionCbxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cantidadMaxPedirActionPerformed
-
-    private void cantidadMinimaPedirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantidadMinimaPedirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cantidadMinimaPedirActionPerformed
-
-    private void precioEstandarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precioEstandarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_precioEstandarActionPerformed
+    }//GEN-LAST:event_presentacionCbxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField cMaxPedirtxt;
+    private javax.swing.JTextField cMinPedirtxt;
     private javax.swing.JLabel cancelarAEmp;
-    private javax.swing.JTextField cantidadMaxPedir;
-    private javax.swing.JTextField cantidadMinimaPedir;
-    private javax.swing.JComboBox comboxPresentacion;
-    private javax.swing.JComboBox comboxProveedor;
-    private javax.swing.JTextField diaRetardo;
-    private javax.swing.JLabel empaques;
+    private javax.swing.JLabel capacidadEmp;
+    private javax.swing.JLabel capacidadEmp1;
+    private javax.swing.JLabel capacidadEmp2;
+    private javax.swing.JLabel capacidadEmp3;
+    private javax.swing.JTextField dRetrasotxt;
     private javax.swing.JLabel guardarAEmp;
+    private javax.swing.JLabel nombreAEmp;
     private javax.swing.JPanel opcionesAEmp;
-    private javax.swing.JLabel pCompras;
-    private javax.swing.JLabel pCompras1;
-    private javax.swing.JLabel pCompras2;
-    private javax.swing.JTextField precioEstandar;
-    private javax.swing.JTextField precioUltimaCompra;
-    private javax.swing.JLabel precioVentas;
-    private javax.swing.JLabel prodcutos;
-    private javax.swing.JLabel puntoReordenn;
+    private javax.swing.JTextField pEstandartxt;
+    private javax.swing.JTextField pUltCompratxt;
+    private javax.swing.JComboBox presentacionCbx;
+    private javax.swing.JComboBox proveedorCbx;
+    private javax.swing.JLabel unidadEmp;
+    private javax.swing.JLabel unidadEmp1;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -253,7 +253,7 @@ public class AgregarExistenciaSucursal extends javax.swing.JPanel {
         mainPrincipal.getworkSpace().add(mostrarExiSuc, BorderLayout.CENTER);
         mainPrincipal.getworkSpace().revalidate();
         mainPrincipal.getworkSpace().repaint();
-        mostrarExiSuc.setMostrarPresentaciones(mainPrincipal);
+        mostrarExiSuc.setMostrarCuentasProv(mainPrincipal);
     }//GEN-LAST:event_cancelarMSMouseClicked
 
     private void cantidadTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantidadTxtActionPerformed

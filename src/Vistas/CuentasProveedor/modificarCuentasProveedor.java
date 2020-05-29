@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vistas.Presentaciones;
+package Vistas.CuentasProveedor;
 
+import ClasesExtras.CRUDgenerico;
+import DAOs.CuentasProveedor;
+import DAOs.DAOCuentaProveedorImp;
+import Vistas.Presentaciones.*;
 import DAOs.Presentaciones;
 import DAOs.DAOPresentacionesImp;
 import MainPrincipal.Main;
@@ -17,12 +21,12 @@ import javax.swing.JOptionPane;
  *
  * @author 52351
  */
-public class modificarPresentaciones extends javax.swing.JPanel {
+public class modificarCuentasProveedor extends javax.swing.JPanel {
 
     /**
      * Creates new form modificarLaboratorio
      */
-    public modificarPresentaciones() {
+    public modificarCuentasProveedor() {
         initComponents();
     }
 
@@ -42,7 +46,7 @@ public class modificarPresentaciones extends javax.swing.JPanel {
     private void initComponents() {
 
         idtxtPRE = new javax.swing.JTextField();
-        txtpCompra = new javax.swing.JTextField();
+        nocuentatxt = new javax.swing.JTextField();
         idPre = new javax.swing.JLabel();
         pCompra = new javax.swing.JLabel();
         estatusUL = new javax.swing.JLabel();
@@ -51,13 +55,9 @@ public class modificarPresentaciones extends javax.swing.JPanel {
         modificarUL = new javax.swing.JLabel();
         cancelarUL = new javax.swing.JLabel();
         pVenta = new javax.swing.JLabel();
-        pReorden = new javax.swing.JLabel();
-        txtpReorden = new javax.swing.JTextField();
-        txtpVenta = new javax.swing.JTextField();
-        empaque = new javax.swing.JLabel();
+        bancotxt = new javax.swing.JTextField();
         producto = new javax.swing.JLabel();
-        productoBox = new javax.swing.JComboBox<String>();
-        empaqueBox = new javax.swing.JComboBox<String>();
+        proveedorBox = new javax.swing.JComboBox<String>();
 
         setBackground(new java.awt.Color(228, 225, 225));
         setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), "Modicar Presentacion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
@@ -68,7 +68,7 @@ public class modificarPresentaciones extends javax.swing.JPanel {
         idPre.setText("ID:");
 
         pCompra.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        pCompra.setText("PRECIO COMPRA: ");
+        pCompra.setText("NO. CUENTA: ");
 
         estatusUL.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         estatusUL.setText("ESTATUS:");
@@ -124,22 +124,13 @@ public class modificarPresentaciones extends javax.swing.JPanel {
         );
 
         pVenta.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        pVenta.setText("PRECIO VENTA: ");
-
-        pReorden.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        pReorden.setText("PUNTO REORDEN: ");
-
-        empaque.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        empaque.setText("EMPAQUE: ");
+        pVenta.setText("BANCO:");
 
         producto.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        producto.setText("PRODCUTO: ");
+        producto.setText("PROVEEDOR: ");
 
-        productoBox.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        productoBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONE UN PRODUCTO" }));
-
-        empaqueBox.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        empaqueBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONE UN EMPAQUE" }));
+        proveedorBox.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        proveedorBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECCIONE UN PROVEEDOR" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -154,54 +145,45 @@ public class modificarPresentaciones extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pCompra)
                     .addComponent(idPre)
-                    .addComponent(pVenta)
-                    .addComponent(pReorden)
-                    .addComponent(empaque)
                     .addComponent(producto)
-                    .addComponent(estatusUL))
+                    .addComponent(estatusUL)
+                    .addComponent(pVenta))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(idtxtPRE, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtpCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtpReorden, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtpVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nocuentatxt, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(estatusBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(productoBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(empaqueBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(proveedorBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bancotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(57, 57, 57))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(idPre)
-                    .addComponent(idtxtPRE, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pCompra)
-                    .addComponent(txtpCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pVenta)
-                    .addComponent(txtpVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pReorden)
-                    .addComponent(txtpReorden, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(idtxtPRE, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(idPre)))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(producto)
-                    .addComponent(productoBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(proveedorBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(empaque)
-                    .addComponent(empaqueBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(pCompra)
+                    .addComponent(nocuentatxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pVenta)
+                    .addComponent(bancotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(estatusUL)
                     .addComponent(estatusBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -210,53 +192,48 @@ public class modificarPresentaciones extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void modificarULMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarULMouseClicked
-        if (txtpCompra.getText().equals("") || Float.parseFloat(txtpCompra.getText()) <=0) {
-            JOptionPane.showMessageDialog(this, "Ingrese el precio compra, cantidad debe ser mayorar a 0", "Error", JOptionPane.ERROR_MESSAGE);
-            txtpCompra.requestFocus();
-        } else if (txtpVenta.getText().equals("") || Float.parseFloat(txtpVenta.getText()) <=0) {
-            JOptionPane.showMessageDialog(this, "Ingrese el precio venta, cantidad debe ser mayorar a 0", "Error", JOptionPane.ERROR_MESSAGE);
-            txtpVenta.requestFocus();
-        } else if (txtpReorden.getText().equals("") || Float.parseFloat(txtpReorden.getText()) <=0) {
-            JOptionPane.showMessageDialog(this, "Ingrese el precio de reorden, cantidad debe ser mayorar a 0", "Error", JOptionPane.ERROR_MESSAGE);
-            txtpReorden.requestFocus();
-        } else if (productoBox.getSelectedIndex() <= 0) {
+         if (proveedorBox.getSelectedIndex() <= 0) {
             JOptionPane.showMessageDialog(this, "Seleccione una producto", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (empaqueBox.getSelectedIndex() <= 0) {
-            JOptionPane.showMessageDialog(this, "Seleccione un empaque", "Error", JOptionPane.ERROR_MESSAGE);
+            proveedorBox.requestFocus();
+         }else if (nocuentatxt.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Ingrese el precio compra, cantidad debe ser mayorar a 0", "Error", JOptionPane.ERROR_MESSAGE);
+            nocuentatxt.requestFocus();
+        } else if (bancotxt.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Ingrese el precio venta, cantidad debe ser mayorar a 0", "Error", JOptionPane.ERROR_MESSAGE);
+            bancotxt.requestFocus();
         } else if (estatusBox.getSelectedIndex() <= 0) {
             JOptionPane.showMessageDialog(this, "Seleccione una opción valida", "Error", JOptionPane.ERROR_MESSAGE);
+            estatusBox.requestFocus();
         } else {
-            DAOPresentacionesImp guardarPre = new DAOPresentacionesImp();
+             CRUDgenerico cuentas = new DAOCuentaProveedorImp();
             //Datos obtenidos de los campos 
             int id = Integer.parseInt(this.idtxtPRE.getText());
-            float precioC =Float.parseFloat(this.txtpCompra.getText());
-            float precioV =Float.parseFloat(this.txtpVenta.getText());
-            float puntoR = Float.parseFloat(this.txtpReorden.getText());
-            String productos = this.productoBox.getSelectedItem().toString();
-            String empaques = this.empaqueBox.getSelectedItem().toString();
+            String proveedor = this.proveedorBox.getSelectedItem().toString();
+            String noCuenta = this.nocuentatxt.getText();
+            String banco = this.bancotxt.getText();
             char estatus = String.valueOf(this.estatusBox.getSelectedItem()).charAt(0);
             //Guardar los datos de laboratorio
-            guardarPre.upadate(new Presentaciones(id, precioC, precioV, puntoR, productos, empaques, estatus));
+            cuentas.upadate(new CuentasProveedor(id, proveedor, noCuenta,banco, estatus));
             limpiarVariables();
         }
     }//GEN-LAST:event_modificarULMouseClicked
-    
+
     private void cancelarULMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarULMouseClicked
 
         //Quitas el jpanel principal que esta en el centro
         mainPrincipal.getworkSpace().removeAll();
         //Instaciamos el nuevo jpanel a reemplazar
-        mostrarPresentaciones mPre = new mostrarPresentaciones();
+        mostrarCuentasProveedor cuentas = new mostrarCuentasProveedor();
         //Redimensionamos el jpanel nuevo
-        mPre.setSize(mainPrincipal.getworkSpace().getSize());
+        cuentas.setSize(mainPrincipal.getworkSpace().getSize());
         //Hacemos visible
-        mPre.setVisible(true);
+        cuentas.setVisible(true);
         //Seleccionamos la función para mostrar el jpanel
-        mPre.setMostrarPresentaciones(mainPrincipal);
+        cuentas.setMostrarCuentasProveedor(mainPrincipal);
         //Cargamos el jpanel
-        mPre.MostrarDatosPresentaciones();
+        cuentas.MostrarDatosCuentasProv();
         //Agregamos el jpanel y centramos
-        mainPrincipal.getworkSpace().add(mPre, BorderLayout.CENTER);
+        mainPrincipal.getworkSpace().add(cuentas, BorderLayout.CENTER);
         //Validamos el jpanel
         mainPrincipal.getworkSpace().revalidate();
         //Dibujamos el jpanel
@@ -264,41 +241,28 @@ public class modificarPresentaciones extends javax.swing.JPanel {
     }//GEN-LAST:event_cancelarULMouseClicked
     /**
      * Método que funciona para abstraer los datos de la categoria
-     * @param pres
+     *
+     * @param cuenta
      */
-    public void ObtenerPresentacionModificar(Presentaciones pres) {
-        this.idtxtPRE.setText(String.valueOf(pres.getIdPP()));
-       this.txtpCompra.setText(String.valueOf(pres.getpCompra()));
-       this.txtpVenta.setText(String.valueOf(pres.getpVenta()));
-       this.txtpReorden.setText(String.valueOf(pres.getpReorden()));
-     
-        LinkedList<Presentaciones> listaPre = new DAOs.DAOPresentacionesImp().obtenerIdProducto();
-        DefaultComboBoxModel model = (DefaultComboBoxModel) productoBox.getModel();
-        for (int i = 0; i < listaPre.size(); i++) {
-            model.addElement(listaPre.get(i).getIdProducto());
-        }
-        productoBox.setModel(model);
-        for (int i = 0; i < productoBox.getItemCount(); i++) {
-            if (productoBox.getItemAt(i).equals(pres.getIdProducto())) {
-                this.productoBox.setSelectedIndex(i);
-                break;
-            }
-        }
-       
-        LinkedList<Presentaciones> listaEmp2 = new DAOs.DAOPresentacionesImp().obtenerIdEmpaque();
-        DefaultComboBoxModel model2 = (DefaultComboBoxModel) empaqueBox.getModel();
-        for (int i = 0; i < listaEmp2.size(); i++) {
-            model2.addElement(listaEmp2.get(i).getIdEmpaque());
-        }
-        empaqueBox.setModel(model2);
-        for (int i = 0; i < empaqueBox.getItemCount(); i++) {
-            if (empaqueBox.getItemAt(i).equals(pres.getIdEmpaque())) {
-                this.empaqueBox.setSelectedIndex(i);
-                break;
-            }
-        }
+    public void ObtenerCuentaModificar(CuentasProveedor cuenta) {
+        this.idtxtPRE.setText(String.valueOf(cuenta.getIdcuentaProveedor()));
         
-        if (pres.getEstatus() == 'A') {
+        LinkedList<CuentasProveedor> listaPre = new DAOs.DAOCuentaProveedorImp().obtenerIdProveedores();
+        DefaultComboBoxModel model = (DefaultComboBoxModel) proveedorBox.getModel();
+        for (int i = 0; i < listaPre.size(); i++) {
+            model.addElement(listaPre.get(i).getProveedor());
+        }
+        proveedorBox.setModel(model);
+        for (int i = 0; i < proveedorBox.getItemCount(); i++) {
+            if (proveedorBox.getItemAt(i).equals(cuenta.getProveedor())) {
+                this.proveedorBox.setSelectedIndex(i);
+                break;
+            }
+        }
+        this.nocuentatxt.setText(cuenta.getNoCuenta());
+        this.bancotxt.setText(cuenta.getBanco());
+
+        if (cuenta.getEstatus() == 'A') {
             this.estatusBox.setSelectedIndex(1);
         } else {
             this.estatusBox.setSelectedIndex(2);
@@ -306,31 +270,26 @@ public class modificarPresentaciones extends javax.swing.JPanel {
     }
 
     private void limpiarVariables() {
-        txtpCompra.setText("");
-        txtpVenta.setText("");
-        txtpReorden.setText("");
-        productoBox.setSelectedIndex(0);
-        empaqueBox.setSelectedIndex(0);
+        idtxtPRE.setText("");
+        proveedorBox.setSelectedIndex(0);
+        nocuentatxt.setText("");
+        bancotxt.setText("");
         estatusBox.setSelectedIndex(0);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField bancotxt;
     private javax.swing.JLabel cancelarUL;
-    private javax.swing.JLabel empaque;
-    private javax.swing.JComboBox<String> empaqueBox;
     private javax.swing.JComboBox<String> estatusBox;
     private javax.swing.JLabel estatusUL;
     private javax.swing.JLabel idPre;
     private javax.swing.JTextField idtxtPRE;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel modificarUL;
+    private javax.swing.JTextField nocuentatxt;
     private javax.swing.JLabel pCompra;
-    private javax.swing.JLabel pReorden;
     private javax.swing.JLabel pVenta;
     private javax.swing.JLabel producto;
-    private javax.swing.JComboBox<String> productoBox;
-    private javax.swing.JTextField txtpCompra;
-    private javax.swing.JTextField txtpReorden;
-    private javax.swing.JTextField txtpVenta;
+    private javax.swing.JComboBox<String> proveedorBox;
     // End of variables declaration//GEN-END:variables
 }

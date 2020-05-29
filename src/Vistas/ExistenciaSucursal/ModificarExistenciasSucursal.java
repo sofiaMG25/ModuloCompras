@@ -251,7 +251,7 @@ public class ModificarExistenciasSucursal extends javax.swing.JPanel {
         mainPrincipal.getworkSpace().add(mostrarLab, BorderLayout.CENTER);
         mainPrincipal.getworkSpace().revalidate();
         mainPrincipal.getworkSpace().repaint();
-        mostrarLab.setMostrarPresentaciones(mainPrincipal);
+        mostrarLab.setMostrarCuentasProv(mainPrincipal);
     }//GEN-LAST:event_cancelarULMouseClicked
 
     public void obtenerDatos(ExistenciaSucursal ex){

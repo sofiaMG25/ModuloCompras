@@ -240,6 +240,7 @@ public class modificarEmpaque extends javax.swing.JPanel {
             } else if (JCBoxunidadUEmp.getSelectedIndex() <= 0) {
                 JOptionPane.showMessageDialog(this, "Seleccione una unidad", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
+                
                 CRUDgenerico guardarEmp = new DAOEmpaquesImp();
                 //Datos obtenidos de los campos 
                 int id = Integer.parseInt(this.idtxtUEmp.getText());

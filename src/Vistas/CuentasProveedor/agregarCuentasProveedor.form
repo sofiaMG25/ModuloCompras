@@ -7,7 +7,7 @@
     </Property>
     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-        <TitledBorder title="Agregar un nuevo prodcuto proveedor">
+        <TitledBorder title="Agregar nueva Cuenta">
           <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
             <LineBorder roundedCorners="true" thickness="2">
               <Color PropertyName="color" blue="33" green="33" red="33" type="rgb"/>
@@ -40,69 +40,48 @@
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="nombreAEmp" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="capacidadEmp" min="-2" max="-2" attributes="0"/>
-                  <Component id="capacidadEmp3" min="-2" max="-2" attributes="0"/>
-                  <Component id="capacidadEmp2" min="-2" max="-2" attributes="0"/>
-                  <Component id="capacidadEmp1" min="-2" max="-2" attributes="0"/>
-                  <Component id="unidadEmp1" min="-2" max="-2" attributes="0"/>
-                  <Component id="unidadEmp" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
+                      <Component id="proveedor" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="noCuenta" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="banco" alignment="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="proveedorCbx" min="-2" max="-2" attributes="0"/>
-                  <Component id="dRetrasotxt" min="-2" pref="314" max="-2" attributes="0"/>
-                  <Component id="presentacionCbx" min="-2" max="-2" attributes="0"/>
-                  <Component id="pEstandartxt" alignment="0" min="-2" pref="314" max="-2" attributes="0"/>
-                  <Component id="pUltCompratxt" alignment="0" min="-2" pref="314" max="-2" attributes="0"/>
-                  <Component id="cMinPedirtxt" alignment="0" min="-2" pref="314" max="-2" attributes="0"/>
-                  <Component id="cMaxPedirtxt" min="-2" pref="314" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="noCuentatxt" alignment="0" max="32767" attributes="0"/>
+                  <Component id="proveedorCbx" alignment="0" max="32767" attributes="0"/>
+                  <Component id="bancotxt" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="109" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="unidadEmp" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="proveedor" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="proveedorCbx" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace pref="46" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="unidadEmp1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="presentacionCbx" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="noCuenta" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="noCuentatxt" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="nombreAEmp" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="dRetrasotxt" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                  <Component id="banco" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="bancotxt" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="capacidadEmp" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="pEstandartxt" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="capacidadEmp1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="pUltCompratxt" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="capacidadEmp3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cMinPedirtxt" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="capacidadEmp2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cMaxPedirtxt" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
               <Component id="opcionesAEmp" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -110,25 +89,28 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="nombreAEmp">
+    <Component class="javax.swing.JLabel" name="noCuenta">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="D&#xcd;A RETRASO:"/>
+        <Property name="text" type="java.lang.String" value="NO. CUENTA:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="capacidadEmp">
+    <Component class="javax.swing.JLabel" name="banco">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="PRECIO ESTANDAR:"/>
+        <Property name="text" type="java.lang.String" value="BANCO:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="dRetrasotxt">
+    <Component class="javax.swing.JTextField" name="noCuentatxt">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="noCuentatxtActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="pEstandartxt">
+    <Component class="javax.swing.JTextField" name="bancotxt">
     </Component>
     <Container class="javax.swing.JPanel" name="opcionesAEmp">
       <Properties>
@@ -143,7 +125,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
                   <Component id="guardarAEmp" min="-2" pref="143" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="283" max="32767" attributes="0"/>
                   <Component id="cancelarAEmp" min="-2" pref="143" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
               </Group>
@@ -226,7 +208,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="unidadEmp">
+    <Component class="javax.swing.JLabel" name="proveedor">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="18" style="1"/>
@@ -248,59 +230,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="proveedorCbxActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="unidadEmp1">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Times New Roman" size="18" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="PRESENATCI&#xd3;N: "/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="capacidadEmp1">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Times New Roman" size="18" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="PRECIO ULTIMA COMPRA:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="capacidadEmp2">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Times New Roman" size="18" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="CANTIDAD MIXIMA PEDIR:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="capacidadEmp3">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Times New Roman" size="18" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="CANTIDAD MINIMA PEDIR:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JComboBox" name="presentacionCbx">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Times New Roman" size="14" style="1"/>
-        </Property>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="1">
-            <StringItem index="0" value="SELECCIONA UNA PRESENTACION"/>
-          </StringArray>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="presentacionCbxActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="pUltCompratxt">
-    </Component>
-    <Component class="javax.swing.JTextField" name="cMinPedirtxt">
-    </Component>
-    <Component class="javax.swing.JTextField" name="cMaxPedirtxt">
     </Component>
   </SubComponents>
 </Form>

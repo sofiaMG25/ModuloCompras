@@ -11,33 +11,29 @@ public class DAOProductoProveedorImp implements DAOProductoProveedor {
 
     @Override
     public LinkedList<ProductoProveedor> obtenerIdProveedor() {
-         LinkedList<ProductoProveedor> proveedor;
+        LinkedList<ProductoProveedor> proveedor;
         try {
             cn.setPs(cn.getCn().prepareStatement("select nombre from dbo.Proveedores"));
             cn.setRs(cn.getPs().executeQuery());
             proveedor = new LinkedList<>();
-
             while (cn.getRs().next()) {
                 proveedor.add(new ProductoProveedor(cn.getRs().getString(1)));
-                //proveedor.add(new ProductoProveedor(cn.getRs().getString(1)));
             }
-
             if (proveedor.size() <= 0) {
                 return null;
             }
-
             cn.getPs().close();
             cn.getRs().close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
-        }
+        } 
         return proveedor;
     }
 
     @Override
     public LinkedList<ProductoProveedor> obtenerIdPresentaciones() {
-        LinkedList<ProductoProveedor> producto;
+         LinkedList<ProductoProveedor> producto;
         try {
             cn.setPs(cn.getCn().prepareStatement("select idPresentacion from dbo.PresentacionesProductos"));
             cn.setRs(cn.getPs().executeQuery());
@@ -60,10 +56,34 @@ public class DAOProductoProveedorImp implements DAOProductoProveedor {
         return producto;
     }
 
+    @Override
+    public LinkedList<ProductoProveedor> busquedaPorNombre(int id) {
+                 try {
+            cn.setPs(cn.getCn().prepareCall("{call sp_busquedaPorNombrepProvedor (?) }"));
+            cn.getPs().setInt(1, id);
+            cn.setRs(cn.getPs().executeQuery());
+            LinkedList<ProductoProveedor> prodProv = new LinkedList<ProductoProveedor>();
+            char estatus;
+            while(cn.getRs().next()){
+                estatus = cn.getRs().getString("estatus").charAt(0);
+                prodProv.add(new ProductoProveedor(cn.getRs().getString(1),cn.getRs().getString(2)
+                        , Integer.parseInt(cn.getRs().getString(3)) , Float.parseFloat(cn.getRs().getString(4)),
+                        Float.parseFloat(cn.getRs().getString(5)),Integer.parseInt(cn.getRs().getString(6)),
+                        Integer.parseInt(cn.getRs().getString(7)),estatus));
+            }
+            cn.getPs().close();
+            cn.getRs().close();
+            return prodProv;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Error con servidor",e.getMessage(),JOptionPane.ERROR_MESSAGE);
+        }
+        return null;
+
+    }
 
     @Override
     public int contRegistro() {
-         int cantRegistros = 0;
+        int cantRegistros = 0;
         try {
             String sql = "select count(idProveedor) as registros from dbo.ProductosProveedor ";
             cn.setPs(cn.getCn().prepareCall(sql));
@@ -82,7 +102,7 @@ public class DAOProductoProveedorImp implements DAOProductoProveedor {
 
     @Override
     public void Insert(ProductoProveedor nuevo) {
-        String sql = "{call sp_agregarProdProveedor (?,?,?,?,?,?,?)}";
+         String sql = "{call sp_agregarProdProveedor (?,?,?,?,?,?,?)}";
         try {
             
             cn.setPs(cn.getCn().prepareStatement(sql));
@@ -107,10 +127,8 @@ public class DAOProductoProveedorImp implements DAOProductoProveedor {
 
     @Override
     public void upadate(ProductoProveedor nuevo) {
-        String sql = "{call sp_editarProdProveedor(?, ?, ?, ?, ?, ?, ?, ?)}";
         try {
-            
-            cn.setPs(cn.getCn().prepareStatement(sql));
+            cn.setPs(cn.getCn().prepareCall("{call sp_editarProdProveedor(?, ?, ?, ?, ?, ?, ?, ?)}"));// aggregar en ka bd 1sp_actualizarPresentacion
             cn.getPs().setString(1, nuevo.getIdProveedor());
             cn.getPs().setString(2, nuevo.getIdPresentaciones());
             cn.getPs().setInt(3, nuevo.getDiasRetardo());
@@ -119,40 +137,40 @@ public class DAOProductoProveedorImp implements DAOProductoProveedor {
             cn.getPs().setInt(6, nuevo.getCantMinPedir());
             cn.getPs().setInt(7, nuevo.getCantMaxPedir());
             cn.getPs().setString(8, String.valueOf(nuevo.getEstatus()));
-cn.getPs().execute();
-            JOptionPane.showMessageDialog(null, "Se actualizo con exito", "actualizando", JOptionPane.INFORMATION_MESSAGE);
-
+            cn.getPs().execute();
+                JOptionPane.showMessageDialog(null,"Los datos se han actualizado con exito..."
+                        ,"Actualizando", JOptionPane.INFORMATION_MESSAGE);
+                
             cn.getPs().close();
-            cn.getRs().close();
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(),
-                    "Error", JOptionPane.ERROR_MESSAGE);
+            cn.getRs().close();  
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"No se actualizaron "+ ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     @Override
     public void delete(ProductoProveedor nuevo) {
-        String sql = "{call sp_eliminarProdProveedor (?)}";//agregar sp en la bd 1sp_eliminarPresentacion 
-        try {
-            cn.setPs(cn.getCn().prepareStatement(sql));
-            cn.getPs().setString(1, String.valueOf(nuevo.getIdPresentaciones()));
-
-            if (cn.getPs().execute()) {
-                System.out.println("Se eliminó con éxito.");
-            }
+         try {
+            cn.setPs(cn.getCn().prepareCall("{call sp_eliminarProductoProvee (?)}"));
+            cn.getPs().setString(1, nuevo.getIdProveedor());
+            cn.getPs().execute();
+                JOptionPane.showMessageDialog(null,"El registro fué eliminado."
+                        ,"Eliminando", JOptionPane.INFORMATION_MESSAGE);
+                
             cn.getPs().close();
             cn.getRs().close();
-        } catch (SQLException e) {
-            System.out.println("Error:" + e.getMessage());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,ex.getMessage(),"Error con el servidor",JOptionPane.ERROR_MESSAGE);
+        }finally{
+           
         }
     }
 
     @Override
     public LinkedList<ProductoProveedor> show(int pagina) {
-        LinkedList<ProductoProveedor> prodProveedor = null;
+        LinkedList<ProductoProveedor> prodProveedor;
         try {
-            String sql = "select * from sf_paginarProdProveedor(?)";
+            String sql = "SELECT * FROM sf_paginarProdProveedor (?)";
             cn.setPs(cn.getCn().prepareCall(sql));
             cn.getPs().setInt(1, pagina);
             cn.setRs(cn.getPs().executeQuery());
@@ -160,37 +178,7 @@ cn.getPs().execute();
             char estatus;
             while (cn.getRs().next()) {
                 estatus = cn.getRs().getString(8).charAt(0);
-                prodProveedor.add(new ProductoProveedor
-                    (cn.getRs().getString(1),
-                     cn.getRs().getString(2), 
-                     cn.getRs().getInt(3),
-                     cn.getRs().getInt(4),
-                     cn.getRs().getInt(5), 
-                     cn.getRs().getInt(6), 
-                     cn.getRs().getInt(7), 
-                     estatus));
-         
-            }
-            cn.getPs().close();
-            cn.getRs().close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
-        return prodProveedor;
-    }
-
-    @Override
-    public LinkedList<ProductoProveedor> busquedaPorNombre(String nombre) {
-       try {
-            cn.setPs(cn.getCn().prepareCall("SELECT * FROM ProductosProveedor Where idProveedor like "+"'%"+nombre+"%'"));
-            cn.getPs().setString(1, nombre);
-            cn.setRs(cn.getPs().executeQuery());
-            LinkedList<ProductoProveedor> PROV = new LinkedList<ProductoProveedor>();
-            char estatus;
-            while(cn.getRs().next()){
-                estatus = cn.getRs().getString(8).charAt(0);
-                PROV.add(new ProductoProveedor(cn.getRs().getString(1), 
+                prodProveedor.add(new ProductoProveedor(cn.getRs().getString(1), 
                         cn.getRs().getString(2),cn.getRs().getInt(3), 
                         cn.getRs().getFloat(4), cn.getRs().getFloat(5),
                         cn.getRs().getInt(6),cn.getRs().getInt(7),
@@ -198,11 +186,11 @@ cn.getPs().execute();
             }
             cn.getPs().close();
             cn.getRs().close();
-            return PROV;
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"Error con servidor",e.getMessage(),JOptionPane.ERROR_MESSAGE);
+            System.out.println(e.getMessage());
+            return null;
         }
-        return null;
+      return prodProveedor;
     }
 
 }
