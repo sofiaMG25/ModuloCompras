@@ -283,7 +283,7 @@ public class agregarProductosProveedor extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Seleccione la cantidad de producto, debe ser no mayor a la existencia", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else {
                 try {
-                    String idProveedor = comboxProveedor.getSelectedItem().toString();
+                    String Proveedor = comboxProveedor.getSelectedItem().toString();
                     String presentacion = comboxPresentacion.getSelectedItem().toString();
                     int diasRetardo = Integer.parseInt(diaRetardo.getText());
                     float precioEstandar = Float.parseFloat(this.precioEstandar.getText());
@@ -292,7 +292,7 @@ public class agregarProductosProveedor extends javax.swing.JPanel {
                     int cantMaxPedir = Integer.parseInt(this.cantidadMaxPedir.getText());
                    // new DAOProductoProveedorImp().Insert(new ProductoProveedor(TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY, null, TOP_ALIGNMENT, TOP_ALIGNMENT, SOMEBITS, SOMEBITS, estatus));
                     new DAOProductoProveedorImp().Insert(new ProductoProveedor
-                    (idProveedor,presentacion,diasRetardo,precioEstandar,ultimoPrecio,cantMinPedir,cantMaxPedir));
+                    (Proveedor,presentacion,diasRetardo,precioEstandar,ultimoPrecio,cantMinPedir,cantMaxPedir));
                     limpiarVariables();
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(this, " solo numeros", "Error de tipo de dato", JOptionPane.ERROR_MESSAGE);
