@@ -7,7 +7,7 @@
     </Property>
     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-        <TitledBorder title="Modificar producto">
+        <TitledBorder title="Modificar ImagenesProducto">
           <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
             <LineBorder roundedCorners="true" thickness="2">
               <Color PropertyName="color" blue="33" green="33" red="33" type="rgb"/>
@@ -20,7 +20,7 @@
     </Property>
   </Properties>
   <AccessibilityProperties>
-    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Modificar Productos"/>
+    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Modificar ImagenesProducto"/>
   </AccessibilityProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -81,7 +81,7 @@
                           <Component id="estatusUEmp" min="-2" max="-2" attributes="0"/>
                           <Component id="txtProducto" min="-2" pref="220" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="138" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="36" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
@@ -110,7 +110,7 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="labImagen" alignment="1" pref="25" max="32767" attributes="0"/>
+                  <Component id="labImagen" alignment="1" pref="28" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="origenUEmp" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtProducto" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -122,7 +122,7 @@
                   <Component id="origenUEmp1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtPrincipal" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
               <Component id="opcionesUEmp" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
