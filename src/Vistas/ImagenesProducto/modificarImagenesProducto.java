@@ -101,6 +101,12 @@ public class modificarImagenesProducto extends javax.swing.JPanel {
 
         idtxtUImgPro.setEnabled(false);
 
+        txtNombreImg.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreImgKeyPressed(evt);
+            }
+        });
+
         idUEmp.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         idUEmp.setText("ID:");
 
@@ -112,6 +118,12 @@ public class modificarImagenesProducto extends javax.swing.JPanel {
 
         estatusEmp.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         estatusEmp.setText("ESTATUS:");
+
+        txtPrincipal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPrincipalKeyPressed(evt);
+            }
+        });
 
         estatusUEmp.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         estatusUEmp.setText("ID PRODUCTO:");
@@ -234,11 +246,12 @@ public class modificarImagenesProducto extends javax.swing.JPanel {
                     .addComponent(txtNombreImg, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(estatusUEmp))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(origenUEmp)
-                    .addComponent(txtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cargar)
-                    .addComponent(labImagen, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labImagen, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(origenUEmp)
+                        .addComponent(txtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cargar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(origenUEmp1)
@@ -336,6 +349,24 @@ public class modificarImagenesProducto extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_cargarMouseClicked
+
+    private void txtNombreImgKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreImgKeyPressed
+        if (txtNombreImg.getText().length()==100) {
+                JOptionPane.showMessageDialog(this, "Ingrese menos de 100 carácteres", "Error", JOptionPane.ERROR_MESSAGE);
+                txtNombreImg.requestFocus();
+                evt.consume();
+            
+            }
+    }//GEN-LAST:event_txtNombreImgKeyPressed
+
+    private void txtPrincipalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrincipalKeyPressed
+        if ( txtPrincipal.getText().length()==1) {
+                JOptionPane.showMessageDialog(this, "Ingrese sólo un carácter.", "Error", JOptionPane.ERROR_MESSAGE);
+                txtPrincipal.requestFocus();
+                evt.consume();
+            
+            }
+    }//GEN-LAST:event_txtPrincipalKeyPressed
 
     
 

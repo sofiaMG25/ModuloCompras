@@ -128,6 +128,12 @@ public class agregarImagenesProducto extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        txtNombImagen.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombImagenKeyPressed(evt);
+            }
+        });
+
         origenUEmp1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         origenUEmp1.setText("PRINCIPAL:");
 
@@ -136,6 +142,12 @@ public class agregarImagenesProducto extends javax.swing.JPanel {
 
         origenUEmp.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         origenUEmp.setText("IMAGEN:");
+
+        txtPrincipal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPrincipalKeyPressed(evt);
+            }
+        });
 
         estatusUEmp.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         estatusUEmp.setText("ID PRODUCTO:");
@@ -205,7 +217,6 @@ public class agregarImagenesProducto extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cargar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(origenUEmp1)
                     .addComponent(txtPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -220,9 +231,10 @@ public class agregarImagenesProducto extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Ingrese un nombre válido", "Error", JOptionPane.ERROR_MESSAGE);
             txtNombImagen.requestFocus();
         }
-            if (txtPrincipal.getText().equals("")) {
+            if (txtPrincipal.getText().equals("") ) {
                 JOptionPane.showMessageDialog(this, "Ingrese un carácter válido", "Error", JOptionPane.ERROR_MESSAGE);
                 txtPrincipal.requestFocus();
+                
             
             } else if (txtProducto.getSelectedIndex() <= 0) {
                 JOptionPane.showMessageDialog(this, "Elija un producto válido ", "Error", JOptionPane.ERROR_MESSAGE);
@@ -304,6 +316,24 @@ public class agregarImagenesProducto extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_cargarMouseClicked
+
+    private void txtPrincipalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrincipalKeyPressed
+        if ( txtPrincipal.getText().length()==1) {
+                JOptionPane.showMessageDialog(this, "Ingrese sólo un carácter.", "Error", JOptionPane.ERROR_MESSAGE);
+                txtPrincipal.requestFocus();
+                evt.consume();
+            
+            }
+    }//GEN-LAST:event_txtPrincipalKeyPressed
+
+    private void txtNombImagenKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombImagenKeyPressed
+        if (txtNombImagen.getText().length()==100) {
+                JOptionPane.showMessageDialog(this, "Ingrese menos de 100 carácteres", "Error", JOptionPane.ERROR_MESSAGE);
+                txtNombImagen.requestFocus();
+                evt.consume();
+            
+            }
+    }//GEN-LAST:event_txtNombImagenKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
