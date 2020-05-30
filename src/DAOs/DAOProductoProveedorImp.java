@@ -102,7 +102,8 @@ public class DAOProductoProveedorImp implements DAOProductoProveedor {
 
     @Override
     public void Insert(ProductoProveedor nuevo) {
-         String sql = "{call sp_agregarProdProveedor (?,?,?,?,?,?,?)}";
+        String sql = "{call sp_agregarProdProveedor (?,?,?,?,?,?,?)}";
+
         try {
             
             cn.setPs(cn.getCn().prepareStatement(sql));
@@ -112,10 +113,9 @@ public class DAOProductoProveedorImp implements DAOProductoProveedor {
             cn.getPs().setFloat(4, nuevo.getPrecioEstandar());
             cn.getPs().setFloat(5, nuevo.getPrecioUltCompra());
             cn.getPs().setInt(6, nuevo.getCantMinPedir());
-            cn.getPs().setInt(7, nuevo.getCantMaxPedir());
+            cn.getPs().setInt(7, nuevo.getCantMaxPedir());         
             cn.getPs().execute();
             JOptionPane.showMessageDialog(null, "Registro exitoso", "Registrando", JOptionPane.INFORMATION_MESSAGE);
-
             cn.getPs().close();
             cn.getRs().close();
 
@@ -127,8 +127,10 @@ public class DAOProductoProveedorImp implements DAOProductoProveedor {
 
     @Override
     public void upadate(ProductoProveedor nuevo) {
+        String sql = "{call sp_editarProdProveedor(?, ?, ?, ?, ?, ?, ? , ? )}";
+
         try {
-            cn.setPs(cn.getCn().prepareCall("{call sp_editarProdProveedor(?, ?, ?, ?, ?, ?, ?, ?)}"));// aggregar en ka bd 1sp_actualizarPresentacion
+//            cn.setPs(cn.getCn().prepareCall("{call sp_editarProdProveedor(?, ?, ?, ?, ?, ?, ?, ?)}"));// aggregar en ka bd 1sp_actualizarPresentacion
             cn.getPs().setString(1, nuevo.getIdProveedor());
             cn.getPs().setString(2, nuevo.getIdPresentaciones());
             cn.getPs().setInt(3, nuevo.getDiasRetardo());
@@ -140,7 +142,6 @@ public class DAOProductoProveedorImp implements DAOProductoProveedor {
             cn.getPs().execute();
                 JOptionPane.showMessageDialog(null,"Los datos se han actualizado con exito..."
                         ,"Actualizando", JOptionPane.INFORMATION_MESSAGE);
-                
             cn.getPs().close();
             cn.getRs().close();  
         } catch (SQLException ex) {
