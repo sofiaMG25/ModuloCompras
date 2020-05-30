@@ -438,6 +438,7 @@ public class mostrarProductosProveedor extends javax.swing.JPanel {
             next.setVisible(false);
             preview.setVisible(true);
             leyenda.setVisible(true);
+            MostrarDatosProdProv();
         } else {
             cambioPagina++;
             preview.setVisible(true);

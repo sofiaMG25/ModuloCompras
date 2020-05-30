@@ -84,7 +84,7 @@ public class DAOProductoProveedorImp implements DAOProductoProveedor {
     public int contRegistro() {
         int cantRegistros = 0;
         try {
-            String sql = "select count(idProveedor) as registros from dbo.ProductosProveedor ";
+            String sql = "select count(idPresentacion) as registros from dbo.ProductosProveedor ";
             cn.setPs(cn.getCn().prepareCall(sql));
             cn.setRs(cn.getPs().executeQuery());
             while (cn.getRs().next()) {
@@ -101,9 +101,9 @@ public class DAOProductoProveedorImp implements DAOProductoProveedor {
 
     @Override
     public void Insert(ProductoProveedor nuevo) {
-        String sql = "{call sp_agregarProdProveedor (?,?,?,?,?,?,?)}";
+         String sql = "{call sp_agregarProdProveedor (?,?,?,?,?,?,?)}";
         try {
-
+            
             cn.setPs(cn.getCn().prepareStatement(sql));
             cn.getPs().setString(1, nuevo.getIdProveedor());
             cn.getPs().setString(2, nuevo.getIdPresentaciones());
@@ -111,12 +111,10 @@ public class DAOProductoProveedorImp implements DAOProductoProveedor {
             cn.getPs().setFloat(4, nuevo.getPrecioEstandar());
             cn.getPs().setFloat(5, nuevo.getPrecioUltCompra());
             cn.getPs().setInt(6, nuevo.getCantMinPedir());
-
             cn.getPs().setInt(7, nuevo.getCantMaxPedir());
-            
             cn.getPs().execute();
-
             JOptionPane.showMessageDialog(null, "Registro exitoso", "Registrando", JOptionPane.INFORMATION_MESSAGE);
+
             cn.getPs().close();
             cn.getRs().close();
 
@@ -156,7 +154,7 @@ public class DAOProductoProveedorImp implements DAOProductoProveedor {
     public void delete(ProductoProveedor nuevo) {
         try {
             cn.setPs(cn.getCn().prepareCall("{call sp_eliminarProductoProvee (?)}"));
-            cn.getPs().setString(1, nuevo.getIdProveedor());
+            cn.getPs().setString(1, nuevo.getIdPresentaciones());
             cn.getPs().execute();
             JOptionPane.showMessageDialog(null, "El registro fué eliminado.", "Eliminando", JOptionPane.INFORMATION_MESSAGE);
 
