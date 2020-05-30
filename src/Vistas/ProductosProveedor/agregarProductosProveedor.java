@@ -261,24 +261,17 @@ public class agregarProductosProveedor extends javax.swing.JPanel {
             } else if (pUltCompratxt.getText().equals("") || Float.parseFloat(pUltCompratxt.getText()) <= 0) {
                 pUltCompratxt.requestFocus();
                 JOptionPane.showMessageDialog(this, "Ingrese un precio de compra", "ERROR", JOptionPane.ERROR_MESSAGE);
-            } else if (cMinPedirtxt.getText().equals("") || Integer.parseInt(cMinPedirtxt.getText()) <= 0) {
+            } else if ((cMinPedirtxt.getText().equals("") || Float.parseFloat(cMinPedirtxt.getText()) <= 0)
+                    &&(Integer.parseInt(cMinPedirtxt.getText())>Integer.parseInt(cMaxPedirtxt.getText())) ) {
                 cMinPedirtxt.requestFocus();
                 JOptionPane.showMessageDialog(this, "Seleccione la cantidad de producto, debe ser mayor a 0", "ERROR", JOptionPane.ERROR_MESSAGE);
-            } else if (Integer.parseInt(cMinPedirtxt.getText()) >Integer.parseInt(cMaxPedirtxt.getText())) {
-                cMinPedirtxt.requestFocus();
-                JOptionPane.showMessageDialog(this, "Cantidad minima debe ser menor a cantidad maxima", "ERROR", JOptionPane.ERROR_MESSAGE);
-            } else if (cMaxPedirtxt.getText().equals("") || Integer.parseInt(cMaxPedirtxt.getText()) <= 0) {
+            } else if ((cMaxPedirtxt.getText().equals("") || Float.parseFloat(cMaxPedirtxt.getText())<= 0 )
+                    &&(Integer.parseInt(cMaxPedirtxt.getText())<Integer.parseInt(cMinPedirtxt.getText()))) {
                 cMaxPedirtxt.requestFocus();
                 JOptionPane.showMessageDialog(this, "Seleccione la cantidad de producto, debe ser no mayor a la existencia", "ERROR", JOptionPane.ERROR_MESSAGE);
-            } else if ( Integer.parseInt(cMaxPedirtxt.getText()) < Integer.parseInt(cMinPedirtxt.getText()) ) {
-                cMaxPedirtxt.requestFocus();
-                JOptionPane.showMessageDialog(this, "Cantidad maxima debe ser mayor a cantidad minima", "ERROR", JOptionPane.ERROR_MESSAGE);
+           
             } else {
                 try {
-//                    new DAOProductoProveedorImp().Insert(new ProductoProveedor(proveedorCbx.getSelectedItem().toString(),
-//                            presentacionCbx.getSelectedItem().toString(), Integer.parseInt(dRetrasotxt.getText()),
-//                            Float.parseFloat(pEstandartxt.getText()), Float.parseFloat(pUltCompratxt.getText()),
-//                            Integer.parseInt(cMinPedirtxt.getText()), Integer.parseInt(cMaxPedirtxt.getText())));
                     String Proveedor = proveedorCbx.getSelectedItem().toString();
                     String presentacion = presentacionCbx.getSelectedItem().toString();
                     int diasRetardo = Integer.parseInt(dRetrasotxt.getText());
@@ -289,7 +282,6 @@ public class agregarProductosProveedor extends javax.swing.JPanel {
                    // new DAOProductoProveedorImp().Insert(new ProductoProveedor(TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY, null, TOP_ALIGNMENT, TOP_ALIGNMENT, SOMEBITS, SOMEBITS, estatus));
                     new DAOProductoProveedorImp().Insert(new ProductoProveedor
                     (Proveedor,presentacion,diasRetardo,precioEstandar,ultimoPrecio,cantMinPedir,cantMaxPedir));
-                    limpiarVariables();
                     limpiarVariables();
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(this, " solo numeros", "Error de tipo de dato", JOptionPane.ERROR_MESSAGE);

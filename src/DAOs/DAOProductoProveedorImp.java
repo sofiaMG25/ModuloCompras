@@ -102,7 +102,6 @@ public class DAOProductoProveedorImp implements DAOProductoProveedor {
     @Override
     public void Insert(ProductoProveedor nuevo) {
         String sql = "{call sp_agregarProdProveedor (?,?,?,?,?,?,?)}";
-
         try {
 
             cn.setPs(cn.getCn().prepareStatement(sql));
@@ -114,6 +113,7 @@ public class DAOProductoProveedorImp implements DAOProductoProveedor {
             cn.getPs().setInt(6, nuevo.getCantMinPedir());
 
             cn.getPs().setInt(7, nuevo.getCantMaxPedir());
+            
             cn.getPs().execute();
 
             JOptionPane.showMessageDialog(null, "Registro exitoso", "Registrando", JOptionPane.INFORMATION_MESSAGE);
@@ -129,7 +129,6 @@ public class DAOProductoProveedorImp implements DAOProductoProveedor {
     @Override
     public void upadate(ProductoProveedor nuevo) {
         String sql = "{call sp_editarProdProveedor(?, ?, ?, ?, ?, ?, ? , ? )}";
-
         try {
             // cn.setPs(cn.getCn().prepareCall("{call sp_editarProdProveedor(?, ?, ?, ?, ?, ?, ?, ?)}"));// aggregar en ka bd 1sp_actualizarPresentacion
             cn.setPs(cn.getCn().prepareStatement(sql));
@@ -140,9 +139,8 @@ public class DAOProductoProveedorImp implements DAOProductoProveedor {
             cn.getPs().setFloat(5, nuevo.getPrecioUltCompra());
             cn.getPs().setInt(6, nuevo.getCantMinPedir());
             cn.getPs().setInt(7, nuevo.getCantMaxPedir());
-            cn.getPs().setString(8, String.valueOf(nuevo.getEstatus()));
+            cn.getPs().setString(8,String.valueOf(nuevo.getEstatus()));
             cn.getPs().execute();
-            JOptionPane.showMessageDialog(null, "Los datos se han actualizado con exito...", "Actualizando", JOptionPane.INFORMATION_MESSAGE);
 
             JOptionPane.showMessageDialog(null, "Se actualizo con exito", "actualizando", JOptionPane.INFORMATION_MESSAGE);
 
