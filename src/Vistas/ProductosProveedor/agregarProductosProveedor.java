@@ -1,11 +1,13 @@
-/*1111111
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package Vistas.ProductosProveedor;
 
+import Vistas.ProductosProveedor.*;
 import DAOs.DAOProductoProveedorImp;
+import DAOs.Presentaciones;
 import DAOs.ProductoProveedor;
 import java.awt.BorderLayout;
 import java.util.LinkedList;
@@ -273,10 +275,21 @@ public class agregarProductosProveedor extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Cantidad maxima debe ser mayor a cantidad minima", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else {
                 try {
-                    new DAOProductoProveedorImp().Insert(new ProductoProveedor(proveedorCbx.getSelectedItem().toString(),
-                            presentacionCbx.getSelectedItem().toString(), Integer.parseInt(dRetrasotxt.getText()),
-                            Float.parseFloat(pEstandartxt.getText()), Float.parseFloat(pUltCompratxt.getText()),
-                            Integer.parseInt(cMinPedirtxt.getText()), Integer.parseInt(cMaxPedirtxt.getText())));
+//                    new DAOProductoProveedorImp().Insert(new ProductoProveedor(proveedorCbx.getSelectedItem().toString(),
+//                            presentacionCbx.getSelectedItem().toString(), Integer.parseInt(dRetrasotxt.getText()),
+//                            Float.parseFloat(pEstandartxt.getText()), Float.parseFloat(pUltCompratxt.getText()),
+//                            Integer.parseInt(cMinPedirtxt.getText()), Integer.parseInt(cMaxPedirtxt.getText())));
+                    String Proveedor = proveedorCbx.getSelectedItem().toString();
+                    String presentacion = presentacionCbx.getSelectedItem().toString();
+                    int diasRetardo = Integer.parseInt(dRetrasotxt.getText());
+                    float precioEstandar = Float.parseFloat(this.pEstandartxt.getText());
+                    float ultimoPrecio = Float.parseFloat(this.pUltCompratxt.getText());
+                    int cantMinPedir = Integer.parseInt(cMinPedirtxt.getText());
+                    int cantMaxPedir = Integer.parseInt(this.cMaxPedirtxt.getText());
+                   // new DAOProductoProveedorImp().Insert(new ProductoProveedor(TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY, null, TOP_ALIGNMENT, TOP_ALIGNMENT, SOMEBITS, SOMEBITS, estatus));
+                    new DAOProductoProveedorImp().Insert(new ProductoProveedor
+                    (Proveedor,presentacion,diasRetardo,precioEstandar,ultimoPrecio,cantMinPedir,cantMaxPedir));
+                    limpiarVariables();
                     limpiarVariables();
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(this, " solo numeros", "Error de tipo de dato", JOptionPane.ERROR_MESSAGE);
@@ -345,3 +358,20 @@ public class agregarProductosProveedor extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
 }
+/*
+//                    new DAOProductoProveedorImp().Insert(new ProductoProveedor(proveedorCbx.getSelectedItem().toString(),
+//                            presentacionCbx.getSelectedItem().toString(), Integer.parseInt(dRetrasotxt.getText()),
+//                            Float.parseFloat(pEstandartxt.getText()), Float.parseFloat(pUltCompratxt.getText()),
+//                            Integer.parseInt(cMinPedirtxt.getText()), Integer.parseInt(cMaxPedirtxt.getText())));
+
+                    String Proveedor = proveedorCbx.getSelectedItem().toString();
+                    String presentacion = presentacionCbx.getSelectedItem().toString();
+                    int diasRetardo = Integer.parseInt(dRetrasotxt.getText());
+                    float precioEstandar = Float.parseFloat(this.pEstandartxt.getText());
+                    float ultimoPrecio = Float.parseFloat(this.pUltCompratxt.getText());
+                    int cantMinPedir = Integer.parseInt(cMinPedirtxt.getText());
+                    int cantMaxPedir = Integer.parseInt(this.cMaxPedirtxt.getText());
+                   // new DAOProductoProveedorImp().Insert(new ProductoProveedor(TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY, null, TOP_ALIGNMENT, TOP_ALIGNMENT, SOMEBITS, SOMEBITS, estatus));
+                    new DAOProductoProveedorImp().Insert(new ProductoProveedor
+                    (Proveedor,presentacion,diasRetardo,precioEstandar,ultimoPrecio,cantMinPedir,cantMaxPedir));
+                    limpiarVariables();*/

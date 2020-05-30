@@ -27,13 +27,13 @@ public class DAOProductoProveedorImp implements DAOProductoProveedor {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
-        } 
+        }
         return proveedor;
     }
 
     @Override
     public LinkedList<ProductoProveedor> obtenerIdPresentaciones() {
-         LinkedList<ProductoProveedor> producto;
+        LinkedList<ProductoProveedor> producto;
         try {
             cn.setPs(cn.getCn().prepareStatement("select idPresentacion from dbo.PresentacionesProductos"));
             cn.setRs(cn.getPs().executeQuery());
@@ -58,24 +58,23 @@ public class DAOProductoProveedorImp implements DAOProductoProveedor {
 
     @Override
     public LinkedList<ProductoProveedor> busquedaPorNombre(int id) {
-                 try {
+        try {
             cn.setPs(cn.getCn().prepareCall("{call sp_busquedaPorNombrepProvedor (?) }"));
             cn.getPs().setInt(1, id);
             cn.setRs(cn.getPs().executeQuery());
             LinkedList<ProductoProveedor> prodProv = new LinkedList<ProductoProveedor>();
             char estatus;
-            while(cn.getRs().next()){
+            while (cn.getRs().next()) {
                 estatus = cn.getRs().getString("estatus").charAt(0);
-                prodProv.add(new ProductoProveedor(cn.getRs().getString(1),cn.getRs().getString(2)
-                        , Integer.parseInt(cn.getRs().getString(3)) , Float.parseFloat(cn.getRs().getString(4)),
-                        Float.parseFloat(cn.getRs().getString(5)),Integer.parseInt(cn.getRs().getString(6)),
-                        Integer.parseInt(cn.getRs().getString(7)),estatus));
+                prodProv.add(new ProductoProveedor(cn.getRs().getString(1), cn.getRs().getString(2), Integer.parseInt(cn.getRs().getString(3)), Float.parseFloat(cn.getRs().getString(4)),
+                        Float.parseFloat(cn.getRs().getString(5)), Integer.parseInt(cn.getRs().getString(6)),
+                        Integer.parseInt(cn.getRs().getString(7)), estatus));
             }
             cn.getPs().close();
             cn.getRs().close();
             return prodProv;
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"Error con servidor",e.getMessage(),JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error con servidor", e.getMessage(), JOptionPane.ERROR_MESSAGE);
         }
         return null;
 
@@ -95,7 +94,7 @@ public class DAOProductoProveedorImp implements DAOProductoProveedor {
             cn.getRs().close();
             return cantRegistros;
         } catch (Exception e) {
-            System.out.println("malo"+e.getMessage());
+            System.out.println("malo" + e.getMessage());
         }
         return cantRegistros;
     }
@@ -105,7 +104,7 @@ public class DAOProductoProveedorImp implements DAOProductoProveedor {
         String sql = "{call sp_agregarProdProveedor (?,?,?,?,?,?,?)}";
 
         try {
-            
+
             cn.setPs(cn.getCn().prepareStatement(sql));
             cn.getPs().setString(1, nuevo.getIdProveedor());
             cn.getPs().setString(2, nuevo.getIdPresentaciones());
@@ -113,8 +112,10 @@ public class DAOProductoProveedorImp implements DAOProductoProveedor {
             cn.getPs().setFloat(4, nuevo.getPrecioEstandar());
             cn.getPs().setFloat(5, nuevo.getPrecioUltCompra());
             cn.getPs().setInt(6, nuevo.getCantMinPedir());
-            cn.getPs().setInt(7, nuevo.getCantMaxPedir());         
+
+            cn.getPs().setInt(7, nuevo.getCantMaxPedir());
             cn.getPs().execute();
+
             JOptionPane.showMessageDialog(null, "Registro exitoso", "Registrando", JOptionPane.INFORMATION_MESSAGE);
             cn.getPs().close();
             cn.getRs().close();
@@ -130,7 +131,8 @@ public class DAOProductoProveedorImp implements DAOProductoProveedor {
         String sql = "{call sp_editarProdProveedor(?, ?, ?, ?, ?, ?, ? , ? )}";
 
         try {
-//            cn.setPs(cn.getCn().prepareCall("{call sp_editarProdProveedor(?, ?, ?, ?, ?, ?, ?, ?)}"));// aggregar en ka bd 1sp_actualizarPresentacion
+            // cn.setPs(cn.getCn().prepareCall("{call sp_editarProdProveedor(?, ?, ?, ?, ?, ?, ?, ?)}"));// aggregar en ka bd 1sp_actualizarPresentacion
+            cn.setPs(cn.getCn().prepareStatement(sql));
             cn.getPs().setString(1, nuevo.getIdProveedor());
             cn.getPs().setString(2, nuevo.getIdPresentaciones());
             cn.getPs().setInt(3, nuevo.getDiasRetardo());
@@ -140,30 +142,32 @@ public class DAOProductoProveedorImp implements DAOProductoProveedor {
             cn.getPs().setInt(7, nuevo.getCantMaxPedir());
             cn.getPs().setString(8, String.valueOf(nuevo.getEstatus()));
             cn.getPs().execute();
-                JOptionPane.showMessageDialog(null,"Los datos se han actualizado con exito..."
-                        ,"Actualizando", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Los datos se han actualizado con exito...", "Actualizando", JOptionPane.INFORMATION_MESSAGE);
+
+            JOptionPane.showMessageDialog(null, "Se actualizo con exito", "actualizando", JOptionPane.INFORMATION_MESSAGE);
+
             cn.getPs().close();
-            cn.getRs().close();  
+            cn.getRs().close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"No se actualizaron "+ ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No se actualizaron " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
         }
     }
 
     @Override
     public void delete(ProductoProveedor nuevo) {
-         try {
+        try {
             cn.setPs(cn.getCn().prepareCall("{call sp_eliminarProductoProvee (?)}"));
             cn.getPs().setString(1, nuevo.getIdProveedor());
             cn.getPs().execute();
-                JOptionPane.showMessageDialog(null,"El registro fué eliminado."
-                        ,"Eliminando", JOptionPane.INFORMATION_MESSAGE);
-                
+            JOptionPane.showMessageDialog(null, "El registro fué eliminado.", "Eliminando", JOptionPane.INFORMATION_MESSAGE);
+
             cn.getPs().close();
             cn.getRs().close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,ex.getMessage(),"Error con el servidor",JOptionPane.ERROR_MESSAGE);
-        }finally{
-           
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error con el servidor", JOptionPane.ERROR_MESSAGE);
+        } finally {
+
         }
     }
 
@@ -179,10 +183,10 @@ public class DAOProductoProveedorImp implements DAOProductoProveedor {
             char estatus;
             while (cn.getRs().next()) {
                 estatus = cn.getRs().getString(8).charAt(0);
-                prodProveedor.add(new ProductoProveedor(cn.getRs().getString(1), 
-                        cn.getRs().getString(2),cn.getRs().getInt(3), 
+                prodProveedor.add(new ProductoProveedor(cn.getRs().getString(1),
+                        cn.getRs().getString(2), cn.getRs().getInt(3),
                         cn.getRs().getFloat(4), cn.getRs().getFloat(5),
-                        cn.getRs().getInt(6),cn.getRs().getInt(7),
+                        cn.getRs().getInt(6), cn.getRs().getInt(7),
                         estatus));
             }
             cn.getPs().close();
@@ -191,7 +195,57 @@ public class DAOProductoProveedorImp implements DAOProductoProveedor {
             System.out.println(e.getMessage());
             return null;
         }
-      return prodProveedor;
+        return prodProveedor;
     }
 
 }
+/*
+ String sql = "{call sp_agregarProdProveedor (?,?,?,?,?,?,?)}";
+
+ try {
+            
+ cn.setPs(cn.getCn().prepareStatement(sql));
+ cn.getPs().setString(1, nuevo.getIdProveedor());
+ cn.getPs().setString(2, nuevo.getIdPresentaciones());
+ cn.getPs().setInt(3, nuevo.getDiasRetardo());
+ cn.getPs().setFloat(4, nuevo.getPrecioEstandar());
+ cn.getPs().setFloat(5, nuevo.getPrecioUltCompra());
+ cn.getPs().setInt(6, nuevo.getCantMinPedir());
+
+ cn.getPs().setInt(7, nuevo.getCantMaxPedir());         
+ cn.getPs().execute();
+
+ JOptionPane.showMessageDialog(null, "Registro exitoso", "Registrando", JOptionPane.INFORMATION_MESSAGE);
+ cn.getPs().close();
+ cn.getRs().close();
+
+ } catch (Exception e) {
+ JOptionPane.showMessageDialog(null, e.getMessage(),
+ "Error", JOptionPane.ERROR_MESSAGE);
+ }*/
+
+/* String sql = "{call sp_editarProdProveedor(?, ?, ?, ?, ?, ?, ? , ? )}";
+
+ try {
+ //            cn.setPs(cn.getCn().prepareCall("{call sp_editarProdProveedor(?, ?, ?, ?, ?, ?, ?, ?)}"));// aggregar en ka bd 1sp_actualizarPresentacion
+ cn.setPs(cn.getCn().prepareStatement(sql));
+ cn.getPs().setString(1, nuevo.getIdProveedor());
+ cn.getPs().setString(2, nuevo.getIdPresentaciones());
+ cn.getPs().setInt(3, nuevo.getDiasRetardo());
+ cn.getPs().setFloat(4, nuevo.getPrecioEstandar());
+ cn.getPs().setFloat(5, nuevo.getPrecioUltCompra());
+ cn.getPs().setInt(6, nuevo.getCantMinPedir());
+ cn.getPs().setInt(7, nuevo.getCantMaxPedir());
+ cn.getPs().setString(8, String.valueOf(nuevo.getEstatus()));
+ cn.getPs().execute();
+ JOptionPane.showMessageDialog(null,"Los datos se han actualizado con exito..."
+ ,"Actualizando", JOptionPane.INFORMATION_MESSAGE);
+
+
+ JOptionPane.showMessageDialog(null, "Se actualizo con exito", "actualizando", JOptionPane.INFORMATION_MESSAGE);
+
+ cn.getPs().close();
+ cn.getRs().close();  
+ } catch (SQLException ex) {
+ JOptionPane.showMessageDialog(null,"No se actualizaron "+ ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+ }*/
